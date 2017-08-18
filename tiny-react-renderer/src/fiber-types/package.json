@@ -1,0 +1,8 @@
+{
+  "name": "react-fiber-types",
+  "version": "16.0.0-alpha.3",
+  "description": "eact is a JavaScript library for building user interfaces",
+  "main": "ReactFiberReconciler.js",
+  "repository": "http://github.com/iamdustan/tiny-react-renderer",
+  "license": "BSD-3-Clause"
+}
