@@ -2,8 +2,8 @@
 
 > React Renderer for SmartTV
 
-- [] WebOS
-- [] SmartTV
+- [ ] WebOS
+- [ ] SmartTV
 
 ## References:
 
