@@ -5,9 +5,20 @@
 - [ ] WebOS
 - [ ] SmartTV
 
-## Interfaces (?)
+## CLI
 
-- VolumeControl
+```
+$ react-tv init <app-type> <app-name>
+$ cd app-name
+$ react-tv dev # emulate on browser
+$ react-tv pack # should pack app
+$ react-tv run # should run on emulator
+```
+
+
+## Components (?)
+
+- Volume
 
 ## References:
 
@@ -18,9 +29,14 @@
 - http://webostv.developer.lge.com/develop/app-test/
 - http://webostv.developer.lge.com/api/web-api/supported-standard-web-api/
 
-#### Windows
+#### Videos
+
+##### Windows
 
 - [LG WebOS SDK Installing (Setup Webos IDE)](https://www.youtube.com/watch?v=4l-3ZdRkRgc)
+
+##### OSX
+
 - [Build Your First App for webOS TV (Setup OSX)](https://www.youtube.com/watch?v=DXOCbt6oTmk)
 
 ### Essentials to beginner
