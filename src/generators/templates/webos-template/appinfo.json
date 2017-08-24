@@ -1,0 +1,21 @@
+{
+  "id": "react.tv.app",
+  "version": "0.0.1",
+  "vendor": "My Company",
+  "type": "web",
+  "main": "index.html",
+  "title": "app",
+  "icon": "icon.png",
+  "largeIcon": "largeIcon.png",
+  "uiRevision": 2,
+  "enyoVersion": "2.3",
+  "onDeviceSource": {
+    "enyo": "$enyo-framework/2.3/enyo",
+    "lib/layout": "$enyo-framework/2.3/lib/layout",
+    "lib/moonstone": "$enyo-framework/2.3/lib/moonstone",
+    "lib/spotlight": "$enyo-framework/2.3/lib/spotlight",
+    "lib/enyo-ilib": "$enyo-framework/2.3/lib/enyo-ilib",
+    "lib/enyo-cordova": "$enyo-framework/2.3/lib/enyo-cordova",
+    "lib/enyo-webos": "$enyo-framework/2.3/lib/enyo-webos"
+  }
+}

@@ -1,9 +1,13 @@
 # ReactTV
 
-> React Renderer for SmartTV
+> React renderer for TV (WebOS, SmartTV)
 
 - [ ] WebOS
 - [ ] SmartTV
+
+## Interfaces (?)
+
+- VolumeControl
 
 ## References:
 
@@ -12,6 +16,12 @@
 - http://webostv.developer.lge.com/sdk/download/download-sdk/
 - http://webostv.developer.lge.com/develop/building-your-first-web-app-webos-tv/
 - http://webostv.developer.lge.com/develop/app-test/
+- http://webostv.developer.lge.com/api/web-api/supported-standard-web-api/
+
+#### Windows
+
+- [LG WebOS SDK Installing (Setup Webos IDE)](https://www.youtube.com/watch?v=4l-3ZdRkRgc)
+- [Build Your First App for webOS TV (Setup OSX)](https://www.youtube.com/watch?v=DXOCbt6oTmk)
 
 ### Essentials to beginner
 

@@ -1,0 +1,3 @@
+enyo.depends(
+	"views.js"
+);
