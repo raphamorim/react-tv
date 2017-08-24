@@ -1,8 +1,8 @@
 /* @flow */
 
 export type Props = {
-  children : null | Instance | Array<Instance>,
-  toJSON ?: Function
+  children: null | Instance | Array<Instance>,
+  toJSON?: Function,
 };
 export type Container = {};
 export type Instance = {
@@ -12,4 +12,3 @@ export type Instance = {
 export type TextInstance = null;
 export type OpaqueHandle = Object;
 export type HostContext = Object;
-

@@ -1,0 +1,45 @@
+{
+  "name": "react-tv",
+  "version": "0.1.0",
+  "description": "React renderer for TVs",
+  "main": "src",
+  "scripts": {
+    "test-fiber": "node ./test --fiber",
+    "flow": "pushd src/fiber; flow; popd;",
+    "prettier": "node ./scripts/prettier/index.js write-changed",
+    "prettier-all": "node ./scripts/prettier/index.js write"
+  },
+  "dependencies": {
+    "babel-register": "^6.23.0",
+    "fbjs": "^0.8.4",
+    "react": "16.0.0-alpha.3",
+    "react-dom": "16.0.0-alpha.3",
+    "react-fiber-types": "file:./src/fiber-types"
+  },
+  "devDependencies": {
+    "babel-plugin-transform-flow-strip-types": "^6.22.0",
+    "chalk": "^2.1.0",
+    "glob": "^7.1.2",
+    "prettier": "^1.5.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raphamorim/react-tv.git"
+  },
+  "keywords": [
+    "react",
+    "tv",
+    "renderer"
+  ],
+  "author": "Raphael Amorim <rapha850@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/raphamorim/react-tv/issues"
+  },
+  "homepage": "https://github.com/raphamorim/react-tv#readme",
+  "babel": {
+    "plugins": [
+      "transform-flow-strip-types"
+    ]
+  }
+}

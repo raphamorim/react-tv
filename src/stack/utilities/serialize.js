@@ -11,7 +11,7 @@
  */
 'use strict';
 
-const toJSON = (node) => {
+const toJSON = node => {
   const props = node.props;
   if (typeof props.toJSON === 'function') {
     return props.toJSON(props);
@@ -33,4 +33,3 @@ const toJSON = (node) => {
 };
 
 module.exports = {toJSON};
-

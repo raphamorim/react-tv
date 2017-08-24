@@ -90,10 +90,9 @@ Object.assign(
   TinyRendererReconcileTransaction.prototype,
   Transaction.Mixin,
   TinyRendererReconcileTransaction,
-  Mixin
+  Mixin,
 );
 
 PooledClass.addPoolingTo(TinyRendererReconcileTransaction);
 
 module.exports = TinyRendererReconcileTransaction;
-

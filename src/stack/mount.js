@@ -100,9 +100,8 @@ DefaultInjection.inject();
  **/
 const render = (
   nextElement, // ReactElement description.
-  callback // optional callback for when mount is complete
+  callback, // optional callback for when mount is complete
 ) => {
-
   // The first thing you'll want to do in here is confirm the caller passed in a
   // valid ReactElement. The implementation of this is the same across renderers
   // with the exception of the error message through when the invariant fails.
@@ -163,14 +162,13 @@ const render = (
         rootId,
         // TODO: what is _idCounter used for and when should it be nonzero?
         {_idCounter: 0},
-        {}
+        {},
       );
       if (callback) {
         callback(component.getPublicInstance());
       }
     });
     ReactUpdates.ReactReconcileTransaction.release(transaction);
-
   });
 
   return component.getPublicInstance();
@@ -181,4 +179,3 @@ const render = (
 // ReactComponent class. For that you’ll head over to `./component.js`. See you
 // there!
 module.exports = render;
-

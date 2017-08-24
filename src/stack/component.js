@@ -77,9 +77,9 @@ MinimumViableComponent.prototype = Object.assign(
     // that is confusing. Host environment is more accurate and will be used
     // going forward
     getNativeNode() {},
-    getHostNode() {}
+    getHostNode() {},
   },
-  ReactMultiChild.Mixin
+  ReactMultiChild.Mixin,
 );
 
 /**
@@ -121,15 +121,10 @@ const TinyRendererComponentMixin = {
     // use that instead, allowing consumers to provide their own serialization and
     // impacting the resulting public instance.
 
-    return serialize.toJSON(this.node)
+    return serialize.toJSON(this.node);
   },
 
-  mountComponent(
-    transaction,
-    nativeParent,
-    nativeContainerInfo,
-    context
-  ) {
+  mountComponent(transaction, nativeParent, nativeContainerInfo, context) {
     // In a not-so-tiny renderer you would also want to validate the properties
     // (in dev mode) and apply them to the host environment.
     // I have often seen renderers have a `render` method defined on their
@@ -160,7 +155,7 @@ const TinyRendererComponentMixin = {
 Object.assign(
   TinyRendererComponent.prototype,
   TinyRendererComponentMixin,
-  ReactMultiChild.Mixin
+  ReactMultiChild.Mixin,
 );
 
 /**
@@ -178,4 +173,3 @@ Object.assign(
  * Fin.
  */
 module.exports = TinyRendererComponent;
-

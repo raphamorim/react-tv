@@ -1,0 +1,6 @@
+{
+  "name": "react-fiber-types",
+  "version": "16.0.0-alpha.3",
+  "main": "ReactFiberReconciler.js",
+  "license": "BSD-3-Clause"
+}
