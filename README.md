@@ -8,7 +8,7 @@
 ## CLI
 
 ```
-$ react-tv init <app-type> <app-name>
+$ react-tv init # should generate or understanding current projects
 $ cd app-name
 $ react-tv dev # emulate on browser
 $ react-tv pack # should pack app
@@ -25,6 +25,8 @@ $ react-tv run # should run on emulator
 ### WebOS
 
 - http://webostv.developer.lge.com/sdk/download/download-sdk/
+- http://webostv.developer.lge.com/sdk/install-instructions/installing-sdk/
+- http://webostv.developer.lge.com/sdk/emulator/introduction-emulator/
 - http://webostv.developer.lge.com/develop/building-your-first-web-app-webos-tv/
 - http://webostv.developer.lge.com/develop/app-test/
 - http://webostv.developer.lge.com/api/web-api/supported-standard-web-api/
