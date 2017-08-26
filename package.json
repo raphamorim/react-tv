@@ -31,6 +31,11 @@
     "tv",
     "renderer"
   ],
+  "engines": {
+    "node": ">= 6.0.0",
+    "npm": ">= 3.0.0",
+    "yarn": ">= 0.22.0"
+  },
   "author": "Raphael Amorim <rapha850@gmail.com>",
   "license": "MIT",
   "bugs": {
