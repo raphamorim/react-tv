@@ -10,11 +10,8 @@
 ```
 $ react-tv init # should generate or understanding current projects
 $ cd app-name
-$ react-tv dev # emulate on browser
-$ react-tv pack # should pack app
-$ react-tv run # should run on emulator
+$ react-tv run-webos # should pack and run on emulator
 ```
-
 
 ## Components (?)
 
