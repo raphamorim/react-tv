@@ -1,0 +1,49 @@
+/* for apps */
+body {
+  margin: 0;
+  height: 100%;
+  position: relative;
+}
+
+body.fallback {
+  background-color: #249EA9;
+  border-right: 10em #EF5E59 solid;
+  border-left: 10em #249EA9 solid;
+  border-top: 10em #249EA9 solid;
+  color: #FFF;
+  font-size: 1.8em;
+  font-family: Helvetica, arial;
+}
+
+.no-touch-action {
+  -ms-touch-action: none;
+}
+
+.untouchable {
+  pointer-events: none;
+}
+.untouchable > * {
+  pointer-events: auto;
+}
+
+/* user selection */
+.unselectable {
+  cursor: default;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: -moz-none;
+  user-select: none;
+}
+
+.selectable {
+  cursor: auto;
+  -ms-user-select: element;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  user-select: text;
+}
+
+.selectable::selection {
+  background: #3297FD;
+  color: #FFF;
+}

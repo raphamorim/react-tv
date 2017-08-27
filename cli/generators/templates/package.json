@@ -1,0 +1,17 @@
+{
+  "name": "react-tv-app",
+  "version": "1.0.0",
+  "description": "A react-tv app",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "react",
+    "tv",
+    "webos",
+    "react-tv"
+  ],
+  "author": "",
+  "license": "MIT"
+}
