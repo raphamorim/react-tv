@@ -1,7 +1,7 @@
 {
   "name": "react-tv",
   "version": "0.1.0",
-  "description": "React for TV development",
+  "description": "React development for TV",
   "main": "src",
   "scripts": {
     "test-fiber": "node ./test --fiber",

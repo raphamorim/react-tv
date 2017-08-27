@@ -1,9 +1,12 @@
 # ReactTV
 
-> React renderer for TV (WebOS, SmartTV)
+> React development for TV (WebOS, SmartTV)
 
 - [ ] WebOS
 - [ ] SmartTV
+
+## Summary
+
 
 ## CLI
 
@@ -16,6 +19,14 @@ $ react-tv run-webos # should pack and run on emulator
 ## Components (?)
 
 - Volume
+
+## WebOS
+
+![WebOS 3.0](https://i.ytimg.com/vi/tsRrFehUPEA/maxresdefault.jpg)
+
+WebOS, also known as Open WebOS or LG WebOS, (previously known as HP WebOS and Palm WebOS, stylized as webOS) is a Linux kernel-based multitasking operating system for smart devices such as Smart TVs and it has been used as a mobile operating system. Initially developed by Palm, Inc. (which was acquired by Hewlett-Packard), HP made the platform open source, at which point it became Open WebOS. The operating system was later sold to LG Electronics. In January 2014, Qualcomm announced that it had acquired technology patents from HP, which included all the WebOS and Palm patents that HP held.
+
+Various versions of WebOS have been featured on several devices since launching in 2009, including Pre, Pixi, and Veer smartphones, TouchPad tablet, LG Smart TVs since 2015.
 
 ## References:
 
