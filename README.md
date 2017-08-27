@@ -2,7 +2,7 @@
 
 > React development for TV (WebOS, SmartTV)
 
-- [ ] WebOS
+- [x] WebOS
 - [ ] SmartTV
 
 ## Summary
@@ -10,17 +10,49 @@
 
 ## CLI
 
+Install react-tv-cli:
+
+```bash
+$ npm install -g react-tv-cli
 ```
-$ react-tv init # should generate or understanding current projects
+
+### Initalizing React-TV Apps:
+
+Generate react-tv projects:
+
+```bash
+$ react-tv init <app-name>
+```
+
+If you want to specify app path on commnand:
+
+```bash
+$ react-tv init <app-name> <app-path>
+```
+
+Open app folder:
+
+```bash
 $ cd app-name
-$ react-tv run-webos # should pack and run on emulator
+```
+
+Run emulator (should pack, build and run on emulator):
+
+```
+$ react-tv run-webos
+```
+
+Run webos app on browser (developer mode on browser):
+
+```
+$ react-tv run-webos-dev
 ```
 
 ## Components (?)
 
 - Volume
 
-## WebOS
+## LG WebOS
 
 ![WebOS 3.0](https://i.ytimg.com/vi/tsRrFehUPEA/maxresdefault.jpg)
 
