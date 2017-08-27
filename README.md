@@ -1,8 +1,15 @@
-# ReactTV
+# React-TV
 
 > React development for TV (WebOS, SmartTV)
 
-- [x] WebOS
+TODO:
+
+- [ ] CROW bundling
+  - [ ] pack and install script
+  - [ ] `react-tv run-webos`
+- [ ] CROW dev-serve
+  - [ ] `react-tv run-webos-dev`
+- [ ] WebOS
 - [ ] SmartTV
 
 ## Summary
@@ -50,7 +57,22 @@ $ react-tv run-webos-dev
 
 ## Components (?)
 
+- Platform
+
+```js
+import { Platform } from 'react-tv'
+
+Platform.webOS === true // true
+Platform.smartTV === true // false
+```
+
 - Volume
+
+```js
+import { Volume } from 'react-tv'
+
+<Volume onChange={myCustomHandler}/>
+```
 
 ## LG WebOS
 

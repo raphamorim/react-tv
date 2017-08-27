@@ -1,1 +1,1 @@
-export { default as AwesomeComponent } from './components/awesome'
+export { default as Awesome } from './components/awesome'

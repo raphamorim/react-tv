@@ -2,7 +2,7 @@ export { Awesome } from './src'
 
 const App = () => (
   <div>
-    <Awesome/>
+    <Awesome onClick={() => { console.log('Nice!')}/>
   </div>
 )
 
