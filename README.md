@@ -4,13 +4,39 @@
 
 TODO:
 
-- [ ] CROW bundling
+- [ ] init
+  - [ ] mkdir app-path
+  - [ ] yeoman (?)
+  - [ ] symlink bundle
+- [ ] run-webos
+  - [ ] CROW bundling
   - [ ] pack and install script
   - [ ] `react-tv run-webos`
-- [ ] CROW dev-serve
+- [ ] run-webos-dev
+  - [ ] CROW dev-serve
   - [ ] `react-tv run-webos-dev`
 - [ ] WebOS
+  - [ ] platform
+  - [ ] volume
 - [ ] SmartTV
+  - [ ] platform
+  - [ ] volume
+
+Symlink do bundle,
+
+```
+- webos
+ - symlink ../bundle ~> ./bundle
+ - index.html refering ./bundle
+ - ...
+- smarttv
+  - symlink ../bundle ~> ./bundle
+  - index apontando refering ./bundle
+  - ...
+- bundle
+index.js
+package.json
+```
 
 ## Summary
 
