@@ -19,7 +19,7 @@ const help = function _help() {
     chalk.red('          output react-tv cli commands'));
 }
 
-const createProject = function _createProject(appName, appPath) {
+const createReactTVApp = function _createReactTVApp(appName, appPath) {
   let projectPath = path.resolve(appPath, appName);
   let appTemplatePath = path.resolve(process.cwd(), 'cli/generators/app')
 
@@ -48,7 +48,7 @@ const createProject = function _createProject(appName, appPath) {
 }
 
 module.exports = {
-  createProject: createProject,
+  createReactTVApp: createReactTVApp,
   help: help,
   debug: debug,
 }
