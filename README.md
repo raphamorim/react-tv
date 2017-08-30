@@ -4,27 +4,26 @@
 
 TODO:
 
-- [ ] init
+- [ ] {cli} init project
   - [x] mkdir app-path
-  - [x] yeoman (?)
-  - [ ] create a script on template: react-tv run-web-dev
-    - [ ] mount bundle (crow-scripts)
-      - [ ] check if exists webpack config existent on folder
-    - [ ] copy bundle for respective folders
-    - [ ] run server (express?)
-- [ ] run-webos
+  - [x] generate react app tv based on app-name and app-path
+  - [ ] create a npm script on app: `react-tv run-web-dev`
+- [ ] {cli} run-webos-dev
+  - [ ] mount bundle (crow-scripts)
+    - [ ] check if exists webpack config existent on folder
+  - [ ] copy bundle for respective folders
+  - [ ] run server (express?)
+- [ ] {cli} run-webos
   - [ ] CROW bundling
   - [ ] pack and install script
   - [ ] `react-tv run-webos`
-- [ ] run-webos-dev
-  - [ ] CROW dev-serve
-  - [ ] `react-tv run-webos-dev`
-- [ ] WebOS
-  - [ ] platform
-  - [ ] volume
-- [ ] SmartTV
-  - [ ] platform
-  - [ ] volume
+- [ ] {renderer}
+  - [ ] WebOS
+    - [ ] platform
+    - [ ] volume
+  - [ ] SmartTV
+    - [ ] platform
+    - [ ] volume
 
 ## Summary
 
