@@ -27,12 +27,11 @@ const defaultOptions = {
 };
 const config = {
   default: {
-    patterns: ['src/**/*.js'],
-    ignore: ['**/third_party/**', '**/node_modules/**'],
+    patterns: ['src/**/*.js', 'cli/**/*.js'],
+    ignore: ['**/node_modules/**'],
   },
   scripts: {
     patterns: ['scripts/**/*.js', 'fixtures/**/*.js'],
-    ignore: ['scripts/bench/benchmarks/**'],
     options: {
       'trailing-comma': 'es5',
     },
