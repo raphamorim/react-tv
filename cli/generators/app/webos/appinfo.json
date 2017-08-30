@@ -1,10 +1,10 @@
 {
   "id": "react.tv.app",
+  "title": "<<app>>",
+  "vendor": "my awesome react-tv app",
   "version": "0.0.1",
-  "vendor": "React TV",
   "type": "web",
   "main": "index.html",
-  "title": "ReactTV WebOS APP",
   "icon": "assets/icon.png",
   "uiRevision": 2,
   "largeIcon": "assets/largeIcon.png"
