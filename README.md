@@ -5,8 +5,8 @@
 TODO:
 
 - [ ] init
-  - [ ] mkdir app-path
-  - [ ] yeoman (?)
+  - [x] mkdir app-path
+  - [x] yeoman (?)
   - [ ] symlink bundle
 - [ ] run-webos
   - [ ] CROW bundling
