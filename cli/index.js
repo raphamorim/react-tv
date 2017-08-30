@@ -6,9 +6,9 @@ const {
   createProject,
 } = require('./shared');
 
-if (argv.length < 2)
-  return help();
-else
+if (argv.length < 2) {
+  help();
+} else {
   switch (argv[2]) {
     case 'init':
       if (argv.length < 4)
@@ -17,9 +17,9 @@ else
       let optPath = (argv.length >= 5) ? argv[4] : process.cwd();
       debug('using "' + argv[3] + '" as app-name');
       debug('using "' + optPath + '" as app-path');
-      createProject(optPath)
+      createProject(argv[3], optPath)
         .then((result) => {
-          webOS.init(optPath);
+          // webOS.init(optPath);
         });
       break;
     case 'run-webos':
@@ -31,3 +31,4 @@ else
     default:
       help();
    }
+}

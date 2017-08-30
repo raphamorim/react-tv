@@ -1,4 +1,7 @@
+const fs = require('fs-extra');
+const path = require('path');
 const chalk = require('chalk');
+const replace = require('replace');
 
 const debug = function _debug(msg) {
   console.log(chalk.dim('[react-tv]'), msg);
@@ -16,9 +19,31 @@ const help = function _help() {
     chalk.red('          output react-tv cli commands'));
 }
 
-const createProject = function _createProject(projectName, path, callback) {
-  return new Promise((fulfill, reject) => {
+const createProject = function _createProject(appName, appPath) {
+  let projectPath = path.resolve(appPath, appName);
+  let appTemplatePath = path.resolve(process.cwd(), 'cli/generators/app')
 
+  return new Promise((fulfill, reject) => {
+    if (!fs.existsSync(projectPath)){
+      fs.mkdirSync(projectPath);
+    } else {
+      debug(projectPath + ' already exists');
+      return fulfill();
+    }
+
+    fs.copy(appTemplatePath, projectPath)
+      .then(() => {
+        replace({
+          regex: "<<app>>",
+          replacement: appName,
+          paths: [projectPath],
+          recursive: true,
+          silent: true,
+        });
+
+        debug(appName + ' created');
+      })
+      .catch(err => reject(debug(err)));
   })
 }
 
