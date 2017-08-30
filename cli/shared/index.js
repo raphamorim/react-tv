@@ -11,19 +11,19 @@ const help = function _help() {
   console.log('');
   console.log(
     chalk.bgYellow(' init '),
-    chalk.yellow('          init react-tv project'),
+    chalk.yellow('          init react-tv project')
   );
   console.log(
     chalk.bgBlueBright(' run-webos '),
-    chalk.blueBright('     pack, build and runs webos simulator'),
+    chalk.blueBright('     pack, build and runs webos simulator')
   );
   console.log(
     chalk.bgGreenBright(' run-webos-dev '),
-    chalk.greenBright(' run webos in developer mode on browser'),
+    chalk.greenBright(' run webos in developer mode on browser')
   );
   console.log(
     chalk.bgRed(' help '),
-    chalk.red('          output react-tv cli commands'),
+    chalk.red('          output react-tv cli commands')
   );
 };
 
@@ -43,7 +43,7 @@ const createReactTVApp = function _createReactTVApp(appName, appPath) {
       .copy(appTemplatePath, projectPath)
       .then(() => {
         replace({
-          regex: '<<app>>',
+          regex: 'react-tv-app',
           replacement: appName,
           paths: [projectPath],
           recursive: true,

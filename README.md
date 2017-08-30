@@ -7,7 +7,11 @@ TODO:
 - [ ] init
   - [x] mkdir app-path
   - [x] yeoman (?)
-  - [ ] symlink bundle
+  - [ ] create a script on template: react-tv run-web-dev
+    - [ ] mount bundle (crow-scripts)
+      - [ ] check if exists webpack config existent on folder
+    - [ ] copy bundle for respective folders
+    - [ ] run server (express?)
 - [ ] run-webos
   - [ ] CROW bundling
   - [ ] pack and install script
@@ -21,22 +25,6 @@ TODO:
 - [ ] SmartTV
   - [ ] platform
   - [ ] volume
-
-Symlink do bundle,
-
-```
-- webos
- - symlink ../bundle ~> ./bundle
- - index.html refering ./bundle
- - ...
-- smarttv
-  - symlink ../bundle ~> ./bundle
-  - index apontando refering ./bundle
-  - ...
-- bundle
-index.js
-package.json
-```
 
 ## Summary
 

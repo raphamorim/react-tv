@@ -1,6 +1,6 @@
 {
   "id": "react.tv.app",
-  "title": "<<app>>",
+  "title": "react-tv-app",
   "vendor": "my awesome react-tv app",
   "version": "0.0.1",
   "type": "web",

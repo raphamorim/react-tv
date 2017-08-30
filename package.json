@@ -4,12 +4,18 @@
   "description": "React development for TV",
   "main": "src",
   "scripts": {
+    "test": "npm run test-fiber",
     "test-fiber": "node ./test --fiber",
     "flow": "pushd src/fiber; flow; popd;",
     "prettier": "node ./scripts/prettier/index.js write-changed",
     "prettier-all": "node ./scripts/prettier/index.js write"
   },
   "dependencies": {
+    "crow-scripts": "^0.1.0",
+    "fs-extra": "^4.0.1",
+    "replace": "^0.3.0",
+    "chalk": "^2.1.0",
+    "glob": "^7.1.2",
     "babel-register": "^6.23.0",
     "fbjs": "^0.8.4",
     "react": "16.0.0-alpha.3",
@@ -18,8 +24,6 @@
   },
   "devDependencies": {
     "babel-plugin-transform-flow-strip-types": "^6.22.0",
-    "chalk": "^2.1.0",
-    "glob": "^7.1.2",
     "prettier": "^1.5.3"
   },
   "repository": {
