@@ -1,3 +1,5 @@
+import React from 'react'
+
 export { Awesome } from './src'
 
 const App = () => (
