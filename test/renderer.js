@@ -11,7 +11,7 @@ const TEST_FILE = args[0] === '-f' || args[0] === '--fiber'
   : 'stack';
 
 console.log('Running %s tests', TEST_FILE);
-const TinyRenderer = require('./src/' + TEST_FILE);
+const TinyRenderer = require('../src/renderers/' + TEST_FILE);
 const render = TinyRenderer.render;
 const toJSON = (props) => {
   if (props.children) {
