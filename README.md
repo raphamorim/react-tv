@@ -1,4 +1,6 @@
-# React-TV [![CircleCI](https://circleci.com/gh/raphamorim/react-tv/tree/master.svg?style=badge)](https://circleci.com/gh/raphamorim/react-tv/tree/master)
+# React-TV 
+
+[![CircleCI](https://circleci.com/gh/raphamorim/react-tv/tree/master.svg?style=shield)](https://circleci.com/gh/raphamorim/react-tv/tree/master)
 
 > React development for TV (WebOS, SmartTV)
 
