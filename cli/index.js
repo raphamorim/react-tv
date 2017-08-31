@@ -1,6 +1,6 @@
 const argv = process.argv;
-const webOS = require('./webos');
 const {help, debug, createReactTVApp} = require('./shared');
+const scripts = require('./scripts');
 
 if (argv.length < 2) {
   help();
@@ -13,15 +13,13 @@ if (argv.length < 2) {
       let optPath = argv.length >= 5 ? argv[4] : process.cwd();
       debug('using "' + argv[3] + '" as app-name');
       debug('using "' + optPath + '" as app-path');
-      createReactTVApp(argv[3], optPath).then(result => {
-        // webOS.init(optPath);
-      });
+      createReactTVApp(argv[3], optPath)
       break;
     case 'run-webos':
       console.log('run-webos');
       break;
     case 'run-webos-dev':
-      console.log('run-webos');
+      scripts.runWebOSDev(process.cwd());
       break;
     default:
       help();

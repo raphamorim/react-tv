@@ -1,4 +1,4 @@
-# React-TV 
+# React-TV
 
 [![CircleCI](https://circleci.com/gh/raphamorim/react-tv/tree/master.svg?style=shield)](https://circleci.com/gh/raphamorim/react-tv/tree/master)
 
@@ -9,12 +9,12 @@ TODO:
 - [ ] {cli} init project
   - [x] mkdir app-path
   - [x] generate react app tv based on app-name and app-path
-  - [ ] create a npm script on app: `react-tv run-web-dev`
+  - [ ] create a npm script on app: `react-tv run-webos-dev`
 - [ ] {cli} run-webos-dev
   - [ ] mount bundle (crow-scripts)
     - [ ] check if exists webpack config existent on folder
   - [ ] copy bundle for respective folders
-  - [ ] run server (express?)
+  - [x] run server (express?)
 - [ ] {cli} run-webos
   - [ ] CROW bundling
   - [ ] pack and install script
