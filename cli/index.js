@@ -16,7 +16,7 @@ if (argv.length < 2) {
       createReactTVApp(argv[3], optPath)
       break;
     case 'run-webos':
-      console.log('run-webos');
+      scripts.runWebOS(process.cwd());
       break;
     case 'run-webos-dev':
       scripts.runWebOSDev(process.cwd());
