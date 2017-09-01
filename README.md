@@ -15,8 +15,10 @@ TODO:
   - [x] run server (express?)
 - [ ] {cli} run-webos
   - [ ] CROW bundling
-  - [ ] pack and install script
-  - [ ] `react-tv run-webos`
+  - [x] pack and install script
+  - [ ] check if virtualbox is up
+  - [x] launch
+  - [ ] if `--virtualbox` force up virtualbox on CLI
 - [ ] {renderer}
   - [ ] WebOS
     - [ ] platform
