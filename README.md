@@ -16,9 +16,9 @@ TODO:
 - [ ] {cli} run-webos
   - [ ] CROW bundling
   - [x] pack and install script
-  - [ ] check if virtualbox is up
+  - [x] check if virtualbox is up
   - [x] launch
-  - [ ] if `--virtualbox` force up virtualbox on CLI
+  - [x] `--disable-emulator`
 - [ ] {renderer}
   - [ ] WebOS
     - [ ] platform
