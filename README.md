@@ -58,10 +58,16 @@ Open app folder:
 $ cd app-name
 ```
 
-Run emulator (should pack, build and run on emulator):
+Run emulator and devices (should pack, build and run on emulator):
 
 ```
 $ react-tv run-webos
+```
+
+Run only on devices and disable create/call Emulator instance:
+
+```
+$ react-tv run-webos --disable-emulator
 ```
 
 Run webos app on browser (developer mode on browser):

@@ -13,7 +13,7 @@ if (argv.length < 2) {
       let optPath = argv.length >= 5 ? argv[4] : process.cwd();
       debug('using "' + argv[3] + '" as app-name');
       debug('using "' + optPath + '" as app-path');
-      createReactTVApp(argv[3], optPath)
+      createReactTVApp(argv[3], optPath);
       break;
     case 'run-webos':
       scripts.runWebOS(process.cwd());
