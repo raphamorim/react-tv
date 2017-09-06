@@ -1,11 +1,13 @@
 <h1 align="center">React-TV
-  [![CircleCI](https://circleci.com/gh/raphamorim/react-tv/tree/master.svg?style=shield)](https://circleci.com/gh/raphamorim/react-tv/tree/master)
+  <a href="https://circleci.com/gh/raphamorim/react-tv/tree/master" target="_blank">
+    <img src="//circleci.com/gh/raphamorim/react-tv/tree/master.svg?style=shield" alt="circleci"/>
+  </a>
 </h1>
 
 <h3 align="center">React development for TV (WebOS, SmartTV)</h3>
 
 <p align="center">
-  <img src="assets/images/react-tv-logo.png">
+  <img height="280" src="assets/images/react-tv-logo.png">
 </p>
 
 TODO:
