@@ -1,6 +1,12 @@
-# React-TV [![CircleCI](https://circleci.com/gh/raphamorim/react-tv/tree/master.svg?style=shield)](https://circleci.com/gh/raphamorim/react-tv/tree/master)
+<h1 align="center">React-TV
+  [![CircleCI](https://circleci.com/gh/raphamorim/react-tv/tree/master.svg?style=shield)](https://circleci.com/gh/raphamorim/react-tv/tree/master)
+</h1>
 
-> React development for TV (WebOS, SmartTV)
+<h3 align="center">React development for TV (WebOS, SmartTV)</h3>
+
+<p align="center">
+  <img src="assets/images/react-tv-logo.png">
+</p>
 
 TODO:
 
