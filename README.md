@@ -7,7 +7,7 @@
 <h3 align="center">React development for TV (WebOS, SmartTV)</h3>
 
 <p align="center">
-  <img height="280" src="assets/images/react-tv-logo.png">
+  <img height="280" src="assets/images/react-tv-cover.png">
 </p>
 
 TODO:
