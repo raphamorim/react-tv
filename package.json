@@ -28,16 +28,30 @@
   "devDependencies": {
     "babel-plugin-transform-flow-strip-types": "^6.22.0",
     "babel-register": "^6.26.0",
+    "commitplease": "^3.1.0",
     "prettier": "^1.5.3"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/raphamorim/react-tv.git"
   },
+  "commitplease": {
+    "style": "jquery",
+    "component": true,
+    "components": [
+      "all",
+      "cli",
+      "renderer",
+      "doc",
+      "test"
+    ]
+  },
   "keywords": [
     "react",
     "tv",
-    "renderer"
+    "renderer",
+    "smarttv",
+    "webos"
   ],
   "engines": {
     "node": ">= 6.0.0",
