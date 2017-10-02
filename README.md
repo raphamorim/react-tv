@@ -7,7 +7,7 @@
 <h3 align="center">React development for TV (WebOS, SmartTV)</h3>
 
 <p align="center">
-  <img height="280" src="assets/images/react-tv-cover.png">
+  <img height="300" src="assets/images/react-tv-cover.png">
 </p>
 
 TODO:
@@ -23,6 +23,7 @@ TODO:
   - [x] run server (express?)
 - [ ] {cli} run-webos
   - [ ] CROW bundling
+  - [ ] Check executable bin path for Windows, OSX and Linux
   - [x] pack and install script
   - [x] check if virtualbox is up
   - [x] launch
@@ -78,7 +79,7 @@ Run only on devices and disable create/call Emulator instance:
 $ react-tv run-webos --disable-emulator
 ```
 
-Run webos app on browser (developer mode on browser):
+Run webos app on browser (developer mode on browser). `run-webos-dev` is using `REACT_TV_PORT` environment variable or `8500` as port number.
 
 ```
 $ react-tv run-webos-dev
