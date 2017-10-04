@@ -1,10 +1,10 @@
 {
   "name": "react-tv",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "React development for TV",
   "main": "src",
   "bin": {
-    "react-tv": "./cli/index.js"
+    "react-tv": "cli/index.js"
   },
   "scripts": {
     "test": "yarn test-fiber",
@@ -54,9 +54,7 @@
     "webos"
   ],
   "engines": {
-    "node": ">= 6.0.0",
-    "npm": ">= 3.0.0",
-    "yarn": ">= 0.22.0"
+    "node": ">=6"
   },
   "author": "Raphael Amorim <rapha850@gmail.com>",
   "license": "MIT",

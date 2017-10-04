@@ -112,19 +112,6 @@ WebOS, also known as Open WebOS or LG WebOS, (previously known as HP WebOS and P
 
 Various versions of WebOS have been featured on several devices since launching in 2009, including Pre, Pixi, and Veer smartphones, TouchPad tablet, LG Smart TVs since 2015.
 
-## Developing:
-
-This is just a suggestion for simplificate your development. Just run the following commands:
-
-```sh
-chmod +x .pre-commit.sh
-ln -s -f ../../pre.-commit.sh .git/hooks/pre-commit
-```
-
-Format task will now run against your modified JavaScript files whenever you commit code.
-
-### Adding a pre-commit hook to format your modified JavaScript files
-
 ## References:
 
 ### WebOS

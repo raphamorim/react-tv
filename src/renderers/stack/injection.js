@@ -86,8 +86,8 @@ function inject() {
   // `TextComponentClass` is what class should be used when text is being
   // rendered. This is what would be called for the single child in
   // <div>Hello, world.</div>
-  (ReactInjection.NativeComponent || ReactInjection.HostComponent)
-    .injectGenericComponentClass(TinyRendererComponent);
+  (ReactInjection.NativeComponent || ReactInjection.HostComponent
+  ).injectGenericComponentClass(TinyRendererComponent);
 
   ReactInjection.Updates.injectReconcileTransaction(
     TinyRendererReconcileTransaction,
