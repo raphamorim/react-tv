@@ -7,7 +7,7 @@
 <h3 align="center">React development for TV (WebOS, SmartTV)</h3>
 
 <p align="center">
-  <img height="300" src="assets/images/react-tv-cover.png">
+  <img height="300" src="resources/images/react-tv-cover.png">
 </p>
 
 TODO:
@@ -111,6 +111,19 @@ import { Keys } from 'react-tv'
 WebOS, also known as Open WebOS or LG WebOS, (previously known as HP WebOS and Palm WebOS, stylized as webOS) is a Linux kernel-based multitasking operating system for smart devices such as Smart TVs and it has been used as a mobile operating system. Initially developed by Palm, Inc. (which was acquired by Hewlett-Packard), HP made the platform open source, at which point it became Open WebOS. The operating system was later sold to LG Electronics. In January 2014, Qualcomm announced that it had acquired technology patents from HP, which included all the WebOS and Palm patents that HP held.
 
 Various versions of WebOS have been featured on several devices since launching in 2009, including Pre, Pixi, and Veer smartphones, TouchPad tablet, LG Smart TVs since 2015.
+
+## Developing:
+
+This is just a suggestion for simplificate your development. Just run the following commands:
+
+```sh
+chmod +x .pre-commit.sh
+ln -s -f ../../pre.-commit.sh .git/hooks/pre-commit
+```
+
+Format task will now run against your modified JavaScript files whenever you commit code.
+
+### Adding a pre-commit hook to format your modified JavaScript files
 
 ## References:
 
