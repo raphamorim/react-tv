@@ -2,3 +2,4 @@
 package-lock.json
 *.log
 node_modules
+cli/generators/app/yarn.lock

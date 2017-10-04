@@ -7,23 +7,22 @@ function defaultCLIEnv() {
   return '/opt/webOS_TV_SDK/CLI/bin';
 }
 
-// inspect
-
-module.exports = function _runWebOSDev(paramsPath) {
+module.exports = function runWebOS(paramsPath) {
   const webOS_TV_SDK_ENV = process.env['WEBOS_CLI_TV'] || false;
-  if (!webOS_TV_SDK_ENV)
-    webOS_TV_SDK_ENV = defaultCLIEnv();
+  if (!webOS_TV_SDK_ENV) webOS_TV_SDK_ENV = defaultCLIEnv();
 
-  process.env['PATH'] = `${webOS_TV_SDK_ENV}:${process.env['PATH']}`
+  process.env['PATH'] = `${webOS_TV_SDK_ENV}:${process.env['PATH']}`;
 
   console.log('');
   console.log(chalk.dim('Up Emulator...'));
-  execSync(`open ${webOS_TV_SDK_ENV}/../../Emulator/v3.0.0/LG_webOS_TV_Emulator_RCU.app`);
+  execSync(
+    `open ${webOS_TV_SDK_ENV}/../../Emulator/v3.0.0/LG_webOS_TV_Emulator_RCU.app`
+  );
   console.log(chalk.yellow(' LG WebOS Emulator 3.0.0 succefull running'));
 
   let attemps = 0;
   let task = setInterval(function _runWebOSDevTask() {
-    let runningVMS = execSync(`vboxmanage list runningvms`).toString()
+    let runningVMS = execSync(`vboxmanage list runningvms`).toString();
     if (attemps > 15) {
       console.log('FAILED TO UP virtualbox emulator');
       clearInterval(task);
@@ -44,7 +43,9 @@ module.exports = function _runWebOSDev(paramsPath) {
     console.log(chalk.yellow(` succefull pack from ${webOSAPPPath}`));
 
     console.log(chalk.dim('Installing...'));
-    const config = JSON.parse(execSync(`cat ${webOSAPPPath}/appinfo.json`).toString());
+    const config = JSON.parse(
+      execSync(`cat ${webOSAPPPath}/appinfo.json`).toString()
+    );
 
     const latestIPK = config.id + '_' + config.version + '_all.ipk';
     console.log(chalk.blue(` installing ${latestIPK} as IPK`));
@@ -55,4 +56,4 @@ module.exports = function _runWebOSDev(paramsPath) {
     execSync(`cd ${webOSAPPPath} && ares-launch ${config.id}`);
     console.log(chalk.yellow(` launched`));
   }, 500);
-}
+};
