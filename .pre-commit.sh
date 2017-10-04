@@ -1,1 +1,1 @@
-git diff — name-only HEAD | grep ".*\.js" | xargs npm run prettier
+git diff — name-only HEAD | grep ".*\.js" | xargs echo
