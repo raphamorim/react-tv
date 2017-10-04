@@ -96,12 +96,12 @@ Platform.webOS === true // true
 Platform.smartTV === true // false
 ```
 
-- Volume
+- Keys
 
 ```js
-import { Volume } from 'react-tv'
+import { Keys } from 'react-tv'
 
-<Volume onChange={myCustomHandler}/>
+<Keys onChange={myCustomHandler}/>
 ```
 
 ## LG WebOS
