@@ -6,7 +6,7 @@ function Build(rootPath, pathWebOS) {
 
   let crowBinPath = path.resolve(
     __dirname,
-    '../../../node_modules/crow-scripts/bin/crow-scripts-webpack.js'
+    '../../../node_modules/crow-scripts/bin/crow-scripts.js'
   );
 
   console.info(
@@ -15,7 +15,7 @@ function Build(rootPath, pathWebOS) {
   )
 
   execSync(
-    `cd ${rootPath} && node ${crowBinPath} --enable-loose --disable-css --disable-manifest --target-browsers webos/bundle/app src`
+    `cd ${rootPath} && node ${crowBinPath} webpack --enable-loose --disable-css --disable-manifest --target-browsers webos/bundle/app src`
   );
   execSync(`cd ${pathWebOS}/bundle && mv app.*.js app.js && mv app.*.js.map app.js.map`);
 }
