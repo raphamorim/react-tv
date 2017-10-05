@@ -9,7 +9,7 @@ const express = require('express'),
 module.exports = function _runWebOSDev(pathArg) {
   const pathWebOS = path.resolve(pathArg, 'webos');
 
-  build(pathArg, pathWebOS);
+  // build(pathArg, pathWebOS);
 
   app.use(express.static(pathWebOS));
 
