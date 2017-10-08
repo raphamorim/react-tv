@@ -42,7 +42,7 @@
       "all",
       "cli",
       "renderer",
-      "doc",
+      "docs",
       "test"
     ]
   },
