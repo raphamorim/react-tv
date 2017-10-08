@@ -1,3 +1,3 @@
 /** @flow */
 
-module.exports = require('./ReactTinyFiber');
+module.exports = require('./Fiber');
