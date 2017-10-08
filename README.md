@@ -1,6 +1,6 @@
 <h1 align="center">React-TV
   <a href="https://circleci.com/gh/raphamorim/react-tv/tree/master" target="_blank">
-    <img src="//circleci.com/gh/raphamorim/react-tv/tree/master.svg?style=shield" alt="circleci"/>
+    <img src="https://img.shields.io/circleci/project/github/raphamorim/react-tv/master.svg?style=flat-square" alt="circleci"/>
   </a>
 </h1>
 
