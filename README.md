@@ -2,7 +2,7 @@
 
 > React development for TV (WebOS, SmartTVs) 📺
 
-<img height="300" src="resources/images/react-tv-cover.png">
+![React-TV Logo](resources/images/react-tv-cover.png)
 
 ## Summary
 
