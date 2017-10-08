@@ -1,10 +1,10 @@
 {
   "name": "react-tv",
-  "version": "0.1.0",
-  "description": "React development for TV",
+  "version": "0.1.1",
+  "description": "React development for TV (WebOS, SmartTVs)",
   "main": "src",
   "bin": {
-    "react-tv": "cli/index.js"
+    "react-tv": "./cli/index.js"
   },
   "scripts": {
     "test": "yarn test-fiber",

@@ -1,3 +1,5 @@
+#! /usr/bin/env node
+
 const argv = process.argv;
 const {help, debug, createReactTVApp} = require('./shared');
 const scripts = require('./scripts');

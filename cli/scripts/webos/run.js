@@ -8,7 +8,7 @@ function defaultCLIEnv() {
 }
 
 module.exports = function runWebOS(paramsPath) {
-  const webOS_TV_SDK_ENV = process.env['WEBOS_CLI_TV'] || false;
+  let webOS_TV_SDK_ENV = process.env['WEBOS_CLI_TV'] || false;
   if (!webOS_TV_SDK_ENV) webOS_TV_SDK_ENV = defaultCLIEnv();
 
   process.env['PATH'] = `${webOS_TV_SDK_ENV}:${process.env['PATH']}`;
