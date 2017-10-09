@@ -32,7 +32,7 @@ import type {
   TextInstance,
   OpaqueHandle,
   HostContext,
-} from './ReactTinyTypes';
+} from './Types';
 
 /**
  * This is the only entry point you need to create a Fiber renderer. Note that
