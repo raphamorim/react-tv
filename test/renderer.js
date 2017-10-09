@@ -1,18 +1,14 @@
-'use strict';
-
 require('babel-register')({});
 
 const assert = require('assert');
 const React = require('react');
 const args = process.argv.slice(2);
 
-const TEST_FILE = args[0] === '-f' || args[0] === '--fiber'
-  ? 'fiber'
-  : 'stack';
+const rendererPath = '../src/renderers/fiber';
 
-console.log('Running %s tests', TEST_FILE);
-const TinyRenderer = require('../src/renderers/' + TEST_FILE);
-const render = TinyRenderer.render;
+console.log('Running %s tests', rendererPath);
+const ReactTVRenderer = require(rendererPath);
+const render = ReactTVRenderer.render;
 const toJSON = (props) => {
   if (props.children) {
     let childRoutes;

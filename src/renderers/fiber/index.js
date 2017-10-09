@@ -1,3 +1,3 @@
 /** @flow */
 
-module.exports = require('./FiberRender');
+module.exports = require('./Fiber');

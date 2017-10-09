@@ -7,9 +7,9 @@
     "react-tv": "./cli/index.js"
   },
   "scripts": {
-    "test": "yarn test-fiber",
-    "test-fiber": "node ./test/renderer --fiber",
-    "flow": "pushd src/fiber; flow; popd;",
+    "test": "yarn test-renderer",
+    "test-renderer": "node ./test/renderer",
+    "flow": "pushd src/renderers/fiber; flow; popd;",
     "prettier": "node ./scripts/prettier/index.js write-changed",
     "prettier-all": "node ./scripts/prettier/index.js write"
   },
