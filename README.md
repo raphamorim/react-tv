@@ -38,9 +38,9 @@ Crafting a high-performance TV user interface using React is a real challenge, b
 - Single core CPUs
 - High Memory Usage for a commom TV App
 
-These restrictions make super responsive 60fps experiences especially tricky. The strategy is **step in in the renderer**: Applying reactive concepts to unblock the processing on renderer layer, plug the TV's keyListener, avoid React.createElement (which cost a lot)[...]
+These restrictions make super responsive 60fps experiences especially tricky. The strategy is **step in the renderer**: Applying reactive concepts to unblock the processing on renderer layer, plug the TV's keyListener, avoid React.createElement (which cost a lot)[...]
 
-In addition: unify the build for multiple TV platforms.
+In addition: Unify the build for multiple TV platforms.
 
 ## Getting Started
 
@@ -50,6 +50,8 @@ To install `react-tv` as a CLI:
 
 ```bash
 $ npm install -g react-tv
+# or
+$ yarn global add react-tv
 ```
 
 To install `react-tv` as a Module:
