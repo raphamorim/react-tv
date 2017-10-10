@@ -4,7 +4,7 @@ const assert = require('assert');
 const React = require('react');
 const args = process.argv.slice(2);
 
-const rendererPath = '../src/renderers/fiber';
+const rendererPath = '../src/renderer';
 
 console.log('Running %s tests', rendererPath);
 const ReactTVRenderer = require(rendererPath);
