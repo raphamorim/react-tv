@@ -22,7 +22,7 @@
     "glob": "^7.1.2",
     "react": "16.0.0-alpha.3",
     "react-dom": "16.0.0-alpha.3",
-    "react-fiber-types": "file:./src/renderers/fiber-types",
+    "react-fiber-types": "file:./src/renderer/types",
     "replace": "^0.3.0"
   },
   "devDependencies": {

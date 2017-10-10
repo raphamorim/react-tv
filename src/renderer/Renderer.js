@@ -77,7 +77,7 @@ const toJSON = node => {
  * thought of as the lifecycle of a renderer. React will manage all non-host
  * components, such as composites, stateless, and fragments.
  */
-const TinyRenderer = ReactFiberReconciler({
+const ReactTVRender = ReactFiberReconciler({
   // the tree creation and updating methods. If you’re familiar with the DOM API
   // this will look familiar
 
@@ -290,25 +290,25 @@ const TinyRenderer = ReactFiberReconciler({
  * be considered required, though that isn’t strictly true.
  */
 const defaultContainer = {};
-const Tiny = {
+const ReactTV = {
   render(element: React$Element<any>, callback: ?Function, container: any) {
     const containerKey =
       typeof container === 'undefined' ? defaultContainer : container;
     let root = roots.get(containerKey);
     if (!root) {
-      root = TinyRenderer.createContainer(containerKey);
+      root = ReactTVRender.createContainer(containerKey);
       roots.set(container, root);
     }
 
-    TinyRenderer.updateContainer((element: any), root, null, callback);
-    return TinyRenderer.getPublicRootInstance(root);
+    ReactTVRender.updateContainer((element: any), root, null, callback);
+    return ReactTVRender.getPublicRootInstance(root);
   },
   unmountComponentAtNode(container: any) {
     const containerKey =
       typeof container === 'undefined' ? defaultContainer : container;
     const root = roots.get(containerKey);
     if (root) {
-      TinyRenderer.updateContainer(null, root, null, () => {
+      ReactTVRender.updateContainer(null, root, null, () => {
         roots.delete(container);
       });
     }
@@ -319,4 +319,4 @@ const Tiny = {
 const roots = new Map();
 const emptyObject = {};
 
-module.exports = Tiny;
+module.exports = ReactTV;
