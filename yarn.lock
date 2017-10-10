@@ -5024,7 +5024,7 @@ react-dom@16.0.0-alpha.3:
     loose-envify "^1.1.0"
     object-assign "^4.1.0"
 
-"react-fiber-types@file:./src/renderers/fiber-types":
+"react-fiber-types@file:./src/renderer/types":
   version "16.0.0-alpha.3"
 
 react@16.0.0-alpha.3:
