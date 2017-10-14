@@ -1,4 +1,4 @@
-# React-TV ![circleci status](https://img.shields.io/circleci/project/github/raphamorim/react-tv/master.svg?style=flat-square)
+# React-TV [![circleci status](https://img.shields.io/circleci/project/github/raphamorim/react-tv/master.svg?style=flat-square)](https://circleci.com/gh/raphamorim/react-tv)
 
 > React development for TV (WebOS, SmartTVs) 📺
 
