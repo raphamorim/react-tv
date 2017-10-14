@@ -2,11 +2,9 @@ require('babel-register')({});
 
 const assert = require('assert');
 const React = require('react');
-const args = process.argv.slice(2);
-
 const rendererPath = '../src/renderer';
 
-console.log('Running %s tests', rendererPath);
+console.log('Running Renderer tests from %s', rendererPath);
 const ReactTVRenderer = require(rendererPath);
 const render = ReactTVRenderer.render;
 const toJSON = (props) => {

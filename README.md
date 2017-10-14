@@ -138,8 +138,9 @@ $ react-tv run-webos-dev
 ```js
 import { Platform } from 'react-tv'
 
-Platform.webOS === true // true
-Platform.smartTV === true // false
+console.log(Platform.WebOS === true) // true
+console.log(Platform.Tizen === true) // false
+console.log(Platform.Orsay === true) // false
 ```
 
 - Keys

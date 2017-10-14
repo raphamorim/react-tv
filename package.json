@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "yarn test-renderer",
-    "test-renderer": "node ./test/renderer",
+    "test-renderer": "sh ./test/run-all.sh",
     "flow": "pushd src/renderers/fiber; flow; popd;",
     "prettier": "node ./scripts/prettier/index.js write-changed",
     "prettier-all": "node ./scripts/prettier/index.js write"
@@ -39,6 +39,7 @@
     "component": true,
     "components": [
       "all",
+      "modules",
       "cli",
       "renderer",
       "docs",
