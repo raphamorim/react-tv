@@ -28,7 +28,7 @@ const defaultOptions = {
 const config = {
   default: {
     patterns: ['src/**/*.js', 'cli/**/*.js'],
-    ignore: ['**/node_modules/**'],
+    ignore: ['**/node_modules/**', 'cli/generators/**/*.js'],
   },
   scripts: {
     patterns: ['scripts/**/*.js', 'fixtures/**/*.js'],

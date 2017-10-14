@@ -27,4 +27,3 @@ if (argv.length < 2) {
       help();
   }
 }
-

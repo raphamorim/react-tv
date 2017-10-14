@@ -1,3 +1,7 @@
+# 0.1.3
+
+- Platform check for WebOS
+
 # 0.1.2
 
 - update on ReactTV Renderer (still not working)

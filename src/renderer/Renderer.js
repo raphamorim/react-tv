@@ -39,7 +39,7 @@ const log = (a, b, c) => {
 
 function toJSON(node) {
   if (typeof node === 'string') {
-    return node
+    return node;
   }
 
   const props = node.props || node;
@@ -60,7 +60,7 @@ function toJSON(node) {
     delete clone.children;
     return clone;
   }
-};
+}
 
 /**
  * The fun begins!
