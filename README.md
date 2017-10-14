@@ -224,3 +224,8 @@ Various versions of WebOS have been featured on several devices since launching 
   - [ ] SmartTV
     - [ ] platform
     - [ ] volume
+
+## Docs
+
+* [Changelog](https://github.com/raphamorim/react-tv/blob/master/CHANGELOG.md)
+* [License](https://github.com/raphamorim/react-tv/blob/master/LICENSE.md)
