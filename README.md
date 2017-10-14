@@ -199,6 +199,11 @@ Various versions of WebOS have been featured on several devices since launching 
 - https://github.com/iamdustan/tiny-react-renderer
 - https://facebook.github.io/react/blog/2015/12/18/react-components-elements-and-instances.html
 
+---------------------------------------------------- 
+
+* [Changelog](https://github.com/raphamorim/react-tv/blob/master/CHANGELOG.md)
+* Currently ReactTV is licensed by [MIT License](https://github.com/raphamorim/react-tv/blob/master/LICENSE.md)
+
 ## TODOLIST
 
 - [ ] {cli} init project
@@ -224,8 +229,3 @@ Various versions of WebOS have been featured on several devices since launching 
   - [ ] SmartTV
     - [ ] platform
     - [ ] volume
-
-## Docs
-
-* [Changelog](https://github.com/raphamorim/react-tv/blob/master/CHANGELOG.md)
-* [License](https://github.com/raphamorim/react-tv/blob/master/LICENSE.md)
