@@ -1,5 +1,5 @@
 module.exports = {
-  platform: {
+  Platform: {
     webos: (window && window.PalmSystem) ? true : false,
     tizen: false,
     orsay: false,

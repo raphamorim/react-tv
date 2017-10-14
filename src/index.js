@@ -3,5 +3,5 @@ const modules = require('./modules');
 
 module.exports = {
   render: reactTVRenderer.render,
-  platform: modules.platform,
+  Platform: modules.Platform,
 }

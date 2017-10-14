@@ -29,18 +29,18 @@ const it = (desc, fn) => {
 
 it.skip = (desc, fn) => skipped.push({desc});
 
-it('[nodejs] should return false for every platform', () => {
+it('[nodejs] should return false for every Platform', () => {
   purgeCache('../../src');
 
   // mock window
   global.window = {};
 
-  // force parse platform for every iteration
-  const { platform } = require('../../src');
+  // force parse Platform for every iteration
+  const { Platform } = require('../../src');
 
-  assert.deepEqual(platform.webos, false);
-  assert.deepEqual(platform.orsay, false);
-  assert.deepEqual(platform.tizen, false);
+  assert.deepEqual(Platform.webos, false);
+  assert.deepEqual(Platform.orsay, false);
+  assert.deepEqual(Platform.tizen, false);
 
   global.window = null;
 });
@@ -50,12 +50,12 @@ it('[webos] should return true only for webos', () => {
 
   global.window = { PalmSystem: {version: 1} };
 
-  // force parse platform for every iteration
-  const { platform } = require('../../src');
+  // force parse Platform for every iteration
+  const { Platform } = require('../../src');
 
-  assert.deepEqual(platform.webos, true);
-  assert.deepEqual(platform.orsay, false);
-  assert.deepEqual(platform.tizen, false);
+  assert.deepEqual(Platform.webos, true);
+  assert.deepEqual(Platform.orsay, false);
+  assert.deepEqual(Platform.tizen, false);
 
   global.window = null;
 });
