@@ -201,8 +201,9 @@ Various versions of WebOS have been featured on several devices since launching 
 
 ---------------------------------------------------- 
 
-* [Changelog](https://github.com/raphamorim/react-tv/blob/master/CHANGELOG.md)
-* Currently ReactTV is licensed by [MIT License](https://github.com/raphamorim/react-tv/blob/master/LICENSE.md)
+See ReactTV's [Changelog](https://github.com/raphamorim/react-tv/blob/master/CHANGELOG.md).
+
+Currently ReactTV is licensed by [MIT License](https://github.com/raphamorim/react-tv/blob/master/LICENSE.md)
 
 ## TODOLIST
 
