@@ -5,7 +5,7 @@ const ReactDOM = require('react-dom/server');
 const ReactTV = require('../src');
 
 const ReactElement = React.createElement(
-  'div', {babyComeBack: 'come back to me!'});
+  'div', {babyComeBack: 'come back to me!'}, 'larger than life');
 
 const TVComponentFromClass = React.createElement(
   class ClassBasedComponent extends React.Component {
@@ -20,10 +20,14 @@ const TVComponentFromFunction = React.createElement((props) => (
   React.createElement('div', null, `Pure ${props.myText}`)
 ), {myText: 'abc'}, null);
 
-console.log('pure:', ReactElement);
-console.log('class:', TVComponentFromClass);
-console.log('function:', TVComponentFromFunction);
+console.log('>', ReactTV.render(ReactElement));
+console.log('>', ReactTV.render(
+  React.createElement(
+   'div', {}, ReactElement
+  )
+));
 
-console.log(ReactTV.render(ReactElement));
-console.log(ReactDOM.renderToString(TVComponentFromFunction));
-console.log(ReactTV.render(TVComponentFromClass));
+// console.log(ReactTV.render(TVComponentFromFunction));
+// console.log(ReactTV.render(TVComponentFromClass));
+
+// console.log(ReactDOM.renderToString(TVComponentFromFunction));

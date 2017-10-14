@@ -1,16 +1,4 @@
-/***
- * Welcome to the Tiny React Renderer on Fiber.
- *
- * The Reconciler API for the current targeted revision is available at:
- * https://github.com/facebook/react/blob/ca4325e3eff16b86879188eb996ebcc9a933336a/src/renderers/shared/fiber/ReactFiberReconciler.js#L48-L104
- *
- * A renderer is the public interface to a React reconciler. With Fiber you
- * create a reconciler by calling `ReactFiberReconciler` with a `HostConfig`
- * object.
- *
- * All types for creating a react reconciler are manually extracted into
- * `../react-types` for the current revision (16.0.0-alpha.3).
- *
+/**
  * @flow
  */
 
@@ -49,8 +37,12 @@ const log = (a, b, c) => {
   }
 };
 
-const toJSON = node => {
-  const props = node.props;
+function toJSON(node) {
+  if (typeof node === 'string') {
+    return node
+  }
+
+  const props = node.props || node;
   if (typeof props.toJSON === 'function') {
     return props.toJSON(props);
   }
@@ -88,7 +80,7 @@ const ReactTVRender = ReactFiberReconciler({
     hostContext: HostContext,
     internalInstanceHandle: Object,
   ) {
-    if (props.toJSON) {
+    if (props.toJSON && typeof toJSON === 'function') {
       return props.toJSON(props);
     } else {
       return toJSON({props});
@@ -284,11 +276,6 @@ const ReactTVRender = ReactFiberReconciler({
   useSyncScheduling: true,
 });
 
-/**
- * Our public renderer. When someone requires your renderer, this is all they
- * should have access to. `render` and `unmountComponentAtNode` methods should
- * be considered required, though that isn’t strictly true.
- */
 const defaultContainer = {};
 const ReactTV = {
   render(element: React$Element<any>, callback: ?Function, container: any) {
@@ -313,7 +300,6 @@ const ReactTV = {
       });
     }
   },
-  // other API methods you may support, such as `renderPortal()`
 };
 
 const roots = new Map();

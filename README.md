@@ -6,12 +6,25 @@
 
 ```js
 import React from 'react'
-import ReactTV from 'react-tv'
+import ReactTV, { Platform } from 'react-tv'
 
-ReactTV.render(
-  React.createElement(MyApp), 
-  document.getElementById('app')
-);
+class Clock extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {date: new Date()}
+  }
+
+  render() {
+    return (
+      <div>
+        <h1>Hello, {Platform}</h1>
+        <h2>It is {this.state.date.toLocaleTimeString()}</h2>
+      </div>
+    );
+  }
+}
+
+ReactTV.render(Clock, document.getElementById('root'))
 ```
 
 ## Summary

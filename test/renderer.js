@@ -89,6 +89,39 @@ it('should render with the default toJSON behavior', () => {
   );
 });
 
+it('should render children as string', () => {
+  const reactElement = React.createElement(
+    'h1',
+    { babyComeBack: 'come back to me!' },
+    'my-custom-text'
+  );
+  const element = render(reactElement);
+
+  assert.deepEqual(
+    element,
+    {'babyComeBack':'come back to me!','children': 'my-custom-text'}
+  );
+});
+
+it('should render nested children', () => {
+  const reactElement = React.createElement(
+    'div',
+    {fatherProps: 123},
+    React.createElement(
+      'h1',
+      {abc: 1},
+      React.createElement('p', {}, 'text')
+    )
+  );
+  const element = render(reactElement);
+
+  assert.deepEqual(
+    element,
+    {'fatherProps': 123, 'children': {'abc': 1,'children': {'children': 'text'}}}
+  );
+});
+
+
 it('should render with a custom toJSON method', () => {
   const element = render(
     Rte('/', Base, [
