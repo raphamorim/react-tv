@@ -15,12 +15,16 @@ class Clock extends React.Component {
   }
 
   render() {
-    return (
-      <div>
-        <h1>Hello, {Platform}</h1>
-        <h2>It is {this.state.date.toLocaleTimeString()}</h2>
-      </div>
-    )
+    if (Platform.webos) {
+      return (
+        <div>
+          <h1>Hello, {Platform}</h1>
+          <h2>It is {this.state.date.toLocaleTimeString()}</h2>
+        </div>
+      )
+    }
+
+    return <div>This App is available only at Samsung WebOS</div>
   }
 }
 
