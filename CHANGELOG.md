@@ -1,6 +1,7 @@
 # 0.1.3
 
 - Platform check for WebOS
+- Add common ignore for npmignore
 
 # 0.1.2
 
