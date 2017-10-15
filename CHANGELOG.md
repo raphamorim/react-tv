@@ -1,5 +1,6 @@
 # 0.1.3
 
+- cli: fix path on create apptv template
 - Platform check for WebOS
 - Add common ignore for npmignore
 
