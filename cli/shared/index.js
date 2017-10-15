@@ -29,7 +29,7 @@ const help = function _help() {
 
 const createReactTVApp = function _createReactTVApp(appName, appPath) {
   let projectPath = path.resolve(appPath, appName);
-  let appTemplatePath = path.resolve(process.cwd(), 'cli/generators/app');
+  let appTemplatePath = path.resolve(__dirname, '../generators/app');
 
   return new Promise((fulfill, reject) => {
     if (!fs.existsSync(projectPath)) {
