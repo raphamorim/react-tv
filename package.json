@@ -1,12 +1,13 @@
 {
   "name": "react-tv",
-  "version": "0.1.4",
+  "version": "0.1.4-rc.1",
   "description": "React development for TV (WebOS, SmartTVs)",
   "main": "src",
   "bin": {
     "react-tv": "./cli/index.js"
   },
   "scripts": {
+    "preinstall": "npm install ./src/renderer/types",
     "test": "yarn test-renderer",
     "test-renderer": "sh ./test/run-all.sh",
     "flow": "pushd src/renderers/fiber; flow; popd;",
@@ -20,11 +21,11 @@
     "fs-extra": "^4.0.1",
     "glob": "^7.1.2",
     "react": "16.0.0-alpha.3",
-    "react-fiber-types": "file:./src/renderer/types",
     "replace": "^0.3.0"
   },
   "devDependencies": {
     "react-dom": "16.0.0-alpha.3",
+    "react-fiber-types": "file:src/renderer/types",
     "babel-plugin-transform-flow-strip-types": "^6.22.0",
     "babel-register": "^6.26.0",
     "commitplease": "^3.1.0",
@@ -54,7 +55,7 @@
     "webos"
   ],
   "engines": {
-    "node": ">=6"
+    "node": ">=0.10.0"
   },
   "author": "Raphael Amorim <rapha850@gmail.com>",
   "license": "MIT",

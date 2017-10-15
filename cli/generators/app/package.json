@@ -6,5 +6,8 @@
   "scripts": {
     "webos": "react-tv run-webos",
     "webos-dev": "react-tv run-webos-dev"
+  },
+  "dependencies": {
+    "react-tv": "^0.1.5"
   }
 }

@@ -1,5 +1,4 @@
 test
-assets
 scripts/prettier
-resources
-samples
+resources/images
+samples/clock-app-tv

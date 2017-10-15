@@ -1,4 +1,4 @@
-const reactTVRenderer = require('./renderer');
+const reactTVRenderer = require('./Renderer');
 const modules = require('./modules');
 
 module.exports = {
