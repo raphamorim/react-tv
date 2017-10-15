@@ -135,16 +135,18 @@ $ react-tv run-webos-dev
 
 ## Using Module
 
-### Components (?)
+### Platform
 
-- Platform
+When building a cross-platform tv app, you'll want to re-use as much code as possible. Scenarios may arise where it makes sense for the code to be different, for example you may want to implement separate visual components for `LG-WebOS` and `Samsung-Tizen`.
+
+React-TV provides `Platform` module to easily organize your code and separate it by platform:
 
 ```js
 import { Platform } from 'react-tv'
 
-console.log(Platform.WebOS === true) // true
-console.log(Platform.Tizen === true) // false
-console.log(Platform.Orsay === true) // false
+console.log(Platform.webOS) // true
+console.log(Platform.tizen) // false
+console.log(Platform.orsay) // false
 ```
 
 - Keys
