@@ -1,3 +1,7 @@
+# 0.1.4
+
+- fix cli not working because npmignore to all scripts
+
 # 0.1.3
 
 - cli: fix path on create apptv template
