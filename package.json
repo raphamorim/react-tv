@@ -7,7 +7,6 @@
     "react-tv": "./cli/index.js"
   },
   "scripts": {
-    "preinstall": "npm install ./src/renderer/types",
     "test": "yarn test-renderer",
     "test-renderer": "sh ./test/run-all.sh",
     "flow": "pushd src/renderers/fiber; flow; popd;",
