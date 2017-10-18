@@ -33,7 +33,7 @@ import type {
  * it currently lives within the `react-dom` package and not `react.
  */
 const ReactFiberReconciler: (
-  hostConfig: HostConfig<*, *, *, *, *, *, *, *>,
+  hostConfig: HostConfig<*, *, *, *, *, *, *, *>
 ) => Reconciler<*, *, *> = require('react-dom/lib/ReactFiberReconciler');
 
 const LOG_STEPS = true;
@@ -84,7 +84,7 @@ const ReactTVRender = ReactFiberReconciler({
     props: Props,
     rootContainerInstance: Container,
     hostContext: HostContext,
-    internalInstanceHandle: Object,
+    internalInstanceHandle: Object
   ) {
     if (props.toJSON && typeof toJSON === 'function') {
       return props.toJSON(props);
@@ -98,7 +98,7 @@ const ReactTVRender = ReactFiberReconciler({
   // added in https://github.com/facebook/react/pull/8400/
   appendInitialChild(
     parentInstance: Instance,
-    child: Instance | TextInstance,
+    child: Instance | TextInstance
   ): void {
     //
     log('appendInitialChild', child);
@@ -106,7 +106,7 @@ const ReactTVRender = ReactFiberReconciler({
 
   appendChild(
     parentInstance: Instance | Container,
-    child: Instance | TextInstance,
+    child: Instance | TextInstance
   ): void {
     log('appendChild', child);
     // const index = parentInstance.children.indexOf(child);
@@ -118,7 +118,7 @@ const ReactTVRender = ReactFiberReconciler({
 
   removeChild(
     parentInstance: Instance | Container,
-    child: Instance | TextInstance,
+    child: Instance | TextInstance
   ): void {
     log('removeChild', child);
     // parentInstance.removeChild(child);
@@ -127,7 +127,7 @@ const ReactTVRender = ReactFiberReconciler({
   insertBefore(
     parentInstance: Instance | Container,
     child: Instance | TextInstance,
-    beforeChild: Instance | TextInstance,
+    beforeChild: Instance | TextInstance
   ): void {
     log('insertBefore');
     // parentInstance.insertBefore(child, beforeChild);
@@ -140,7 +140,7 @@ const ReactTVRender = ReactFiberReconciler({
     instance: Instance,
     type: string,
     props: Props,
-    rootContainerInstance: Container,
+    rootContainerInstance: Container
   ): boolean {
     log('finalizeInitialChildren');
     // setInitialProperties(instance, type, props, rootContainerInstance);
@@ -158,7 +158,7 @@ const ReactTVRender = ReactFiberReconciler({
     oldProps: Props,
     newProps: Props,
     rootContainerInstance: Container,
-    hostContext: HostContext,
+    hostContext: HostContext
   ): null | Array<mixed> {
     log('TODO: prepareUpdate');
     return null;
@@ -171,7 +171,7 @@ const ReactTVRender = ReactFiberReconciler({
     type: string,
     oldProps: Props,
     newProps: Props,
-    internalInstanceHandle: Object,
+    internalInstanceHandle: Object
   ): void {
     // Apply the diff to the DOM node.
     // updateProperties(instance, updatePayload, type, oldProps, newProps);
@@ -185,7 +185,7 @@ const ReactTVRender = ReactFiberReconciler({
     instance: Instance,
     type: string,
     newProps: Props,
-    internalInstanceHandle: Object,
+    internalInstanceHandle: Object
   ) {
     log('commitMount');
     // noop
@@ -203,7 +203,7 @@ const ReactTVRender = ReactFiberReconciler({
 
   getChildHostContext(
     parentHostContext: HostContext,
-    type: string,
+    type: string
   ): HostContext {
     log('getChildHostContext', parentHostContext);
     return emptyObject;
@@ -255,7 +255,7 @@ const ReactTVRender = ReactFiberReconciler({
     text: string,
     rootContainerInstance: Container,
     hostContext: HostContext,
-    internalInstanceHandle: OpaqueHandle,
+    internalInstanceHandle: OpaqueHandle
   ): TextInstance {
     log('createTextInstance');
     return null;
@@ -264,7 +264,7 @@ const ReactTVRender = ReactFiberReconciler({
   commitTextUpdate(
     textInstance: TextInstance,
     oldText: string,
-    newText: string,
+    newText: string
   ): void {
     log('commitTextUpdate');
     // noop

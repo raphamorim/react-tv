@@ -9,15 +9,14 @@ function Build(rootPath, pathWebOS) {
     '../../../node_modules/crow-scripts/bin/crow-scripts.js'
   );
 
-  console.info(
-    chalk.dim('[react-tv]'),
-    `bundling...`
-  )
+  console.info(chalk.dim('[react-tv]'), `bundling...`);
 
   execSync(
     `cd ${rootPath} && node ${crowBinPath} webpack --enable-loose --disable-css --disable-manifest --target-browsers webos/bundle/app src`
   );
-  execSync(`cd ${pathWebOS}/bundle && mv app.*.js app.js && mv app.*.js.map app.js.map`);
+  execSync(
+    `cd ${pathWebOS}/bundle && mv app.*.js app.js && mv app.*.js.map app.js.map`
+  );
 }
 
 module.exports = Build;
