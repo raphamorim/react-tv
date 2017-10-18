@@ -1,4 +1,10 @@
 /**
+ * Copyright (c) 2017-present, Raphael Amorim.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ * @providesModule ReactTVFiberEntry
  * @flow
  */
 
@@ -30,7 +36,7 @@ const ReactFiberReconciler: (
   hostConfig: HostConfig<*, *, *, *, *, *, *, *>,
 ) => Reconciler<*, *, *> = require('react-dom/lib/ReactFiberReconciler');
 
-const LOG_STEPS = false;
+const LOG_STEPS = true;
 const log = (a, b, c) => {
   if (LOG_STEPS) {
     console.log(a, b, c);
@@ -191,7 +197,7 @@ const ReactTVRender = ReactFiberReconciler({
   // upon being in an `html`, `svg`, `mathml`, or other context of the tree.
 
   getRootHostContext(rootContainerInstance: Container): HostContext {
-    log('getRootHostContext');
+    log('getRootHostContext', rootContainerInstance);
     return emptyObject;
   },
 
@@ -199,7 +205,7 @@ const ReactTVRender = ReactFiberReconciler({
     parentHostContext: HostContext,
     type: string,
   ): HostContext {
-    log('getChildHostContext');
+    log('getChildHostContext', parentHostContext);
     return emptyObject;
   },
 
