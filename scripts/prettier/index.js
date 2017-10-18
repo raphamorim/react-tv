@@ -22,7 +22,7 @@ const defaultOptions = {
   'bracket-spacing': 'false',
   'single-quote': 'true',
   'jsx-bracket-same-line': 'true',
-  'trailing-comma': 'all',
+  'trailing-comma': 'es5',
   'print-width': 80,
 };
 const config = {
@@ -32,9 +32,6 @@ const config = {
   },
   scripts: {
     patterns: ['scripts/**/*.js', 'fixtures/**/*.js'],
-    options: {
-      'trailing-comma': 'es5',
-    },
   },
 };
 
