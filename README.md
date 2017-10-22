@@ -2,9 +2,7 @@
 
 > React development for TV (WebOS, SmartTVs) 📺
 
-**tl;dr**: It's like `react-DOM` for low memory applications.
-
-**tl;dr2**: It's like `react-native` packager but for TV apps.
+> **tl;dr** It's like `react-DOM` for low memory applications and packager for TV as platform.
 
 ![React-TV Logo](resources/images/react-tv-cover.png)
 
@@ -13,10 +11,7 @@ import React from 'react'
 import ReactTV, { Platform } from 'react-tv'
 
 class Clock extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {date: new Date()}
-  }
+  state = { date: new Date() }
 
   render() {
     if (Platform.webos) {
