@@ -1,14 +1,13 @@
 {
   "name": "react-tv",
   "version": "0.1.4-rc.1",
-  "description": "React development for TV (WebOS, SmartTVs)",
+  "description": "React development for TV (WebOS, Tizen, Orsay)",
   "main": "src",
   "bin": {
     "react-tv": "./cli/index.js"
   },
   "scripts": {
-    "test": "yarn test-renderer",
-    "test-renderer": "sh ./test/run-all.sh",
+    "test": "sh ./test/run-all.sh",
     "flow": "pushd src/renderers/fiber; flow; popd;",
     "prettier": "node ./scripts/prettier/index.js write-changed",
     "prettier-all": "node ./scripts/prettier/index.js write"
@@ -54,7 +53,7 @@
     "webos"
   ],
   "engines": {
-    "node": ">=0.10.0"
+    "node": ">=8"
   },
   "author": "Raphael Amorim <rapha850@gmail.com>",
   "license": "MIT",

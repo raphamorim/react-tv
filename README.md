@@ -2,6 +2,10 @@
 
 > React development for TV (WebOS, SmartTVs) 📺
 
+**tl;dr**: It's like `react-DOM` for low memory applications.
+
+**tl;dr2**: It's like `react-native` packager but for TV apps.
+
 ![React-TV Logo](resources/images/react-tv-cover.png)
 
 ```js
