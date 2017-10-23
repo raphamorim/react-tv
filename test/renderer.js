@@ -2,7 +2,7 @@ require('babel-register')({});
 
 const assert = require('assert');
 const React = require('react');
-const rendererPath = '../src/renderer';
+const rendererPath = '../src/renderer/ReactTVFiberEntry';
 
 console.log('Running Renderer tests from %s', rendererPath);
 const ReactTVRenderer = require(rendererPath);

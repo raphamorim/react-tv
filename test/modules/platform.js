@@ -6,6 +6,8 @@ const { purgeCache } = require('../shared');
 
 console.log('Running Platform tests from %s', __dirname);
 
+const ReactTVSrc = '../../src/ReactTVEntry';
+
 const ok = [];
 const fail = [];
 const skipped = [];
@@ -30,13 +32,13 @@ const it = (desc, fn) => {
 it.skip = (desc, fn) => skipped.push({desc});
 
 it('[nodejs] should return false for every Platform', () => {
-  purgeCache('../../src');
+  purgeCache(ReactTVSrc);
 
   // mock window
   global.window = {};
 
   // force parse Platform for every iteration
-  const { Platform } = require('../../src');
+  const { Platform } = require(ReactTVSrc);
 
   assert.deepEqual(Platform.webos, false);
   assert.deepEqual(Platform.orsay, false);
@@ -46,12 +48,12 @@ it('[nodejs] should return false for every Platform', () => {
 });
 
 it('[webos] should return true only for webos', () => {
-  purgeCache('../../src');
+  purgeCache(ReactTVSrc);
 
   global.window = { PalmSystem: {version: 1} };
 
   // force parse Platform for every iteration
-  const { Platform } = require('../../src');
+  const { Platform } = require(ReactTVSrc);
 
   assert.deepEqual(Platform.webos, true);
   assert.deepEqual(Platform.orsay, false);

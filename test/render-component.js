@@ -1,8 +1,8 @@
 require('babel-register')({});
 
 const React = require('react');
-const ReactDOM = require('react-dom/server');
-const ReactTV = require('../src');
+// const ReactDOM = require('react-dom/server');
+const ReactTV = require('../src/ReactTVEntry');
 
 const ReactElement = React.createElement(
   'div', {babyComeBack: 'come back to me!'}, 'larger than life');

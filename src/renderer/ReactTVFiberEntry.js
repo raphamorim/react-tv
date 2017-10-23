@@ -26,7 +26,7 @@ import type {
   TextInstance,
   OpaqueHandle,
   HostContext,
-} from './Types';
+} from './ReactTVFiberTypes';
 
 /**
  * This is the only entry point you need to create a Fiber renderer. Note that
