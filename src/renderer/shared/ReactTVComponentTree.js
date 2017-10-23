@@ -7,3 +7,5 @@
  * @providesModule ReactTVComponentTree
  * @flow
  */
+
+'use strict';
