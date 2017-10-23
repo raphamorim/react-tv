@@ -15,7 +15,7 @@ function getProvidesHeader(hasteFinalName) {
 }
 
 function getHeader(filename, version) {
-  return `/** @license React-TV v${reactVersion}
+  return `/** @license React-TV v${version}
  * ${filename}
  *
  * Copyright (c) 2017-present, Raphael Amorim.

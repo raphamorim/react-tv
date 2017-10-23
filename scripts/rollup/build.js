@@ -62,12 +62,11 @@ function createBundle({ entryPath, bundleType }) {
       resolve({
         jsnext: true,
       }),
-      replace({
-        'process.env.NODE_ENV': JSON.stringify( 'production' )
-      })
+      replace(stripEnvVariables())
     ]
   }).then(bundle => Promise.all([
     bundle.write({
+      banner: getBanner('react-tv.js'),
       format: 'iife',
       moduleName: 'ReactTV',
       sourceMap: 'inline',
