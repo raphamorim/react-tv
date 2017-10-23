@@ -49,6 +49,7 @@
       "all",
       "modules",
       "cli",
+      "scripts",
       "renderer",
       "docs",
       "test"
