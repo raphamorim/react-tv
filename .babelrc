@@ -1,4 +1,7 @@
 {
   "presets": ["react"],
-  "plugins": ["external-helpers"]
+  "plugins": [
+    "external-helpers",
+    "transform-flow-strip-types"
+  ]
 }

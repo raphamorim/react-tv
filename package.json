@@ -8,8 +8,8 @@
   },
   "scripts": {
     "build": "node scripts/rollup/build.js",
-    "test": "sh ./test/run-all.sh",
-    "flow": "pushd src/renderers/fiber; flow; popd;",
+    "test": "npm run flow && sh ./test/run-all.sh",
+    "flow": "pushd src; flow; popd;",
     "prettier": "node ./scripts/prettier/index.js write-changed",
     "prettier-all": "node ./scripts/prettier/index.js write"
   },
@@ -21,13 +21,14 @@
     "glob": "^7.1.2",
     "react": "16.0.0-alpha.3",
     "react-dom": "16.0.0-alpha.3",
-    "replace": "^0.3.0"
+    "node-replace": "^0.3.1"
   },
   "devDependencies": {
     "babel-plugin-external-helpers": "^6.22.0",
     "babel-preset-react": "^6.24.1",
     "babel-register": "^6.26.0",
     "commitplease": "^3.1.0",
+    "flow-bin": "^0.57.3",
     "gzip-size": "^3.0.0",
     "prettier": "^1.5.3",
     "react-fiber-types": "file:src/renderer/types",
@@ -74,10 +75,5 @@
   "bugs": {
     "url": "https://github.com/raphamorim/react-tv/issues"
   },
-  "homepage": "https://github.com/raphamorim/react-tv#readme",
-  "babel": {
-    "plugins": [
-      "transform-flow-strip-types"
-    ]
-  }
+  "homepage": "https://github.com/raphamorim/react-tv#readme"
 }

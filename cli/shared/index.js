@@ -1,7 +1,7 @@
 const fs = require('fs-extra');
 const path = require('path');
 const chalk = require('chalk');
-const replace = require('replace');
+const replace = require('node-replace');
 
 const debug = function _debug(msg) {
   console.log(chalk.dim('[react-tv]'), msg);
