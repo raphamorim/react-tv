@@ -8,7 +8,7 @@
   },
   "scripts": {
     "build": "node scripts/rollup/build.js",
-    "test": "npm run flow && sh ./test/run-all.sh",
+    "test": "sh ./test/run-all.sh",
     "flow": "pushd src; flow; popd;",
     "prettier": "node ./scripts/prettier/index.js write-changed",
     "prettier-all": "node ./scripts/prettier/index.js write"
