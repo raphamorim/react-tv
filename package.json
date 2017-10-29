@@ -4,7 +4,7 @@
   "description": "React development for TV (WebOS, Tizen, Orsay)",
   "main": "src/ReactTVEntry.js",
   "bin": {
-    "react-tv": "./cli/index.js"
+    "react-tv": "./cli"
   },
   "scripts": {
     "build": "node scripts/rollup/build.js",
@@ -19,9 +19,9 @@
     "fbjs": "^0.8.4",
     "fs-extra": "^4.0.1",
     "glob": "^7.1.2",
+    "node-replace": "^0.3.1",
     "react": "16.0.0-alpha.3",
-    "react-dom": "16.0.0-alpha.3",
-    "node-replace": "^0.3.1"
+    "react-dom": "16.0.0-alpha.3"
   },
   "devDependencies": {
     "babel-plugin-external-helpers": "^6.22.0",

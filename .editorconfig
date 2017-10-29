@@ -7,10 +7,8 @@ trim_trailing_whitespace = true
 indent_style = space
 indent_size = 2
 
-; make
-[Makefile]
-indent_style = tab
-
 ; markdown
 [*.md]
 trim_trailing_whitespace = false
+indent_size = 2
+indent_style = tab
