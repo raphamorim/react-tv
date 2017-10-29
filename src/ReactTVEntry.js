@@ -7,10 +7,12 @@
  * @flow
  */
 
-var reactTVRenderer = require('./renderer/ReactTVFiberEntry');
-var modules = require('./modules/ReactTVModulesEntry');
+import ReactTVRenderer from './renderer/ReactTVFiberEntry';
+import Platform from './modules/Platform';
 
-module.exports = {
-  render: reactTVRenderer.render,
-  Platform: modules.Platform,
+const ReactTV = {
+  render: ReactTVRenderer.render,
+  Platform: Platform,
 };
+
+export default ReactTV;

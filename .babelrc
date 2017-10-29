@@ -1,7 +1,10 @@
 {
-  "presets": ["react"],
+  "presets": [
+    "env",
+    "react",
+    "stage-2"
+  ],
   "plugins": [
-    "external-helpers",
     "transform-flow-strip-types"
   ]
 }

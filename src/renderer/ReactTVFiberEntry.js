@@ -8,13 +8,8 @@
  * @flow
  */
 
-'use strict';
-
 import type {HostConfig, Reconciler} from 'react-fiber-types';
 import type {ReactNodeList} from 'react-fiber-types/ReactTypes';
-
-const ReactTVFiberComponent = require('./ReactTVFiberComponent');
-
 import type {
   Props,
   Container,
@@ -24,12 +19,24 @@ import type {
   HostContext,
 } from './ReactTVFiberTypes';
 
-const ReactFiberReconciler: (
-  hostConfig: HostConfig<*, *, *, *, *, *, *, *>
-) => Reconciler<*, *, *> = require('react-dom/lib/ReactFiberReconciler');
+import ReactTVFiberComponent from './ReactTVFiberComponent';
+import ReactFiberReconciler from 'react-dom/lib/ReactFiberReconciler';
+import { getChildNamespace } from './shared/DOMNamespaces';
+
+import {
+  ELEMENT_NODE,
+  TEXT_NODE,
+  DOCUMENT_NODE,
+  DOCUMENT_FRAGMENT_NODE,
+  COMMENT_NODE,
+} from './shared/HTMLNodeType';
 
 const {
   createElement,
+  createTextNode,
+  setInitialProperties,
+  diffProperties,
+  updateProperties,
 } = ReactTVFiberComponent;
 
 const LOG_STEPS = false;
@@ -39,32 +46,7 @@ const log = (a, b, c) => {
   }
 };
 
-function toJSON(node) {
-  if (typeof node === 'string') {
-    return node;
-  }
-
-  const props = node.props || node;
-  if (typeof props.toJSON === 'function') {
-    return props.toJSON(props);
-  }
-
-  let children = null;
-  if (props.children) {
-    if (Array.isArray(props.children)) {
-      children = props.children.map(toJSON);
-    } else if (props.children) {
-      children = toJSON(props.children);
-    }
-    return Object.assign({}, props, {children});
-  } else {
-    const clone = Object.assign({}, props);
-    delete clone.children;
-    return clone;
-  }
-}
-
-const ReactTVRender = ReactFiberReconciler({
+const ReactTVFiberRenderer = ReactFiberReconciler({
   createInstance(
     type: string,
     props: Props,
@@ -72,23 +54,21 @@ const ReactTVRender = ReactFiberReconciler({
     hostContext: HostContext,
     internalInstanceHandle: Object
   ): Object {
-    if (props.toJSON && typeof toJSON === 'function') {
-      return props.toJSON(props);
-    } else {
-      let parentNamespace: string;
-      parentNamespace = hostContext;
+    log('createInstance');
 
-      const domElement: Instance = createElement(
-        type,
-        props,
-        rootContainerInstance,
-        parentNamespace,
-      );
+    let parentNamespace: string;
+    parentNamespace = hostContext;
 
-      // TODO: precacheFiberNode
-      // TODO: updateFiberProps
-      return domElement;
-    }
+    const domElement: Instance = createElement(
+      type,
+      props,
+      rootContainerInstance,
+      parentNamespace,
+    );
+
+    // TODO: precacheFiberNode
+    // TODO: updateFiberProps
+    return domElement;
   },
 
   appendInitialChild(
@@ -102,12 +82,20 @@ const ReactTVRender = ReactFiberReconciler({
     parentInstance: Instance | Container,
     child: Instance | TextInstance
   ): void {
-    log('appendChild', child);
-    // const index = parentInstance.children.indexOf(child);
-    // if (index !== -1) {
-    //   parentInstance.children.splice(index, 1);
-    // }
-    // parentInstance.children.push(child);
+    log('appendChild');
+    parentInstance.appendChild(child);
+  },
+
+  appendChildToContainer(
+    container: Container,
+    child: Instance | TextInstance,
+  ): void {
+    log('appendChildToContainer');
+    if (container.nodeType === COMMENT_NODE) {
+      (container.parentNode: any).insertBefore(child, container);
+    } else {
+      container.appendChild(child);
+    }
   },
 
   removeChild(
@@ -115,123 +103,173 @@ const ReactTVRender = ReactFiberReconciler({
     child: Instance | TextInstance
   ): void {
     log('removeChild', child);
-    // parentInstance.removeChild(child);
+    parentInstance.removeChild(child);
+  },
+
+  removeChildFromContainer(
+    container: Container,
+    child: Instance | TextInstance,
+  ): void {
+    if (container.nodeType === COMMENT_NODE) {
+      (container.parentNode: any).removeChild(child);
+    } else {
+      container.removeChild(child);
+    }
   },
 
   insertBefore(
-    parentInstance: Instance | Container,
+    parentInstance: Instance,
     child: Instance | TextInstance,
-    beforeChild: Instance | TextInstance
+    beforeChild: Instance | TextInstance,
   ): void {
     log('insertBefore');
-    // parentInstance.insertBefore(child, beforeChild);
+    parentInstance.insertBefore(child, beforeChild);
+  },
+
+  insertInContainerBefore(
+    container: Container,
+    child: Instance | TextInstance,
+    beforeChild: Instance | TextInstance,
+  ): void {
+    log('insertInContainerBefore');
+    if (container.nodeType === COMMENT_NODE) {
+      (container.parentNode: any).insertBefore(child, beforeChild);
+    } else {
+      container.insertBefore(child, beforeChild);
+    }
   },
 
   finalizeInitialChildren(
-    instance: Instance,
+    domElement: Instance,
     type: string,
     props: Props,
     rootContainerInstance: Container
   ): boolean {
     log('finalizeInitialChildren');
-    // setInitialProperties(instance, type, props, rootContainerInstance);
-    return false;
+    setInitialProperties(
+      domElement,
+      type,
+      props,
+      rootContainerInstance,
+    );
   },
 
   prepareUpdate(
-    instance: Instance,
+    domElement: Instance,
     type: string,
     oldProps: Props,
     newProps: Props,
     rootContainerInstance: Container,
     hostContext: HostContext
   ): null | Array<mixed> {
-    log('TODO: prepareUpdate');
-    return null;
-    // return diffProperties(instance, type, oldProps, newProps, rootContainerInstance, hostContext);
+    log('prepareUpdate');
+    return diffProperties(
+      domElement,
+      type,
+      oldProps,
+      newProps,
+      rootContainerInstance,
+    );
   },
 
   commitUpdate(
-    instance: Instance,
+    domElement: Instance,
     updatePayload: Array<mixed>,
     type: string,
     oldProps: Props,
     newProps: Props,
     internalInstanceHandle: Object
   ): void {
-    log('TODO: updateProperties');
+    log('commitUpdate');
+    // TODO: updateFiberProps
+    updateProperties(domElement, updatePayload, type, oldProps, newProps);
   },
 
   commitMount(
-    instance: Instance,
+    domElement: Instance,
     type: string,
     newProps: Props,
     internalInstanceHandle: Object
   ) {
     log('commitMount');
-    // noop
   },
 
   getRootHostContext(rootContainerInstance: Container): HostContext {
     log('getRootHostContext', rootContainerInstance);
-    return emptyObject;
+    let type;
+    let namespace;
+    const nodeType = rootContainerInstance.nodeType;
+    switch (nodeType) {
+      case DOCUMENT_NODE:
+      case DOCUMENT_FRAGMENT_NODE: {
+        type = nodeType === DOCUMENT_NODE ? '#document' : '#fragment';
+        let root = (rootContainerInstance: any).documentElement;
+        namespace = root ? root.namespaceURI : getChildNamespace(null, '');
+        break;
+      }
+      default: {
+        const container: any = nodeType === COMMENT_NODE
+          ? rootContainerInstance.parentNode
+          : rootContainerInstance;
+        const ownNamespace = container.namespaceURI || null;
+        type = container.tagName;
+        namespace = getChildNamespace(ownNamespace, type);
+        break;
+      }
+    }
+    return namespace;
   },
 
   getChildHostContext(
     parentHostContext: HostContext,
     type: string
   ): HostContext {
-    log('getChildHostContext', parentHostContext);
-    return emptyObject;
+    log('getChildHostContext');
+    return getChildNamespace(parentHostContext, type);
   },
 
   getPublicInstance(instance: Instance | TextInstance) {
-    log('getPublicInstance');
-    if (instance == null) {
-      return null;
-    }
-    console.log(instance);
-    return instance != null && instance.props.toJSON(instance);
+    return instance;
   },
 
   prepareForCommit(): void {
     log('prepareForCommit');
-    // noop
   },
 
   resetAfterCommit(): void {
     log('resetAfterCommit');
-    // noop
   },
 
   shouldSetTextContent(props: Props): boolean {
-    log('shouldSetTextContent');
-    return false;
+    return (
+      typeof props.children === 'string' ||
+      typeof props.children === 'number'
+    );
   },
 
-  resetTextContent(instance: Instance): void {
-    log('resetTextContent');
-    // noop
+  resetTextContent(domElement: Instance): void {
+    domElement.textContent = '';
   },
 
   createTextInstance(
     text: string,
     rootContainerInstance: Container,
     hostContext: HostContext,
-    internalInstanceHandle: OpaqueHandle
+    internalInstanceHandle: Object,
   ): TextInstance {
     log('createTextInstance');
-    return null;
+    let textNode: TextInstance = createTextNode(text, rootContainerInstance);
+    // TODO: precacheFiberNode(internalInstanceHandle, textNode);
+    return textNode;
   },
 
   commitTextUpdate(
     textInstance: TextInstance,
     oldText: string,
-    newText: string
+    newText: string,
   ): void {
     log('commitTextUpdate');
-    // noop
-    throw new Error('commitTextUpdate should not be called');
+    textInstance.nodeValue = newText;
   },
 
   scheduleAnimationCallback() {
@@ -246,32 +284,31 @@ const ReactTVRender = ReactFiberReconciler({
 });
 
 const defaultContainer = {};
-const ReactTV = {
+const roots = new Map();
+
+const ReactTVRenderer = {
   render(element: React$Element<any>, container: any, callback: ?Function) {
     const containerKey =
       typeof container === 'undefined' ? defaultContainer : container;
     let root = roots.get(containerKey);
     if (!root) {
-      root = ReactTVRender.createContainer(containerKey);
+      root = ReactTVFiberRenderer.createContainer(containerKey);
       roots.set(container, root);
     }
 
-    ReactTVRender.updateContainer((element: any), root, null, callback);
-    return ReactTVRender.getPublicRootInstance(root);
+    ReactTVFiberRenderer.updateContainer((element: any), root, null, callback);
+    return ReactTVFiberRenderer.getPublicRootInstance(root);
   },
   unmountComponentAtNode(container: any) {
     const containerKey =
       typeof container === 'undefined' ? defaultContainer : container;
     const root = roots.get(containerKey);
     if (root) {
-      ReactTVRender.updateContainer(null, root, null, () => {
+      ReactTVFiberRenderer.updateContainer(null, root, null, () => {
         roots.delete(container);
       });
     }
   },
 };
 
-const roots = new Map();
-const emptyObject = {};
-
-module.exports = ReactTV;
+export default ReactTVRenderer;

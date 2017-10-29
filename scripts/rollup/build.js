@@ -12,7 +12,6 @@ const chalk = require('chalk');
 const REACT_TV_VERSION = require('../../package.json').version;
 
 const Header = require('./header');
-const sizes = require('./plugins/sizes-plugin');
 
 function stripEnvVariables(production) {
   return {
@@ -56,7 +55,16 @@ function createBundle({ entryPath, bundleType }) {
     plugins: [
       flow(),
       babel({
-        exclude: 'node_modules/**'
+        babelrc: false,
+        exclude: 'node_modules/**',
+        presets: [
+          [ 'env', { 'modules': false } ],
+          'react',
+          'stage-2'
+        ],
+        plugins: [
+          'transform-flow-strip-types'
+        ]
       }),
       commonjs(),
       resolve({

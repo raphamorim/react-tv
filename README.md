@@ -1,51 +1,50 @@
-# React-TV [![circleci status](https://circleci.com/gh/raphamorim/react-tv/tree/master.svg?style=shield)](https://circleci.com/gh/raphamorim/react-tv) [![npm version](https://img.shields.io/npm/v/react-tv.svg?style=flat)](https://www.npmjs.com/package/react-tv) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md#pull-requests)
+# [React-TV](https://github.com/raphamorim/react-tv) 📺 • [![circleci status](https://circleci.com/gh/raphamorim/react-tv/tree/master.svg?style=shield)](https://circleci.com/gh/raphamorim/react-tv) [![npm version](https://img.shields.io/npm/v/react-tv.svg?style=flat)](https://www.npmjs.com/package/react-tv) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md#pull-requests)
 
-> React development for TV (WebOS, Tizen, Orsay) 📺
-
-> **tl;dr** It's like `react-DOM` for low memory applications and packager for TV as platform.
+> A `react-DOM` like for low memory applications and packager for TV as platform.
 
 ![React-TV Logo](resources/images/reactv-cover-dark.png)
 
 ```jsx
 import React from 'react'
-import ReactTV, { Platform } from 'react-tv'
+import ReactTV, { Platform } from 'ReactTV'
 
 class Clock extends React.Component {
-	state = { date: new Date() }
+  state = { date: new Date() }
 
-	render() {
-		if (Platform.webos) {
-			return (
-				<div>
-					<h1>Hello, {Platform}</h1>
-					<h2>It is {this.state.date.toLocaleTimeString()}</h2>
-				</div>
-			)
-		}
+  componentDidMount() {
+    setInterval(() => this.setState({date: new Date()}), 1000)
+  }
 
-		return <div>This App is available only at LG WebOS</div>
-	}
+  render() {
+    if (Platform('webos')) {
+      return (
+        <h1>Time is {this.state.date.toLocaleTimeString()}</h1>
+      )
+    }
+
+    return <h2>This App is available only at LG WebOS</h2>
+  }
 }
 
-ReactTV.render(Clock, document.getElementById('root'))
+ReactTV.render(<Clock/>, document.getElementById('root'))
 ```
 
 ## Summary
 
 - [About React-TV](#about-react-tv)
-	- [Understanding the Problem](#understanding-the-problem)
+  - [Understanding the Problem](#understanding-the-problem)
 - [Getting Started](#getting-started)
-	- [Installing](#installing)
-	- [Examples](#examples)
-	- [Using CLI](#using-cli)
-	- [Using Module](#using-module)
+  - [Installing](#installing)
+  - [Examples](#examples)
+  - [Using CLI](#using-cli)
+  - [Using Module](#using-module)
 - [Supported Televisions](#supported-televisions)
-	- [LG WebOS](#lg-webos)
+  - [LG WebOS](#lg-webos)
 - [References for Study](#references)
-	- [WebOS](#webos)
-	- [Videos](#videos)
-	- [Essentials to beginner](#essentials-to-beginner)
-	- [React Basics and Renderer Architecture](#react-basics-and-renderer-architecture)
+  - [WebOS](#webos)
+  - [Videos](#videos)
+  - [Essentials to beginner](#essentials-to-beginner)
+  - [React Basics and Renderer Architecture](#react-basics-and-renderer-architecture)
 - [TODOLIST for 1.0.0](#todolist)
 
 ## About React-TV
@@ -218,25 +217,25 @@ Thanks [react-dom](https://github.com/facebook/react/tree/master/packages/react-
 ## TODOLIST
 
 - [ ] {cli} init project
-	- [x] mkdir app-path
-	- [x] generate react app tv based on app-name and app-path
-	- [ ] create a npm script on app: `react-tv run-webos-dev`
+  - [x] mkdir app-path
+  - [x] generate react app tv based on app-name and app-path
+  - [ ] create a npm script on app: `react-tv run-webos-dev`
 - [ ] {cli} run-webos-dev
-	- [ ] mount bundle (crow-scripts) or Webpack
-		- [ ] check if exists webpack config existent on folder
-	- [ ] copy bundle for respective folders
-	- [x] run server (express?)
+  - [ ] mount bundle (crow-scripts) or Webpack
+    - [ ] check if exists webpack config existent on folder
+  - [ ] copy bundle for respective folders
+  - [x] run server (express?)
 - [ ] {cli} run-webos
-	- [ ] CROW bundling or Webpack
-	- [ ] Check executable bin path for Windows, OSX and Linux
-	- [x] pack and install script
-	- [x] check if virtualbox is up
-	- [x] launch
-	- [x] `--disable-emulator`
+  - [ ] CROW bundling or Webpack
+  - [ ] Check executable bin path for Windows, OSX and Linux
+  - [x] pack and install script
+  - [x] check if virtualbox is up
+  - [x] launch
+  - [x] `--disable-emulator`
 - [ ] {renderer}
-	- [ ] WebOS
-		- [x] platform
-		- [ ] volume
-	- [ ] Tizen
-		- [ ] platform
-		- [ ] volume
+  - [ ] WebOS
+    - [x] platform
+    - [ ] volume
+  - [ ] Tizen
+    - [ ] platform
+    - [ ] volume

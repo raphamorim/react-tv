@@ -1,6 +1,6 @@
 {
   "name": "react-tv",
-  "version": "0.1.4-rc.1",
+  "version": "0.2.0",
   "description": "React development for TV (WebOS, Tizen, Orsay)",
   "main": "src/ReactTVEntry.js",
   "bin": {
@@ -8,8 +8,8 @@
   },
   "scripts": {
     "build": "node scripts/rollup/build.js",
-    "test": "sh ./test/run-all.sh",
-    "flow": "pushd src; flow; popd;",
+    "test": "yarn flow && jest",
+    "flow": "flow",
     "prettier": "node ./scripts/prettier/index.js write-changed",
     "prettier-all": "node ./scripts/prettier/index.js write"
   },
@@ -18,18 +18,20 @@
     "express": "^4.15.4",
     "fbjs": "^0.8.4",
     "fs-extra": "^4.0.1",
-    "glob": "^7.1.2",
     "node-replace": "^0.3.1",
     "react": "16.0.0-alpha.3",
     "react-dom": "16.0.0-alpha.3"
   },
   "devDependencies": {
-    "babel-plugin-external-helpers": "^6.22.0",
+    "babel-jest": "20.1.0-delta.1",
+    "babel-plugin-transform-flow-strip-types": "^6.22.0",
+    "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
     "babel-register": "^6.26.0",
     "commitplease": "^3.1.0",
     "flow-bin": "^0.57.3",
-    "gzip-size": "^3.0.0",
+    "jest": "20.1.0-delta.1",
     "prettier": "^1.5.3",
     "react-fiber-types": "file:src/renderer/types",
     "rollup": "^0.41.6",
@@ -75,5 +77,16 @@
   "bugs": {
     "url": "https://github.com/raphamorim/react-tv/issues"
   },
-  "homepage": "https://github.com/raphamorim/react-tv#readme"
+  "homepage": "https://github.com/raphamorim/react-tv#readme",
+  "jest": {
+    "roots": [
+      "<rootDir>/src"
+    ],
+    "moduleDirectories": [
+      "node_modules",
+      "src"
+    ],
+    "verbose": true,
+    "resetModules": true
+  }
 }
