@@ -54,29 +54,28 @@ var Clock = function (_React$Component) {
   }
 
   _createClass(Clock, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      setInterval(function () {
+        return _this2.setState({ date: new Date() });
+      }, 1000);
+    }
+  }, {
     key: 'render',
     value: function render() {
       if (Platform.webos) {
         return React.createElement(
-          'div',
+          'h1',
           null,
-          React.createElement(
-            'h1',
-            null,
-            'Hello, ',
-            Platform
-          ),
-          React.createElement(
-            'h2',
-            null,
-            'It is ',
-            this.state.date.toLocaleTimeString()
-          )
+          'Time is ',
+          this.state.date.toLocaleTimeString()
         );
       }
 
       return React.createElement(
-        'div',
+        'h2',
         null,
         'This App is available only at LG WebOS'
       );
@@ -86,5 +85,9 @@ var Clock = function (_React$Component) {
   return Clock;
 }(React.Component);
 
-console.log(Platform);
-ReactTV.render(Clock, document.getElementById('root'));
+function fn() {
+      console.log('hatake kakashi...');
+    };
+
+const reactElement = React.createElement('div', {onClick: fn}, 'click');
+ReactTV.render(reactElement, document.getElementById('root'));
