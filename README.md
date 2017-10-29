@@ -1,6 +1,6 @@
 # React-TV [![circleci status](https://circleci.com/gh/raphamorim/react-tv/tree/master.svg?style=shield)](https://circleci.com/gh/raphamorim/react-tv) [![npm version](https://img.shields.io/npm/v/react-tv.svg?style=flat)](https://www.npmjs.com/package/react-tv) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md#pull-requests)
 
-> React development for TV (WebOS, SmartTVs) 📺
+> React development for TV (WebOS, Tizen, Orsay) 📺
 
 > **tl;dr** It's like `react-DOM` for low memory applications and packager for TV as platform.
 
@@ -23,7 +23,7 @@ class Clock extends React.Component {
       )
     }
 
-    return <div>This App is available only at Samsung WebOS</div>
+    return <div>This App is available only at LG WebOS</div>
   }
 }
 
@@ -218,12 +218,12 @@ Currently ReactTV is licensed by [MIT License](https://github.com/raphamorim/rea
   - [x] generate react app tv based on app-name and app-path
   - [ ] create a npm script on app: `react-tv run-webos-dev`
 - [ ] {cli} run-webos-dev
-  - [ ] mount bundle (crow-scripts)
+  - [ ] mount bundle (crow-scripts) or Webpack
     - [ ] check if exists webpack config existent on folder
   - [ ] copy bundle for respective folders
   - [x] run server (express?)
 - [ ] {cli} run-webos
-  - [ ] CROW bundling
+  - [ ] CROW bundling or Webpack
   - [ ] Check executable bin path for Windows, OSX and Linux
   - [x] pack and install script
   - [x] check if virtualbox is up
@@ -231,8 +231,8 @@ Currently ReactTV is licensed by [MIT License](https://github.com/raphamorim/rea
   - [x] `--disable-emulator`
 - [ ] {renderer}
   - [ ] WebOS
-    - [ ] platform
+    - [x] platform
     - [ ] volume
-  - [ ] SmartTV
+  - [ ] Tizen
     - [ ] platform
     - [ ] volume
