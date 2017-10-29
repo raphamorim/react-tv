@@ -10,15 +10,11 @@
 
 'use strict';
 
-/**
- * The two internal types you need to be aware of. Everything else should be
- * kept private except host-specific things that you handle in your renderer.
- */
 import type {HostConfig, Reconciler} from 'react-fiber-types';
 import type {ReactNodeList} from 'react-fiber-types/ReactTypes';
 
-// our renconciler types are defined in ./ReactTinyTypes.js for a convenient place to see
-// what types you’re expected to define when implementing a renderer
+const ReactTVFiberComponent = require('./ReactTVFiberComponent');
+
 import type {
   Props,
   Container,
@@ -28,15 +24,15 @@ import type {
   HostContext,
 } from './ReactTVFiberTypes';
 
-/**
- * This is the only entry point you need to create a Fiber renderer. Note that
- * it currently lives within the `react-dom` package and not `react.
- */
 const ReactFiberReconciler: (
   hostConfig: HostConfig<*, *, *, *, *, *, *, *>
 ) => Reconciler<*, *, *> = require('react-dom/lib/ReactFiberReconciler');
 
-const LOG_STEPS = true;
+const {
+  createElement,
+} = ReactTVFiberComponent;
+
+const LOG_STEPS = false;
 const log = (a, b, c) => {
   if (LOG_STEPS) {
     console.log(a, b, c);
@@ -68,39 +64,37 @@ function toJSON(node) {
   }
 }
 
-/**
- * The fun begins!
- *
- * We create a private reconciler instance. The methods defined here can be
- * thought of as the lifecycle of a renderer. React will manage all non-host
- * components, such as composites, stateless, and fragments.
- */
 const ReactTVRender = ReactFiberReconciler({
-  // the tree creation and updating methods. If you’re familiar with the DOM API
-  // this will look familiar
-
   createInstance(
     type: string,
     props: Props,
     rootContainerInstance: Container,
     hostContext: HostContext,
     internalInstanceHandle: Object
-  ) {
+  ): Object {
     if (props.toJSON && typeof toJSON === 'function') {
       return props.toJSON(props);
     } else {
-      return toJSON({props});
+      let parentNamespace: string;
+      parentNamespace = hostContext;
+
+      const domElement: Instance = createElement(
+        type,
+        props,
+        rootContainerInstance,
+        parentNamespace,
+      );
+
+      // TODO: precacheFiberNode
+      // TODO: updateFiberProps
+      return domElement;
     }
   },
 
-  // this is called instead of `appendChild` when the parentInstance is first
-  // being created and mounted
-  // added in https://github.com/facebook/react/pull/8400/
   appendInitialChild(
     parentInstance: Instance,
     child: Instance | TextInstance
   ): void {
-    //
     log('appendInitialChild', child);
   },
 
@@ -133,9 +127,6 @@ const ReactTVRender = ReactFiberReconciler({
     // parentInstance.insertBefore(child, beforeChild);
   },
 
-  // finalizeInitialChildren is the final HostConfig method called before
-  // flushing the root component to the host environment
-
   finalizeInitialChildren(
     instance: Instance,
     type: string,
@@ -146,11 +137,6 @@ const ReactTVRender = ReactFiberReconciler({
     // setInitialProperties(instance, type, props, rootContainerInstance);
     return false;
   },
-
-  // prepare update is where you compute the diff for an instance. This is done
-  // here to separate computation of the diff to the applying of the diff. Fiber
-  // can reuse this work even if it pauses or aborts rendering a subset of the
-  // tree.
 
   prepareUpdate(
     instance: Instance,
@@ -173,13 +159,8 @@ const ReactTVRender = ReactFiberReconciler({
     newProps: Props,
     internalInstanceHandle: Object
   ): void {
-    // Apply the diff to the DOM node.
-    // updateProperties(instance, updatePayload, type, oldProps, newProps);
     log('TODO: updateProperties');
   },
-
-  // commitMount is called after initializeFinalChildren *if*
-  // `initializeFinalChildren` returns true.
 
   commitMount(
     instance: Instance,
@@ -190,11 +171,6 @@ const ReactTVRender = ReactFiberReconciler({
     log('commitMount');
     // noop
   },
-
-  // HostContext is an internal object or reference for any bookkeeping your
-  // renderer may need to do based on current location in the tree. In DOM this
-  // is necessary for calling the correct `document.createElement` calls based
-  // upon being in an `html`, `svg`, `mathml`, or other context of the tree.
 
   getRootHostContext(rootContainerInstance: Container): HostContext {
     log('getRootHostContext', rootContainerInstance);
@@ -209,10 +185,6 @@ const ReactTVRender = ReactFiberReconciler({
     return emptyObject;
   },
 
-  // getPublicInstance should be the identity function in 99% of all scenarios.
-  // It was added to support the `getNodeMock` functionality for the
-  // TestRenderers.
-
   getPublicInstance(instance: Instance | TextInstance) {
     log('getPublicInstance');
     if (instance == null) {
@@ -221,11 +193,6 @@ const ReactTVRender = ReactFiberReconciler({
     console.log(instance);
     return instance != null && instance.props.toJSON(instance);
   },
-
-  // the prepareForCommit and resetAfterCommit methods are necessary for any
-  // global side-effects you need to trigger in the host environment. In
-  // ReactDOM this does things like disable the ReactDOM events to ensure no
-  // callbacks are fired during DOM manipulations
 
   prepareForCommit(): void {
     log('prepareForCommit');
@@ -236,10 +203,6 @@ const ReactTVRender = ReactFiberReconciler({
     log('resetAfterCommit');
     // noop
   },
-
-  // the following four methods are regarding TextInstances. In our example
-  // renderer we don’t have specific text nodes like the DOM does so we’ll just
-  // noop all of them.
 
   shouldSetTextContent(props: Props): boolean {
     log('shouldSetTextContent');
@@ -284,7 +247,7 @@ const ReactTVRender = ReactFiberReconciler({
 
 const defaultContainer = {};
 const ReactTV = {
-  render(element: React$Element<any>, callback: ?Function, container: any) {
+  render(element: React$Element<any>, container: any, callback: ?Function) {
     const containerKey =
       typeof container === 'undefined' ? defaultContainer : container;
     let root = roots.get(containerKey);

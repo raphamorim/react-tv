@@ -10,6 +10,16 @@
 
 'use strict';
 
+const {
+  Namespaces: {html: HTML_NAMESPACE},
+  getIntrinsicNamespace,
+} = require('./shared/DOMNamespaces');
+
+const {
+  DOCUMENT_NODE,
+  DOCUMENT_FRAGMENT_NODE,
+} = require('./shared/HTMLNodeType');
+
 function getOwnerDocumentFromRootContainer(
   rootContainerElement: Element | Document,
 ): Document {
@@ -27,11 +37,11 @@ const ReactTVFiberComponent = {
   ): Element {
     // We create tags in the namespace of their parent container, except HTML
     // tags get no namespace.
-    var ownerDocument: Document = getOwnerDocumentFromRootContainer(
+    const ownerDocument: Document = getOwnerDocumentFromRootContainer(
       rootContainerElement,
     );
-    var domElement: Element;
-    var namespaceURI = parentNamespace;
+    let domElement: Element;
+    let namespaceURI = parentNamespace;
     if (namespaceURI === HTML_NAMESPACE) {
       namespaceURI = getIntrinsicNamespace(type);
     }
@@ -57,8 +67,35 @@ const ReactTVFiberComponent = {
       domElement = ownerDocument.createElementNS(namespaceURI, type);
     }
 
+    console.log(domElement)
     return domElement;
-  }
+  },
+
+  // createTextNode(text: string, rootContainerElement: Element | Document): Text {
+  //   return getOwnerDocumentFromRootContainer(
+  //     rootContainerElement,
+  //   ).createTextNode(text);
+  // },
+
+  // setInitialProperties(
+  //   domElement: Element,
+  //   tag: string,
+  //   rawProps: Object,
+  //   rootContainerElement: Element | Document,
+  // ): void {
+  //   var isCustomComponentTag = isCustomComponent(tag, rawProps);
+  //   if (__DEV__) {
+  //     validatePropertiesInDevelopment(tag, rawProps);
+  //     if (isCustomComponentTag && !didWarnShadyDOM && domElement.shadyRoot) {
+  //       warning(
+  //         false,
+  //         '%s is using shady DOM. Using shady DOM with React can ' +
+  //           'cause things to break subtly.',
+  //         getCurrentFiberOwnerName() || 'A component',
+  //       );
+  //       didWarnShadyDOM = true;
+  //     }
+  // },
 }
 
 module.exports = ReactTVFiberComponent;

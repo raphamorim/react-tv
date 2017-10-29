@@ -8,7 +8,7 @@
  */
 
 var reactTVRenderer = require('./renderer/ReactTVFiberEntry');
-var modules = require('./modules');
+var modules = require('./modules/ReactTVModulesEntry');
 
 module.exports = {
   render: reactTVRenderer.render,
