@@ -4,7 +4,7 @@
 
 > **tl;dr** It's like `react-DOM` for low memory applications and packager for TV as platform.
 
-![React-TV Logo](resources/images/react-tv-cover.png)
+![React-TV Logo](resources/images/reactv-cover-dark.png)
 
 ```js
 import React from 'react'
