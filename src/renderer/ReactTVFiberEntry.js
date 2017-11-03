@@ -75,14 +75,15 @@ const ReactTVFiberRenderer = ReactFiberReconciler({
     parentInstance: Instance,
     child: Instance | TextInstance
   ): void {
-    log('appendInitialChild', child);
+    log('appendInitialChild', parentInstance, child);
+    parentInstance.appendChild(child);
   },
 
   appendChild(
     parentInstance: Instance | Container,
     child: Instance | TextInstance
   ): void {
-    log('appendChild');
+    log('appendChild', parentInstance, child);
     parentInstance.appendChild(child);
   },
 

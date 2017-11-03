@@ -11,3 +11,9 @@ h1 {
   font-weight: 300;
   color: #FFF;
 }
+
+.webos {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}

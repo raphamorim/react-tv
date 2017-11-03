@@ -8,9 +8,13 @@ class Clock extends React.Component {
   }
 
   render() {
-    if (Platform('webos')) {
+    if (!Platform('webos')) {
       return (
-        <h1>It is {this.state.date.toLocaleTimeString()}</h1>
+        <div className="webos">
+          <img src="https://i.imgur.com/9yhDR0Q.png"/>
+          <h1>It is {this.state.date.toLocaleTimeString()}</h1>
+          <p>by React-TV</p>
+        </div>
       )
     }
 

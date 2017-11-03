@@ -4,6 +4,9 @@ var webpack = require('webpack');
 module.exports = {
   entry: './src/App.js',
   output: { path: __dirname, filename: 'bundle.js' },
+  resolveLoader: {
+    root: path.join(__dirname, 'node_modules')
+  },
   module: {
     loaders: [
       {
@@ -11,7 +14,7 @@ module.exports = {
         loader: 'babel-loader',
         exclude: /node_modules/,
         query: {
-          presets: ['es2015', 'react']
+          presets: ['env', 'react']
         }
       }
     ]
