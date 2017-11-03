@@ -1,11 +1,17 @@
 {
   "name": "react-tv",
-  "version": "0.2.0",
+  "version": "0.2.0-rc",
   "description": "React development for TV (WebOS, Tizen, Orsay)",
-  "main": "src/ReactTVEntry.js",
+  "main": "dist/react-tv.umd.js",
   "bin": {
     "react-tv": "./cli"
   },
+  "files": [
+    "LICENSE",
+    "README.md",
+    "cli/",
+    "build/"
+  ],
   "scripts": {
     "build": "node scripts/rollup/build.js",
     "test": "yarn flow && jest",
@@ -18,28 +24,30 @@
     "express": "^4.15.4",
     "fbjs": "^0.8.4",
     "fs-extra": "^4.0.1",
-    "node-replace": "^0.3.1",
-    "react": "16.0.0-alpha.3",
-    "react-dom": "16.0.0-alpha.3"
+    "node-replace": "^0.3.1"
   },
   "devDependencies": {
     "babel-jest": "20.1.0-delta.1",
+    "babel-plugin-external-helpers": "^6.22.0",
     "babel-plugin-transform-flow-strip-types": "^6.22.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
-    "babel-register": "^6.26.0",
     "commitplease": "^3.1.0",
     "flow-bin": "^0.57.3",
     "jest": "20.1.0-delta.1",
     "prettier": "^1.5.3",
+    "react": "16.0.0-alpha.3",
+    "react-dom": "16.0.0-alpha.3",
     "react-fiber-types": "file:src/renderer/types",
-    "rollup": "^0.41.6",
+    "rollup": "^0.50.0",
     "rollup-plugin-babel": "^2.7.1",
     "rollup-plugin-commonjs": "^8.0.2",
     "rollup-plugin-flow": "^1.1.1",
     "rollup-plugin-node-resolve": "^2.0.0",
-    "rollup-plugin-replace": "^2.0.0"
+    "rollup-plugin-optimize-js": "^0.0.4",
+    "rollup-plugin-replace": "^2.0.0",
+    "rollup-plugin-uglify": "^2.0.1"
   },
   "repository": {
     "type": "git",

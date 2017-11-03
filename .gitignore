@@ -2,6 +2,6 @@
 *.log
 
 package-lock.json
-build/**
+dist/**
 node_modules
 cli/generators/app/yarn.lock
