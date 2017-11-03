@@ -1,6 +1,6 @@
 {
   "name": "react-tv",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "React development for TV (WebOS, Tizen, Orsay)",
   "main": "dist/react-tv.umd.js",
   "bin": {

@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "react": "16.0.0-alpha.3",
-    "react-tv": "0.2.0"
+    "react-tv": "0.2.1"
   },
   "devDependencies": {
     "babel-core": "^6.4.5",
