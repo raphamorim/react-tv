@@ -5,3 +5,5 @@ package-lock.json
 dist/**
 node_modules
 cli/generators/app/yarn.lock
+
+examples/**/*/yarn.lock

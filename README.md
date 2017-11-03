@@ -89,7 +89,7 @@ $ yarn add react-tv
 
 ## Examples
 
-[WORK IN PROGRESS]
+- [Clock TV App Rendering with React-TV](https://github.com/raphamorim/react-tv/tree/master/examples/clock-app-with-react-tv)
 
 ## Using CLI
 
