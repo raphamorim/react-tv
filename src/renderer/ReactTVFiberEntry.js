@@ -21,7 +21,7 @@ import type {
 
 import ReactTVFiberComponent from './ReactTVFiberComponent';
 import ReactFiberReconciler from 'react-dom/lib/ReactFiberReconciler';
-import { getChildNamespace } from './shared/DOMNamespaces';
+import {getChildNamespace} from './shared/DOMNamespaces';
 
 import {
   ELEMENT_NODE,
@@ -63,7 +63,7 @@ const ReactTVFiberRenderer = ReactFiberReconciler({
       type,
       props,
       rootContainerInstance,
-      parentNamespace,
+      parentNamespace
     );
 
     // TODO: precacheFiberNode
@@ -88,7 +88,7 @@ const ReactTVFiberRenderer = ReactFiberReconciler({
 
   appendChildToContainer(
     container: Container,
-    child: Instance | TextInstance,
+    child: Instance | TextInstance
   ): void {
     log('appendChildToContainer');
     if (container.nodeType === COMMENT_NODE) {
@@ -108,7 +108,7 @@ const ReactTVFiberRenderer = ReactFiberReconciler({
 
   removeChildFromContainer(
     container: Container,
-    child: Instance | TextInstance,
+    child: Instance | TextInstance
   ): void {
     if (container.nodeType === COMMENT_NODE) {
       (container.parentNode: any).removeChild(child);
@@ -120,7 +120,7 @@ const ReactTVFiberRenderer = ReactFiberReconciler({
   insertBefore(
     parentInstance: Instance,
     child: Instance | TextInstance,
-    beforeChild: Instance | TextInstance,
+    beforeChild: Instance | TextInstance
   ): void {
     log('insertBefore');
     parentInstance.insertBefore(child, beforeChild);
@@ -129,7 +129,7 @@ const ReactTVFiberRenderer = ReactFiberReconciler({
   insertInContainerBefore(
     container: Container,
     child: Instance | TextInstance,
-    beforeChild: Instance | TextInstance,
+    beforeChild: Instance | TextInstance
   ): void {
     log('insertInContainerBefore');
     if (container.nodeType === COMMENT_NODE) {
@@ -146,12 +146,7 @@ const ReactTVFiberRenderer = ReactFiberReconciler({
     rootContainerInstance: Container
   ): boolean {
     log('finalizeInitialChildren');
-    setInitialProperties(
-      domElement,
-      type,
-      props,
-      rootContainerInstance,
-    );
+    setInitialProperties(domElement, type, props, rootContainerInstance);
   },
 
   prepareUpdate(
@@ -168,7 +163,7 @@ const ReactTVFiberRenderer = ReactFiberReconciler({
       type,
       oldProps,
       newProps,
-      rootContainerInstance,
+      rootContainerInstance
     );
   },
 
@@ -208,9 +203,10 @@ const ReactTVFiberRenderer = ReactFiberReconciler({
         break;
       }
       default: {
-        const container: any = nodeType === COMMENT_NODE
-          ? rootContainerInstance.parentNode
-          : rootContainerInstance;
+        const container: any =
+          nodeType === COMMENT_NODE
+            ? rootContainerInstance.parentNode
+            : rootContainerInstance;
         const ownNamespace = container.namespaceURI || null;
         type = container.tagName;
         namespace = getChildNamespace(ownNamespace, type);
@@ -242,8 +238,7 @@ const ReactTVFiberRenderer = ReactFiberReconciler({
 
   shouldSetTextContent(props: Props): boolean {
     return (
-      typeof props.children === 'string' ||
-      typeof props.children === 'number'
+      typeof props.children === 'string' || typeof props.children === 'number'
     );
   },
 
@@ -255,7 +250,7 @@ const ReactTVFiberRenderer = ReactFiberReconciler({
     text: string,
     rootContainerInstance: Container,
     hostContext: HostContext,
-    internalInstanceHandle: Object,
+    internalInstanceHandle: Object
   ): TextInstance {
     log('createTextInstance');
     let textNode: TextInstance = createTextNode(text, rootContainerInstance);
@@ -266,7 +261,7 @@ const ReactTVFiberRenderer = ReactFiberReconciler({
   commitTextUpdate(
     textInstance: TextInstance,
     oldText: string,
-    newText: string,
+    newText: string
   ): void {
     log('commitTextUpdate');
     textInstance.nodeValue = newText;

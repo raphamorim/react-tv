@@ -22,9 +22,10 @@ function stripEnvVariables(production) {
   };
 }
 
-function createBundle({ entryPath, bundleType, destName }) {
+function createBundle({entryPath, bundleType, destName}) {
   entryPath = path.resolve(entryPath);
-  const logKey = chalk.white.bold(entryPath) + chalk.dim(` (${REACT_TV_VERSION})`);
+  const logKey =
+    chalk.white.bold(entryPath) + chalk.dim(` (${REACT_TV_VERSION})`);
   console.log(`${chalk.blue(bundleType)} ${logKey} -> dist/${destName}`);
 
   let plugins = [
@@ -33,24 +34,17 @@ function createBundle({ entryPath, bundleType, destName }) {
       babelrc: false,
       exclude: 'node_modules/**',
       externalHelpers: true,
-      presets: [
-        [ 'env', { 'modules': false } ],
-        'react',
-        'stage-2'
-      ],
-      plugins: [
-        'transform-flow-strip-types',
-        'external-helpers'
-      ]
-    })
-  ]
+      presets: [['env', {modules: false}], 'react', 'stage-2'],
+      plugins: ['transform-flow-strip-types', 'external-helpers'],
+    }),
+  ];
 
   if (bundleType.indexOf('PROD') >= 0)
     plugins = plugins.concat([
       uglify(),
       optimizeJs(),
-      replace(stripEnvVariables())
-    ])
+      replace(stripEnvVariables()),
+    ]);
 
   plugins = plugins.concat([
     commonjs(),
@@ -58,7 +52,7 @@ function createBundle({ entryPath, bundleType, destName }) {
       jsnext: true,
       main: true,
       browser: true,
-    })
+    }),
   ]);
 
   rollup({
@@ -69,12 +63,12 @@ function createBundle({ entryPath, bundleType, destName }) {
   }).then(bundle => {
     tasks.push(
       bundle.write({
-        format: (bundleType === 'PROD-UMD') ? 'umd' : 'iife',
+        format: bundleType === 'PROD-UMD' ? 'umd' : 'iife',
         name: 'ReactTV',
         file: `dist/${destName}`,
       })
-    )
-  })
+    );
+  });
 }
 
 createBundle({

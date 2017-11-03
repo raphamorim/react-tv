@@ -8,7 +8,7 @@
  */
 
 function isLGWebOS() {
-  return (window && window.PalmSystem ? true : false);
+  return window && window.PalmSystem ? true : false;
 }
 
 function isSamsungTizen() {
@@ -20,11 +20,15 @@ function isSamsungOrsay() {
 }
 
 function Plaform(checkPlatform: string) {
-  switch(checkPlatform) {
-    case 'webos': return isLGWebOS();
-    case 'tizen': return isSamsungTizen();
-    case 'orsay': return isSamsungOrsay();
-    default: return false;
+  switch (checkPlatform) {
+    case 'webos':
+      return isLGWebOS();
+    case 'tizen':
+      return isSamsungTizen();
+    case 'orsay':
+      return isSamsungOrsay();
+    default:
+      return false;
   }
 }
 

@@ -22,4 +22,4 @@ describe('[modules] Platform', () => {
 
     global.window['PalmSystem'] = null;
   });
-})
+});

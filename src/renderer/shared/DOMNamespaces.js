@@ -31,7 +31,7 @@ function getIntrinsicNamespace(type: string): string {
 
 function getChildNamespace(
   parentNamespace: string | null,
-  type: string,
+  type: string
 ): string {
   if (parentNamespace == null || parentNamespace === HTML_NAMESPACE) {
     // No (or default) parent namespace: potential entry point.

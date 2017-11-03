@@ -10,15 +10,27 @@ const Page2 = () => React.createElement('div');
 
 // helper for <Route path={path} component={component}>{children}</Route>
 const Route = (path, component, children) =>
-  React.createElement('Route', {path: path, component: component, key: path}, children);
+  React.createElement(
+    'Route',
+    {path: path, component: component, key: path},
+    children
+  );
 
 const Rte = (path, component, children) =>
-  React.createElement('Route', {path: path, component: component, key: path, toJSON: () => {}}, children);
+  React.createElement(
+    'Route',
+    {path: path, component: component, key: path, toJSON: () => {}},
+    children
+  );
 
 describe('render', () => {
   it('should transform props into attribute', () => {
     const root = document.createElement('div');
-    const reactElement = React.createElement('div', {attr: 'custom'}, 'cowboy bebop');
+    const reactElement = React.createElement(
+      'div',
+      {attr: 'custom'},
+      'cowboy bebop'
+    );
 
     const expectedElement = document.createElement('div');
     expectedElement.setAttribute('attr', 'custom');
@@ -30,7 +42,7 @@ describe('render', () => {
   it('should transform onClick into onclick attribute', () => {
     function fn() {
       console.log('hatake kakashi...');
-    };
+    }
 
     const textNode = 'uzumaki naruto!';
 
@@ -43,7 +55,6 @@ describe('render', () => {
 
     expect(render(reactElement, root)).toEqual(expectedElement);
   });
-
 
   // it('should render with the default toJSON behavior', () => {
   //   const rootDOM = document.createElement('div')
@@ -102,7 +113,6 @@ describe('render', () => {
   //   );
   // });
 
-
   // it('should render with a custom toJSON method', () => {
   //   const element = render(
   //     Rte('/', Base, [
@@ -121,4 +131,4 @@ describe('render', () => {
   //     }
   //   );
   // });
-})
+});

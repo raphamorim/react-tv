@@ -16,12 +16,14 @@ module.exports = function _runWebOSDev(pathArg) {
   app.listen(port, hostname, () => {
     console.info(
       chalk.dim('[react-tv]'),
-      `using ${chalk.blue(pathNodeModules)} as ${chalk.blue('node_modules')} alias`
-    )
+      `using ${chalk.blue(pathNodeModules)} as ${chalk.blue(
+        'node_modules'
+      )} alias`
+    );
 
     console.info(
       chalk.dim('[react-tv]'),
       `running on ${chalk.yellow(`${hostname}:${port}`)}`
-    )
-  })
+    );
+  });
 };

@@ -8,15 +8,9 @@
  * @flow
  */
 
-import {
-  Namespaces,
-  getIntrinsicNamespace,
-} from'./shared/DOMNamespaces';
+import {Namespaces, getIntrinsicNamespace} from './shared/DOMNamespaces';
 
-import {
-  DOCUMENT_NODE,
-  DOCUMENT_FRAGMENT_NODE,
-} from './shared/HTMLNodeType';
+import {DOCUMENT_NODE, DOCUMENT_FRAGMENT_NODE} from './shared/HTMLNodeType';
 
 import * as DOMPropertyOperations from './shared/DOMPropertyOperations';
 import isCustomComponent from './shared/utils/isCustomComponent';
@@ -31,7 +25,7 @@ function setInitialDOMProperties(
   domElement: Element,
   rootContainerElement: Element | Document,
   nextProps: Object,
-  isCustomComponentTag: boolean,
+  isCustomComponentTag: boolean
 ): void {
   for (var propKey in nextProps) {
     if (!nextProps.hasOwnProperty(propKey)) {
@@ -59,17 +53,16 @@ function updateDOMProperties(
   domElement: Element,
   updatePayload: Array<any>,
   wasCustomComponentTag: boolean,
-  isCustomComponentTag: boolean,
+  isCustomComponentTag: boolean
 ): void {
-  console.log(updatePayload)
+  console.log(updatePayload);
   for (var i = 0; i < updatePayload.length; i += 2) {
     var propKey = updatePayload[i];
     var propValue = updatePayload[i + 1];
     if (propKey === STYLE) {
       // CSSPropertyOperations.setValueForStyles(domElement, propValue);
     } else if (propKey === CHILDREN) {
-      if (propValue && propValue.join)
-        propValue = propValue.join('');
+      if (propValue && propValue.join) propValue = propValue.join('');
 
       domElement.textContent = escapeTextContentForBrowser(propValue);
     } else if (isCustomComponentTag) {
@@ -77,7 +70,7 @@ function updateDOMProperties(
         DOMPropertyOperations.setValueForAttribute(
           domElement,
           propKey,
-          propValue,
+          propValue
         );
       } else {
         domElement.removeAttribute(propKey);
@@ -94,7 +87,7 @@ function updateDOMProperties(
 }
 
 function getOwnerDocumentFromRootContainer(
-  rootContainerElement: Element | Document,
+  rootContainerElement: Element | Document
 ): Document {
   return rootContainerElement.nodeType === DOCUMENT_NODE
     ? (rootContainerElement: any)
@@ -106,12 +99,12 @@ const ReactTVFiberComponent = {
     type: *,
     props: Object,
     rootContainerElement: Element | Document,
-    parentNamespace: string,
+    parentNamespace: string
   ): Element {
     // We create tags in the namespace of their parent container, except HTML
     // tags get no namespace.
     let ownerDocument: Document = getOwnerDocumentFromRootContainer(
-      rootContainerElement,
+      rootContainerElement
     );
 
     let domElement: Element;
@@ -146,7 +139,7 @@ const ReactTVFiberComponent = {
 
   createTextNode(text: string, rootContainerElement: Element | Document): Text {
     return getOwnerDocumentFromRootContainer(
-      rootContainerElement,
+      rootContainerElement
     ).createTextNode(text);
   },
 
@@ -155,7 +148,7 @@ const ReactTVFiberComponent = {
     updatePayload: Array<any>,
     tag: string,
     lastRawProps: Object,
-    nextRawProps: Object,
+    nextRawProps: Object
   ): void {
     var wasCustomComponentTag = isCustomComponent(tag, lastRawProps);
     var isCustomComponentTag = isCustomComponent(tag, nextRawProps);
@@ -164,7 +157,7 @@ const ReactTVFiberComponent = {
       domElement,
       updatePayload,
       wasCustomComponentTag,
-      isCustomComponentTag,
+      isCustomComponentTag
     );
   },
 
@@ -173,7 +166,7 @@ const ReactTVFiberComponent = {
     tag: string,
     lastRawProps: Object,
     nextRawProps: Object,
-    rootContainerElement: Element | Document,
+    rootContainerElement: Element | Document
   ): null | Array<mixed> {
     let updatePayload: null | Array<any> = null;
 
@@ -278,7 +271,7 @@ const ReactTVFiberComponent = {
     domElement: Element,
     tag: string,
     rawProps: Object,
-    rootContainerElement: Element | Document,
+    rootContainerElement: Element | Document
   ): void {
     var isCustomComponentTag = isCustomComponent(tag, rawProps);
     var props: Object = rawProps;
@@ -287,9 +280,9 @@ const ReactTVFiberComponent = {
       domElement,
       rootContainerElement,
       props,
-      isCustomComponentTag,
+      isCustomComponentTag
     );
   },
-}
+};
 
 export default ReactTVFiberComponent;
