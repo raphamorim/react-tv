@@ -1,3 +1,18 @@
+# 0.2.0
+
+- Add a single example using Renderer (clock-app-with-react-tv)
+- `yarn build-all` for PROD env
+- prepublish script (using `yarn build-all`)
+- update docs
+
+# 0.2.0-rc
+
+- Simple DOM renderer (ref: #11)
+- New test architecture (using Jest)
+- Add node (umd) version
+- Add minified version
+- Update .editorconfig to Facebook/react
+
 # 0.1.4-rc.1, 0.1.4-rc.2
 
 - fixes on cli
