@@ -1,20 +1,21 @@
 {
   "name": "react-tv",
-  "version": "0.2.0-rc",
+  "version": "0.2.0",
   "description": "React development for TV (WebOS, Tizen, Orsay)",
   "main": "dist/react-tv.umd.js",
   "bin": {
-    "react-tv": "./cli"
+    "react-tv": "cli/index.js"
   },
   "files": [
     "LICENSE",
     "README.md",
     "cli/",
-    "build/"
+    "dist/"
   ],
   "scripts": {
     "build": "node scripts/rollup/build.js",
     "build-all": "NODE_ENV=PROD node scripts/rollup/build.js",
+    "prepublish": "yarn build-all",
     "test": "yarn flow && jest",
     "flow": "flow",
     "prettier": "node ./scripts/prettier/index.js write-changed",
@@ -79,7 +80,7 @@
     "webos"
   ],
   "engines": {
-    "node": ">=8"
+    "node": ">=6"
   },
   "author": "Raphael Amorim <rapha850@gmail.com>",
   "license": "MIT",

@@ -1,0 +1,13 @@
+body {
+  background: #262626;
+  color: #4AD0EC;
+  font-family: Helvetica;
+  letter-spacing: 0.15em;
+  width: 600px;
+  margin: 0 auto;
+}
+
+h1 {
+  font-weight: 300;
+  color: #FFF;
+}

@@ -10,8 +10,6 @@ module.exports = function _runWebOSDev(pathArg) {
   const pathWebOS = path.resolve(pathArg, 'webos');
   const pathNodeModules = path.resolve(pathArg, 'node_modules');
 
-  // build(pathArg, pathWebOS);
-
   app.use('/', express.static(pathWebOS));
   app.use('/node_modules', express.static(pathNodeModules));
 

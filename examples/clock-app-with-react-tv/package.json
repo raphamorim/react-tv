@@ -1,0 +1,22 @@
+{
+  "name": "clock-app-with-react-tv",
+  "version": "1.0.0",
+  "author": "Raphael Amorim",
+  "license": "MIT",
+  "scripts": {
+    "build": "webpack",
+    "start": "webpack-dev-server --progress --colors"
+  },
+  "dependencies": {
+    "react": "16.0.0-alpha.3",
+    "react-tv": "file:../../"
+  },
+  "devDependencies": {
+    "babel-core": "^6.4.5",
+    "babel-loader": "^6.2.1",
+    "babel-preset-es2015": "^6.3.13",
+    "babel-preset-react": "^6.3.13",
+    "webpack": "^1.12.12",
+    "webpack-dev-server": "^1.12.1"
+  }
+}
