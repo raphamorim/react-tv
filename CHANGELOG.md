@@ -1,3 +1,8 @@
+# 0.2.1
+
+- support nested React.Element
+- update examples
+
 # 0.2.0
 
 - Add a single example using Renderer (clock-app-with-react-tv)
