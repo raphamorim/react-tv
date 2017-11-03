@@ -83,17 +83,19 @@ createBundle({
   destName: 'react-tv.js',
 });
 
-createBundle({
-  entryPath: 'src/ReactTVEntry.js',
-  bundleType: 'PROD',
-  destName: 'react-tv.min.js',
-});
+if (process.env['NODE_ENV'] === 'PROD') {
+  createBundle({
+    entryPath: 'src/ReactTVEntry.js',
+    bundleType: 'PROD',
+    destName: 'react-tv.min.js',
+  });
 
-createBundle({
-  entryPath: 'src/ReactTVEntry.js',
-  bundleType: 'PROD-UMD',
-  destName: 'react-tv.umd.js',
-});
+  createBundle({
+    entryPath: 'src/ReactTVEntry.js',
+    bundleType: 'PROD-UMD',
+    destName: 'react-tv.umd.js',
+  });
+}
 
 Promise.all(tasks).catch(error => {
   Promise.reject(error);

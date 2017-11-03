@@ -45,7 +45,7 @@ ReactTV.render(<Clock/>, document.getElementById('root'))
   - [Videos](#videos)
   - [Essentials to beginner](#essentials-to-beginner)
   - [React Basics and Renderer Architecture](#react-basics-and-renderer-architecture)
-- [TODOLIST for 1.0.0](#todolist)
+- [Roadmap](#roadmap)
 
 ## About React-TV
 
@@ -142,9 +142,9 @@ React-TV provides `Platform` module to easily organize your code and separate it
 ```js
 import { Platform } from 'react-tv'
 
-console.log(Platform.webOS) // true
-console.log(Platform.tizen) // false
-console.log(Platform.orsay) // false
+console.log(Platform('webos')) // true
+console.log(Platform('tizen')) // false
+console.log(Platform('orsay')) // false
 ```
 
 - Keys
@@ -161,10 +161,17 @@ import { Keys } from 'react-tv'
 
 ![WebOS 3.0](https://i.ytimg.com/vi/tsRrFehUPEA/maxresdefault.jpg)
 
-WebOS, also known as Open WebOS or LG WebOS, (previously known as HP WebOS and Palm WebOS, stylized as webOS) is a Linux kernel-based multitasking operating system for smart devices such as Smart TVs and it has been used as a mobile operating system. Initially developed by Palm, Inc. (which was acquired by Hewlett-Packard), HP made the platform open source, at which point it became Open WebOS. The operating system was later sold to LG Electronics. In January 2014, Qualcomm announced that it had acquired technology patents from HP, which included all the WebOS and Palm patents that HP held.
+**Target Version: 3.0**
 
-Various versions of WebOS have been featured on several devices since launching in 2009, including Pre, Pixi, and Veer smartphones, TouchPad tablet, LG Smart TVs since 2015.
+WebOS, also known as Open WebOS or LG WebOS, (previously known as HP WebOS and Palm WebOS, stylized as webOS) is a Linux kernel-based multitasking operating system for smart devices such as Smart TVs and it has been used as a mobile operating system.
 
+### Samsung Tizen
+
+[Work in Progress]
+
+### Samsung Orsay
+
+[Work in Progress]
 
 ## References:
 
@@ -214,28 +221,39 @@ Currently ReactTV is licensed by [MIT License](https://github.com/raphamorim/rea
 
 Thanks [react-dom](https://github.com/facebook/react/tree/master/packages/react-dom) for be example and a inspiration code :)
 
-## TODOLIST
+## Roadmap
 
-- [ ] {cli} init project
-  - [x] mkdir app-path
-  - [x] generate react app tv based on app-name and app-path
-  - [ ] create a npm script on app: `react-tv run-webos-dev`
-- [ ] {cli} run-webos-dev
-  - [ ] mount bundle (crow-scripts) or Webpack
-    - [ ] check if exists webpack config existent on folder
-  - [ ] copy bundle for respective folders
-  - [x] run server (express?)
-- [ ] {cli} run-webos
-  - [ ] CROW bundling or Webpack
+#### Stage 1
+
+Initial proof-of-concept. [IN PROGRESS]
+
+- [x] CLI Build Abstraction of LG Webos (`run-webos`, `run-webos-dev`)
+- [ ] Create a guide or script to Install all LG WebOS environment
+- [ ] Renderer ReactElements to simple DOM
+ - [ ] Support HOF and HOC
+ - [ ] Support State and Lifecycle
+- [x] Check `webos` Platform
+- [ ] Migrate to `React-Reconciler`
+
+#### Stage 2
+
+Implement essential functionality needed for daily use by early adopters.
+
+- [ ] Support render to Canvas instead DOM using `React.CanvasComponent`
+- [ ] `run-webos` support TV device as param
+- [ ] Start CLI for Tizen
+- [ ] Develop helpers for WebOS debbug (e.g: Log System).
+- [ ] Support Cross Platform
   - [ ] Check executable bin path for Windows, OSX and Linux
-  - [x] pack and install script
-  - [x] check if virtualbox is up
-  - [x] launch
-  - [x] `--disable-emulator`
-- [ ] {renderer}
-  - [ ] WebOS
-    - [x] platform
-    - [ ] volume
-  - [ ] Tizen
-    - [ ] platform
-    - [ ] volume
+- [ ] Bind TV key listeners on `React.Element`
+- [ ] Benchmark it
+
+#### Stage 3
+
+Add additional features users expect from a Renderer. Then fix bugs and stabilize through continuous daily use. At this point we can start to experiment with innovative ideas and paradigms.
+
+- [ ] Start CLI for Orsay
+- [ ] Update Benchmarks
+- [ ] Handle common errors
+- [ ] Reactive Renderer
+- [ ] Testing and stability

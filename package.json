@@ -14,6 +14,7 @@
   ],
   "scripts": {
     "build": "node scripts/rollup/build.js",
+    "build-all": "NODE_ENV=PROD node scripts/rollup/build.js",
     "test": "yarn flow && jest",
     "flow": "flow",
     "prettier": "node ./scripts/prettier/index.js write-changed",
