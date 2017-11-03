@@ -6,12 +6,14 @@ const babel = require('rollup-plugin-babel');
 const flow = require('rollup-plugin-flow');
 const commonjs = require('rollup-plugin-commonjs');
 const resolve = require('rollup-plugin-node-resolve');
+const uglify = require('rollup-plugin-uglify');
 const replace = require('rollup-plugin-replace');
+const optimizeJs = require('rollup-plugin-optimize-js');
 const chalk = require('chalk');
 
 const REACT_TV_VERSION = require('../../package.json').version;
 
-const Header = require('./header');
+let tasks = [];
 
 function stripEnvVariables(production) {
   return {
@@ -20,70 +22,79 @@ function stripEnvVariables(production) {
   };
 }
 
-function getBanner(filename, moduleType) {
-  return Header.getHeader(filename, REACT_TV_VERSION);
-}
-
-function runWaterfall(promiseFactories) {
-  if (promiseFactories.length === 0) {
-    return Promise.resolve();
-  }
-
-  const head = promiseFactories[0];
-  const tail = promiseFactories.slice(1);
-
-  const nextPromiseFactory = head;
-  const nextPromise = nextPromiseFactory();
-  if (!nextPromise || typeof nextPromise.then !== 'function') {
-    throw new Error('runWaterfall() received something that is not a Promise.');
-  }
-
-  return nextPromise.then(() => {
-    return runWaterfall(tail);
-  });
-}
-
-function createBundle({ entryPath, bundleType }) {
-  console.log(`${chalk.bgGreen.white(REACT_TV_VERSION)}`);
-
+function createBundle({ entryPath, bundleType, destName }) {
   entryPath = path.resolve(entryPath);
-  const logKey = chalk.white.bold(entryPath) + chalk.dim(` (${bundleType.toLowerCase()})`);
-  console.log(`${chalk.bgYellow.black(' BUILDING ')} ${logKey}`);
+  const logKey = chalk.white.bold(entryPath) + chalk.dim(` (${REACT_TV_VERSION})`);
+  console.log(`${chalk.blue(bundleType)} ${logKey} -> dist/${destName}`);
+
+  let plugins = [
+    flow(),
+    babel({
+      babelrc: false,
+      exclude: 'node_modules/**',
+      externalHelpers: true,
+      presets: [
+        [ 'env', { 'modules': false } ],
+        'react',
+        'stage-2'
+      ],
+      plugins: [
+        'transform-flow-strip-types',
+        'external-helpers'
+      ]
+    })
+  ]
+
+  if (bundleType.indexOf('PROD') >= 0)
+    plugins = plugins.concat([
+      uglify(),
+      optimizeJs(),
+      replace(stripEnvVariables())
+    ])
+
+  plugins = plugins.concat([
+    commonjs(),
+    resolve({
+      jsnext: true,
+      main: true,
+      browser: true,
+    })
+  ]);
 
   rollup({
-    entry: entryPath,
-    plugins: [
-      flow(),
-      babel({
-        babelrc: false,
-        exclude: 'node_modules/**',
-        presets: [
-          [ 'env', { 'modules': false } ],
-          'react',
-          'stage-2'
-        ],
-        plugins: [
-          'transform-flow-strip-types'
-        ]
-      }),
-      commonjs(),
-      resolve({
-        jsnext: true,
-      }),
-      replace(stripEnvVariables())
-    ]
-  }).then(bundle => Promise.all([
-    bundle.write({
-      banner: getBanner('react-tv.js'),
-      format: 'iife',
-      moduleName: 'ReactTV',
-      sourceMap: 'inline',
-      dest: 'build/react-tv.js',
-    })
-  ])).catch(error => console.log(error));
+    input: entryPath,
+    plugins: plugins,
+    external: ['react'],
+    sourcemap: false,
+  }).then(bundle => {
+    tasks.push(
+      bundle.write({
+        format: (bundleType === 'PROD-UMD') ? 'umd' : 'iife',
+        name: 'ReactTV',
+        file: `dist/${destName}`,
+      })
+    )
+  })
 }
 
 createBundle({
   entryPath: 'src/ReactTVEntry.js',
-  bundleType: 'DEV'
+  bundleType: 'DEV',
+  destName: 'react-tv.js',
+});
+
+createBundle({
+  entryPath: 'src/ReactTVEntry.js',
+  bundleType: 'PROD',
+  destName: 'react-tv.min.js',
+});
+
+createBundle({
+  entryPath: 'src/ReactTVEntry.js',
+  bundleType: 'PROD-UMD',
+  destName: 'react-tv.umd.js',
+});
+
+Promise.all(tasks).catch(error => {
+  Promise.reject(error);
 });
