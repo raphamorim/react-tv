@@ -8,17 +8,17 @@ class Clock extends React.Component {
   }
 
   render() {
-    if (!Platform('webos')) {
-      return (
-        <div class="webos">
-          <img src="https://i.imgur.com/9yhDR0Q.png"/>
-          <h1>It's {this.state.date.toLocaleTimeString()}</h1>
-          <p>React-TV</p>
-        </div>
-      )
-    }
+    let currentPlatform = 'Browser'
+    if (Platform('webos'))
+      currentPlatform = 'LG WebOS'
 
-    return <h2>This App is available only at LG WebOS</h2>
+    return (
+      <div class='container'>
+        <img src='https://i.imgur.com/9yhDR0Q.png'/>
+        <h1>It's {this.state.date.toLocaleTimeString()}</h1>
+        <p>You're in {currentPlatform}</p>
+      </div>
+    )
   }
 }
 

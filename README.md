@@ -36,6 +36,7 @@ ReactTV.render(<Clock/>, document.getElementById('root'))
 - [Getting Started](#getting-started)
   - [Installing](#installing)
   - [Examples](#examples)
+    - [Clock TV App rendering with React-TV](#clock-tv-app-rendering-with-react-tv)
   - [Using CLI](#using-cli)
   - [Using Module](#using-module)
 - [Supported Televisions](#supported-televisions)
@@ -89,7 +90,7 @@ $ yarn add react-tv
 
 ## Examples
 
-##### [Clock TV App Rendering with React-TV](https://github.com/raphamorim/react-tv/tree/master/examples/clock-app-with-react-tv)
+### [Clock TV App Rendering with React-TV](https://github.com/raphamorim/react-tv/tree/master/examples/clock-app-with-react-tv)
 
 ![clock-with-react-tv-as-renderer](resources/examples/clock-with-react-tv-as-renderer.png)
 
@@ -104,22 +105,21 @@ class Clock extends React.Component {
   }
 
   render() {
-    if (!Platform('webos')) {
-      return (
-        <div class="webos">
-          <img src="https://i.imgur.com/9yhDR0Q.png"/>
-          <h1>It's {this.state.date.toLocaleTimeString()}</h1>
-          <p>React-TV</p>
-        </div>
-      )
-    }
+    let currentPlatform = 'Browser'
+    if (Platform('webos'))
+      currentPlatform = 'LG WebOS'
 
-    return <h2>This App is available only at LG WebOS</h2>
+    return (
+      <div class='container'>
+        <img src='https://i.imgur.com/9yhDR0Q.png'/>
+        <h1>It's {this.state.date.toLocaleTimeString()}</h1>
+        <p>You're in {currentPlatform}</p>
+      </div>
+    )
   }
 }
 
 ReactTV.render(<Clock/>, document.getElementById('root'))
-
 ```
 
 ## Using CLI

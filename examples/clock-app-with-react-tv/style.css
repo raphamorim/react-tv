@@ -19,7 +19,7 @@ p {
   font-size: 1.4em;
 }
 
-.webos {
+.container {
   display: flex;
   justify-content: center;
   align-content: center;
@@ -30,6 +30,6 @@ p {
   width: 100%;
 }
 
-.webos p, .webos h1 {
+.container p, .container h1 {
   width: 100%
 }
