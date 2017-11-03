@@ -10,4 +10,26 @@ body {
 h1 {
   font-weight: 300;
   color: #FFF;
+  margin: 0;
+  margin-top: 35px;
+  padding: 0;
+}
+
+p {
+  font-size: 1.4em;
+}
+
+.webos {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  width: 100%;
+}
+
+.webos p, .webos h1 {
+  width: 100%
 }

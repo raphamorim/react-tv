@@ -22,6 +22,7 @@ const HTML = '__html';
 const {html: HTML_NAMESPACE} = Namespaces;
 
 function setInitialDOMProperties(
+  tag: string,
   domElement: Element,
   rootContainerElement: Element | Document,
   nextProps: Object,
@@ -36,11 +37,15 @@ function setInitialDOMProperties(
       // Relies on `updateStylesByID` not mutating `styleUpdates`.
       // CSSPropertyOperations.setValueForStyles(domElement, nextProp);
     } else if (propKey === CHILDREN) {
-      if (nextProp && nextProp.join) {
-        nextProp = nextProp.join('');
+      if (typeof nextProp === 'string') {
+        // Avoid setting initial textContent when the text is empty.
+        var canSetTextContent = tag !== 'textarea' || nextProp !== '';
+        if (canSetTextContent) {
+          domElement.textContent = escapeTextContentForBrowser(nextProp);
+        }
+      } else if (typeof nextProp === 'number') {
+        domElement.textContent = escapeTextContentForBrowser('' + nextProp);
       }
-
-      domElement.textContent = escapeTextContentForBrowser(nextProp);
     } else if (isCustomComponentTag) {
       DOMPropertyOperations.setValueForAttribute(domElement, propKey, nextProp);
     } else if (nextProp != null) {
@@ -55,15 +60,13 @@ function updateDOMProperties(
   wasCustomComponentTag: boolean,
   isCustomComponentTag: boolean
 ): void {
-  console.log(updatePayload);
+  // console.log('UPDATE PAYLOAD', updatePayload);
   for (var i = 0; i < updatePayload.length; i += 2) {
     var propKey = updatePayload[i];
     var propValue = updatePayload[i + 1];
     if (propKey === STYLE) {
       // CSSPropertyOperations.setValueForStyles(domElement, propValue);
     } else if (propKey === CHILDREN) {
-      if (propValue && propValue.join) propValue = propValue.join('');
-
       domElement.textContent = escapeTextContentForBrowser(propValue);
     } else if (isCustomComponentTag) {
       if (propValue != null) {
@@ -277,6 +280,7 @@ const ReactTVFiberComponent = {
     var props: Object = rawProps;
 
     setInitialDOMProperties(
+      tag,
       domElement,
       rootContainerElement,
       props,
