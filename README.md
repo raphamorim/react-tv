@@ -6,7 +6,7 @@
 
 ```jsx
 import React from 'react'
-import ReactTV, { Platform } from 'ReactTV'
+import ReactTV, { Platform } from 'react-tv'
 
 class Clock extends React.Component {
   state = { date: new Date() }
