@@ -1,3 +1,7 @@
+# 0.2.2
+
+- fix state management
+
 # 0.2.1
 
 - support nested React.Element

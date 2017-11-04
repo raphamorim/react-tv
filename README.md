@@ -104,6 +104,10 @@ class Clock extends React.Component {
     this.state = { date: new Date() }
   }
 
+  componentDidMount() {
+    setInterval(() => this.setState({date: new Date()}), 1000)
+  }
+
   render() {
     let currentPlatform = 'Browser'
     if (Platform('webos'))
@@ -178,7 +182,7 @@ console.log(Platform('tizen')) // false
 console.log(Platform('orsay')) // false
 ```
 
-- Keys
+- Keys (in-draft)
 
 ```js
 import { Keys } from 'react-tv'
@@ -261,8 +265,11 @@ Initial proof-of-concept. [IN PROGRESS]
 - [x] CLI Build Abstraction of LG Webos (`run-webos`, `run-webos-dev`)
 - [ ] Create a guide or script to Install all LG WebOS environment
 - [ ] Renderer ReactElements to simple DOM
- - [ ] Support HOF and HOC
- - [ ] Support State and Lifecycle
+  - [x] Support HOF and HOC
+  - [x] Support State and Lifecycle
+  - [ ] Change `className` to `class`
+- [ ] Optmizate DOMRenderer for TV
+  - [ ] Avoid memoize operations and use DOM Hash
 - [x] Check `webos` Platform
 - [ ] Migrate to `React-Reconciler`
 

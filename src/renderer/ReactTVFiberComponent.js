@@ -10,7 +10,7 @@
 
 import {Namespaces, getIntrinsicNamespace} from './shared/DOMNamespaces';
 
-import {DOCUMENT_NODE, DOCUMENT_FRAGMENT_NODE} from './shared/HTMLNodeType';
+import {DOCUMENT_NODE, DOCUMENT_FRAGMENT_NODE, TEXT_NODE} from './shared/HTMLNodeType';
 
 import * as DOMPropertyOperations from './shared/DOMPropertyOperations';
 import isCustomComponent from './shared/utils/isCustomComponent';
@@ -20,6 +20,22 @@ const CHILDREN = 'children';
 const STYLE = 'style';
 const HTML = '__html';
 const {html: HTML_NAMESPACE} = Namespaces;
+
+function setTextContent(node, text) {
+  if (text) {
+    var firstChild = node.firstChild;
+
+    if (
+      firstChild &&
+      firstChild === node.lastChild &&
+      firstChild.nodeType === TEXT_NODE
+    ) {
+      firstChild.nodeValue = text;
+      return;
+    }
+  }
+  node.textContent = text;
+};
 
 function setInitialDOMProperties(
   tag: string,
@@ -41,10 +57,10 @@ function setInitialDOMProperties(
         // Avoid setting initial textContent when the text is empty.
         var canSetTextContent = tag !== 'textarea' || nextProp !== '';
         if (canSetTextContent) {
-          domElement.textContent = escapeTextContentForBrowser(nextProp);
+          setTextContent(domElement, escapeTextContentForBrowser(nextProp));
         }
       } else if (typeof nextProp === 'number') {
-        domElement.textContent = escapeTextContentForBrowser('' + nextProp);
+        setTextContent(domElement, escapeTextContentForBrowser('' + nextProp));
       }
     } else if (isCustomComponentTag) {
       DOMPropertyOperations.setValueForAttribute(domElement, propKey, nextProp);
@@ -67,7 +83,7 @@ function updateDOMProperties(
     if (propKey === STYLE) {
       // CSSPropertyOperations.setValueForStyles(domElement, propValue);
     } else if (propKey === CHILDREN) {
-      domElement.textContent = escapeTextContentForBrowser(propValue);
+      setTextContent(domElement, propValue);
     } else if (isCustomComponentTag) {
       if (propValue != null) {
         DOMPropertyOperations.setValueForAttribute(
@@ -173,8 +189,8 @@ const ReactTVFiberComponent = {
   ): null | Array<mixed> {
     let updatePayload: null | Array<any> = null;
 
-    let lastProps: Object = lastRawProps;
-    let nextProps: Object = nextRawProps;
+    let lastProps = lastRawProps;
+    let nextProps = nextRawProps;
 
     var propKey;
     var styleName;
@@ -185,7 +201,6 @@ const ReactTVFiberComponent = {
         !lastProps.hasOwnProperty(propKey) ||
         lastProps[propKey] == null
       ) {
-        (updatePayload = updatePayload || []).push(propKey, nextProps[propKey]);
         continue;
       }
       if (propKey === STYLE) {
