@@ -1,6 +1,10 @@
 # [React-TV](https://github.com/raphamorim/react-tv) 📺 • [![circleci status](https://circleci.com/gh/raphamorim/react-tv/tree/master.svg?style=shield)](https://circleci.com/gh/raphamorim/react-tv) [![npm version](https://img.shields.io/npm/v/react-tv.svg?style=flat)](https://www.npmjs.com/package/react-tv) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md#pull-requests)
 
-> A `react-DOM` like for low memory applications and packager for TV as platform.
+> React Renderer for low memory applications
+
+> React Packager for TVs (WebOS, Tizen, Orsay)
+
+> You can use it separately.
 
 ![React-TV Logo](resources/images/reactv-cover-dark.png)
 
@@ -72,7 +76,7 @@ In addition: Unify the build for multiple TV platforms.
 
 ### Installing
 
-To install `react-tv` as a CLI:
+To install `react-tv` as a CLI Packager:
 
 ```bash
 $ npm install -g react-tv
@@ -80,7 +84,7 @@ $ npm install -g react-tv
 $ yarn global add react-tv
 ```
 
-To install `react-tv` as a Module:
+To install `react-tv` as a React Renderer:
 
 ```bash
 $ npm install react-tv --save
