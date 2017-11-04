@@ -23,3 +23,5 @@ To run it:
 ```shell
 yarn start
 ```
+
+![Screenshot](screenshot.png)

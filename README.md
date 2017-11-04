@@ -92,7 +92,7 @@ $ yarn add react-tv
 
 ### [Clock TV App Rendering with React-TV](https://github.com/raphamorim/react-tv/tree/master/examples/clock-app-with-react-tv)
 
-![clock-with-react-tv-as-renderer](resources/examples/clock-with-react-tv-as-renderer.png)
+![clock-with-react-tv-as-renderer](examples/clock-app-with-react-tv/screenshot.png)
 
 ```jsx
 import React from 'react'
