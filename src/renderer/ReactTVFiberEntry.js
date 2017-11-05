@@ -20,7 +20,7 @@ import type {
 } from './ReactTVFiberTypes';
 
 import ReactTVFiberComponent from './ReactTVFiberComponent';
-import ReactFiberReconciler from 'react-dom/lib/ReactFiberReconciler';
+import ReactFiberReconciler from 'react-reconciler';
 import {getChildNamespace} from './shared/DOMNamespaces';
 
 import {
@@ -79,67 +79,6 @@ const ReactTVFiberRenderer = ReactFiberReconciler({
     parentInstance.appendChild(child);
   },
 
-  appendChild(
-    parentInstance: Instance | Container,
-    child: Instance | TextInstance
-  ): void {
-    log('appendChild', parentInstance, child);
-    parentInstance.appendChild(child);
-  },
-
-  appendChildToContainer(
-    container: Container,
-    child: Instance | TextInstance
-  ): void {
-    log('appendChildToContainer');
-    if (container.nodeType === COMMENT_NODE) {
-      (container.parentNode: any).insertBefore(child, container);
-    } else {
-      container.appendChild(child);
-    }
-  },
-
-  removeChild(
-    parentInstance: Instance | Container,
-    child: Instance | TextInstance
-  ): void {
-    log('removeChild', child);
-    parentInstance.removeChild(child);
-  },
-
-  removeChildFromContainer(
-    container: Container,
-    child: Instance | TextInstance
-  ): void {
-    if (container.nodeType === COMMENT_NODE) {
-      (container.parentNode: any).removeChild(child);
-    } else {
-      container.removeChild(child);
-    }
-  },
-
-  insertBefore(
-    parentInstance: Instance,
-    child: Instance | TextInstance,
-    beforeChild: Instance | TextInstance
-  ): void {
-    log('insertBefore');
-    parentInstance.insertBefore(child, beforeChild);
-  },
-
-  insertInContainerBefore(
-    container: Container,
-    child: Instance | TextInstance,
-    beforeChild: Instance | TextInstance
-  ): void {
-    log('insertInContainerBefore');
-    if (container.nodeType === COMMENT_NODE) {
-      (container.parentNode: any).insertBefore(child, beforeChild);
-    } else {
-      container.insertBefore(child, beforeChild);
-    }
-  },
-
   finalizeInitialChildren(
     domElement: Instance,
     type: string,
@@ -166,28 +105,6 @@ const ReactTVFiberRenderer = ReactFiberReconciler({
       newProps,
       rootContainerInstance
     );
-  },
-
-  commitUpdate(
-    domElement: Instance,
-    updatePayload: Array<mixed>,
-    type: string,
-    oldProps: Props,
-    newProps: Props,
-    internalInstanceHandle: Object
-  ): void {
-    log('commitUpdate');
-    // TODO: updateFiberProps
-    updateProperties(domElement, updatePayload, type, oldProps, newProps);
-  },
-
-  commitMount(
-    domElement: Instance,
-    type: string,
-    newProps: Props,
-    internalInstanceHandle: Object
-  ) {
-    log('commitMount');
   },
 
   getRootHostContext(rootContainerInstance: Container): HostContext {
@@ -233,8 +150,98 @@ const ReactTVFiberRenderer = ReactFiberReconciler({
     log('prepareForCommit');
   },
 
-  resetAfterCommit(): void {
-    log('resetAfterCommit');
+  mutation: {
+    insertBefore(
+      parentInstance: Instance,
+      child: Instance | TextInstance,
+      beforeChild: Instance | TextInstance
+    ): void {
+      log('insertBefore');
+      parentInstance.insertBefore(child, beforeChild);
+    },
+
+    insertInContainerBefore(
+      container: Container,
+      child: Instance | TextInstance,
+      beforeChild: Instance | TextInstance
+    ): void {
+      log('insertInContainerBefore');
+      if (container.nodeType === COMMENT_NODE) {
+        (container.parentNode: any).insertBefore(child, beforeChild);
+      } else {
+        container.insertBefore(child, beforeChild);
+      }
+    },
+
+    appendChild(
+      parentInstance: Instance | Container,
+      child: Instance | TextInstance
+    ): void {
+      log('appendChild', parentInstance, child);
+      parentInstance.appendChild(child);
+    },
+
+    appendChildToContainer(
+      container: Container,
+      child: Instance | TextInstance
+    ): void {
+      log('appendChildToContainer');
+      if (container.nodeType === COMMENT_NODE) {
+        (container.parentNode: any).insertBefore(child, container);
+      } else {
+        container.appendChild(child);
+      }
+    },
+
+    removeChild(
+      parentInstance: Instance | Container,
+      child: Instance | TextInstance
+    ): void {
+      log('removeChild', child);
+      parentInstance.removeChild(child);
+    },
+
+    removeChildFromContainer(
+      container: Container,
+      child: Instance | TextInstance
+    ): void {
+      if (container.nodeType === COMMENT_NODE) {
+        (container.parentNode: any).removeChild(child);
+      } else {
+        container.removeChild(child);
+      }
+    },
+
+    commitTextUpdate(
+      textInstance: TextInstance,
+      oldText: string,
+      newText: string
+    ): void {
+      log('commitTextUpdate');
+      textInstance.nodeValue = newText;
+    },
+
+    commitUpdate(
+      domElement: Instance,
+      updatePayload: Array<mixed>,
+      type: string,
+      oldProps: Props,
+      newProps: Props,
+      internalInstanceHandle: Object
+    ): void {
+      log('commitUpdate');
+      // TODO: updateFiberProps
+      updateProperties(domElement, updatePayload, type, oldProps, newProps);
+    },
+
+    commitMount(
+      domElement: Instance,
+      type: string,
+      newProps: Props,
+      internalInstanceHandle: Object
+    ) {
+      log('commitMount');
+    },
   },
 
   shouldSetTextContent(props: Props): boolean {
@@ -245,6 +252,10 @@ const ReactTVFiberRenderer = ReactFiberReconciler({
 
   resetTextContent(domElement: Instance): void {
     domElement.textContent = '';
+  },
+
+  resetAfterCommit(): void {
+    log('resetAfterCommit');
   },
 
   createTextInstance(
@@ -259,15 +270,6 @@ const ReactTVFiberRenderer = ReactFiberReconciler({
     return textNode;
   },
 
-  commitTextUpdate(
-    textInstance: TextInstance,
-    oldText: string,
-    newText: string
-  ): void {
-    log('commitTextUpdate');
-    textInstance.nodeValue = newText;
-  },
-
   scheduleAnimationCallback() {
     log('scheduleAnimationCallback');
   },
@@ -277,6 +279,8 @@ const ReactTVFiberRenderer = ReactFiberReconciler({
   },
 
   useSyncScheduling: true,
+
+  now: () => {},
 });
 
 const defaultContainer = {};

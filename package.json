@@ -17,6 +17,7 @@
     "build-all": "NODE_ENV=PROD node scripts/rollup/build.js",
     "prepublish": "yarn build-all",
     "test": "yarn flow && jest",
+    "jest-watch": "jest --watch",
     "flow": "flow",
     "prettier": "node ./scripts/prettier/index.js write-changed",
     "prettier-all": "node ./scripts/prettier/index.js write"
@@ -39,8 +40,8 @@
     "flow-bin": "^0.57.3",
     "jest": "20.1.0-delta.1",
     "prettier": "^1.5.3",
-    "react": "16.0.0-alpha.3",
-    "react-dom": "16.0.0-alpha.3",
+    "react": "^16.0.0",
+    "react-reconciler": "^0.2.0",
     "react-fiber-types": "file:src/renderer/types",
     "rollup": "^0.50.0",
     "rollup-plugin-babel": "^2.7.1",
