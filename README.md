@@ -1,10 +1,6 @@
 # [React-TV](https://github.com/raphamorim/react-tv) 📺 • [![circleci status](https://circleci.com/gh/raphamorim/react-tv/tree/master.svg?style=shield)](https://circleci.com/gh/raphamorim/react-tv) [![npm version](https://img.shields.io/npm/v/react-tv.svg?style=flat)](https://www.npmjs.com/package/react-tv) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md#pull-requests)
 
-> React Renderer for low memory applications
-
-> React Packager for TVs (WebOS, Tizen, Orsay)
-
-> You can use it separately.
+> <p>React Renderer for low memory applications.</p><p>React Packager for TVs (WebOS, Tizen, Orsay).</p><p>You can use it separately. Currently under development.</p>
 
 ![React-TV Logo](resources/images/reactv-cover-dark.png)
 
@@ -275,7 +271,7 @@ Initial proof-of-concept. [IN PROGRESS]
 - [ ] Optmizate DOMRenderer for TV
   - [ ] Avoid memoize operations and use DOM Hash
 - [x] Check `webos` Platform
-- [ ] Migrate to `React-Reconciler`
+- [x] Migrate to `React-Reconciler`
 
 #### Stage 2
 
