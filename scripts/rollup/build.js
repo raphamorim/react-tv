@@ -56,7 +56,7 @@ function createBundle({entryPath, bundleType, destName}) {
   ]);
 
   rollup({
-    input: entryPath,
+    entryPath,
     plugins,
     external: ['react'],
     sourcemap: false,
