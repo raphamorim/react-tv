@@ -10,5 +10,5 @@ To help you get your feet wet and get you familiar with contribution process, we
 
 ## License
 
-React is [MIT licensed](https://github.com/raphamorim/react-tv/blob/master/LICENSE.md).
+React-TV is [MIT licensed](https://github.com/raphamorim/react-tv/blob/master/LICENSE.md).
 
