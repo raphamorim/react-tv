@@ -14,5 +14,5 @@ const ReactTV = {
   unmountComponentAtNode: ReactTVRenderer.unmountComponentAtNode,
 };
 
-export { default as Platform } from './modules/Platform';
+export {default as Platform} from './modules/Platform';
 export default ReactTV;
