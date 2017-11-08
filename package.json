@@ -1,7 +1,7 @@
 {
   "name": "react-tv",
-  "version": "0.2.2",
-  "description": "React development for TV (WebOS, Tizen, Orsay)",
+  "version": "0.2.3",
+  "description": "React Renderer for low memory applications and Packager for TVs (WebOS, Tizen, Orsay)",
   "main": "dist/react-tv.umd.js",
   "bin": {
     "react-tv": "cli/index.js"
