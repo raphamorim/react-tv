@@ -61,10 +61,10 @@ function setInitialDOMProperties(
         // Avoid setting initial textContent when the text is empty.
         var canSetTextContent = tag !== 'textarea' || nextProp !== '';
         if (canSetTextContent) {
-          setTextContent(domElement, escapeTextContentForBrowser(nextProp));
+          setTextContent(domElement, nextProp);
         }
       } else if (typeof nextProp === 'number') {
-        setTextContent(domElement, escapeTextContentForBrowser('' + nextProp));
+        setTextContent(domElement, '' + nextProp);
       }
     } else if (isCustomComponentTag) {
       DOMPropertyOperations.setValueForAttribute(domElement, propKey, nextProp);
