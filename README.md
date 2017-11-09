@@ -267,7 +267,7 @@ Initial proof-of-concept. [IN PROGRESS]
 - [ ] Renderer ReactElements to simple DOM
   - [x] Support HOF and HOC
   - [x] Support State and Lifecycle
-  - [ ] Change `className` to `class`
+  - [ ] Keyboard Navigation
 - [ ] Optmizate DOMRenderer for TV
   - [ ] Avoid memoize operations and use DOM Hash
 - [x] Check `webos` Platform
