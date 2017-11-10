@@ -10,7 +10,11 @@
 
 import {Namespaces, getIntrinsicNamespace} from './shared/DOMNamespaces';
 
-import {DOCUMENT_NODE, DOCUMENT_FRAGMENT_NODE, TEXT_NODE} from './shared/HTMLNodeType';
+import {
+  DOCUMENT_NODE,
+  DOCUMENT_FRAGMENT_NODE,
+  TEXT_NODE,
+} from './shared/HTMLNodeType';
 
 import * as DOMPropertyOperations from './shared/DOMPropertyOperations';
 import isCustomComponent from './shared/utils/isCustomComponent';
@@ -35,7 +39,7 @@ function setTextContent(node, text) {
     }
   }
   node.textContent = text;
-};
+}
 
 function setInitialDOMProperties(
   tag: string,

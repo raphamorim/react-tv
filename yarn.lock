@@ -2712,9 +2712,9 @@ rc@^1.1.7:
 "react-fiber-types@file:src/renderer/types":
   version "16.0.0-alpha.3"
 
-react-reconciler@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/react-reconciler/-/react-reconciler-0.2.0.tgz#59407c3e868211a7a6218070a55dfbc9c93b2243"
+react-reconciler@^0.3.0-beta.1:
+  version "0.3.0-beta.1"
+  resolved "https://registry.yarnpkg.com/react-reconciler/-/react-reconciler-0.3.0-beta.1.tgz#035b2211bbdaff0e2b018b9197e88381abcb5b23"
   dependencies:
     fbjs "^0.8.16"
     loose-envify "^1.1.0"

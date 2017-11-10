@@ -85,7 +85,7 @@ const ReactTVFiberRenderer = ReactFiberReconciler({
     props: Props,
     rootContainerInstance: Container
   ): boolean {
-    log('finalizeInitialChildren');
+    log('finalizeInitialChildren', domElement);
     setInitialProperties(domElement, type, props, rootContainerInstance);
   },
 

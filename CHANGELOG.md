@@ -1,3 +1,7 @@
+# 0.2.3
+
+- use ReactReconciler from `react-reconciler` instead from `react-dom`
+
 # 0.2.2
 
 - fix state management

@@ -62,7 +62,7 @@ Crafting a high-performance TV user interface using React is a real challenge, b
 
 - Limited graphics acceleration
 - Single core CPUs
-- High Memory Usage for a commom TV App
+- High Memory Usage for a common TV App
 
 These restrictions make super responsive 60fps experiences especially tricky. The strategy is **step in the renderer**: Applying reactive concepts to unblock the processing on renderer layer, plug the TV's keyListener, avoid React.createElement (which cost a lot)[...]
 
