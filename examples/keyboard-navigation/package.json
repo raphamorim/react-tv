@@ -1,5 +1,5 @@
 {
-  "name": "benchmark-react-tv",
+  "name": "react-tv-keyboard-navigation",
   "version": "1.0.0",
   "author": "Raphael Amorim",
   "license": "MIT",
@@ -9,7 +9,6 @@
   },
   "dependencies": {
     "react": "^16.0.0",
-    "react-dom": "^16.0.0",
     "react-tv": "0.2.3"
   },
   "devDependencies": {
