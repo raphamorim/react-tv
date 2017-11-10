@@ -15,7 +15,7 @@
   "scripts": {
     "build": "node scripts/rollup/build.js",
     "build-all": "NODE_ENV=PROD node scripts/rollup/build.js",
-    "prepublish": "yarn test && yarn build-all",
+    "prepublishOnly": "yarn test && yarn build-all",
     "test": "yarn flow && yarn jest",
     "jest": "jest",
     "jest-watch": "jest --watch",
@@ -42,8 +42,8 @@
     "jest": "20.1.0-delta.1",
     "prettier": "^1.5.3",
     "react": "^16.0.0",
-    "react-reconciler": "^0.3.0-beta.1",
     "react-fiber-types": "file:src/renderer/types",
+    "react-reconciler": "^0.3.0-beta.1",
     "rollup": "^0.50.0",
     "rollup-plugin-babel": "^2.7.1",
     "rollup-plugin-commonjs": "^8.0.2",
