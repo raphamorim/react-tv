@@ -126,6 +126,10 @@ class Clock extends React.Component {
 ReactTV.render(<Clock/>, document.getElementById('root'))
 ```
 
+### Benchmark: React-TV X React-DOM
+
+![example](examples/benchmark/screenshot.png)
+
 ## Using CLI
 
 ### Initalizing React-TV Apps:
