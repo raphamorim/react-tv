@@ -8,11 +8,11 @@
  */
 
 import ReactTVRenderer from './renderer/ReactTVFiberEntry';
+import {default as Platform} from './modules/Platform';
 
 const ReactTV = {
   render: ReactTVRenderer.render,
   unmountComponentAtNode: ReactTVRenderer.unmountComponentAtNode,
 };
 
-export {default as Platform} from './modules/Platform';
 export default ReactTV;
