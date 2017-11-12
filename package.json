@@ -16,7 +16,7 @@
     "build": "node scripts/rollup/build.js",
     "build-all": "NODE_ENV=PROD node scripts/rollup/build.js",
     "prepublishOnly": "yarn test && yarn build-all",
-    "test": "yarn flow && yarn jest",
+    "test": "node ./scripts/prettier/index && yarn flow && yarn jest",
     "jest": "jest",
     "jest-watch": "jest --watch",
     "flow": "flow",
