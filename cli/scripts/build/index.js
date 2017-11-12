@@ -12,7 +12,9 @@ function Build(rootPath, pathWebOS) {
   console.info(chalk.dim('[react-tv]'), `bundling...`);
 
   execSync(
-    `cd ${rootPath} && node ${crowBinPath} webpack --enable-loose --disable-css --disable-manifest --target-browsers webos/bundle/app src`
+    `cd ${rootPath} && node ${
+      crowBinPath
+    } webpack --enable-loose --disable-css --disable-manifest --target-browsers webos/bundle/app src`
   );
   execSync(
     `cd ${pathWebOS}/bundle && mv app.*.js app.js && mv app.*.js.map app.js.map`

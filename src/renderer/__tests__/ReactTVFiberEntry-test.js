@@ -3,7 +3,7 @@ import ReactTVRenderer from '../ReactTVFiberEntry';
 
 const render = ReactTVRenderer.render;
 
-describe('render', () => {
+describe('[render] Behavior tests', () => {
   it('should transform props into attribute', () => {
     const root = document.createElement('div');
     const ReactElement = <div attr={'custom'}>cowboy bebop</div>;
@@ -27,14 +27,16 @@ describe('render', () => {
     expectedElement.setAttribute('onclick', fn);
     expectedElement.textContent = textNode;
 
-    expect(render(<div onClick={fn}>{textNode}</div>, root)).toEqual(expectedElement);
+    expect(render(<div onClick={fn}>{textNode}</div>, root)).toEqual(
+      expectedElement
+    );
   });
 
   it('should render with the default toJSON behavior', () => {
-    const myIncremental = 'it\'s base';
-    const Base = () => <div id={'base'}></div>;
-    const Page1 = () => <div class={'page-1'}></div>;
-    const Page2 = () => <div class={'page-2'}></div>;
+    const myIncremental = "it's base";
+    const Base = () => <div id={'base'} />;
+    const Page1 = () => <div class={'page-1'} />;
+    const Page2 = () => <div class={'page-2'} />;
 
     // helper for <Route path={path} component={component}>{children}</Route>
     const Route = (path, component, children) =>
@@ -46,10 +48,8 @@ describe('render', () => {
 
     const root = document.createElement('div');
     const element = render(
-      Route('/', Base, [
-        Route('/page/1', Page1),
-        Route('/page/2', Page2)
-      ]), root
+      Route('/', Base, [Route('/page/1', Page1), Route('/page/2', Page2)]),
+      root
     );
 
     const RouteElement = document.createElement('Route');
