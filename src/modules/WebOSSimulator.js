@@ -7,9 +7,10 @@
  * @flow
  */
 
-import React from 'react'
+import React from 'react';
 
-const WebOSSimulator = ({children} : {children?: any}) =>
-  <div class='react-tv-webos-simulator'>{children}</div>
+const WebOSSimulator = ({children}: {children?: any}) => (
+  <div class="react-tv-webos-simulator">{children}</div>
+);
 
 export default WebOSSimulator;
