@@ -22,10 +22,9 @@ function stripEnvVariables(production) {
   };
 }
 
-function createBundle({entryPath, bundleType, destName}) {
-  entryPath = path.resolve(entryPath);
-  const logKey =
-    chalk.white.bold(entryPath) + chalk.dim(` (${REACT_TV_VERSION})`);
+function createBundle({input, bundleType, destName}) {
+  input = path.resolve(input);
+  const logKey = chalk.white.bold(input) + chalk.dim(` (${REACT_TV_VERSION})`);
   console.log(`${chalk.blue(bundleType)} ${logKey} -> dist/${destName}`);
 
   let plugins = [
@@ -56,8 +55,8 @@ function createBundle({entryPath, bundleType, destName}) {
   ]);
 
   rollup({
-    input: entryPath,
-    plugins: plugins,
+    input,
+    plugins,
     external: ['react'],
     sourcemap: false,
   }).then(bundle => {
@@ -72,20 +71,20 @@ function createBundle({entryPath, bundleType, destName}) {
 }
 
 createBundle({
-  entryPath: 'src/ReactTVEntry.js',
+  input: 'src/ReactTVEntry.js',
   bundleType: 'DEV',
   destName: 'react-tv.js',
 });
 
 if (process.env['NODE_ENV'] === 'PROD') {
   createBundle({
-    entryPath: 'src/ReactTVEntry.js',
+    input: 'src/ReactTVEntry.js',
     bundleType: 'PROD',
     destName: 'react-tv.min.js',
   });
 
   createBundle({
-    entryPath: 'src/ReactTVEntry.js',
+    input: 'src/ReactTVEntry.js',
     bundleType: 'PROD-UMD',
     destName: 'react-tv.umd.js',
   });
