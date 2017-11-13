@@ -33,6 +33,7 @@ ReactTV.render(<Clock/>, document.getElementById('root'))
 
 - [About React-TV](#about-react-tv)
   - [Understanding the Problem](#understanding-the-problem)
+  - [Benchmark](#benchmark)
 - [Getting Started](#getting-started)
   - [Installing](#installing)
   - [Examples](#examples)
@@ -46,6 +47,7 @@ ReactTV.render(<Clock/>, document.getElementById('root'))
   - [Videos](#videos)
   - [Essentials to beginner](#essentials-to-beginner)
   - [React Basics and Renderer Architecture](#react-basics-and-renderer-architecture)
+- [Credits](#credits)
 - [Roadmap](#roadmap)
 
 ## About React-TV
@@ -67,6 +69,15 @@ Crafting a high-performance TV user interface using React is a real challenge, b
 These restrictions make super responsive 60fps experiences especially tricky. The strategy is **step in the renderer**: Applying reactive concepts to unblock the processing on renderer layer, plug the TV's keyListener, avoid React.createElement (which cost a lot)[...]
 
 In addition: Unify the build for multiple TV platforms.
+
+### Benchmark
+
+| Renderer  | Time of first render * | commitUpdate ** |
+| ------------- | ------------- |  ------------- |
+| React-TV  | ~109ms  | ~ |
+| React-DOM  | ~245ms  | ~ |
+
+* Time for first render (runned off on Firefox 55.0.3 in [Benchmark Example](examples/benchmark)).
 
 ## Getting Started
 
