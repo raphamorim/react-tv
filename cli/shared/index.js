@@ -3,11 +3,11 @@ const path = require('path');
 const chalk = require('chalk');
 const replace = require('node-replace');
 
-const debug = function _debug(msg) {
+const debug = function(msg) {
   console.log(chalk.dim('[react-tv]'), msg);
 };
 
-const help = function _help() {
+const help = function() {
   console.log('');
   console.log(
     chalk.bgYellow(' init '),
@@ -18,41 +18,38 @@ const help = function _help() {
     chalk.blueBright('     pack, build and runs webos simulator')
   );
   console.log(
-    chalk.bgGreenBright(' run-webos-dev '),
-    chalk.greenBright(' run webos in developer mode on browser')
-  );
-  console.log(
     chalk.bgRed(' help '),
     chalk.red('          output react-tv cli commands')
   );
 };
 
-const createReactTVApp = function _createReactTVApp(appName, appPath) {
-  let projectPath = path.resolve(appPath, appName);
+const createReactTVApp = function(appName, appPath) {
+  const packageJson = path.resolve(appPath, 'package.json');
+  if (fs.existsSync(packageJson)) {
+    existentProject = true;
+    appName = require(packageJson).name;
+  } else {
+    return debug('package.json not founded');
+  }
+
+  if (!appName) {
+    return debug('package.json {name} property not exists');
+  }
+
   let appTemplatePath = path.resolve(__dirname, '../generators/app');
-
   return new Promise((fulfill, reject) => {
-    if (!fs.existsSync(projectPath)) {
-      fs.mkdirSync(projectPath);
-    } else {
-      debug(projectPath + ' already exists');
-      return fulfill();
-    }
+    fs.copy(appTemplatePath, appPath).then(() => {
+      replace({
+        regex: '{{REACTTVAPP}}',
+        replacement: appName,
+        paths: ['./react-tv'],
+        recursive: true,
+        silent: true,
+      });
 
-    fs
-      .copy(appTemplatePath, projectPath)
-      .then(() => {
-        replace({
-          regex: 'react-tv-app',
-          replacement: appName,
-          paths: [projectPath],
-          recursive: true,
-          silent: true,
-        });
-
-        debug(appName + ' created');
-      })
-      .catch(err => reject(debug(err)));
+      debug('Done! 📺  ⭐');
+    })
+    .catch(err => reject(debug(err)));
   });
 };
 
