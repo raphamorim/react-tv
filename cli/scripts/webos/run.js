@@ -1,17 +1,34 @@
 const path = require('path');
+const fs = require('fs');
 const chalk = require('chalk');
 const execSync = require('child_process').execSync;
 
 function defaultCLIEnv() {
-  // if darwin
+  // default is Darwin
   return '/opt/webOS_TV_SDK/CLI/bin';
 }
 
-module.exports = function runWebOS(paramsPath) {
+function isReactTVWebOSProject(root) {
+  const appinfo = path.resolve(root, 'webos/appinfo.json');
+  if (fs.existsSync(appinfo)) {
+    return true;
+  }
+  return false;
+}
+
+function runWebOS(root, entry) {
   let webOS_TV_SDK_ENV = process.env['WEBOS_CLI_TV'] || false;
-  if (!webOS_TV_SDK_ENV) webOS_TV_SDK_ENV = defaultCLIEnv();
+  if (!webOS_TV_SDK_ENV) {
+    webOS_TV_SDK_ENV = defaultCLIEnv();
+  }
 
   process.env['PATH'] = `${webOS_TV_SDK_ENV}:${process.env['PATH']}`;
+
+  if (!isReactTVWebOSProject(root)) {
+    const msg = `This project isn\'t a React-TV WebOS Project\n
+    Just run "react-tv init"`;
+    return console.log(chalk.dim('[react-tv]'), msg);
+  }
 
   console.log('');
   console.log(chalk.dim('Up Emulator...'));
@@ -23,8 +40,8 @@ module.exports = function runWebOS(paramsPath) {
   console.log(chalk.yellow(' LG WebOS Emulator 3.0.0 succefull running'));
 
   let attemps = 0;
-  let task = setInterval(function _runWebOSDevTask() {
-    let runningVMS = execSync(`vboxmanage list runningvms`).toString();
+  const task = setInterval(function() {
+    const runningVMS = execSync(`vboxmanage list runningvms`).toString();
     if (attemps > 15) {
       console.log('FAILED TO UP virtualbox emulator');
       clearInterval(task);
@@ -38,24 +55,25 @@ module.exports = function runWebOS(paramsPath) {
     clearInterval(task);
 
     console.log(runningVMS);
-    const webOSAPPPath = path.resolve(paramsPath, 'webos');
     console.log(chalk.dim('Packing...'));
 
-    execSync(`cd ${webOSAPPPath} && ares-package .`);
-    console.log(chalk.yellow(` succefull pack from ${webOSAPPPath}`));
+    execSync(`cd ${root} && ares-package .`);
+    console.log(chalk.yellow(` succefull pack from ${root}`));
 
     console.log(chalk.dim('Installing...'));
     const config = JSON.parse(
-      execSync(`cat ${webOSAPPPath}/appinfo.json`).toString()
+      execSync(`cat ${root}/appinfo.json`).toString()
     );
 
     const latestIPK = config.id + '_' + config.version + '_all.ipk';
     console.log(chalk.blue(` installing ${latestIPK} as IPK`));
-    execSync(`cd ${webOSAPPPath} && ares-install ${latestIPK}`);
+    execSync(`cd ${root} && ares-install ${latestIPK}`);
     console.log(chalk.yellow(` succefull install ${config.title}`));
 
     console.log(chalk.dim('Launching...'));
-    execSync(`cd ${webOSAPPPath} && ares-launch ${config.id}`);
+    execSync(`cd ${root} && ares-launch ${config.id}`);
     console.log(chalk.yellow(` launched`));
   }, 500);
 };
+
+module.exports = runWebOS;
