@@ -47,8 +47,8 @@ ReactTV.render(<Clock/>, document.getElementById('root'))
   - [Videos](#videos)
   - [Essentials to beginner](#essentials-to-beginner)
   - [React Basics and Renderer Architecture](#react-basics-and-renderer-architecture)
-- [Credits](#credits)
 - [Roadmap](#roadmap)
+- [Credits](#credits)
 
 ## About React-TV
 
@@ -175,12 +175,6 @@ Run only on devices and disable create/call Emulator instance:
 $ react-tv run-webos --disable-emulator
 ```
 
-Run webos app on browser (developer mode on browser). `run-webos-dev` is using `REACT_TV_PORT` environment variable or `8500` as port number.
-
-```
-$ react-tv run-webos-dev
-```
-
 ## Using Module
 
 ### Platform
@@ -261,16 +255,6 @@ WebOS, also known as Open WebOS or LG WebOS, (previously known as HP WebOS and P
 - https://github.com/iamdustan/tiny-react-renderer
 - https://facebook.github.io/react/blog/2015/12/18/react-components-elements-and-instances.html
 
----------------------------------------------------- 
-
-See ReactTV's [Changelog](https://github.com/raphamorim/react-tv/blob/master/CHANGELOG.md).
-
-Currently ReactTV is licensed by [MIT License](https://github.com/raphamorim/react-tv/blob/master/LICENSE.md)
-
-## Credits
-
-Thanks [react-dom](https://github.com/facebook/react/tree/master/packages/react-dom) for be example and a inspiration code :)
-
 ## Roadmap
 
 #### Stage 1
@@ -310,3 +294,13 @@ Add additional features users expect from a Renderer. Then fix bugs and stabiliz
 - [ ] Handle common errors
 - [ ] Reactive Renderer
 - [ ] Testing and stability
+
+---------------------------------------------------- 
+
+See ReactTV's [Changelog](https://github.com/raphamorim/react-tv/blob/master/CHANGELOG.md).
+
+Currently ReactTV is licensed by [MIT License](https://github.com/raphamorim/react-tv/blob/master/LICENSE.md)
+
+## Credits
+
+Thanks [react-dom](https://github.com/facebook/react/tree/master/packages/react-dom) for be example and a inspiration code :)
