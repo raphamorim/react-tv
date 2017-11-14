@@ -9,14 +9,14 @@ function defaultCLIEnv() {
 }
 
 function isReactTVWebOSProject(root) {
-  const appinfo = path.resolve(root, 'webos/appinfo.json');
+  const appinfo = path.resolve(root, 'react-tv/webos/appinfo.json');
   if (fs.existsSync(appinfo)) {
     return true;
   }
   return false;
 }
 
-function runWebOS(root, entry) {
+function runWebOS(root) {
   let webOS_TV_SDK_ENV = process.env['WEBOS_CLI_TV'] || false;
   if (!webOS_TV_SDK_ENV) {
     webOS_TV_SDK_ENV = defaultCLIEnv();
@@ -25,9 +25,35 @@ function runWebOS(root, entry) {
   process.env['PATH'] = `${webOS_TV_SDK_ENV}:${process.env['PATH']}`;
 
   if (!isReactTVWebOSProject(root)) {
-    const msg = `This project isn\'t a React-TV WebOS Project\n
-    Just run "react-tv init"`;
+    const msg = `This project isn\'t a React-TV WebOS Project:
+        Just run "react-tv init"`;
     return console.log(chalk.dim('[react-tv]'), msg);
+  }
+
+  const packageJson = require(path.resolve(root, 'package.json'));
+  const ReactTVConfig = packageJson['react-tv'];
+  if (!ReactTVConfig) {
+    return console.log(
+      chalk.dim('[react-tv]'),
+      'You should set react-tv properties on package.json'
+    );
+  }
+
+  if (!ReactTVConfig.files || !ReactTVConfig.files.length) {
+    return console.log(chalk.dim('[react-tv]'), 'You should add files');
+  }
+
+  const webosPath = path.resolve(root, 'react-tv/webos');
+  try {
+    execSync(`ln -s ${root}/react-tv/icon.png ${webosPath}/icon.png`);
+    execSync(`ln -s ${root}/react-tv/icon-large.png ${webosPath}/icon-large.png`);
+
+    ReactTVConfig.files.forEach(file => {
+      const filePath = path.resolve(root, file);
+      execSync(`ln -sF ${filePath} ${webosPath}`);
+    });
+  } catch (e) {
+    return console.log('FAIL TO MOUNT', e.toString());
   }
 
   console.log('');
@@ -57,23 +83,23 @@ function runWebOS(root, entry) {
     console.log(runningVMS);
     console.log(chalk.dim('Packing...'));
 
-    execSync(`cd ${root} && ares-package .`);
+    execSync(`cd ${webosPath} && ares-package .`);
     console.log(chalk.yellow(` succefull pack from ${root}`));
 
     console.log(chalk.dim('Installing...'));
     const config = JSON.parse(
-      execSync(`cat ${root}/appinfo.json`).toString()
+      execSync(`cat ${webosPath}/appinfo.json`).toString()
     );
 
     const latestIPK = config.id + '_' + config.version + '_all.ipk';
     console.log(chalk.blue(` installing ${latestIPK} as IPK`));
-    execSync(`cd ${root} && ares-install ${latestIPK}`);
+    execSync(`cd ${webosPath} && ares-install ${latestIPK}`);
     console.log(chalk.yellow(` succefull install ${config.title}`));
 
     console.log(chalk.dim('Launching...'));
-    execSync(`cd ${root} && ares-launch ${config.id}`);
+    execSync(`cd ${webosPath} && ares-launch ${config.id}`);
     console.log(chalk.yellow(` launched`));
   }, 500);
-};
+}
 
 module.exports = runWebOS;
