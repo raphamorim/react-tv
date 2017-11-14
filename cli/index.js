@@ -17,25 +17,14 @@ switch (command) {
       appName = argv[3];
     }
 
-    let optPath = argv.length >= 5
-      ? argv[4]
-      : process.cwd();
-
+    let optPath = argv.length >= 5 ? argv[4] : process.cwd();
     createReactTVApp(appName, optPath);
     break;
 
   case 'run-webos':
-    if (argv.length < 4) {
-      return debug(
-        'entry is required, example: react-tv run-webos <entry>'
-      );
-    } else {
-      scripts.runWebOS(
-        process.cwd(),
-        path.resolve(process.cwd(), argv[3])
-      );
-    }
+    scripts.runWebOS(process.cwd());
     break;
 
-  default: help();
+  default:
+    help();
 }

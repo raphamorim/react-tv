@@ -38,18 +38,20 @@ const createReactTVApp = function(appName, appPath) {
 
   let appTemplatePath = path.resolve(__dirname, '../generators/app');
   return new Promise((fulfill, reject) => {
-    fs.copy(appTemplatePath, appPath).then(() => {
-      replace({
-        regex: '{{REACTTVAPP}}',
-        replacement: appName,
-        paths: ['./react-tv'],
-        recursive: true,
-        silent: true,
-      });
+    fs
+      .copy(appTemplatePath, appPath)
+      .then(() => {
+        replace({
+          regex: '{{REACTTVAPP}}',
+          replacement: appName,
+          paths: ['./react-tv'],
+          recursive: true,
+          silent: true,
+        });
 
-      debug('Done! 📺  ⭐');
-    })
-    .catch(err => reject(debug(err)));
+        debug('Done! 📺  ⭐');
+      })
+      .catch(err => reject(debug(err)));
   });
 };
 

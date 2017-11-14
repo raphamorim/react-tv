@@ -137,42 +137,53 @@ class Clock extends React.Component {
 ReactTV.render(<Clock/>, document.getElementById('root'))
 ```
 
-### Benchmark: React-TV X React-DOM
+### [Benchmark: React-TV X React-DOM](https://github.com/raphamorim/react-tv/tree/master/examples/benchmark)
 
 ![example](examples/benchmark/screenshot.png)
 
 ## Using CLI
 
-### Initalizing React-TV Apps:
+### WebOS
 
-Generate react-tv projects:
+### Make a simple TV App for WebOS:
 
-```bash
-$ react-tv init <app-name>
-```
-
-If you want to specify app path on commnand:
+#### 1: Install globally React-TV
 
 ```bash
-$ react-tv init <app-name> <app-path>
+$ yarn add --global react-tv
 ```
 
-Open app folder:
+#### 2: Setting Up
+
+2.1: If you doesn't have a project and want to start from nothing. If is your situation: jump to topic 3 (Running It!).
 
 ```bash
-$ cd app-name
+$ react-tv init <my-app-name>
 ```
+
+2.2: If you already have some source code. Just run `react-tv init` on project root.
+
+2.3: Add the files related to app on a React-TV entry on `package.json`:
+
+```json
+{
+  "name": "my-app-name",
+  "react-tv": {
+    "files": [
+      "index.html",
+      "bundle.js",
+      "style.css"
+    ]
+  }
+}
+```
+
+#### 3: Running It!
 
 Run emulator and devices (should pack, build and run on emulator):
 
 ```
 $ react-tv run-webos
-```
-
-Run only on devices and disable create/call Emulator instance:
-
-```
-$ react-tv run-webos --disable-emulator
 ```
 
 ## Using Module

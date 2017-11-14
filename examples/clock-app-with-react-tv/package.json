@@ -3,9 +3,17 @@
   "version": "1.0.0",
   "author": "Raphael Amorim",
   "license": "MIT",
+  "react-tv": {
+    "files": [
+      "index.html",
+      "bundle.js",
+      "style.css"
+    ]
+  },
   "scripts": {
     "build": "webpack",
-    "start": "webpack-dev-server --progress --colors"
+    "start": "yarn build && react-tv run-webos ./bundle.js",
+    "start-dev": "webpack-dev-server --progress --colors"
   },
   "dependencies": {
     "react": "^16.0.0",

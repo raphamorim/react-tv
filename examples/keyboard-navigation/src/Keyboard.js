@@ -1,5 +1,5 @@
 import React from 'react'
-import ReactTV, { Platform, WebOSSimulator } from '../../../src/ReactTVEntry'
+import ReactTV, { Platform } from 'react-tv'
 
 class Keyboard extends React.Component {
   constructor() {
@@ -21,10 +21,6 @@ class Keyboard extends React.Component {
         </p>
       </div>
     )
-
-    if (!Platform('webos')) {
-      component = <WebOSSimulator>{component}</WebOSSimulator>
-    }
 
     return component
   }
