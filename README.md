@@ -77,7 +77,16 @@ In addition: Unify the build for multiple TV platforms.
 | Operation  | React-TV | React-DOM | Runned off |
 | ------------- | ------------- |  ------------- | ------------- |
 | Time of first render | ~76ms  | ~199ms | Firefox 57 (Quantum) |
-| Time of first render  | ~364ms  | ~234ms | WebOS 3.0 Emulator |
+| Time of first render  | ~298ms*  | ~234ms | WebOS 3.0 Emulator |
+| Memory Footprint  | **  | ** | ** |
+
+* This result will change a lot with `react-tv@0.3.0`.
+
+** Homework.
+
+Disclamer: Speed performance will compensate the memory loss. Having a sufficient amount of memory for all of your machines is important to achieving good performance. React-TV renderer focus on Memory usage, but if you want to Perfomance you can still use `react-dom` for renderer and `react-tv-cli` for builds.
+
+The good sides of React-TV, in a next release, is that will be using native TVs APIs, support for React.CanvasComponents, keys mapping[...]
 
 ## Getting Started
 

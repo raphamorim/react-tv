@@ -1,3 +1,13 @@
+# 0.3.0-alpha.1
+
+- migrate to react-reconciler 0.6.0
+- check if is need to format code on CI
+- add benchmark example
+- fix update render tor nodeText
+- update postinstall to prebublishOnly (newest npm)
+- remove: react-tv run-webos-dev
+- react-tv cli {init} breaking changes
+
 # 0.2.3
 
 - use ReactReconciler from `react-reconciler` instead from `react-dom`

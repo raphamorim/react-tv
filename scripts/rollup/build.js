@@ -30,6 +30,7 @@ function createBundle({entryPath, bundleType, destName}) {
 
   let plugins = [
     flow(),
+    replace(stripEnvVariables()),
     babel({
       babelrc: false,
       exclude: 'node_modules/**',
@@ -37,23 +38,17 @@ function createBundle({entryPath, bundleType, destName}) {
       presets: [['env', {modules: false}], 'react', 'stage-2'],
       plugins: ['transform-flow-strip-types', 'external-helpers'],
     }),
-  ];
-
-  if (bundleType.indexOf('PROD') >= 0)
-    plugins = plugins.concat([
-      uglify(),
-      optimizeJs(),
-      replace(stripEnvVariables()),
-    ]);
-
-  plugins = plugins.concat([
     commonjs(),
     resolve({
       jsnext: true,
       main: true,
       browser: true,
     }),
-  ]);
+  ];
+
+  if (bundleType.indexOf('PROD') >= 0) {
+    plugins = plugins.concat([optimizeJs(), uglify()]);
+  }
 
   rollup({
     input: entryPath,
