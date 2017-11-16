@@ -73,25 +73,25 @@ describe('[render] Behavior tests', () => {
   it('should componentDidMount be called', () => {
     class Clock extends React.Component {
       constructor() {
-        super()
-        this.state = { value: 'my first value' }
+        super();
+        this.state = {value: 'my first value'};
       }
 
       componentDidMount() {
-        this.setState({value: 'my second value'})
+        this.setState({value: 'my second value'});
       }
 
       render() {
         return (
-          <div class='container'>
+          <div class="container">
             <p>{this.state.value}</p>
           </div>
-        )
+        );
       }
     }
 
     const root = document.createElement('div');
-    render(<Clock/>, root);
+    render(<Clock />, root);
     expect(root.textContent).toEqual('my second value');
   });
 });

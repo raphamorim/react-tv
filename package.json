@@ -1,6 +1,6 @@
 {
   "name": "react-tv",
-  "version": "0.2.3",
+  "version": "0.3.0-alpha.1",
   "description": "React Renderer for low memory applications and Packager for TVs (WebOS, Tizen, Orsay)",
   "main": "dist/react-tv.umd.js",
   "bin": {
@@ -16,7 +16,8 @@
     "build": "node scripts/rollup/build.js",
     "build-all": "NODE_ENV=PROD node scripts/rollup/build.js",
     "prepublishOnly": "yarn test && yarn build-all",
-    "test": "node ./scripts/prettier/index && yarn flow && yarn jest",
+    "prettier-stat": "node ./scripts/prettier/index",
+    "test": "yarn prettier-stat && yarn flow && yarn jest",
     "jest": "jest",
     "jest-watch": "jest --watch",
     "flow": "flow",
