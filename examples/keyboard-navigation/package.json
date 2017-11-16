@@ -12,7 +12,7 @@
   },
   "scripts": {
     "build": "webpack",
-    "start": "yarn build && react-tv run-webos ./bundle.js",
+    "start": "yarn build && react-tv run-webos",
     "start-dev": "webpack-dev-server --progress --colors"
   },
   "dependencies": {

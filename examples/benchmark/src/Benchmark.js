@@ -54,5 +54,9 @@ function testReactDOM() {
   reactDOMResults.appendChild(finalizeInitialChildren);
 }
 
-testReactTV();
-testReactDOM();
+setTimeout(() => {
+  testReactTV();
+  testReactDOM();
+}, 1000);
+
+
