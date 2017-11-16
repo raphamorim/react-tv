@@ -42,7 +42,7 @@
     "prettier": "^1.5.3",
     "react": "^16.0.0",
     "react-fiber-types": "file:src/renderer/types",
-    "react-reconciler": "^0.3.0-beta.1",
+    "react-reconciler": "^0.6.0",
     "rollup": "^0.50.0",
     "rollup-plugin-babel": "^2.7.1",
     "rollup-plugin-commonjs": "^8.0.2",

@@ -36,10 +36,12 @@ ReactTV.render(<Clock/>, document.getElementById('root'))
   - [Benchmark](#benchmark)
 - [Getting Started](#getting-started)
   - [Installing](#installing)
-  - [Examples](#examples)
-    - [Clock TV App rendering with React-TV](#clock-tv-app-rendering-with-react-tv)
   - [Using CLI](#using-cli)
+    - [React-tv CLI for WebOS](#react-tv-cli-for-webos)
+      - [Setup WebOS Enviroment](#setup-webos-environment)
   - [Using Module](#using-module)
+- [Examples](#examples)
+    - [Clock TV App rendering with React-TV](#clock-tv-app-rendering-with-react-tv)
 - [Supported Televisions](#supported-televisions)
   - [LG WebOS](#lg-webos)
 - [References for Study](#references)
@@ -72,12 +74,10 @@ In addition: Unify the build for multiple TV platforms.
 
 ### Benchmark
 
-| Renderer  | Time of first render * | commitUpdate ** |
-| ------------- | ------------- |  ------------- |
-| React-TV  | ~109ms  | ~ |
-| React-DOM  | ~245ms  | ~ |
-
-* Time for first render (runned off on Firefox 55.0.3 in [Benchmark Example](examples/benchmark)).
+| Operation  | React-TV | React-DOM | Runned off |
+| ------------- | ------------- |  ------------- | ------------- |
+| Time of first render | ~76ms  | ~199ms | Firefox 57 (Quantum) |
+| Time of first render  | ~364ms  | ~234ms | WebOS 3.0 Emulator |
 
 ## Getting Started
 
@@ -97,6 +97,77 @@ To install `react-tv` as a React Renderer:
 $ npm install react-tv --save
 # or
 $ yarn add react-tv
+```
+
+## Using CLI
+
+### React-TV CLI for WebOS
+
+#### 1: Install globally React-TV
+
+```bash
+$ yarn add --global react-tv
+```
+
+#### 2: Setup WebOS Environment
+
+[Setup WebOS Enviroment](docs/setup-webos-environment.md)
+
+#### 3: Setting Up
+
+3.1: If you doesn't have a project and want to start from nothing. If is your situation: jump to topic 3 (Running It!).
+
+```bash
+$ react-tv init <my-app-name>
+```
+
+3.2: If you already have some source code. Just run `react-tv init` on project root.
+
+3.3: Add the files related to app on a React-TV entry on `package.json`:
+
+```json
+{
+  "name": "my-app-name",
+  "react-tv": {
+    "files": [
+      "index.html",
+      "bundle.js",
+      "style.css"
+    ]
+  }
+}
+```
+
+#### 4: Running It!
+
+Run emulator and devices (should pack, build and run on emulator):
+
+```
+$ react-tv run-webos
+```
+
+## Using Module
+
+### Platform
+
+When building a cross-platform tv app, you'll want to re-use as much code as possible. Scenarios may arise where it makes sense for the code to be different, for example you may want to implement separate visual components for `LG-WebOS` and `Samsung-Tizen`.
+
+React-TV provides `Platform` module to easily organize your code and separate it by platform:
+
+```js
+import { Platform } from 'react-tv'
+
+console.log(Platform('webos')) // true
+console.log(Platform('tizen')) // false
+console.log(Platform('orsay')) // false
+```
+
+- Keys (in-draft)
+
+```js
+import { Keys } from 'react-tv'
+
+<Keys onChange={myCustomHandler}/>
 ```
 
 ## Examples
@@ -140,75 +211,6 @@ ReactTV.render(<Clock/>, document.getElementById('root'))
 ### [Benchmark: React-TV X React-DOM](https://github.com/raphamorim/react-tv/tree/master/examples/benchmark)
 
 ![example](examples/benchmark/screenshot.png)
-
-## Using CLI
-
-### WebOS
-
-### Make a simple TV App for WebOS:
-
-#### 1: Install globally React-TV
-
-```bash
-$ yarn add --global react-tv
-```
-
-#### 2: Setting Up
-
-2.1: If you doesn't have a project and want to start from nothing. If is your situation: jump to topic 3 (Running It!).
-
-```bash
-$ react-tv init <my-app-name>
-```
-
-2.2: If you already have some source code. Just run `react-tv init` on project root.
-
-2.3: Add the files related to app on a React-TV entry on `package.json`:
-
-```json
-{
-  "name": "my-app-name",
-  "react-tv": {
-    "files": [
-      "index.html",
-      "bundle.js",
-      "style.css"
-    ]
-  }
-}
-```
-
-#### 3: Running It!
-
-Run emulator and devices (should pack, build and run on emulator):
-
-```
-$ react-tv run-webos
-```
-
-## Using Module
-
-### Platform
-
-When building a cross-platform tv app, you'll want to re-use as much code as possible. Scenarios may arise where it makes sense for the code to be different, for example you may want to implement separate visual components for `LG-WebOS` and `Samsung-Tizen`.
-
-React-TV provides `Platform` module to easily organize your code and separate it by platform:
-
-```js
-import { Platform } from 'react-tv'
-
-console.log(Platform('webos')) // true
-console.log(Platform('tizen')) // false
-console.log(Platform('orsay')) // false
-```
-
-- Keys (in-draft)
-
-```js
-import { Keys } from 'react-tv'
-
-<Keys onChange={myCustomHandler}/>
-```
 
 ## Supported Televisions
 
