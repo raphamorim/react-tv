@@ -96,6 +96,16 @@ function createReactTVApp(appName) {
       recursive: true,
       silent: true,
     });
+
+    var randomstring = require("randomstring");
+
+    replace({
+      regex: '{{PACKAGE}}',
+      replacement: randomstring.generate(10),
+      paths: ['./react-tv'],
+      recursive: true,
+      silent: true,
+    });
   } catch (e) {
     return process.exit(1);
   }

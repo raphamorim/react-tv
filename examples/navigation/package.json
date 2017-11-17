@@ -16,6 +16,7 @@
     "build-prod": "NODE_ENV=production yarn build",
     "react-tv-cli": "react-tv-cli",
     "start": "yarn build-prod && react-tv-cli run-webos",
+    "start-tizen": "yarn build && react-tv run-tizen",
     "start-dev": "webpack-dev-server --progress --colors"
   },
   "dependencies": {
