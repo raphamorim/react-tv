@@ -1,9 +1,11 @@
 .DS_Store
 *.log
 
-package-lock.json
-dist/**
 node_modules
-cli/generators/app/yarn.lock
+package-lock.json
 
+dist/**
+docs/**
+
+cli/generators/app/yarn.lock
 examples/**/*/yarn.lock

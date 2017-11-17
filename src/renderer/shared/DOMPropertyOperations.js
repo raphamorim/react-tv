@@ -8,8 +8,8 @@ const VALID_ATTRIBUTE_NAME_REGEX = new RegExp(
   '^[' + ATTRIBUTE_NAME_START_CHAR + '][' + ATTRIBUTE_NAME_CHAR + ']*$'
 );
 
-var illegalAttributeNameCache = {};
-var validatedAttributeNameCache = {};
+let illegalAttributeNameCache = {};
+let validatedAttributeNameCache = {};
 
 function isAttributeNameSafe(attributeName) {
   if (validatedAttributeNameCache.hasOwnProperty(attributeName)) {
