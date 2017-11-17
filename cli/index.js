@@ -3,7 +3,7 @@
 const argv = process.argv;
 const path = require('path');
 const {help, debug, createReactTVApp} = require('./shared');
-const {runWebOS} = require('./scripts');
+const {runWebOS, runTizen} = require('./scripts');
 
 if (argv.length < 2) {
   return help();
@@ -22,6 +22,10 @@ switch (command) {
 
   case 'run-webos':
     runWebOS(process.cwd());
+    break;
+
+  case 'run-tizen':
+    runTizen(process.cwd());
     break;
 
   default:

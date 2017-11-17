@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:tizen="http://tizen.org/ns/widgets" id="http://yourdomain/Template01" version="0.2.1" viewmodes="maximized">
+	<tizen:application id="{{PACKAGE}}.{{REACTTVAPP}}" package="{{PACKAGE}}" required_version="2.3"/>
+	<name>{{REACTTVAPP}}</name>
+	<icon src="icon.png"/>
+	<tizen:privilege name="http://tizen.org/privilege/application.launch"/>
+	<content src="index.html"/>
+	<feature name="http://tizen.org/feature/screen.size.normal.1080.1920"/>
+	<tizen:metadata key="http://samsung.com/tv/metadata/prelaunch.support" value="true"/>
+	<tizen:profile name="tv"/>
+	<tizen:setting background-support="disable" context-menu="enable" encryption="disable" hwkey-event="enable" install-location="auto" screen-orientation="landscape"/>
+</widget>

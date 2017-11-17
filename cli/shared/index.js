@@ -18,6 +18,10 @@ function help() {
     chalk.blueBright('     pack, build and runs webos simulator')
   );
   console.log(
+    chalk.bgBlueBright(' run-tizen '),
+    chalk.blueBright('     pack, build and runs tizen emulator')
+  );
+  console.log(
     chalk.bgRed(' help '),
     chalk.red('          output react-tv cli commands')
   );
@@ -67,6 +71,16 @@ function createReactTVApp(appName) {
     replace({
       regex: '{{REACTTVAPP}}',
       replacement: appName,
+      paths: ['./react-tv'],
+      recursive: true,
+      silent: true,
+    });
+
+    var randomstring = require("randomstring");
+
+    replace({
+      regex: '{{PACKAGE}}',
+      replacement: randomstring.generate(10),
       paths: ['./react-tv'],
       recursive: true,
       silent: true,
