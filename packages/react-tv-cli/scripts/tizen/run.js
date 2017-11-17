@@ -29,7 +29,7 @@ function runTizen(root) {
   process.env['PATH'] = `${tizen_CLI_ENV}:${process.env['PATH']}`;
 
   if (!isReactTVTizenProject(root)) {
-    const msg = `This project isn\'t a React-TV WebOS Project:
+    const msg = `This project isn\'t a React-TV Tizen Project:
         Just run "react-tv init"`;
     return console.log(chalk.dim('[react-tv]'), msg);
   }
