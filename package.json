@@ -14,7 +14,7 @@
   ],
   "scripts": {
     "build": "node scripts/rollup/build.js",
-    "build:all": "NODE_ENV=PROD node scripts/rollup/build.js",
+    "build:all": "cross-env NODE_ENV=PROD node scripts/rollup/build.js",
     "prepublishOnly": "yarn test && yarn build:all",
     "prettier:stat": "node ./scripts/prettier/index",
     "test": "yarn prettier:stat && yarn flow && yarn jest:ci",
@@ -38,6 +38,7 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
     "commitplease": "^3.1.0",
+    "cross-env": "^5.1.1",
     "flow-bin": "^0.57.3",
     "jest": "20.1.0-delta.1",
     "prettier": "^1.5.3",
