@@ -31,41 +31,52 @@ function createReactTVApp(appName) {
 
   if (appName) {
     appPath = `${appPath}/${appName}`;
-    fs.copySync(customApp, path.resolve(appPath));
-    replace({
-      regex: '{{REACTTVAPP}}',
-      replacement: appName,
-      paths: [appName],
-      recursive: true,
-      silent: true,
-    });
+    try {
+      fs.copySync(customApp, path.resolve(appPath));
+      replace({
+        regex: '{{REACTTVAPP}}',
+        replacement: appName,
+        paths: [appName],
+        recursive: true,
+        silent: true,
+      });
+    } catch(e) {
+      return process.exit(1);
+    }
 
     debug('Done! 📺  ⭐');
-    return;
+    return process.exit(0);
   }
 
   if (fs.existsSync(packageJson)) {
     existentProject = true;
     appName = require(packageJson).name;
   } else {
-    return debug('package.json not founded');
+    debug('package.json not founded');
+    return process.exit(1);
   }
 
   if (!appName) {
-    return debug('package.json {name} property not exists');
+    debug('package.json {name} property not exists');
+    return process.exit(1);
   }
 
   appPath = `${appPath}/react-tv`;
-  fs.copySync(appTemplatePath, appPath);
-  replace({
-    regex: '{{REACTTVAPP}}',
-    replacement: appName,
-    paths: ['./react-tv'],
-    recursive: true,
-    silent: true,
-  });
+  try {
+    fs.copySync(appTemplatePath, appPath);
+    replace({
+      regex: '{{REACTTVAPP}}',
+      replacement: appName,
+      paths: ['./react-tv'],
+      recursive: true,
+      silent: true,
+    });
+  } catch(e) {
+    return process.exit(1);
+  }
 
   debug('Done! 📺  ⭐');
+  process.exit(0);
 }
 
 module.exports = {
