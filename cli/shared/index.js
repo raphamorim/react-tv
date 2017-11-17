@@ -40,7 +40,7 @@ function createReactTVApp(appName) {
         recursive: true,
         silent: true,
       });
-    } catch(e) {
+    } catch (e) {
       return process.exit(1);
     }
 
@@ -71,7 +71,7 @@ function createReactTVApp(appName) {
       recursive: true,
       silent: true,
     });
-  } catch(e) {
+  } catch (e) {
     return process.exit(1);
   }
 

@@ -1,3 +1,11 @@
+# 0.3.0-alpha.2
+
+- CLI: `react-tv init`
+- CLI: `react-tv init <app-name>`
+- add tests for CLI behavior
+- add .npmignore
+- add `jest:ci` job
+
 # 0.3.0-alpha.1
 
 - migrate to react-reconciler 0.6.0
