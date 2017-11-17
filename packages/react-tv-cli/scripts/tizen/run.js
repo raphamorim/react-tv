@@ -12,6 +12,20 @@ function defaultCLIEnv() {
   return 'E:/Ferramentas/tizen/tools/ide/bin';
 }
 
+function getPackageId(root) {
+  const appinfo = path.resolve(root, 'react-tv/tizen/config.xml');
+  const content = fs.readFileSync(appinfo, {encoding: 'utf-8'});
+
+  const re = new RegExp(/tizen:application id="(.*?)"/);
+  const matches = content.match(re);
+
+  if (!matches) {
+    return null;
+  }
+
+  return matches[1];
+}
+
 function isReactTVTizenProject(root) {
   const appinfo = path.resolve(root, 'react-tv/tizen/config.xml');
   if (fs.existsSync(appinfo)) {
@@ -48,13 +62,23 @@ function runTizen(root) {
   }
 
   // TODO: option to create/select profiles?
-  const securityProfiles = execSync(`${tizen_CLI_ENV}/tizen security-profiles list`).toString().trim().split("\n");
+  const securityProfiles = execSync(
+    `${tizen_CLI_ENV}/tizen security-profiles list`
+  )
+    .toString()
+    .trim()
+    .split('\n');
   if (!securityProfiles) {
-    return console.log(chalk.dim('[react-tv]'), 'No tizen security profiles found');
+    return console.log(
+      chalk.dim('[react-tv]'),
+      'No tizen security profiles found'
+    );
   }
 
   // Select the last profile
-  const selectedProfile = securityProfiles[securityProfiles.length - 1];
+  const selectedProfile = securityProfiles[securityProfiles.length - 1]
+    .split(' ', 1)[0]
+    .trim();
 
   const tizenPath = path.resolve(root, 'react-tv/tizen');
   try {
@@ -69,7 +93,7 @@ function runTizen(root) {
   }
 
   console.log('');
-  console.log(chalk.dim('Up Emulator...'));
+  console.log(chalk.dim('Setting up Emulator...'));
 
   const vms = execSync(
     `${tizen_CLI_ENV}/../../emulator/bin/em-cli list-vm`
@@ -77,24 +101,76 @@ function runTizen(root) {
 
   if (vms.indexOf('react-tv-tizen') < 0) {
     execSync(
-      `${tizen_CLI_ENV}/../../emulator/bin/em-cli create -n react-tv-tizen`
+      `${
+        tizen_CLI_ENV
+      }/../../emulator/bin/em-cli create -n react-tv-tizen -p tv-samsung-3.0-x86`
     );
   }
 
-  execSync(
-    `${tizen_CLI_ENV}/../../emulator/bin/em-cli launch -n react-tv-tizen`
-  );
+  const runningVms = execSync(
+    `${tizen_CLI_ENV}/../../sdb devices`
+  ).toString();
 
-  console.log(chalk.yellow(' Tizen Emulator successful running'));
+  if (runningVms.indexOf('react-tv-tizen') < 0) {
+    console.log(chalk.dim('Running Emulator...'));
+    execSync(
+      `${tizen_CLI_ENV}/../../emulator/bin/em-cli launch -n react-tv-tizen`
+    );
+    console.log(chalk.yellow(' Tizen Emulator successful running'));
+  }
+  else {
+    console.log(chalk.yellow(' already running.'));
+  }
 
   console.log(chalk.dim('Packing...'));
-  execSync(`cd ${tizenPath} && ${tizen_CLI_ENV}/tizen package -t wgt -s ${selectedProfile}`);
+  execSync(
+    `cd ${tizenPath} && ${tizen_CLI_ENV}/tizen package -t wgt -s ${
+      selectedProfile
+    }`
+  );
   console.log(chalk.yellow(` succefull pack from ${root}`));
 
-  console.log(chalk.dim('Running...'));
-  console.log(packageJson['name']);
-  execSync(`cd ${tizenPath} && ${tizen_CLI_ENV}/tizen install -n ${packageJson['name']}.wgt -t react-tv-tizen`);
-  console.log(chalk.yellow(` done`));
+  console.log(chalk.dim('Running App...'));
+
+  let attemps = 0;
+  const task = setInterval(function() {
+    if (attemps > 15) {
+      console.log('FAILED TO UP Tizen emulator');
+      clearInterval(task);
+    }
+
+    try {
+      execSync(
+        `${tizen_CLI_ENV}/../../sdb devices`
+      ).toString();
+
+      execSync(
+        `cd ${tizenPath} && ${tizen_CLI_ENV}/tizen install -n ${
+          packageJson['name']
+        }.wgt -t react-tv-tizen`
+      );
+    }
+    catch (error) {
+      if (error.stdout.toString().indexOf('install completed') < 0) {
+        attemps += 1;
+        return false;
+      }
+    }
+
+    clearInterval(task);
+
+    const packageId = getPackageId(root);
+
+    if (!packageId) {
+      return console.log('Invalid package id!');
+    }
+
+    execSync(
+      `cd ${tizenPath} && ${tizen_CLI_ENV}/tizen run -p ${
+        packageId
+      } -t react-tv-tizen`
+    );
+  }, 500);
 }
 
 module.exports = runTizen;
