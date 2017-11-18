@@ -33,6 +33,7 @@ ReactTV.render(<Clock/>, document.getElementById('root'))
 
 - [About React-TV](#about-react-tv)
   - [Understanding the Problem](#understanding-the-problem)
+  - [React-TV Renderer Characteristics](#react-tv-renderer-characteristics)
 - [Getting Started](#getting-started)
   - [Installing](#installing)
   - [Using CLI](#using-cli)
@@ -71,6 +72,10 @@ Crafting a high-performance TV user interface using React is a real challenge, b
 These restrictions make super responsive 60fps experiences especially tricky. The strategy is **step in the renderer**: Applying reactive concepts to unblock the processing on the renderer layer, plug the TV's keyListener, avoid React.createElement (which cost a lot)[...]
 
 In addition: Unify the build for multiple TV platforms.
+
+### React-TV Renderer Characteristics
+
+The React-TV renderer is **asynchronous by default**. Does not check for accessibility properties.
 
 ## Getting Started
 
