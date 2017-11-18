@@ -20,6 +20,12 @@ yarn
 
 To run it:
 
+WebOS:
 ```shell
-yarn start
+yarn start-webos
+```
+
+Tizen:
+```shell
+yarn start-tizen
 ```

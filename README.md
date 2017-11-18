@@ -44,6 +44,7 @@ ReactTV.render(<Clock/>, document.getElementById('root'))
     - [Clock TV App rendering with React-TV](#clock-tv-app-rendering-with-react-tv)
 - [Supported Televisions](#supported-televisions)
   - [LG WebOS](#lg-webos)
+  - [Samsung Tizen](#samsung-tizen)
 - [References for Study](#references)
   - [WebOS](#webos)
   - [Videos](#videos)
@@ -110,29 +111,23 @@ $ yarn add react-tv
 
 ## Using CLI
 
-### React-TV CLI for WebOS
-
-#### 1: Install globally React-TV
+#### Install globally React-TV
 
 ```bash
 $ yarn add --global react-tv
 ```
 
-#### 2: Setup WebOS Environment
+#### Setting Up
 
-[Setup WebOS Enviroment](docs/setup-webos-environment.md)
-
-#### 3: Setting Up
-
-3.1: If you doesn't have a project and want to start from nothing. If is your situation: jump to topic 3 (Running It!).
+If you doesn't have a project and want to start from nothing. If is your situation: jump to next topic (Running It!).
 
 ```bash
 $ react-tv init <my-app-name>
 ```
 
-3.2: If you already have some source code. Just run `react-tv init` on project root.
+If you already have some source code. Just run `react-tv init` on project root.
 
-3.3: Add the files related to app on a React-TV entry on `package.json`:
+Add the files related to app on a React-TV entry on `package.json`:
 
 ```json
 {
@@ -147,12 +142,24 @@ $ react-tv init <my-app-name>
 }
 ```
 
-#### 4: Running It!
+#### Running (WebOS)
+
+First you need to [setup the WebOS environment](https://github.com/raphamorim/react-tv/blob/master/docs/setup-webos-environment.md)
 
 Run emulator and devices (should pack, build and run on emulator):
 
-```
+```bash
 $ react-tv run-webos
+```
+
+#### Running (Tizen)
+
+First you need to [setup the Tizen environment](https://github.com/raphamorim/react-tv/blob/master/docs/setup-tizen-environment.md)
+
+Run emulator and devices (should pack, build and run on emulator):
+
+```bash
+$ react-tv run-tizen
 ```
 
 ## Using Module
@@ -233,7 +240,7 @@ WebOS, also known as Open WebOS or LG WebOS, (previously known as HP WebOS and P
 
 ### Samsung Tizen
 
-[Work in Progress]
+**Target Version: 3.0**
 
 ### Samsung Orsay
 
@@ -250,6 +257,16 @@ WebOS, also known as Open WebOS or LG WebOS, (previously known as HP WebOS and P
 - http://webostv.developer.lge.com/develop/app-test/
 - http://webostv.developer.lge.com/api/web-api/supported-standard-web-api/
 
+### Tizen
+
+- http://developer.samsung.com/tv/develop/tools/tizen-studio
+- http://developer.samsung.com/tv/develop/getting-started/setting-up-sdk/installing-tv-sdk
+- http://developer.samsung.com/tv/develop/getting-started/setting-up-sdk/creating-certificates
+- http://developer.samsung.com/tv/develop/getting-started/creating-tv-applications
+- http://developer.samsung.com/tv/design/design-principles
+- http://developer.samsung.com/tv/develop/specifications/general-specifications
+- http://developer.samsung.com/tv/develop/specifications/web-engine-specifications
+
 #### Videos
 
 ##### Windows
@@ -262,7 +279,6 @@ WebOS, also known as Open WebOS or LG WebOS, (previously known as HP WebOS and P
 
 ### Essentials to beginner
 
-- http://developer.samsung.com/tv/develop/getting-started/setup-sdk/installing-tv-sdk/
 - http://developer.samsung.com/tv/develop/getting-started/using-sdk/tv-simulator
 - http://developer.samsung.com/tv/develop/getting-started/essentials-for-beginner
 
@@ -300,7 +316,7 @@ Implement essential functionality needed for daily use by early adopters.
 
 - [ ] Support render to Canvas instead DOM using `React.CanvasComponent`
 - [ ] `run-webos` support TV device as param
-- [ ] Start CLI for Tizen
+- [x] Start CLI for Tizen
 - [ ] Develop helpers for WebOS debbug (e.g: Log System).
 - [ ] Support Cross Platform
   - [ ] Check executable bin path for Windows, OSX and Linux
@@ -317,7 +333,7 @@ Add additional features users expect from a Renderer. Then fix bugs and stabiliz
 - [ ] Reactive Renderer
 - [ ] Testing and stability
 
----------------------------------------------------- 
+----------------------------------------------------
 
 See ReactTV's [Changelog](https://github.com/raphamorim/react-tv/blob/master/CHANGELOG.md).
 
