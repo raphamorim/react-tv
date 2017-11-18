@@ -100,9 +100,17 @@ function createReactTVApp(appName) {
     var randomstring = require("randomstring");
 
     replace({
-      regex: '{{PACKAGE}}',
+      regex: '{{TIZEN_PACKAGE}}',
       replacement: randomstring.generate(10),
-      paths: ['./react-tv'],
+      paths: ['./react-tv/tizen'],
+      recursive: true,
+      silent: true,
+    });
+
+    replace({
+      regex: '{{TIZEN_REACTTVAPP}}',
+      replacement: appName.replace(/-/g, "").replace(/\./g, ""),
+      paths: ['./react-tv/tizen'],
       recursive: true,
       silent: true,
     });
