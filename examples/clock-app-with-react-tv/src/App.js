@@ -16,6 +16,9 @@ class Clock extends React.Component {
     if (Platform('webos'))
       currentPlatform = 'LG WebOS'
 
+    if (Platform('tizen'))
+      currentPlatform = 'Samsung Tizen'
+
     return (
       <div class='container'>
         <img src='https://i.imgur.com/9yhDR0Q.png'/>
