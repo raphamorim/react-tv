@@ -278,7 +278,7 @@ const ReactTVFiberRenderer = ReactFiberReconciler({
     log('scheduleDeferredCallback');
   },
 
-  useSyncScheduling: true,
+  useSyncScheduling: false,
 
   now: () => {},
 });
