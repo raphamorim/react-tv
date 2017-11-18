@@ -33,6 +33,7 @@ function createReactTVApp(appName) {
     appPath = `${appPath}/${appName}`;
     try {
       fs.copySync(customApp, path.resolve(appPath));
+      fs.copySync(appTemplatePath, path.resolve(appPath, 'react-tv'));
       replace({
         regex: '{{REACTTVAPP}}',
         replacement: appName,

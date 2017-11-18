@@ -1,3 +1,10 @@
+# 0.3.0-beta.0
+
+- stable CLI react-tv init
+- fixes on react-tv run-webos
+- on process.end remove/cleanup files
+- on virtualbox call remove/cleanup files
+
 # 0.3.0-alpha.2
 
 - CLI: `react-tv init`

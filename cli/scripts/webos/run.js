@@ -56,15 +56,13 @@ function runWebOS(root) {
     execSync(`rm -f ${webosPath}/icon-large.png`);
     ReactTVConfig.files.forEach(file => {
       execSync(`rm -f ${webosPath}/${file}`);
-    })
+    });
   }
 
   try {
     cleanup();
     execSync(`cp ${root}/react-tv/icon.png ${webosPath}/icon.png`);
-    execSync(
-      `cp ${root}/react-tv/icon-large.png ${webosPath}/icon-large.png`
-    );
+    execSync(`cp ${root}/react-tv/icon-large.png ${webosPath}/icon-large.png`);
 
     ReactTVConfig.files.forEach(file => {
       const filePath = path.resolve(root, file);

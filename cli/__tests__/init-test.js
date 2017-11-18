@@ -57,6 +57,14 @@ describe('[CLI] init', () => {
         'package.json'
       ));
 
+      const appInfo = require(path.resolve(
+        createdAppPath,
+        'react-tv/webos/appinfo.json'
+      ));
+
+      expect(appInfo.id).toEqual('react.tv.app');
+      expect(appInfo.title).toEqual('russell-crowe');
+
       expect(subject).toRunSuccessfully();
       expect(createdPackageJson.name).toEqual('russell-crowe');
     });
