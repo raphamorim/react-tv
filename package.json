@@ -1,6 +1,6 @@
 {
   "name": "react-tv",
-  "version": "0.3.0-alpha.2",
+  "version": "0.3.0-alpha.3",
   "description": "React renderer for low memory applications and Packager for TVs (WebOS, Tizen, Orsay)",
   "main": "dist/react-tv.umd.js",
   "bin": {
