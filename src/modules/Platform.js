@@ -12,7 +12,7 @@ function isLGWebOS() {
 }
 
 function isSamsungTizen() {
-  return false;
+  return tizen ? true : false;
 }
 
 function isSamsungOrsay() {
