@@ -44,7 +44,23 @@ function runWebOS(root) {
   }
 
   const webosPath = path.resolve(root, 'react-tv/webos');
+
+  process.on('exit', cleanup);
+  process.on('SIGINT', cleanup);
+  process.on('SIGUSR1', cleanup);
+  process.on('SIGUSR2', cleanup);
+  process.on('uncaughtException', cleanup);
+
+  function cleanup() {
+    execSync(`rm -f ${webosPath}/icon.png`);
+    execSync(`rm -f ${webosPath}/icon-large.png`);
+    ReactTVConfig.files.forEach(file => {
+      execSync(`rm -f ${webosPath}/${file}`);
+    })
+  }
+
   try {
+    cleanup();
     execSync(`cp ${root}/react-tv/icon.png ${webosPath}/icon.png`);
     execSync(
       `cp ${root}/react-tv/icon-large.png ${webosPath}/icon-large.png`
@@ -70,7 +86,7 @@ function runWebOS(root) {
   let attemps = 0;
   const task = setInterval(function() {
     const runningVMS = execSync(`vboxmanage list runningvms`).toString();
-    if (attemps > 15) {
+    if (attemps > 30) {
       console.log('FAILED TO UP virtualbox emulator');
       clearInterval(task);
     }
@@ -87,6 +103,8 @@ function runWebOS(root) {
 
     execSync(`cd ${webosPath} && ares-package .`);
     console.log(chalk.yellow(` succefull pack from ${root}`));
+
+    cleanup();
 
     console.log(chalk.dim('Installing...'));
     const config = JSON.parse(
