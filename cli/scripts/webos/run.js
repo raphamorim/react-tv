@@ -45,14 +45,14 @@ function runWebOS(root) {
 
   const webosPath = path.resolve(root, 'react-tv/webos');
   try {
-    execSync(`ln -sf ${root}/react-tv/icon.png ${webosPath}/icon.png`);
+    execSync(`cp ${root}/react-tv/icon.png ${webosPath}/icon.png`);
     execSync(
-      `ln -sf ${root}/react-tv/icon-large.png ${webosPath}/icon-large.png`
+      `cp ${root}/react-tv/icon-large.png ${webosPath}/icon-large.png`
     );
 
     ReactTVConfig.files.forEach(file => {
       const filePath = path.resolve(root, file);
-      execSync(`ln -sf ${filePath} ${webosPath}`);
+      execSync(`cp ${filePath} ${webosPath}`);
     });
   } catch (e) {
     return console.log('FAIL TO MOUNT', e.toString());
