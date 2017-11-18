@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <widget xmlns="http://www.w3.org/ns/widgets" xmlns:tizen="http://tizen.org/ns/widgets" id="http://yourdomain/Template01" version="0.2.1" viewmodes="maximized">
-	<tizen:application id="{{PACKAGE}}.{{REACTTVAPP}}" package="{{PACKAGE}}" required_version="2.3"/>
+	<tizen:application id="{{TIZEN_PACKAGE}}.{{TIZEN_REACTTVAPP}}" package="{{TIZEN_PACKAGE}}" required_version="2.3"/>
 	<name>{{REACTTVAPP}}</name>
 	<icon src="icon.png"/>
 	<tizen:privilege name="http://tizen.org/privilege/application.launch"/>
