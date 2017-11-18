@@ -107,9 +107,7 @@ function runTizen(root) {
     );
   }
 
-  const runningVms = execSync(
-    `${tizen_CLI_ENV}/../../sdb devices`
-  ).toString();
+  const runningVms = execSync(`${tizen_CLI_ENV}/../../sdb devices`).toString();
 
   if (runningVms.indexOf('react-tv-tizen') < 0) {
     console.log(chalk.dim('Running Emulator...'));
@@ -117,8 +115,7 @@ function runTizen(root) {
       `${tizen_CLI_ENV}/../../emulator/bin/em-cli launch -n react-tv-tizen`
     );
     console.log(chalk.yellow(' Tizen Emulator successful running'));
-  }
-  else {
+  } else {
     console.log(chalk.yellow(' already running.'));
   }
 
@@ -140,17 +137,14 @@ function runTizen(root) {
     }
 
     try {
-      execSync(
-        `${tizen_CLI_ENV}/../../sdb devices`
-      ).toString();
+      execSync(`${tizen_CLI_ENV}/../../sdb devices`).toString();
 
       execSync(
         `cd ${tizenPath} && ${tizen_CLI_ENV}/tizen install -n ${
           packageJson['name']
         }.wgt -t react-tv-tizen`
       );
-    }
-    catch (error) {
+    } catch (error) {
       if (error.stdout.toString().indexOf('install completed') < 0) {
         attemps += 1;
         return false;
