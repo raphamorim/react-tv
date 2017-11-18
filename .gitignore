@@ -1,5 +1,6 @@
 .DS_Store
 *.log
+*.map
 
 node_modules
 package-lock.json
