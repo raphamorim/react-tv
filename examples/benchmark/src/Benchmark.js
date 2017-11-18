@@ -36,7 +36,6 @@ function testReactTV() {
   reactTVResults.appendChild(finalizeInitialChildren);
 }
 
-
 function testReactDOM() {
   const reactDOMResults = document.querySelector('#react-dom');
   const times = 10000;
