@@ -2,6 +2,7 @@ const fs = require('fs-extra');
 const path = require('path');
 const chalk = require('chalk');
 const replace = require('node-replace');
+const randomstring = require('randomstring');
 
 function debug(msg) {
   console.log(chalk.dim('[react-tv]'), msg);
@@ -75,8 +76,6 @@ function createReactTVApp(appName) {
       recursive: true,
       silent: true,
     });
-
-    var randomstring = require('randomstring');
 
     replace({
       regex: '{{TIZEN_PACKAGE}}',
