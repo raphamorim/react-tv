@@ -26,6 +26,12 @@ yarn start-dev
 
 To run it on TV WebOS:
 
+WebOS:
 ```shell
-yarn start
+yarn start-webos
+```
+
+Tizen:
+```shell
+yarn start-tizen
 ```
