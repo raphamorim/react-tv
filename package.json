@@ -28,7 +28,8 @@
     "chalk": "^2.1.0",
     "fbjs": "^0.8.4",
     "fs-extra": "^4.0.1",
-    "node-replace": "^0.3.1"
+    "node-replace": "^0.3.1",
+    "randomstring": "^1.1.5"
   },
   "devDependencies": {
     "babel-jest": "20.1.0-delta.1",
