@@ -33,12 +33,11 @@ ReactTV.render(<Clock/>, document.getElementById('root'))
 
 - [About React-TV](#about-react-tv)
   - [Understanding the Problem](#understanding-the-problem)
-  - [Benchmark](#benchmark)
 - [Getting Started](#getting-started)
   - [Installing](#installing)
   - [Using CLI](#using-cli)
-    - [React-tv CLI for WebOS](#react-tv-cli-for-webos)
-      - [Setup WebOS Enviroment](#setup-webos-environment)
+    - [React-TV CLI for WebOS](#react-tv-cli-for-webos)
+      - [Setup WebOS Enviroment](#2-setup-webos-environment)
   - [Using Module](#using-module)
 - [Examples](#examples)
     - [Clock TV App rendering with React-TV](#clock-tv-app-rendering-with-react-tv)
@@ -71,22 +70,6 @@ Crafting a high-performance TV user interface using React is a real challenge, b
 These restrictions make super responsive 60fps experiences especially tricky. The strategy is **step in the renderer**: Applying reactive concepts to unblock the processing on renderer layer, plug the TV's keyListener, avoid React.createElement (which cost a lot)[...]
 
 In addition: Unify the build for multiple TV platforms.
-
-### Benchmark
-
-| Operation  | React-TV | React-DOM | Runned off |
-| ------------- | ------------- |  ------------- | ------------- |
-| Time of first render | ~76ms  | ~199ms | Firefox 57 (Quantum) |
-| Time of first render  | ~298ms*  | ~234ms | WebOS 3.0 Emulator |
-| Memory Footprint  | **  | ** | ** |
-
-* This result will change a lot with `react-tv@0.3.0`.
-
-** Homework.
-
-Disclamer: Speed performance will compensate the memory loss. Having a sufficient amount of memory for all of your machines is important to achieving good performance. React-TV renderer focus on Memory usage, but if you want to Perfomance you can still use `react-dom` for renderer and `react-tv-cli` for builds.
-
-The good sides of React-TV, in a next release, is that will be using native TVs APIs, support for React.CanvasComponents, keys mapping[...]
 
 ## Getting Started
 
@@ -217,10 +200,6 @@ class Clock extends React.Component {
 ReactTV.render(<Clock/>, document.getElementById('root'))
 ```
 
-### [Benchmark: React-TV X React-DOM](https://github.com/raphamorim/react-tv/tree/master/examples/benchmark)
-
-![example](examples/benchmark/screenshot.png)
-
 ## Supported Televisions
 
 ### LG WebOS
@@ -284,13 +263,12 @@ WebOS, also known as Open WebOS or LG WebOS, (previously known as HP WebOS and P
 Initial proof-of-concept. [IN PROGRESS]
 
 - [x] CLI Build Abstraction of LG Webos (`run-webos`, `run-webos-dev`)
-- [ ] Create a guide or script to Install all LG WebOS environment
+- [x] Create a guide or script to Install all LG WebOS environment
 - [ ] Renderer ReactElements to simple DOM
   - [x] Support HOF and HOC
   - [x] Support State and Lifecycle
   - [ ] Keyboard Navigation
 - [ ] Optmizate DOMRenderer for TV
-  - [ ] Avoid memoize operations and use DOM Hash
 - [x] Check `webos` Platform
 - [x] Migrate to `React-Reconciler`
 
