@@ -23,6 +23,8 @@ import ReactTVFiberComponent from './ReactTVFiberComponent';
 import ReactFiberReconciler from 'react-reconciler';
 import {getChildNamespace} from './shared/DOMNamespaces';
 
+import NavigationListerners from './events/NavigationListerners';
+
 import {
   ELEMENT_NODE,
   TEXT_NODE,
@@ -190,6 +192,7 @@ const ReactTVFiberRenderer = ReactFiberReconciler({
         (container.parentNode: any).insertBefore(child, container);
       } else {
         container.appendChild(child);
+        NavigationListerners();
       }
     },
 
@@ -278,7 +281,7 @@ const ReactTVFiberRenderer = ReactFiberReconciler({
     log('scheduleDeferredCallback');
   },
 
-  useSyncScheduling: false,
+  useSyncScheduling: true,
 
   now: () => {},
 });

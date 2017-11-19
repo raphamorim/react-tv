@@ -1,11 +1,12 @@
 const path = require('path');
 const fs = require('fs');
 const chalk = require('chalk');
-const execSync = require('child_process').execSync;
+const {execSync} = require('child_process');
+const webos = require('node-webos');
 
 function defaultCLIEnv() {
   // default is Darwin
-  return '/opt/webOS_TV_SDK/CLI/bin';
+  return '/opt/webOS_TV_SDK/';
 }
 
 function isReactTVWebOSProject(root) {
@@ -25,8 +26,7 @@ function runWebOS(root) {
   process.env['PATH'] = `${webOS_TV_SDK_ENV}:${process.env['PATH']}`;
 
   if (!isReactTVWebOSProject(root)) {
-    const msg = `This project isn\'t a React-TV WebOS Project:
-        Just run "react-tv init"`;
+    const msg = `This project isn\'t a React-TV WebOS Project:\n> Just run "react-tv init"`;
     return console.log(chalk.dim('[react-tv]'), msg);
   }
 
@@ -77,7 +77,7 @@ function runWebOS(root) {
   execSync(
     `open ${
       webOS_TV_SDK_ENV
-    }/../../Emulator/v3.0.0/LG_webOS_TV_Emulator_RCU.app`
+    }Emulator/v3.0.0/LG_webOS_TV_Emulator_RCU.app`
   );
   console.log(chalk.yellow(' LG WebOS Emulator 3.0.0 succefull running'));
 
@@ -99,7 +99,7 @@ function runWebOS(root) {
     console.log(runningVMS);
     console.log(chalk.dim('Packing...'));
 
-    execSync(`cd ${webosPath} && ares-package .`);
+    webos(['package', '.'], webosPath);
     console.log(chalk.yellow(` succefull pack from ${root}`));
 
     cleanup();
@@ -111,11 +111,11 @@ function runWebOS(root) {
 
     const latestIPK = config.id + '_' + config.version + '_all.ipk';
     console.log(chalk.blue(` installing ${latestIPK} as IPK`));
-    execSync(`cd ${webosPath} && ares-install ${latestIPK}`);
+    webos(['install', latestIPK], webosPath);
     console.log(chalk.yellow(` succefull install ${config.title}`));
 
     console.log(chalk.dim('Launching...'));
-    execSync(`cd ${webosPath} && ares-launch ${config.id}`);
+    webos(['launch', config.id], webosPath);
     console.log(chalk.yellow(` launched`));
   }, 500);
 }

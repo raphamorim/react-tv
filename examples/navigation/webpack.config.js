@@ -2,7 +2,7 @@ var path = require('path');
 var webpack = require('webpack');
 
 module.exports = {
-  entry: './src/Benchmark.js',
+  entry: './src/App.js',
   output: { path: __dirname, filename: 'bundle.js' },
   resolveLoader: {
     root: path.join(__dirname, 'node_modules')
