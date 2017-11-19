@@ -83,9 +83,9 @@
     "webos"
   ],
   "engines": {
-    "node": ">=6",
-    "npm": ">=3",
-    "yarn": ">=0.22"
+    "node": ">=8",
+    "npm": ">=4",
+    "yarn": ">=0.27"
   },
   "author": "Raphael Amorim <rapha850@gmail.com>",
   "license": "MIT",
