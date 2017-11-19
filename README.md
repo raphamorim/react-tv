@@ -37,7 +37,7 @@ ReactTV.render(<Clock/>, document.getElementById('root'))
   - [Installing](#installing)
   - [Using CLI](#using-cli)
     - [React-TV CLI for WebOS](#react-tv-cli-for-webos)
-      - [Setup WebOS Enviroment](#2-setup-webos-environment)
+      - [Setup WebOS Environment](#2-setup-webos-environment)
   - [Using Module](#using-module)
 - [Examples](#examples)
     - [Clock TV App rendering with React-TV](#clock-tv-app-rendering-with-react-tv)
@@ -53,9 +53,9 @@ ReactTV.render(<Clock/>, document.getElementById('root'))
 
 ## About React-TV
 
-React-TV is a ecosystem for React Application for TVs (from the renderer to CLI for pack/build applications) focused now on WebOS and SmartTV.
-
-The mission of React-TV is build & develop fast for TVs.
+React-TV is an ecosystem for TV based React applications (from the renderer to CLI for pack/build applications).  
+At the moment we're focusing on WebOS and SmartTV.  
+React-TV's aims to be a better tool for building and developing fast for TVs.
 
 ### Understanding the Problem
 
@@ -67,7 +67,7 @@ Crafting a high-performance TV user interface using React is a real challenge, b
 - Single core CPUs
 - High Memory Usage for a common TV App
 
-These restrictions make super responsive 60fps experiences especially tricky. The strategy is **step in the renderer**: Applying reactive concepts to unblock the processing on renderer layer, plug the TV's keyListener, avoid React.createElement (which cost a lot)[...]
+These restrictions make super responsive 60fps experiences especially tricky. The strategy is **step in the renderer**: Applying reactive concepts to unblock the processing on the renderer layer, plug the TV's keyListener, avoid React.createElement (which cost a lot)[...]
 
 In addition: Unify the build for multiple TV platforms.
 
@@ -107,15 +107,15 @@ $ yarn add --global react-tv
 
 #### 3: Setting Up
 
-3.1: If you doesn't have a project and want to start from nothing. If is your situation: jump to topic 3 (Running It!).
+3.1: If you doesn't have a project yet and you want to start from scratch, jump to topic 3 (Running It!).
 
 ```bash
 $ react-tv init <my-app-name>
 ```
 
-3.2: If you already have some source code. Just run `react-tv init` on project root.
+3.2: If you already have some source code. Just run `react-tv init` on the project root.  
 
-3.3: Add the files related to app on a React-TV entry on `package.json`:
+3.3: Add the files related to your app on the React-TV entry on `package.json`:
 
 ```json
 {
@@ -132,7 +132,7 @@ $ react-tv init <my-app-name>
 
 #### 4: Running It!
 
-Run emulator and devices (should pack, build and run on emulator):
+Run the emulator and devices (should pack, build and run it on the emulator):
 
 ```
 $ react-tv run-webos
@@ -142,9 +142,10 @@ $ react-tv run-webos
 
 ### Platform
 
-When building a cross-platform tv app, you'll want to re-use as much code as possible. Scenarios may arise where it makes sense for the code to be different, for example you may want to implement separate visual components for `LG-WebOS` and `Samsung-Tizen`.
+When building a cross-platform TV app, you'll want to re-use as much code as possible. You'll probably have different scenarios where different code might be necessary.  
+For instance, you may want to implement separated visual components for `LG-WebOS` and `Samsung-Tizen`.
 
-React-TV provides `Platform` module to easily organize your code and separate it by platform:
+React-TV provides the `Platform` module to easily organize your code and separate it by platform:
 
 ```js
 import { Platform } from 'react-tv'
@@ -271,6 +272,7 @@ Initial proof-of-concept. [IN PROGRESS]
 - [ ] Optmizate DOMRenderer for TV
 - [x] Check `webos` Platform
 - [x] Migrate to `React-Reconciler`
+- [ ] Improve documentation
 
 #### Stage 2
 
