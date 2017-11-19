@@ -1,4 +1,4 @@
-# Clock App with React-TV as Renderer
+# Navigation React-TV
 
 Clone the repository:
 
@@ -9,7 +9,7 @@ git clone https://github.com/raphamorim/react-tv.git
 Open this folder:
 
 ```shell
-cd examples/clock-app-with-react-tv
+cd examples/navigation
 ```
 
 To install:
@@ -23,5 +23,3 @@ To run it:
 ```shell
 yarn start
 ```
-
-![Screenshot](screenshot.png)
