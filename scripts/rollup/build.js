@@ -57,7 +57,6 @@ function createBundle({input, bundleType, destName}) {
   rollup({
     input,
     plugins,
-    external: ['react'],
     sourcemap: false,
   }).then(bundle => {
     tasks.push(
