@@ -27,7 +27,7 @@ const {html: HTML_NAMESPACE} = Namespaces;
 
 function setTextContent(node, text) {
   if (text) {
-    var firstChild = node.firstChild;
+    const firstChild = node.firstChild;
 
     if (
       firstChild &&
@@ -48,24 +48,15 @@ function setInitialDOMProperties(
   nextProps: Object,
   isCustomComponentTag: boolean
 ): void {
-  for (var propKey in nextProps) {
+  for (let propKey in nextProps) {
     if (!nextProps.hasOwnProperty(propKey)) {
       continue;
     }
     let nextProp = nextProps[propKey];
     if (propKey === STYLE) {
-      // Relies on `updateStylesByID` not mutating `styleUpdates`.
-      // CSSPropertyOperations.setValueForStyles(domElement, nextProp);
+      // noop
     } else if (propKey === CHILDREN) {
-      if (typeof nextProp === 'string') {
-        // Avoid setting initial textContent when the text is empty.
-        var canSetTextContent = tag !== 'textarea' || nextProp !== '';
-        if (canSetTextContent) {
-          setTextContent(domElement, escapeTextContentForBrowser(nextProp));
-        }
-      } else if (typeof nextProp === 'number') {
-        setTextContent(domElement, escapeTextContentForBrowser('' + nextProp));
-      }
+      // noop
     } else if (isCustomComponentTag) {
       DOMPropertyOperations.setValueForAttribute(domElement, propKey, nextProp);
     } else if (nextProp != null) {
@@ -81,9 +72,9 @@ function updateDOMProperties(
   isCustomComponentTag: boolean
 ): void {
   // console.log('UPDATE PAYLOAD', updatePayload);
-  for (var i = 0; i < updatePayload.length; i += 2) {
-    var propKey = updatePayload[i];
-    var propValue = updatePayload[i + 1];
+  for (let i = 0; i < updatePayload.length; i += 2) {
+    const propKey = updatePayload[i];
+    const propValue = updatePayload[i + 1];
     if (propKey === STYLE) {
       // CSSPropertyOperations.setValueForStyles(domElement, propValue);
     } else if (propKey === CHILDREN) {
@@ -139,10 +130,10 @@ const ReactTVFiberComponent = {
       if (type === 'script') {
         // Create the script via .innerHTML so its "parser-inserted" flag is
         // set to true and it does not execute
-        var div = ownerDocument.createElement('div');
+        const div = ownerDocument.createElement('div');
         div.innerHTML = '<script><' + '/script>'; // eslint-disable-line
         // This is guaranteed to yield a script element.
-        var firstChild = ((div.firstChild: any): HTMLScriptElement);
+        const firstChild = ((div.firstChild: any): HTMLScriptElement);
         domElement = div.removeChild(firstChild);
       } else if (typeof props.is === 'string') {
         // $FlowIssue `createElement` should be updated for Web Components
@@ -173,8 +164,8 @@ const ReactTVFiberComponent = {
     lastRawProps: Object,
     nextRawProps: Object
   ): void {
-    var wasCustomComponentTag = isCustomComponent(tag, lastRawProps);
-    var isCustomComponentTag = isCustomComponent(tag, nextRawProps);
+    const wasCustomComponentTag = isCustomComponent(tag, lastRawProps);
+    const isCustomComponentTag = isCustomComponent(tag, nextRawProps);
     // Apply the diff.
     updateDOMProperties(
       domElement,
@@ -193,12 +184,12 @@ const ReactTVFiberComponent = {
   ): null | Array<mixed> {
     let updatePayload: null | Array<any> = null;
 
-    let lastProps = lastRawProps;
-    let nextProps = nextRawProps;
+    const lastProps = lastRawProps;
+    const nextProps = nextRawProps;
 
-    var propKey;
-    var styleName;
-    var styleUpdates = null;
+    let propKey;
+    let styleName;
+    let styleUpdates = null;
     for (propKey in lastProps) {
       if (
         nextProps.hasOwnProperty(propKey) ||
@@ -208,7 +199,7 @@ const ReactTVFiberComponent = {
         continue;
       }
       if (propKey === STYLE) {
-        var lastStyle = lastProps[propKey];
+        const lastStyle = lastProps[propKey];
         for (styleName in lastStyle) {
           if (lastStyle.hasOwnProperty(styleName)) {
             if (!styleUpdates) {
@@ -224,8 +215,8 @@ const ReactTVFiberComponent = {
       }
     }
     for (propKey in nextProps) {
-      var nextProp = nextProps[propKey];
-      var lastProp = lastProps != null ? lastProps[propKey] : undefined;
+      const nextProp = nextProps[propKey];
+      const lastProp = lastProps != null ? lastProps[propKey] : undefined;
       if (
         !nextProps.hasOwnProperty(propKey) ||
         nextProp === lastProp ||
@@ -295,8 +286,8 @@ const ReactTVFiberComponent = {
     rawProps: Object,
     rootContainerElement: Element | Document
   ): void {
-    var isCustomComponentTag = isCustomComponent(tag, rawProps);
-    var props: Object = rawProps;
+    const isCustomComponentTag = isCustomComponent(tag, rawProps);
+    const props: Object = rawProps;
 
     setInitialDOMProperties(
       tag,

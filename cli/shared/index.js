@@ -3,58 +3,82 @@ const path = require('path');
 const chalk = require('chalk');
 const replace = require('node-replace');
 
-const debug = function _debug(msg) {
+function debug(msg) {
   console.log(chalk.dim('[react-tv]'), msg);
-};
+}
 
-const help = function _help() {
+function help() {
   console.log('');
   console.log(
     chalk.bgYellow(' init '),
-    chalk.yellow('          init react-tv project')
+    chalk.yellow('          init or sync react-tv project')
   );
   console.log(
     chalk.bgBlueBright(' run-webos '),
     chalk.blueBright('     pack, build and runs webos simulator')
   );
   console.log(
-    chalk.bgGreenBright(' run-webos-dev '),
-    chalk.greenBright(' run webos in developer mode on browser')
-  );
-  console.log(
     chalk.bgRed(' help '),
     chalk.red('          output react-tv cli commands')
   );
-};
+}
 
-const createReactTVApp = function _createReactTVApp(appName, appPath) {
-  let projectPath = path.resolve(appPath, appName);
-  let appTemplatePath = path.resolve(__dirname, '../generators/app');
+function createReactTVApp(appName) {
+  let appPath = process.cwd();
+  const packageJson = path.resolve(appPath, 'package.json');
+  const appTemplatePath = path.resolve(__dirname, '../bootstrap/react-tv');
+  const customApp = path.resolve(__dirname, '../bootstrap/custom-app/');
 
-  return new Promise((fulfill, reject) => {
-    if (!fs.existsSync(projectPath)) {
-      fs.mkdirSync(projectPath);
-    } else {
-      debug(projectPath + ' already exists');
-      return fulfill();
+  if (appName) {
+    appPath = `${appPath}/${appName}`;
+    try {
+      fs.copySync(customApp, path.resolve(appPath));
+      fs.copySync(appTemplatePath, path.resolve(appPath, 'react-tv'));
+      replace({
+        regex: '{{REACTTVAPP}}',
+        replacement: appName,
+        paths: [appName],
+        recursive: true,
+        silent: true,
+      });
+    } catch (e) {
+      return process.exit(1);
     }
 
-    fs
-      .copy(appTemplatePath, projectPath)
-      .then(() => {
-        replace({
-          regex: 'react-tv-app',
-          replacement: appName,
-          paths: [projectPath],
-          recursive: true,
-          silent: true,
-        });
+    debug('Done! 📺  ⭐');
+    return process.exit(0);
+  }
 
-        debug(appName + ' created');
-      })
-      .catch(err => reject(debug(err)));
-  });
-};
+  if (fs.existsSync(packageJson)) {
+    existentProject = true;
+    appName = require(packageJson).name;
+  } else {
+    debug('package.json not founded');
+    return process.exit(1);
+  }
+
+  if (!appName) {
+    debug('package.json {name} property not exists');
+    return process.exit(1);
+  }
+
+  appPath = `${appPath}/react-tv`;
+  try {
+    fs.copySync(appTemplatePath, appPath);
+    replace({
+      regex: '{{REACTTVAPP}}',
+      replacement: appName,
+      paths: ['./react-tv'],
+      recursive: true,
+      silent: true,
+    });
+  } catch (e) {
+    return process.exit(1);
+  }
+
+  debug('Done! 📺  ⭐');
+  process.exit(0);
+}
 
 module.exports = {
   createReactTVApp: createReactTVApp,

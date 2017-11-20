@@ -3,40 +3,16 @@ import ReactTVRenderer from '../ReactTVFiberEntry';
 
 const render = ReactTVRenderer.render;
 
-// mock stateless components
-const Base = () => React.createElement('div');
-const Page1 = () => React.createElement('div');
-const Page2 = () => React.createElement('div');
-
-// helper for <Route path={path} component={component}>{children}</Route>
-const Route = (path, component, children) =>
-  React.createElement(
-    'Route',
-    {path: path, component: component, key: path},
-    children
-  );
-
-const Rte = (path, component, children) =>
-  React.createElement(
-    'Route',
-    {path: path, component: component, key: path, toJSON: () => {}},
-    children
-  );
-
-describe('render', () => {
+describe('[render] Behavior tests', () => {
   it('should transform props into attribute', () => {
     const root = document.createElement('div');
-    const reactElement = React.createElement(
-      'div',
-      {attr: 'custom'},
-      'cowboy bebop'
-    );
+    const ReactElement = <div attr={'custom'}>cowboy bebop</div>;
 
     const expectedElement = document.createElement('div');
     expectedElement.setAttribute('attr', 'custom');
     expectedElement.textContent = 'cowboy bebop';
 
-    expect(render(reactElement, root)).toEqual(expectedElement);
+    expect(render(ReactElement, root)).toEqual(expectedElement);
   });
 
   it('should transform onClick into onclick attribute', () => {
@@ -45,90 +21,77 @@ describe('render', () => {
     }
 
     const textNode = 'uzumaki naruto!';
-
     const root = document.createElement('div');
-    const reactElement = React.createElement('div', {onClick: fn}, textNode);
 
     const expectedElement = document.createElement('div');
     expectedElement.setAttribute('onclick', fn);
     expectedElement.textContent = textNode;
 
-    expect(render(reactElement, root)).toEqual(expectedElement);
+    expect(render(<div onClick={fn}>{textNode}</div>, root)).toEqual(
+      expectedElement
+    );
   });
 
-  // it('should render with the default toJSON behavior', () => {
-  //   const rootDOM = document.createElement('div')
-  //   const element = render(
-  //     Route('/', Base, [
-  //       Route('/page/1', Page1),
-  //       Route('/page/2', Page2)
-  //     ]), rootDOM
-  //   );
+  it('should render with the default toJSON behavior', () => {
+    const myIncremental = "it's base";
+    const Base = () => <div id={'base'} />;
+    const Page1 = () => <div class={'page-1'} />;
+    const Page2 = () => <div class={'page-2'} />;
 
-  //   expect(element).toEqual(
-  //     {
-  //       path: '/',
-  //       component: Base,
-  //       children: [
-  //         {
-  //           path: '/page/1',
-  //           component: Page1
-  //         },
-  //         {
-  //           path: '/page/2',
-  //           component: Page2
-  //         }
-  //       ]
-  //     }
-  //   );
-  // });
+    // helper for <Route path={path} component={component}>{children}</Route>
+    const Route = (path, component, children) =>
+      React.createElement(
+        'Route',
+        {path: path, component: component, key: path},
+        children
+      );
 
-  // it('should render children as string', () => {
-  //   const reactElement = React.createElement(
-  //     'h1',
-  //     { babyComeBack: 'come back to me!' },
-  //     'my-custom-text'
-  //   );
-  //   const element = render(reactElement);
+    const root = document.createElement('div');
+    const element = render(
+      Route('/', Base, [Route('/page/1', Page1), Route('/page/2', Page2)]),
+      root
+    );
 
-  //   expect(element).toEqual(
-  //     {'babyComeBack':'come back to me!','children': 'my-custom-text'}
-  //   );
-  // });
+    const RouteElement = document.createElement('Route');
+    RouteElement.setAttribute('path', '/');
+    RouteElement.setAttribute('component', Base);
 
-  // it('should render nested children', () => {
-  //   const reactElement = React.createElement(
-  //     'div',
-  //     {fatherProps: 123},
-  //     React.createElement(
-  //       'h1',
-  //       {abc: 1},
-  //       React.createElement('p', {}, 'text')
-  //     )
-  //   );
-  //   const element = render(reactElement);
+    const Page1Element = document.createElement('route');
+    Page1Element.setAttribute('path', '/page/1');
+    Page1Element.setAttribute('component', Page1);
 
-  //   expect(element).toEqual(
-  //     {'fatherProps': 123, 'children': {'abc': 1,'children': {'children': 'text'}}}
-  //   );
-  // });
+    const Page2Element = document.createElement('route');
+    Page2Element.setAttribute('path', '/page/2');
+    Page2Element.setAttribute('component', Page2);
 
-  // it('should render with a custom toJSON method', () => {
-  //   const element = render(
-  //     Rte('/', Base, [
-  //       Rte('/page/1', Page1, [Rte('lol')]),
-  //       Rte('/page/2', Page2)
-  //     ])
-  //   );
+    RouteElement.appendChild(Page1Element);
+    RouteElement.appendChild(Page2Element);
 
-  //   expect(element).toEqual(
-  //     {
-  //       path: '/',
-  //       childRoutes: [
-  //         {path: '/page/1', childRoutes: [{path: 'lol'}]},
-  //         {path: '/page/2'}
-  //       ]
-  //     }
-  //   );
-  // });
+    expect(element).toEqual(RouteElement);
+  });
+
+  it('should componentDidMount be called', () => {
+    class Clock extends React.Component {
+      constructor() {
+        super();
+        this.state = {value: 'my first value'};
+      }
+
+      componentDidMount() {
+        this.setState({value: 'my second value'});
+      }
+
+      render() {
+        return (
+          <div class="container">
+            <p>{this.state.value}</p>
+          </div>
+        );
+      }
+    }
+
+    const root = document.createElement('div');
+    render(<Clock />, root);
+    expect(root.textContent).toEqual('my second value');
+  });
 });

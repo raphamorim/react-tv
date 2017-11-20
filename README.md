@@ -35,10 +35,12 @@ ReactTV.render(<Clock/>, document.getElementById('root'))
   - [Understanding the Problem](#understanding-the-problem)
 - [Getting Started](#getting-started)
   - [Installing](#installing)
-  - [Examples](#examples)
-    - [Clock TV App rendering with React-TV](#clock-tv-app-rendering-with-react-tv)
   - [Using CLI](#using-cli)
+    - [React-TV CLI for WebOS](#react-tv-cli-for-webos)
+      - [Setup WebOS Environment](#2-setup-webos-environment)
   - [Using Module](#using-module)
+- [Examples](#examples)
+    - [Clock TV App rendering with React-TV](#clock-tv-app-rendering-with-react-tv)
 - [Supported Televisions](#supported-televisions)
   - [LG WebOS](#lg-webos)
 - [References for Study](#references)
@@ -47,12 +49,13 @@ ReactTV.render(<Clock/>, document.getElementById('root'))
   - [Essentials to beginner](#essentials-to-beginner)
   - [React Basics and Renderer Architecture](#react-basics-and-renderer-architecture)
 - [Roadmap](#roadmap)
+- [Credits](#credits)
 
 ## About React-TV
 
-React-TV is a ecosystem for React Application for TVs (from the renderer to CLI for pack/build applications) focused now on WebOS and SmartTV.
-
-The mission of React-TV is build & develop fast for TVs.
+React-TV is an ecosystem for TV based React applications (from the renderer to CLI for pack/build applications).  
+At the moment we're focusing on WebOS and SmartTV.  
+React-TV's aims to be a better tool for building and developing fast for TVs.
 
 ### Understanding the Problem
 
@@ -64,7 +67,7 @@ Crafting a high-performance TV user interface using React is a real challenge, b
 - Single core CPUs
 - High Memory Usage for a common TV App
 
-These restrictions make super responsive 60fps experiences especially tricky. The strategy is **step in the renderer**: Applying reactive concepts to unblock the processing on renderer layer, plug the TV's keyListener, avoid React.createElement (which cost a lot)[...]
+These restrictions make super responsive 60fps experiences especially tricky. The strategy is **step in the renderer**: Applying reactive concepts to unblock the processing on the renderer layer, plug the TV's keyListener, avoid React.createElement (which cost a lot)[...]
 
 In addition: Unify the build for multiple TV platforms.
 
@@ -86,6 +89,78 @@ To install `react-tv` as a React Renderer:
 $ npm install react-tv --save
 # or
 $ yarn add react-tv
+```
+
+## Using CLI
+
+### React-TV CLI for WebOS
+
+#### 1: Install globally React-TV
+
+```bash
+$ yarn add --global react-tv
+```
+
+#### 2: Setup WebOS Environment
+
+[Setup WebOS Enviroment](docs/setup-webos-environment.md)
+
+#### 3: Setting Up
+
+3.1: If you doesn't have a project yet and you want to start from scratch, jump to topic 3 (Running It!).
+
+```bash
+$ react-tv init <my-app-name>
+```
+
+3.2: If you already have some source code. Just run `react-tv init` on the project root.  
+
+3.3: Add the files related to your app on the React-TV entry on `package.json`:
+
+```json
+{
+  "name": "my-app-name",
+  "react-tv": {
+    "files": [
+      "index.html",
+      "bundle.js",
+      "style.css"
+    ]
+  }
+}
+```
+
+#### 4: Running It!
+
+Run the emulator and devices (should pack, build and run it on the emulator):
+
+```
+$ react-tv run-webos
+```
+
+## Using Module
+
+### Platform
+
+When building a cross-platform TV app, you'll want to re-use as much code as possible. You'll probably have different scenarios where different code might be necessary.  
+For instance, you may want to implement separated visual components for `LG-WebOS` and `Samsung-Tizen`.
+
+React-TV provides the `Platform` module to easily organize your code and separate it by platform:
+
+```js
+import { Platform } from 'react-tv'
+
+console.log(Platform('webos')) // true
+console.log(Platform('tizen')) // false
+console.log(Platform('orsay')) // false
+```
+
+- Keys (in-draft)
+
+```js
+import { Keys } from 'react-tv'
+
+<Keys onChange={myCustomHandler}/>
 ```
 
 ## Examples
@@ -124,70 +199,6 @@ class Clock extends React.Component {
 }
 
 ReactTV.render(<Clock/>, document.getElementById('root'))
-```
-
-## Using CLI
-
-### Initalizing React-TV Apps:
-
-Generate react-tv projects:
-
-```bash
-$ react-tv init <app-name>
-```
-
-If you want to specify app path on commnand:
-
-```bash
-$ react-tv init <app-name> <app-path>
-```
-
-Open app folder:
-
-```bash
-$ cd app-name
-```
-
-Run emulator and devices (should pack, build and run on emulator):
-
-```
-$ react-tv run-webos
-```
-
-Run only on devices and disable create/call Emulator instance:
-
-```
-$ react-tv run-webos --disable-emulator
-```
-
-Run webos app on browser (developer mode on browser). `run-webos-dev` is using `REACT_TV_PORT` environment variable or `8500` as port number.
-
-```
-$ react-tv run-webos-dev
-```
-
-## Using Module
-
-### Platform
-
-When building a cross-platform tv app, you'll want to re-use as much code as possible. Scenarios may arise where it makes sense for the code to be different, for example you may want to implement separate visual components for `LG-WebOS` and `Samsung-Tizen`.
-
-React-TV provides `Platform` module to easily organize your code and separate it by platform:
-
-```js
-import { Platform } from 'react-tv'
-
-console.log(Platform('webos')) // true
-console.log(Platform('tizen')) // false
-console.log(Platform('orsay')) // false
-```
-
-- Keys (in-draft)
-
-```js
-import { Keys } from 'react-tv'
-
-<Keys onChange={myCustomHandler}/>
 ```
 
 ## Supported Televisions
@@ -246,16 +257,6 @@ WebOS, also known as Open WebOS or LG WebOS, (previously known as HP WebOS and P
 - https://github.com/iamdustan/tiny-react-renderer
 - https://facebook.github.io/react/blog/2015/12/18/react-components-elements-and-instances.html
 
----------------------------------------------------- 
-
-See ReactTV's [Changelog](https://github.com/raphamorim/react-tv/blob/master/CHANGELOG.md).
-
-Currently ReactTV is licensed by [MIT License](https://github.com/raphamorim/react-tv/blob/master/LICENSE.md)
-
-## Credits
-
-Thanks [react-dom](https://github.com/facebook/react/tree/master/packages/react-dom) for be example and a inspiration code :)
-
 ## Roadmap
 
 #### Stage 1
@@ -263,15 +264,15 @@ Thanks [react-dom](https://github.com/facebook/react/tree/master/packages/react-
 Initial proof-of-concept. [IN PROGRESS]
 
 - [x] CLI Build Abstraction of LG Webos (`run-webos`, `run-webos-dev`)
-- [ ] Create a guide or script to Install all LG WebOS environment
+- [x] Create a guide or script to Install all LG WebOS environment
 - [ ] Renderer ReactElements to simple DOM
   - [x] Support HOF and HOC
   - [x] Support State and Lifecycle
-  - [ ] Change `className` to `class`
+  - [ ] Keyboard Navigation
 - [ ] Optmizate DOMRenderer for TV
-  - [ ] Avoid memoize operations and use DOM Hash
 - [x] Check `webos` Platform
 - [x] Migrate to `React-Reconciler`
+- [ ] Improve documentation
 
 #### Stage 2
 
@@ -295,3 +296,13 @@ Add additional features users expect from a Renderer. Then fix bugs and stabiliz
 - [ ] Handle common errors
 - [ ] Reactive Renderer
 - [ ] Testing and stability
+
+---------------------------------------------------- 
+
+See ReactTV's [Changelog](https://github.com/raphamorim/react-tv/blob/master/CHANGELOG.md).
+
+Currently ReactTV is licensed by [MIT License](https://github.com/raphamorim/react-tv/blob/master/LICENSE.md)
+
+## Credits
+
+Thanks [react-dom](https://github.com/facebook/react/tree/master/packages/react-dom) for be example and a inspiration code :)

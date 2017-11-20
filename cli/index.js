@@ -1,29 +1,29 @@
 #! /usr/bin/env node
 
 const argv = process.argv;
+const path = require('path');
 const {help, debug, createReactTVApp} = require('./shared');
-const scripts = require('./scripts');
+const {runWebOS} = require('./scripts');
 
 if (argv.length < 2) {
-  help();
-} else {
-  switch (argv[2]) {
-    case 'init':
-      if (argv.length < 4)
-        return debug('app name is required, example: react-tv init <app-name>');
+  return help();
+}
 
-      let optPath = argv.length >= 5 ? argv[4] : process.cwd();
-      debug('using "' + argv[3] + '" as app-name');
-      debug('using "' + optPath + '" as app-path');
-      createReactTVApp(argv[3], optPath);
-      break;
-    case 'run-webos':
-      scripts.runWebOS(process.cwd());
-      break;
-    case 'run-webos-dev':
-      scripts.runWebOSDev(process.cwd());
-      break;
-    default:
-      help();
-  }
+const command = argv[2];
+switch (command) {
+  case 'init':
+    let appName;
+    if (argv.length > 3) {
+      appName = argv[3];
+    }
+
+    createReactTVApp(appName);
+    break;
+
+  case 'run-webos':
+    runWebOS(process.cwd());
+    break;
+
+  default:
+    help();
 }

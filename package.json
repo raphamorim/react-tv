@@ -1,7 +1,7 @@
 {
   "name": "react-tv",
-  "version": "0.2.3",
-  "description": "React Renderer for low memory applications and Packager for TVs (WebOS, Tizen, Orsay)",
+  "version": "0.3.0-beta.0",
+  "description": "React renderer for low memory applications and Packager for TVs (WebOS, Tizen, Orsay)",
   "main": "dist/react-tv.umd.js",
   "bin": {
     "react-tv": "cli/index.js"
@@ -14,17 +14,18 @@
   ],
   "scripts": {
     "build": "node scripts/rollup/build.js",
-    "build-all": "NODE_ENV=PROD node scripts/rollup/build.js",
-    "prepublish": "yarn test && yarn build-all",
-    "test": "yarn flow && jest",
-    "jest-watch": "jest --watch",
+    "build:all": "NODE_ENV=PROD node scripts/rollup/build.js",
+    "prepublishOnly": "yarn test && yarn build:all",
+    "prettier:stat": "node ./scripts/prettier/index",
+    "test": "yarn prettier:stat && yarn flow && yarn jest:ci",
+    "jest": "jest --testPathIgnorePatterns \"(__fixtures__|matcher.js)\"",
+    "jest:ci": "jest --testPathIgnorePatterns \"(__fixtures__|matcher.js)\" --ci --runInBand",
     "flow": "flow",
     "prettier": "node ./scripts/prettier/index.js write-changed",
-    "prettier-all": "node ./scripts/prettier/index.js write"
+    "prettier:all": "node ./scripts/prettier/index.js write"
   },
   "dependencies": {
     "chalk": "^2.1.0",
-    "express": "^4.15.4",
     "fbjs": "^0.8.4",
     "fs-extra": "^4.0.1",
     "node-replace": "^0.3.1"
@@ -41,8 +42,9 @@
     "jest": "20.1.0-delta.1",
     "prettier": "^1.5.3",
     "react": "^16.0.0",
-    "react-reconciler": "^0.3.0-beta.1",
     "react-fiber-types": "file:src/renderer/types",
+    "react-reconciler": "^0.6.0",
+    "rimraf": "^2.6.2",
     "rollup": "^0.50.0",
     "rollup-plugin-babel": "^2.7.1",
     "rollup-plugin-commonjs": "^8.0.2",
@@ -81,7 +83,9 @@
     "webos"
   ],
   "engines": {
-    "node": ">=6"
+    "node": ">=6",
+    "npm": ">=3",
+    "yarn": ">=0.22"
   },
   "author": "Raphael Amorim <rapha850@gmail.com>",
   "license": "MIT",
@@ -91,7 +95,8 @@
   "homepage": "https://github.com/raphamorim/react-tv#readme",
   "jest": {
     "roots": [
-      "<rootDir>/src"
+      "<rootDir>/src",
+      "<rootDir>/cli"
     ],
     "moduleDirectories": [
       "node_modules",

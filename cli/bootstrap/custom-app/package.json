@@ -1,8 +1,6 @@
 {
-  "name": "clock-app-with-react-tv",
-  "version": "1.0.0",
-  "author": "Raphael Amorim",
-  "license": "MIT",
+  "name": "{{REACTTVAPP}}",
+  "version": "0.1.0",
   "react-tv": {
     "files": [
       "index.html",
@@ -17,7 +15,6 @@
   },
   "dependencies": {
     "react": "^16.0.0",
-    "react-dom": "^16.0.0",
     "react-tv": "0.3.0-beta.0"
   },
   "devDependencies": {
