@@ -40,7 +40,8 @@ ReactTV.render(<Clock/>, document.getElementById('root'))
       - [Setup WebOS Environment](#2-setup-webos-environment)
   - [Using Module](#using-module)
 - [Examples](#examples)
-    - [Clock TV App rendering with React-TV](#clock-tv-app-rendering-with-react-tv)
+    - [Clock](#clock)
+    - [Youtube](#youtube)
 - [Supported Televisions](#supported-televisions)
   - [LG WebOS](#lg-webos)
 - [References for Study](#references)
@@ -165,41 +166,13 @@ import { Keys } from 'react-tv'
 
 ## Examples
 
-### [Clock TV App Rendering with React-TV](https://github.com/raphamorim/react-tv/tree/master/examples/clock-app-with-react-tv)
+### [Clock App](https://github.com/raphamorim/react-tv/tree/master/examples/clock-app-with-react-tv)
 
 ![clock-with-react-tv-as-renderer](examples/clock-app-with-react-tv/screenshot.png)
 
-```jsx
-import React from 'react'
-import ReactTV, { Platform } from 'react-tv'
+### [Youtube App](https://github.com/dead/react-key-navigation/tree/master/examples/youtube-react-tv)
 
-class Clock extends React.Component {
-  constructor() {
-    super()
-    this.state = { date: new Date() }
-  }
-
-  componentDidMount() {
-    setInterval(() => this.setState({date: new Date()}), 1000)
-  }
-
-  render() {
-    let currentPlatform = 'Browser'
-    if (Platform('webos'))
-      currentPlatform = 'LG WebOS'
-
-    return (
-      <div class='container'>
-        <img src='https://i.imgur.com/9yhDR0Q.png'/>
-        <h1>It's {this.state.date.toLocaleTimeString()}</h1>
-        <p>You're in {currentPlatform}</p>
-      </div>
-    )
-  }
-}
-
-ReactTV.render(<Clock/>, document.getElementById('root'))
-```
+![Youtube App Example](https://raw.githubusercontent.com/dead/react-key-navigation/master/examples/youtube-react-tv/example.gif)
 
 ## Supported Televisions
 
@@ -208,6 +181,8 @@ ReactTV.render(<Clock/>, document.getElementById('root'))
 ![WebOS 3.0](https://i.ytimg.com/vi/tsRrFehUPEA/maxresdefault.jpg)
 
 **Target Version: 3.0**
+
+For 2.0, 1.0 versions: [use polyfills](https://github.com/raphamorim/react-tv/issues/64).
 
 WebOS, also known as Open WebOS or LG WebOS, (previously known as HP WebOS and Palm WebOS, stylized as webOS) is a Linux kernel-based multitasking operating system for smart devices such as Smart TVs and it has been used as a mobile operating system.
 
