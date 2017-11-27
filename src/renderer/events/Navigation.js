@@ -9,13 +9,15 @@
   Fork from luke-chang/js-spatial-navigation
  */
 
+// TODO: Migrate this logic on ReactRenderer
+
 let GlobalConfig = {
   selector: '',
   straightOnly: false,
   straightOverlapThreshold: 0.5,
   rememberSource: false,
   disabled: false,
-  defaultElement: '',
+  defaultElement: '[focused="true"]',
   enterTo: '',
   leaveFor: null,
   restrict: 'self-first',

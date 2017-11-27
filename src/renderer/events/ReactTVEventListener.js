@@ -18,14 +18,21 @@ import getEventTarget from './getEventTarget';
  *                  remove the listener.
  * facebook @internal
  */
-export function trapBubbledEvent(topLevelType, handlerBaseName, element) {
+
+export function trapBubbledEvent(
+  topLevelType,
+  handlerBaseName,
+  element,
+  handler
+) {
   if (!element) {
     return null;
   }
   return EventListener.listen(
     element,
     handlerBaseName,
-    dispatchEvent.bind(null, topLevelType)
+    handler
+    // dispatchEvent.bind(null, topLevelType)
   );
 }
 
@@ -39,25 +46,33 @@ export function trapBubbledEvent(topLevelType, handlerBaseName, element) {
  *                  remove the listener.
  * facebook @internal
  */
-export function trapCapturedEvent(topLevelType, handlerBaseName, element) {
+export function trapCapturedEvent(
+  topLevelType,
+  handlerBaseName,
+  element,
+  handler
+) {
   if (!element) {
     return null;
   }
   return EventListener.capture(
     element,
     handlerBaseName,
-    dispatchEvent.bind(null, topLevelType)
+    handler
+    // dispatchEvent.bind(null, topLevelType)
   );
 }
 
-export function dispatchEvent(topLevelType, nativeEvent) {
+// TODO: Create a Dispacth Event System
+export function dispatchEvent(topLevelType, nativeEvent, handlerEvent) {
   const nativeEventTarget = getEventTarget(nativeEvent);
 
   try {
     // Event queue being processed in the same cycle allows
     // `preventDefault`.
-    handleTopLevelImpl(nativeEvent);
+    // handleTopLevelImpl(nativeEvent);
+    console.log(topLevelType, nativeEvent);
   } finally {
-    releaseTopLevelCallbackBookKeeping(bookKeeping);
+    // noop
   }
 }

@@ -75,9 +75,7 @@ function runWebOS(root) {
   console.log('');
   console.log(chalk.dim('Up Emulator...'));
   execSync(
-    `open ${
-      webOS_TV_SDK_ENV
-    }Emulator/v3.0.0/LG_webOS_TV_Emulator_RCU.app`
+    `open ${webOS_TV_SDK_ENV}Emulator/v3.0.0/LG_webOS_TV_Emulator_RCU.app`
   );
   console.log(chalk.yellow(' LG WebOS Emulator 3.0.0 succefull running'));
 

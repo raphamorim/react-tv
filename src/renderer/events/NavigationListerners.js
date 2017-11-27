@@ -9,15 +9,15 @@ import Navigation from './Navigation';
 
 let initialized = null;
 
-export default function() {
+export default function(focusedElement) {
   if (initialized) {
     return;
   }
 
   Navigation.init();
-  Navigation.config({selector: '[react-tv-focusable="true"]'});
+  Navigation.config({selector: '[focusable="true"]'});
   Navigation.focusableElements();
-  Navigation.focus();
+  Navigation.focus(focusedElement);
 
   initialized = true;
 }

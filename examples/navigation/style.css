@@ -13,7 +13,13 @@ div {
 }
 
 #root, #container {
-  height: 100vh;
+  height: 90vh;
+  padding: 0 1vw;
+  overflow: hidden;
+}
+
+h1 {
+  text-align: center;
 }
 
 .waterfall {
@@ -41,17 +47,19 @@ div {
 }
 
 .waterfall .item:nth-child(1n+1) {
-  background-color: #564d4d;
-  border: 6px solid #564d4d;
+  background-color: #999;
+  background: url('images/scott-pilgrim.jpg') 20%;
+  background-size: cover;
   height: 70vh;
 }
 
-.waterfall .item:nth-child(1n+1):focus {
-  border: 6px solid white;
+.waterfall .item:nth-child(2) {
+  font-size: 27vw;
+  width: 22%;
 }
 
 .waterfall .item:nth-child(2n+4) {
-  background-color: #db0000;
+  background: #db0000;
   border: 6px solid #db0000;
   height: 15vh;
 }
@@ -61,7 +69,7 @@ div {
 }
 
 .waterfall .item:nth-child(2n+1) {
-  background-color: #FFF;
+  background: #FFF;
   border: 6px solid #FFF;
   color: #db0000;
   height: 30vh;
