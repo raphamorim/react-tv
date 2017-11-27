@@ -192,7 +192,7 @@ const ReactTVFiberRenderer = ReactFiberReconciler({
         (container.parentNode: any).insertBefore(child, container);
       } else {
         container.appendChild(child);
-        NavigationListerners();
+        NavigationListerners(child.querySelector('[focused="true"]'));
       }
     },
 

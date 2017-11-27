@@ -8,24 +8,30 @@ class App extends React.Component {
     }
   }
 
+// onPress={(ev) => console.log('press ' + i)}
+
   render() {
     let items = []
     for (let i = 1; i <= 10; i++) {
+      const clickHandler = (ev) => console.log('click ' + i);
       items.push(
         <div
           class="item"
-          onFocus={() => console.log('focus ' + i)}
-          onBlur={() => console.log('blur ' + i)}
-          onPress={() => console.log('press ' + i)}
-          focusable
+          onFocus={(ev) => console.log('focus ' + i)}
+          onBlur={(ev) => console.log('blur ' + i)}
+
+          onClick={(i !== 2) ? clickHandler : null}
+          focusable={(i !== 2)}
+          focused={(i === 3)}
         >
-          {i}
+          {(i !== 2) ? i : null}
         </div>
       )
     }
 
     return (
       <div id='container'>
+        <h1>React-TV Navigation</h1>
         <div class="waterfall">
           {items}
         </div>

@@ -9,6 +9,8 @@
  */
 
 import {Namespaces, getIntrinsicNamespace} from './shared/DOMNamespaces';
+import EventConstants from './events/EventConstants';
+import {listenTo} from './events/ReactTVEventEmitter';
 
 import {
   DOCUMENT_NODE,
@@ -19,6 +21,8 @@ import {
 import * as DOMPropertyOperations from './shared/DOMPropertyOperations';
 import isCustomComponent from './shared/utils/isCustomComponent';
 import escapeTextContentForBrowser from './shared/utils/escapeTextContentForBrowser';
+
+import {trapBubbledEvent} from './events/ReactTVEventListener';
 
 const CHILDREN = 'children';
 const STYLE = 'style';
@@ -57,14 +61,14 @@ function setInitialDOMProperties(
       // noop
     } else if (propKey === CHILDREN) {
       // noop
+    } else if (EventConstants.hasOwnProperty(propKey)) {
+      if (nextProp) {
+        ensureListeningTo(domElement, propKey, nextProp);
+      }
     } else if (isCustomComponentTag) {
       DOMPropertyOperations.setValueForAttribute(domElement, propKey, nextProp);
     } else if (nextProp != null) {
-      if (propKey === 'focusable') {
-        domElement.setAttribute('react-tv-focusable', true);
-      } else {
-        domElement.setAttribute(propKey, nextProp);
-      }
+      domElement.setAttribute(propKey, nextProp);
     }
   }
 }
@@ -93,11 +97,7 @@ function updateDOMProperties(
         domElement.removeAttribute(propKey);
       }
     } else if (propValue != null) {
-      if (propKey === 'focusable') {
-        domElement.setAttribute('react-tv-focusable', true);
-      } else {
-        domElement.setAttribute(propKey, propValue);
-      }
+      domElement.setAttribute(propKey, propValue);
     } else {
       // If we're updating to null or undefined, we should remove the property
       // from the DOM node instead of inadvertently setting to a string. This
@@ -105,6 +105,16 @@ function updateDOMProperties(
       domElement.removeAttribute(propKey);
     }
   }
+}
+
+function ensureListeningTo(rootContainerElement, eventName, handler) {
+  var isDocumentOrFragment =
+    rootContainerElement.nodeType === DOCUMENT_NODE ||
+    rootContainerElement.nodeType === DOCUMENT_FRAGMENT_NODE;
+  var doc = isDocumentOrFragment
+    ? rootContainerElement
+    : rootContainerElement.ownerDocument;
+  listenTo(eventName, rootContainerElement, handler);
 }
 
 function getOwnerDocumentFromRootContainer(
@@ -173,7 +183,6 @@ const ReactTVFiberComponent = {
   ): void {
     const wasCustomComponentTag = isCustomComponent(tag, lastRawProps);
     const isCustomComponentTag = isCustomComponent(tag, nextRawProps);
-    // Apply the diff.
     updateDOMProperties(
       domElement,
       updatePayload,
