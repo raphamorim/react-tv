@@ -24,10 +24,11 @@ describe('[render] Behavior tests', () => {
     const root = document.createElement('div');
 
     const expectedElement = document.createElement('div');
-    expectedElement.setAttribute('onclick', fn);
     expectedElement.textContent = textNode;
 
-    expect(render(<div>{textNode}</div>, root)).toEqual(expectedElement);
+    expect(render(<div onClick={fn}>{textNode}</div>, root)).toEqual(
+      expectedElement
+    );
   });
 
   it('should render with the default toJSON behavior', () => {
