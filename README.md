@@ -34,6 +34,7 @@ ReactTV.render(<Clock/>, document.getElementById('root'))
 - [About React-TV](#about-react-tv)
   - [Understanding the Problem](#understanding-the-problem)
   - [React-TV Renderer Characteristics](#react-tv-renderer-characteristics)
+  - [Spatial Navigation](#spatial-navigation)
 - [Getting Started](#getting-started)
   - [Installing](#installing)
   - [Using CLI](#using-cli)
@@ -76,6 +77,36 @@ In addition: Unify the build for multiple TV platforms.
 ### React-TV Renderer Characteristics
 
 The React-TV renderer is **asynchronous by default**. Does not check for accessibility properties.
+
+### Spatial Navigation
+
+React-TV provides a spatial navigation system on render level. 
+
+Just add `focusable` for navigable elements and `focused` for an element which starts focused. 
+
+```jsx
+<div>
+  <div focusable onBlur={() => console.log('blur') } >
+    Item with Blur Handler
+  </div>
+  <div class="my-horizontal-list">
+    <div class="item" focusable onPress={() => console.log('pressed') } >
+      Horizontal Item 1 with Press Handler
+    </div>
+    <div class="item" focusable focused>
+      Horizontal Item 2 which started focused
+    </div>
+  </div>
+  <div class="item" focusable onFocus={() => console.log('focused') } >
+    Item with Focus Handler
+  </div>
+  <div class="item">
+    Item which can't be focused or selected
+  </div>
+</div>
+```
+
+See [examples/navigation](examples/navigation) for more details about usage.
 
 ## Getting Started
 
