@@ -204,7 +204,7 @@ import { Keys } from 'react-tv'
 
 ### [Clock App](https://github.com/raphamorim/react-tv/tree/master/examples/clock-app-with-react-tv)
 
-![clock-with-react-tv-as-renderer](examples/clock-app-with-react-tv/screenshot.png)
+![Clock App Example](examples/clock-app/screenshot.png)
 
 ### [Youtube App](https://github.com/dead/react-key-navigation/tree/master/examples/youtube-react-tv)
 
