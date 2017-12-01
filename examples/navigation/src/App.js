@@ -8,8 +8,6 @@ class App extends React.Component {
     }
   }
 
-// onPress={(ev) => console.log('press ' + i)}
-
   render() {
     let items = []
     for (let i = 1; i <= 10; i++) {
@@ -19,7 +17,7 @@ class App extends React.Component {
           class="item"
           onFocus={(ev) => console.log('focus ' + i)}
           onBlur={(ev) => console.log('blur ' + i)}
-
+          onPress={(ev) => console.log('press ' + i)}
           onClick={(i !== 2) ? clickHandler : null}
           focusable={(i !== 2)}
           focused={(i === 3)}

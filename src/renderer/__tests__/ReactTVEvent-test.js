@@ -13,6 +13,9 @@ const events = {
   blur() {
     return 'blurred';
   },
+  press() {
+    return 'pressed';
+  }
 };
 
 describe('[render] Event tests', () => {
@@ -53,6 +56,27 @@ describe('[render] Event tests', () => {
     rendered.blur();
 
     expect(spy).toHaveBeenCalledTimes(1);
+    spy.mockReset();
+    spy.mockRestore();
+  });
+
+  it('should onPress propagate a event based keypress with <enter>', () => {
+    const spy = jest.spyOn(events, 'press');
+    const root = document.createElement('div');
+    const ReactElement = <div onPress={spy} />;
+    const rendered = render(ReactElement, root);
+
+    rendered.simulate()
+
+    const InvalidEvent = new KeyboardEvent('keypress', {'keyCode': 37});
+    rendered.dispatchEvent(InvalidEvent);
+
+    expect(spy).toHaveBeenCalledTimes(0);
+
+    const ValidEvent = new KeyboardEvent('keypress', {'keyCode': 13});
+    rendered.dispatchEvent(ValidEvent);
+    expect(spy).toHaveBeenCalledTimes(1);
+
     spy.mockReset();
     spy.mockRestore();
   });

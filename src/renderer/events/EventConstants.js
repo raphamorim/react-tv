@@ -17,6 +17,8 @@ const EventConstants = {
   onResize: 'resize',
   onLoad: 'load',
   onUnload: 'unload',
+  onPress: 'keypress',
+  onScroll: 'scroll',
   onKeypress: 'keypress',
   onKeydown: 'keydown',
   onKeyup: 'keyup',
