@@ -58,7 +58,7 @@ export function listenTo(registrationName, mountAt, handler) {
     )
   ) {
     if (registrationName === 'onScroll') {
-      trapCapturedEvent('onScroll', 'scroll', mountAt);
+      trapCapturedEvent('onScroll', 'scroll', mountAt, handler);
     } else if (
       registrationName === 'onFocus' ||
       registrationName === 'onBlur'
@@ -72,6 +72,15 @@ export function listenTo(registrationName, mountAt, handler) {
       // to make sure blur and focus event listeners are only attached once
       isListening.blur = true;
       isListening.focus = true;
+    } else if (registrationName === 'onPress') {
+      trapCapturedEvent('onPress', 'keypress', mountAt,
+        (e) => {
+          // TODO: Separate this logic
+          if (e.keyCode == 13) {
+            handler()
+          }
+        }
+      );
     } else if (EventConstants.hasOwnProperty(registrationName)) {
       trapBubbledEvent(registrationName, dependency, mountAt, handler);
     }
