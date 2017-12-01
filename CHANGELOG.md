@@ -1,3 +1,12 @@
+# 0.3.0-beta.1
+
+- breaks CLI
+- supports spatial navigation
+- supports events
+- update to nodejs 8
+- update to yarn 1.3.2
+- update to npm 5
+
 # 0.3.0-beta.0
 
 - stable CLI react-tv init
