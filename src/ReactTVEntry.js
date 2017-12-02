@@ -7,6 +7,9 @@
  * @flow
  */
 
+Map = require('es6-map');
+Set = require('es6-set');
+
 import ReactTVRenderer from './renderer/ReactTVFiberEntry';
 
 const ReactTV = {
@@ -15,5 +18,4 @@ const ReactTV = {
 };
 
 export {default as Platform} from './modules/Platform';
-export {default as WebOSSimulator} from './modules/WebOSSimulator';
 export default ReactTV;

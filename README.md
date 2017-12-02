@@ -169,15 +169,27 @@ $ react-tv init <my-app-name>
 
 #### 4: Running It!
 
-Run the emulator and devices (should pack, build and run it on the emulator):
+##### On TVs
+
+Run on device
+
+```
+$ react-tv run-webos <device>
+```
+
+##### On Emulator
+
+Run the emulator (should pack, build and run it on the emulator):
+
+When you not specify the device, it runs on VirtualBox WebOS Simulator.
 
 ```
 $ react-tv run-webos
 ```
 
-## Using Module
+## Using as React Renderer
 
-### Platform
+### `Platform`
 
 When building a cross-platform TV app, you'll want to re-use as much code as possible. You'll probably have different scenarios where different code might be necessary.  
 For instance, you may want to implement separated visual components for `LG-WebOS` and `Samsung-Tizen`.
@@ -192,12 +204,14 @@ console.log(Platform('tizen')) // false
 console.log(Platform('orsay')) // false
 ```
 
-- Keys (in-draft)
+### `renderComponentOnAppLoaded`
+
+Takes a component and returns a higher-order component version of that component, which renders only after application was launched, allows to not write diffent logics for many devices.
 
 ```js
-import { Keys } from 'react-tv'
+import { renderComponentOnAppLoaded } from 'react-tv'
 
-<Keys onChange={myCustomHandler}/>
+const App = renderComponentOnAppLoaded(<MyComponent/>)
 ```
 
 ## Examples
@@ -276,10 +290,10 @@ Initial proof-of-concept. [IN PROGRESS]
 
 - [x] CLI Build Abstraction of LG Webos (`run-webos`, `run-webos-dev`)
 - [x] Create a guide or script to Install all LG WebOS environment
-- [ ] Renderer ReactElements to simple DOM
+- [x] Renderer ReactElements to simple DOM
   - [x] Support HOF and HOC
   - [x] Support State and Lifecycle
-  - [ ] Keyboard Navigation
+  - [x] Keyboard Navigation
 - [ ] Optmizate DOMRenderer for TV
 - [x] Check `webos` Platform
 - [x] Migrate to `React-Reconciler`
