@@ -11,7 +11,9 @@ class App extends React.Component {
   render() {
     let items = []
     for (let i = 1; i <= 10; i++) {
-      const clickHandler = (ev) => console.log('click ' + i);
+      const clickHandler = (ev) =>
+        console.log('click ' + i);
+
       items.push(
         <div
           class="item"

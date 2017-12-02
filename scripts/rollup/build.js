@@ -34,9 +34,13 @@ function createBundle({entryPath, bundleType, destName}) {
     babel({
       babelrc: false,
       exclude: 'node_modules/**',
-      externalHelpers: true,
-      presets: [['env', {modules: false}], 'react', 'stage-2'],
-      plugins: ['transform-flow-strip-types', 'external-helpers'],
+      externalHelpers: false,
+      presets: [
+        ['env', {modules: false}], 'react', 'stage-2'
+      ],
+      plugins: [
+        'transform-flow-strip-types',
+      ],
     }),
     commonjs(),
     resolve({
@@ -67,8 +71,8 @@ function createBundle({entryPath, bundleType, destName}) {
 
 createBundle({
   entryPath: 'src/ReactTVEntry.js',
-  bundleType: 'DEV',
-  destName: 'react-tv.js',
+  bundleType: 'PROD-UMD',
+  destName: 'react-tv.umd.js',
 });
 
 if (process.env['NODE_ENV'] === 'PROD') {

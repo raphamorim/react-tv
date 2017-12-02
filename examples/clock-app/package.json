@@ -1,5 +1,5 @@
 {
-  "name": "clock-app-with-react-tv",
+  "name": "clock-app",
   "version": "1.0.0",
   "author": "Raphael Amorim",
   "license": "MIT",
@@ -12,13 +12,12 @@
   },
   "scripts": {
     "build": "webpack",
-    "start": "yarn build && react-tv run-webos",
+    "start": "yarn build && react-tv run-webos tv2",
     "start-dev": "webpack-dev-server --progress --colors"
   },
   "dependencies": {
-    "react": "^16.0.0",
-    "react-dom": "^16.0.0",
-    "react-tv": "0.3.0-beta.0"
+    "react": "^16.2.0",
+    "react-tv": "file:../../../react-tv"
   },
   "devDependencies": {
     "webpack": "^3.8.1",

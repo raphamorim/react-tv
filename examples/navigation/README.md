@@ -18,7 +18,13 @@ To install:
 yarn
 ```
 
-To run it:
+To run it on browser:
+
+```shell
+yarn start-dev
+```
+
+To run it on TV WebOS:
 
 ```shell
 yarn start
