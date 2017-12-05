@@ -1,10 +1,21 @@
 {
   "presets": [
-    "env",
+    ["env", {
+      "loose": true,
+      "targets": {
+        "browsers": ["last 5 versions", "safari >= 7"]
+      }
+    }],
     "react",
     "stage-2"
   ],
   "plugins": [
-    "transform-flow-strip-types"
+    ["transform-runtime", {
+      "helpers": false,
+      "polyfill": true,
+      "regenerator": true,
+      "moduleName": "babel-runtime"
+    }],
+    "transform-flow-strip-types",
   ]
 }

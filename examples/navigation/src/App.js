@@ -1,5 +1,5 @@
 import React from 'react'
-import ReactTV from '../../../src/ReactTVEntry'
+import ReactTV from 'react-tv'
 
 class App extends React.Component {
   componentDidMount() {

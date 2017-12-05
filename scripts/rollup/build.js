@@ -1,5 +1,3 @@
-'use strict';
-
 const path = require('path');
 const rollup = require('rollup').rollup;
 const babel = require('rollup-plugin-babel');
@@ -32,15 +30,8 @@ function createBundle({entryPath, bundleType, destName}) {
     flow(),
     replace(stripEnvVariables()),
     babel({
-      babelrc: false,
       exclude: 'node_modules/**',
       externalHelpers: false,
-      presets: [
-        ['env', {modules: false}], 'react', 'stage-2'
-      ],
-      plugins: [
-        'transform-flow-strip-types',
-      ],
     }),
     commonjs(),
     resolve({
@@ -71,8 +62,8 @@ function createBundle({entryPath, bundleType, destName}) {
 
 createBundle({
   entryPath: 'src/ReactTVEntry.js',
-  bundleType: 'PROD-UMD',
-  destName: 'react-tv.umd.js',
+  bundleType: 'DEV',
+  destName: 'react-tv.js',
 });
 
 if (process.env['NODE_ENV'] === 'PROD') {
