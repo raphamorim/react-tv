@@ -1,7 +1,7 @@
 const path = require('path');
 const fs = require('fs');
 const chalk = require('chalk');
-const { exec, execSync } = require('child_process');
+const {exec, execSync} = require('child_process');
 const spawnSync = require('child_process').spawnSync;
 
 function defaultCLIEnv() {
@@ -27,14 +27,11 @@ function runEmulator(ENV) {
       break;
     case 'linux':
       exec(`
-        sh ${
-          ENV
-        }/../../Emulator/v3.0.0/LG_webOS_TV_Emulator.sh
+        sh ${ENV}/../../Emulator/v3.0.0/LG_webOS_TV_Emulator.sh
         &&
         java -jar ${
           ENV
-        }/../../Emulator/v3.0.0/LG_webOS_TV_Emulator_linux_x64.jar -remocon`
-      );
+        }/../../Emulator/v3.0.0/LG_webOS_TV_Emulator_linux_x64.jar -remocon`);
       break;
     default:
       execSync(
