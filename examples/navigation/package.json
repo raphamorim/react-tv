@@ -1,5 +1,5 @@
 {
-  "name": "react-tv-keyboard-navigation",
+  "name": "navigation-react-tv",
   "version": "1.0.0",
   "author": "Raphael Amorim",
   "license": "MIT",
@@ -7,7 +7,8 @@
     "files": [
       "index.html",
       "bundle.js",
-      "style.css"
+      "style.css",
+      "images"
     ]
   },
   "scripts": {
@@ -16,13 +17,14 @@
     "start-dev": "webpack-dev-server --progress --colors"
   },
   "dependencies": {
-    "react": "^16.0.0",
-    "react-tv": "0.3.0-alpha.2"
+    "node-webos": "0.0.5",
+    "react": "^16.2.0",
+    "react-tv": "0.3.0-beta.2"
   },
   "devDependencies": {
     "babel-core": "^6.4.5",
     "babel-loader": "^6.2.1",
-    "babel-preset-env": "^1.6.1",
+    "babel-polyfill": "^6.26.0",
     "babel-preset-react": "^6.3.13",
     "webpack": "^1.12.12",
     "webpack-dev-server": "^1.12.1"

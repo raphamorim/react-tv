@@ -1,5 +1,3 @@
-'use strict';
-
 const path = require('path');
 const rollup = require('rollup').rollup;
 const babel = require('rollup-plugin-babel');
@@ -32,11 +30,8 @@ function createBundle({entryPath, bundleType, destName}) {
     flow(),
     replace(stripEnvVariables()),
     babel({
-      babelrc: false,
       exclude: 'node_modules/**',
-      externalHelpers: true,
-      presets: [['env', {modules: false}], 'react', 'stage-2'],
-      plugins: ['transform-flow-strip-types', 'external-helpers'],
+      externalHelpers: false,
     }),
     commonjs(),
     resolve({

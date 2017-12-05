@@ -9,6 +9,8 @@
  */
 
 import {Namespaces, getIntrinsicNamespace} from './shared/DOMNamespaces';
+import EventConstants from './events/EventConstants';
+import {listenTo} from './events/ReactTVEventEmitter';
 
 import {
   DOCUMENT_NODE,
@@ -19,6 +21,8 @@ import {
 import * as DOMPropertyOperations from './shared/DOMPropertyOperations';
 import isCustomComponent from './shared/utils/isCustomComponent';
 import escapeTextContentForBrowser from './shared/utils/escapeTextContentForBrowser';
+
+import {trapBubbledEvent} from './events/ReactTVEventListener';
 
 const CHILDREN = 'children';
 const STYLE = 'style';
@@ -57,6 +61,10 @@ function setInitialDOMProperties(
       // noop
     } else if (propKey === CHILDREN) {
       // noop
+    } else if (EventConstants.hasOwnProperty(propKey)) {
+      if (nextProp) {
+        ensureListeningTo(domElement, propKey, nextProp);
+      }
     } else if (isCustomComponentTag) {
       DOMPropertyOperations.setValueForAttribute(domElement, propKey, nextProp);
     } else if (nextProp != null) {
@@ -71,7 +79,6 @@ function updateDOMProperties(
   wasCustomComponentTag: boolean,
   isCustomComponentTag: boolean
 ): void {
-  // console.log('UPDATE PAYLOAD', updatePayload);
   for (let i = 0; i < updatePayload.length; i += 2) {
     const propKey = updatePayload[i];
     const propValue = updatePayload[i + 1];
@@ -98,6 +105,16 @@ function updateDOMProperties(
       domElement.removeAttribute(propKey);
     }
   }
+}
+
+function ensureListeningTo(rootContainerElement, eventName, handler) {
+  var isDocumentOrFragment =
+    rootContainerElement.nodeType === DOCUMENT_NODE ||
+    rootContainerElement.nodeType === DOCUMENT_FRAGMENT_NODE;
+  var doc = isDocumentOrFragment
+    ? rootContainerElement
+    : rootContainerElement.ownerDocument;
+  listenTo(eventName, rootContainerElement, handler);
 }
 
 function getOwnerDocumentFromRootContainer(
@@ -166,7 +183,6 @@ const ReactTVFiberComponent = {
   ): void {
     const wasCustomComponentTag = isCustomComponent(tag, lastRawProps);
     const isCustomComponentTag = isCustomComponent(tag, nextRawProps);
-    // Apply the diff.
     updateDOMProperties(
       domElement,
       updatePayload,

@@ -21,7 +21,12 @@ switch (command) {
     break;
 
   case 'run-webos':
-    runWebOS(process.cwd());
+    let device;
+    if (argv.length > 3) {
+      device = argv[3];
+    }
+
+    runWebOS(process.cwd(), device);
     break;
 
   default:

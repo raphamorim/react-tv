@@ -15,5 +15,4 @@ const ReactTV = {
 };
 
 export {default as Platform} from './modules/Platform';
-export {default as WebOSSimulator} from './modules/WebOSSimulator';
 export default ReactTV;

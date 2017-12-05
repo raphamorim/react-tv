@@ -1,14 +1,14 @@
-var path = require('path');
-var webpack = require('webpack');
+const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
-  entry: './src/Benchmark.js',
-  output: { path: __dirname, filename: 'bundle.js' },
+  entry: ['babel-polyfill', './src/App.js'],
+  output: { path: __dirname, filename: 'bundle.js' },
   resolveLoader: {
     root: path.join(__dirname, 'node_modules')
   },
-  module: {
-    loaders: [
+  module: {
+    loaders: [
       {
         test: /.jsx?$/,
         loader: 'babel-loader',
@@ -18,7 +18,7 @@ module.exports = {
         }
       }
     ]
-  },
+  },
   plugins: [
     new webpack.DefinePlugin({
       'process.env': {
