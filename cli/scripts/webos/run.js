@@ -5,8 +5,38 @@ const execSync = require('child_process').execSync;
 const spawnSync = require('child_process').spawnSync;
 
 function defaultCLIEnv() {
-  // default is Darwin
-  return '/opt/webOS_TV_SDK/CLI/bin';
+  const darwin = '/opt/webOS_TV_SDK/CLI/bin';
+  const linux = '/usr/local/share/webOS_TV_SDK';
+
+  if (process.platform === 'darwin') {
+    return darwin;
+  }
+  if (process.platform === 'linux') {
+    return linux;
+  }
+
+  return darwin;
+}
+
+function runEmulator(ENV) {
+  switch (process.platform) {
+    case 'darwin':
+      execSync(
+        `open ${ENV}/../../Emulator/v3.0.0/LG_webOS_TV_Emulator_RCU.app`
+      );
+      break;
+    case 'linux':
+      execSync(
+        `java -jar ${
+          ENV
+        }/../../Emulator/v3.0.0/LG_webOS_TV_Emulator_linux_x64.jar -remocon`
+      );
+      break;
+    default:
+      execSync(
+        `open ${ENV}/../../Emulator/v3.0.0/LG_webOS_TV_Emulator_RCU.app`
+      );
+  }
 }
 
 function isReactTVWebOSProject(root) {
@@ -81,11 +111,8 @@ function runWebOS(root, device) {
   if (!device) {
     console.log('');
     console.log(chalk.dim('Up Emulator...'));
-    execSync(
-      `open ${
-        webOS_TV_SDK_ENV
-      }/../../Emulator/v3.0.0/LG_webOS_TV_Emulator_RCU.app`
-    );
+    runEmulator(webOS_TV_SDK_ENV);
+
     console.log(chalk.yellow(' LG WebOS Emulator 3.0.0 succefull running'));
   }
 
