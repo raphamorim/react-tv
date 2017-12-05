@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "chalk": "^2.1.0",
-    "fs-extra": "^4.0.1",
+    "fs-extra": "^4.0.3",
     "node-replace": "^0.3.1"
   },
   "devDependencies": {

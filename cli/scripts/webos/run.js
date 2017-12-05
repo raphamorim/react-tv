@@ -1,5 +1,5 @@
 const path = require('path');
-const fs = require('fs');
+const fs = require('fs-extra');
 const chalk = require('chalk');
 const {exec, execSync} = require('child_process');
 const spawnSync = require('child_process').spawnSync;
@@ -7,12 +7,16 @@ const spawnSync = require('child_process').spawnSync;
 function defaultCLIEnv() {
   const darwin = '/opt/webOS_TV_SDK/CLI/bin';
   const linux = '/usr/local/share/webOS_TV_SDK';
+  const win = 'C:/webOS_TV_SDK/CLI/';
 
   if (process.platform === 'darwin') {
     return darwin;
   }
   if (process.platform === 'linux') {
     return linux;
+  }
+  if (process.platform === 'win32') {
+    return win;
   }
 
   return darwin;
@@ -32,6 +36,12 @@ function runEmulator(ENV) {
         java -jar ${
           ENV
         }/../../Emulator/v3.0.0/LG_webOS_TV_Emulator_linux_x64.jar -remocon`);
+      break;
+    case 'win32':
+      exec(`LG_webOS_TV_Emulator.bat`, {
+        cwd: `${ENV}/../Emulator/v3.0.0/`,
+        windowsHide: true,
+      });
       break;
     default:
       execSync(
@@ -89,21 +99,26 @@ function runWebOS(root, device) {
   process.on('uncaughtException', cleanup);
 
   function cleanup() {
-    execSync(`rm -f ${webosPath}/icon.png`);
-    execSync(`rm -f ${webosPath}/icon-large.png`);
+    fs.removeSync(`${webosPath}/icon.png`);
+    fs.removeSync(`${webosPath}/icon-large.png`);
     ReactTVConfig.files.forEach(file => {
-      execSync(`rm -rf ${webosPath}/${file}`);
+      fs.removeSync(`${webosPath}/${file}`);
     });
   }
 
   try {
     cleanup();
-    execSync(`cp ${root}/react-tv/icon.png ${webosPath}/icon.png`);
-    execSync(`cp ${root}/react-tv/icon-large.png ${webosPath}/icon-large.png`);
+    fs.copySync(`${root}/react-tv/icon.png`, `${webosPath}/icon.png`);
+    fs.copySync(
+      `${root}/react-tv/icon-large.png`,
+      `${webosPath}/icon-large.png`
+    );
 
     ReactTVConfig.files.forEach(file => {
       const filePath = path.resolve(root, file);
-      execSync(`cp -r ${filePath} ${webosPath}`);
+      const toFile = path.resolve(webosPath, file);
+      fs.ensureDirSync(path.dirname(toFile));
+      fs.copySync(`${filePath}`, `${toFile}`);
     });
   } catch (e) {
     return console.log('FAIL TO MOUNT', e.toString());
@@ -141,28 +156,32 @@ function runWebOS(root, device) {
 
     console.log(chalk.dim('Packing...'));
 
-    execSync(`cd ${webosPath} && ares-package .`);
+    execSync(`${webOS_TV_SDK_ENV}/ares-package .`, {cwd: webosPath});
     console.log(chalk.yellow(` succefull pack from ${root}`));
 
     cleanup();
 
     console.log(chalk.dim('Installing...'));
     const config = JSON.parse(
-      execSync(`cat ${webosPath}/appinfo.json`).toString()
+      fs.readFileSync(`${webosPath}/appinfo.json`).toString()
     );
 
     const latestIPK = config.id + '_' + config.version + '_all.ipk';
     console.log(chalk.blue(` installing ${latestIPK} as IPK`));
-    execSync(`cd ${webosPath} && ares-install ${optDevice} ${latestIPK}`);
+    execSync(`${webOS_TV_SDK_ENV}/ares-install ${optDevice} ${latestIPK}`, {
+      cwd: webosPath,
+    });
     console.log(chalk.yellow(` succefull install ${config.title}`));
 
     console.log(chalk.dim('Launching...'));
-    execSync(`cd ${webosPath} && ares-launch ${optDevice} ${config.id}`);
+    execSync(`${webOS_TV_SDK_ENV}/ares-launch ${optDevice} ${config.id}`, {
+      cwd: webosPath,
+    });
     console.log(chalk.yellow(` launched`));
 
     console.log(chalk.dim('Inspecting...'));
     const inspect = spawnSync(
-      'ares-inspect',
+      `${webOS_TV_SDK_ENV}/ares-inspect`,
       [`-a ${config.id} ${optDevice}`],
       {
         stdio: 'inherit',
