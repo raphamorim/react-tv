@@ -1,7 +1,7 @@
 const path = require('path');
 const fs = require('fs-extra');
 const chalk = require('chalk');
-const { exec, execSync } = require('child_process');
+const {exec, execSync} = require('child_process');
 const spawnSync = require('child_process').spawnSync;
 
 function defaultCLIEnv() {
@@ -31,17 +31,17 @@ function runEmulator(ENV) {
       break;
     case 'linux':
       exec(`
-        sh ${
-          ENV
-        }/../../Emulator/v3.0.0/LG_webOS_TV_Emulator.sh
+        sh ${ENV}/../../Emulator/v3.0.0/LG_webOS_TV_Emulator.sh
         &&
         java -jar ${
           ENV
-        }/../../Emulator/v3.0.0/LG_webOS_TV_Emulator_linux_x64.jar -remocon`
-      );
+        }/../../Emulator/v3.0.0/LG_webOS_TV_Emulator_linux_x64.jar -remocon`);
       break;
     case 'win32':
-      exec(`LG_webOS_TV_Emulator.bat`, {cwd: `${ENV}/../Emulator/v3.0.0/`, windowsHide: true});
+      exec(`LG_webOS_TV_Emulator.bat`, {
+        cwd: `${ENV}/../Emulator/v3.0.0/`,
+        windowsHide: true,
+      });
       break;
     default:
       execSync(
@@ -109,7 +109,10 @@ function runWebOS(root, device) {
   try {
     cleanup();
     fs.copySync(`${root}/react-tv/icon.png`, `${webosPath}/icon.png`);
-    fs.copySync(`${root}/react-tv/icon-large.png`, `${webosPath}/icon-large.png`);
+    fs.copySync(
+      `${root}/react-tv/icon-large.png`,
+      `${webosPath}/icon-large.png`
+    );
 
     ReactTVConfig.files.forEach(file => {
       const filePath = path.resolve(root, file);
@@ -165,11 +168,15 @@ function runWebOS(root, device) {
 
     const latestIPK = config.id + '_' + config.version + '_all.ipk';
     console.log(chalk.blue(` installing ${latestIPK} as IPK`));
-    execSync(`${webOS_TV_SDK_ENV}/ares-install ${optDevice} ${latestIPK}`, {cwd: webosPath});
+    execSync(`${webOS_TV_SDK_ENV}/ares-install ${optDevice} ${latestIPK}`, {
+      cwd: webosPath,
+    });
     console.log(chalk.yellow(` succefull install ${config.title}`));
 
     console.log(chalk.dim('Launching...'));
-    execSync(`${webOS_TV_SDK_ENV}/ares-launch ${optDevice} ${config.id}`, {cwd: webosPath});
+    execSync(`${webOS_TV_SDK_ENV}/ares-launch ${optDevice} ${config.id}`, {
+      cwd: webosPath,
+    });
     console.log(chalk.yellow(` launched`));
 
     console.log(chalk.dim('Inspecting...'));
