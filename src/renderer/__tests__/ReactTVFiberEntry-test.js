@@ -41,7 +41,7 @@ describe('[render] Behavior tests', () => {
     const Route = (path, component, children) =>
       React.createElement(
         'Route',
-        {path, component, key: path},
+        {path: path, component: component, key: path},
         children
       );
 
