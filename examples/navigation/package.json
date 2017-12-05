@@ -19,7 +19,7 @@
   "dependencies": {
     "node-webos": "0.0.5",
     "react": "^16.2.0",
-    "react-tv": "file:../../../react-tv"
+    "react-tv": "0.3.0-beta.2"
   },
   "devDependencies": {
     "babel-core": "^6.4.5",

@@ -111,6 +111,7 @@ function runWebOS(root, device) {
   if (!device) {
     console.log('');
     console.log(chalk.dim('Up Emulator...'));
+
     runEmulator(webOS_TV_SDK_ENV);
 
     console.log(chalk.yellow(' LG WebOS Emulator 3.0.0 succefull running'));
