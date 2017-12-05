@@ -26,7 +26,7 @@ function runWebOS(root, device) {
   }
 
   if (device) {
-    optDevice = `--device ${device}`
+    optDevice = `--device ${device}`;
   }
 
   process.env['PATH'] = `${webOS_TV_SDK_ENV}:${process.env['PATH']}`;
@@ -132,11 +132,13 @@ function runWebOS(root, device) {
     console.log(chalk.yellow(` launched`));
 
     console.log(chalk.dim('Inspecting...'));
-    const inspect = spawnSync('ares-inspect', [`-a ${config.id} ${optDevice}`],
+    const inspect = spawnSync(
+      'ares-inspect',
+      [`-a ${config.id} ${optDevice}`],
       {
         stdio: 'inherit',
         shell: true,
-        encoding : 'utf8'
+        encoding: 'utf8',
       }
     );
   }, 500);

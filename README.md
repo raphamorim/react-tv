@@ -254,6 +254,8 @@ WebOS, also known as Open WebOS or LG WebOS, (previously known as HP WebOS and P
 - http://webostv.developer.lge.com/develop/building-your-first-web-app-webos-tv/
 - http://webostv.developer.lge.com/develop/app-test/
 - http://webostv.developer.lge.com/api/web-api/supported-standard-web-api/
+- http://webostv.developer.lge.com/develop/app-developer-guide/web-app-lifecycle/
+- http://webostv.developer.lge.com/develop/js-services/calling-js-service/
 
 #### Videos
 

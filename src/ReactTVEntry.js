@@ -7,9 +7,6 @@
  * @flow
  */
 
-Map = require('es6-map');
-Set = require('es6-set');
-
 import ReactTVRenderer from './renderer/ReactTVFiberEntry';
 
 const ReactTV = {
