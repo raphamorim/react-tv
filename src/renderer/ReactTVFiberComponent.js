@@ -68,6 +68,10 @@ function setInitialDOMProperties(
     } else if (isCustomComponentTag) {
       DOMPropertyOperations.setValueForAttribute(domElement, propKey, nextProp);
     } else if (nextProp != null) {
+      if (propKey === 'className') {
+        propKey = 'class';
+      }
+
       domElement.setAttribute(propKey, nextProp);
     }
   }
@@ -80,7 +84,7 @@ function updateDOMProperties(
   isCustomComponentTag: boolean
 ): void {
   for (let i = 0; i < updatePayload.length; i += 2) {
-    const propKey = updatePayload[i];
+    let propKey = updatePayload[i];
     const propValue = updatePayload[i + 1];
     if (propKey === STYLE) {
       // CSSPropertyOperations.setValueForStyles(domElement, propValue);
@@ -97,6 +101,10 @@ function updateDOMProperties(
         domElement.removeAttribute(propKey);
       }
     } else if (propValue != null) {
+      if (propKey === 'className') {
+        propKey = 'class';
+      }
+
       domElement.setAttribute(propKey, propValue);
     } else {
       // If we're updating to null or undefined, we should remove the property

@@ -93,4 +93,41 @@ describe('[render] Behavior tests', () => {
     render(<Clock />, root);
     expect(root.textContent).toEqual('my second value');
   });
+
+  it('should className transform to class', () => {
+    const root = document.createElement('div');
+    const ReactElement = <div className={'custom-class'}>Cool Component</div>;
+
+    const expectedElement = document.createElement('div');
+    expectedElement.setAttribute('class', 'custom-class');
+    expectedElement.textContent = 'Cool Component';
+
+    expect(render(ReactElement, root)).toEqual(expectedElement);
+  });
+
+  it('should className transform to class after update', () => {
+    const root = document.createElement('div');
+    class ReactElement extends React.Component {
+      constructor() {
+        super();
+        this.state = {value: 'first cool'};
+      }
+
+      componentDidMount() {
+        this.setState({value: 'second cool'});
+      }
+
+      render() {
+        return (
+          <div className="container">
+            <p>{this.state.value}</p>
+          </div>
+        );
+      }
+    }
+
+    render(<ReactElement />, root);
+    expect(root.textContent).toEqual('second cool');
+    expect(root.children[0].getAttribute('class')).toEqual('container');
+  });
 });
