@@ -7,6 +7,14 @@ function debug(msg) {
   console.log(chalk.dim('[react-tv]'), msg);
 }
 
+function version() {
+  console.log('');
+  console.log(
+    'react-tv version:',
+    chalk.yellow(require(path.resolve(__dirname, '../../package.json')).version)
+  );
+}
+
 function help() {
   console.log('');
   console.log(
