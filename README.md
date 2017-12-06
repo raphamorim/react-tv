@@ -89,19 +89,16 @@ Just add `focusable` for navigable elements and `focused` for an element which s
   <div focusable onBlur={() => console.log('blur') } >
     Item with Blur Handler
   </div>
-  <div class="my-horizontal-list">
-    <div class="item" focusable onPress={() => console.log('pressed') } >
+  <div className="my-horizontal-list">
+    <div className="item" focusable onPress={() => console.log('pressed') } >
       Horizontal Item 1 with Press Handler
     </div>
-    <div class="item" focusable focused>
+    <div className="item" focusable focused>
       Horizontal Item 2 which started focused
     </div>
   </div>
-  <div class="item" focusable onFocus={() => console.log('focused') } >
+  <div className="item" focusable onFocus={() => console.log('focused') } >
     Item with Focus Handler
-  </div>
-  <div class="item">
-    Item which can't be focused or selected
   </div>
 </div>
 ```
@@ -288,7 +285,7 @@ WebOS, also known as Open WebOS or LG WebOS, (previously known as HP WebOS and P
 
 #### Stage 1
 
-Initial proof-of-concept. [IN PROGRESS]
+Initial proof-of-concept. [DONE]
 
 - [x] CLI Build Abstraction of LG Webos (`run-webos`, `run-webos-dev`)
 - [x] Create a guide or script to Install all LG WebOS environment
@@ -296,22 +293,22 @@ Initial proof-of-concept. [IN PROGRESS]
   - [x] Support HOF and HOC
   - [x] Support State and Lifecycle
   - [x] Keyboard Navigation
-- [ ] Optmizate DOMRenderer for TV
 - [x] Check `webos` Platform
 - [x] Migrate to `React-Reconciler`
-- [ ] Improve documentation
 
-#### Stage 2
+#### Stage 2 [IN PROGRESS]
 
 Implement essential functionality needed for daily use by early adopters.
 
 - [ ] Support render to Canvas instead DOM using `React.CanvasComponent`
-- [ ] `run-webos` support TV device as param
+- [x] `run-webos` support TV device as param
+- [ ] Optmizate DOMRenderer for TV
 - [ ] Start CLI for Tizen
-- [ ] Develop helpers for WebOS debbug (e.g: Log System).
-- [ ] Support Cross Platform
-  - [ ] Check executable bin path for Windows, OSX and Linux
-- [ ] Bind TV key listeners on `React.Element`
+- [x] Develop helpers for WebOS debbug (e.g: Log System).
+- [x] Support Cross Platform
+  - [x] Check executable bin path for Windows, OSX and Linux
+- [ ] Bind all TV key listeners on `React.Element`
+- [ ] Improve documentation
 - [ ] Benchmark it
 
 #### Stage 3
