@@ -13,6 +13,7 @@
     "start": "NODE_ENV=production yarn build && react-tv run-webos",
     "start-dev": "webpack-dev-server --progress --colors"
   },
+  "license": "MIT",
   "dependencies": {
     "react": "^16.0.0",
     "react-tv": "0.3.0-beta.2"
