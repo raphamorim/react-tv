@@ -19,6 +19,7 @@ import {
 } from './shared/HTMLNodeType';
 
 import * as DOMPropertyOperations from './shared/DOMPropertyOperations';
+import * as CSSPropertyOperations from './shared/CSSPropertyOperations';
 import isCustomComponent from './shared/utils/isCustomComponent';
 import escapeTextContentForBrowser from './shared/utils/escapeTextContentForBrowser';
 
@@ -58,7 +59,7 @@ function setInitialDOMProperties(
     }
     let nextProp = nextProps[propKey];
     if (propKey === STYLE) {
-      // noop
+      CSSPropertyOperations.setValueForStyles(domElement, nextProp, () => '');
     } else if (propKey === CHILDREN) {
       // noop
     } else if (EventConstants.hasOwnProperty(propKey)) {
@@ -87,7 +88,7 @@ function updateDOMProperties(
     let propKey = updatePayload[i];
     const propValue = updatePayload[i + 1];
     if (propKey === STYLE) {
-      // CSSPropertyOperations.setValueForStyles(domElement, propValue);
+      CSSPropertyOperations.setValueForStyles(domElement, propValue);
     } else if (propKey === CHILDREN) {
       setTextContent(domElement, propValue);
     } else if (isCustomComponentTag) {
