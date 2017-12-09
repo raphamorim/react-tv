@@ -48,7 +48,7 @@ const log = (a, b, c) => {
   }
 };
 
-const ReactTVFiberRenderer = ReactFiberReconciler({
+const Renderer = ReactFiberReconciler({
   createInstance(
     type: string,
     props: Props,
@@ -286,6 +286,15 @@ const ReactTVFiberRenderer = ReactFiberReconciler({
   now: () => {},
 });
 
+const foundDevTools = Renderer.injectIntoDevTools({
+  // just to get fnRefName
+  findFiberByHostInstance: function findByClosest() {},
+  // force to DEV bundle (only to test)
+  bundleType: 1,
+  version: 'version',
+  rendererPackageName: 'my-package-name',
+})
+
 const defaultContainer = {};
 const roots = new Map();
 
@@ -295,19 +304,19 @@ const ReactTVRenderer = {
       typeof container === 'undefined' ? defaultContainer : container;
     let root = roots.get(containerKey);
     if (!root) {
-      root = ReactTVFiberRenderer.createContainer(containerKey);
+      root = Renderer.createContainer(containerKey);
       roots.set(container, root);
     }
 
-    ReactTVFiberRenderer.updateContainer((element: any), root, null, callback);
-    return ReactTVFiberRenderer.getPublicRootInstance(root);
+    Renderer.updateContainer((element: any), root, null, callback);
+    return Renderer.getPublicRootInstance(root);
   },
   unmountComponentAtNode(container: any) {
     const containerKey =
       typeof container === 'undefined' ? defaultContainer : container;
     const root = roots.get(containerKey);
     if (root) {
-      ReactTVFiberRenderer.updateContainer(null, root, null, () => {
+      Renderer.updateContainer(null, root, null, () => {
         roots.delete(container);
       });
     }
