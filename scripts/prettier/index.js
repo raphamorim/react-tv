@@ -30,8 +30,8 @@ const config = {
     patterns: ['packages/react-tv/**/*.js', 'packages/react-tv-cli/**/*.js'],
     ignore: [
       '**/node_modules/**',
-      'packages/react-tv-cli/bootstrap',
-      'packages/react-tv/dist',
+      'packages/react-tv-cli/bootstrap/**/*.js',
+      'packages/react-tv/dist/**/*.js',
     ],
   },
   scripts: {
