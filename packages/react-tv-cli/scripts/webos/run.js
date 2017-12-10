@@ -32,9 +32,7 @@ function runEmulator(ENV) {
       exec(`
         sh ${ENV}/../../Emulator/v3.0.0/LG_webOS_TV_Emulator.sh
         &&
-        java -jar ${
-          ENV
-        }/../../Emulator/v3.0.0/LG_webOS_TV_Emulator_linux_x64.jar -remocon`);
+        java -jar ${ENV}/../../Emulator/v3.0.0/LG_webOS_TV_Emulator_linux_x64.jar -remocon`);
       break;
     case 'win32':
       exec(`LG_webOS_TV_Emulator.bat`, {

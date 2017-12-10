@@ -4,11 +4,8 @@
 
 node_modules
 package-lock.json
-
-dist/**
-docs/**
-
-packages/react-tv-cli/generators/app/yarn.lock
-examples/**/*/yarn.lock
+packages/react-tv/dist/
 
 yarn.lock
+packages/react-tv-cli/generators/app/yarn.lock
+examples/**/*/yarn.lock

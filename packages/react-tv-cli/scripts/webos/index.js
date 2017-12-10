@@ -6,4 +6,4 @@ module.exports = {
   run,
   setupDevice,
   novacom,
-}
+};
