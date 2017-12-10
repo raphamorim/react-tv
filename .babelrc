@@ -2,8 +2,9 @@
   "presets": [
     ["env", {
       "loose": true,
+      "modules": false,
       "targets": {
-        "browsers": ["last 5 versions", "safari >= 7"]
+        "browsers": ["last 5 versions", "safari >= 6"]
       }
     }],
     "react",
@@ -17,5 +18,10 @@
       "moduleName": "babel-runtime"
     }],
     "transform-flow-strip-types",
-  ]
+  ],
+  "env": {
+    "TEST": {
+      "presets": [ "env", "react", "stage-2" ],
+    }
+  }
 }

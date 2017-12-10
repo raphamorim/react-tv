@@ -10,6 +10,7 @@ const optimizeJs = require('rollup-plugin-optimize-js');
 const chalk = require('chalk');
 
 const REACT_TV_VERSION = require('../../package.json').version;
+const packagePath = 'packages/react-tv';
 
 let tasks = [];
 
@@ -54,27 +55,27 @@ function createBundle({entryPath, bundleType, destName}) {
       bundle.write({
         format: bundleType === 'PROD-UMD' ? 'umd' : 'iife',
         name: 'ReactTV',
-        file: `dist/${destName}`,
+        file: `${packagePath}/dist/${destName}`,
       })
     );
   });
 }
 
 createBundle({
-  entryPath: 'src/ReactTVEntry.js',
+  entryPath: `${packagePath}/ReactTVEntry.js`,
   bundleType: 'DEV',
   destName: 'react-tv.js',
 });
 
 if (process.env['NODE_ENV'] === 'PROD') {
   createBundle({
-    entryPath: 'src/ReactTVEntry.js',
+    entryPath: `${packagePath}/ReactTVEntry.js`,
     bundleType: 'PROD',
     destName: 'react-tv.min.js',
   });
 
   createBundle({
-    entryPath: 'src/ReactTVEntry.js',
+    entryPath: `${packagePath}/ReactTVEntry.js`,
     bundleType: 'PROD-UMD',
     destName: 'react-tv.umd.js',
   });
