@@ -3,7 +3,7 @@
 const argv = process.argv;
 const path = require('path');
 const {help, debug, createReactTVApp} = require('./shared');
-const {runWebOS} = require('./scripts');
+const { WebOS } = require('./scripts');
 
 if (argv.length < 2) {
   return help();
@@ -26,7 +26,11 @@ switch (command) {
       device = argv[3];
     }
 
-    runWebOS(process.cwd(), device);
+    WebOS.run(process.cwd(), device);
+    break;
+
+  case 'setup-webos':
+    WebOS.setupDevice();
     break;
 
   default:

@@ -1,3 +1,5 @@
+const WebOS = require('./webos');
+
 module.exports = {
-  runWebOS: require('./webos/run'),
+  WebOS,
 };
