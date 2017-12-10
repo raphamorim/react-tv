@@ -1,8 +1,7 @@
 const path = require('path');
 const fs = require('fs-extra');
 const chalk = require('chalk');
-const {exec, execSync} = require('child_process');
-const spawnSync = require('child_process').spawnSync;
+const {exec, execSync, spawnSync} = require('child_process');
 
 function defaultCLIEnv() {
   const darwin = '/opt/webOS_TV_SDK/CLI/bin';
@@ -58,7 +57,7 @@ function isReactTVWebOSProject(root) {
   return false;
 }
 
-function runWebOS(root, device) {
+function run(root, device) {
   let webOS_TV_SDK_ENV = process.env['WEBOS_CLI_TV'] || false;
   let optDevice = '';
 
@@ -192,4 +191,4 @@ function runWebOS(root, device) {
   }, 500);
 }
 
-module.exports = runWebOS;
+module.exports = run;
