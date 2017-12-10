@@ -8,5 +8,7 @@ package-lock.json
 dist/**
 docs/**
 
-cli/generators/app/yarn.lock
+packages/react-tv-cli/generators/app/yarn.lock
 examples/**/*/yarn.lock
+
+yarn.lock
