@@ -61,12 +61,6 @@ function createBundle({entryPath, bundleType, destName}) {
   });
 }
 
-createBundle({
-  entryPath: `${packagePath}/ReactTVEntry.js`,
-  bundleType: 'DEV',
-  destName: 'react-tv.js',
-});
-
 if (process.env['NODE_ENV'] === 'PROD') {
   createBundle({
     entryPath: `${packagePath}/ReactTVEntry.js`,
@@ -78,6 +72,12 @@ if (process.env['NODE_ENV'] === 'PROD') {
     entryPath: `${packagePath}/ReactTVEntry.js`,
     bundleType: 'PROD-UMD',
     destName: 'react-tv.umd.js',
+  });
+} else {
+  createBundle({
+    entryPath: `${packagePath}/ReactTVEntry.js`,
+    bundleType: 'DEV',
+    destName: 'react-tv.js',
   });
 }
 

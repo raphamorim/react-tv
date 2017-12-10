@@ -2,12 +2,12 @@ const fs = require('fs');
 const path = require('path');
 const Table = require('cli-table');
 
-const files = ['react-tv.js', 'react-tv.umd.js', 'react-tv.min.js'];
+const files = ['react-tv.umd.js', 'react-tv.min.js'];
 
 const sizeInfo = ['size'];
 const table = new Table({
   head: ['rel'].concat(files),
-  colWidths: [20, 20, 20, 20],
+  colWidths: [20, 20, 20],
 });
 
 files.forEach(file => {

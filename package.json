@@ -7,9 +7,9 @@
   ],
   "scripts": {
     "build": "node scripts/rollup/build.js",
-    "build:all": "NODE_ENV=PROD node scripts/rollup/build.js",
+    "build:prod": "NODE_ENV=PROD node scripts/rollup/build.js",
     "build:stats": "node scripts/rollup/stats.js",
-    "prepublishOnly": "yarn test && yarn build:all",
+    "prepublishOnly": "yarn test && yarn build:prod",
     "prettier:stat": "node ./scripts/prettier/index",
     "test": "yarn prettier:stat && yarn flow && yarn jest:ci",
     "jest": "NODE_ENV=TEST jest --testPathIgnorePatterns \"(__fixtures__|matcher.js)\"",
