@@ -11,7 +11,7 @@ const table = new Table({
 });
 
 files.forEach(file => {
-  const stats = fs.statSync(path.resolve('dist/', file));
+  const stats = fs.statSync(path.resolve('packages/react-tv/dist/', file));
   const size = stats.size;
   const i = Math.floor(Math.log(stats.size) / Math.log(1024));
   sizeInfo.push(

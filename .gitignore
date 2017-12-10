@@ -4,7 +4,7 @@
 
 node_modules
 package-lock.json
-packages/react-tv/dist/
+packages/react-tv/dist
 
 yarn.lock
 packages/react-tv-cli/generators/app/yarn.lock

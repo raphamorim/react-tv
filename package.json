@@ -44,8 +44,7 @@
   "homepage": "https://github.com/raphamorim/react-tv#readme",
   "jest": {
     "roots": [
-      "<rootDir>/src",
-      "<rootDir>/cli"
+      "<rootDir>/packages"
     ],
     "moduleDirectories": [
       "node_modules",
