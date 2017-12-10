@@ -27,8 +27,12 @@ const defaultOptions = {
 };
 const config = {
   default: {
-    patterns: ['src/**/*.js', 'cli/**/*.js'],
-    ignore: ['**/node_modules/**', 'cli/generators/**/*.js'],
+    patterns: ['packages/react-tv/**/*.js', 'packages/react-tv-cli/**/*.js'],
+    ignore: [
+      '**/node_modules/**',
+      'packages/react-tv-cli/bootstrap',
+      'packages/react-tv/dist',
+    ],
   },
   scripts: {
     patterns: ['scripts/**/*.js', 'fixtures/**/*.js'],

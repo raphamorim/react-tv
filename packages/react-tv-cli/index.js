@@ -3,7 +3,7 @@
 const argv = process.argv;
 const path = require('path');
 const {help, debug, createReactTVApp} = require('./shared');
-const { WebOS } = require('./scripts');
+const {WebOS} = require('./scripts');
 
 if (argv.length < 2) {
   return help();
