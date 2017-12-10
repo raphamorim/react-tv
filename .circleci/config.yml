@@ -9,20 +9,36 @@ jobs:
     steps:
       - checkout
 
+      # Versions Check
+      - run:
+          name: Node version
+          command: node -v
+      - run:
+          name: Yarn version
+          command: yarn --version
+
       - restore_cache:
           keys:
           - v1-dependencies-{{ checksum "package.json" }}
           - v1-dependencies-
 
-      - run: yarn install
+      - run:
+          name: Install base packages
+          command: yarn install
 
       - save_cache:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
-      - run: yarn test
+      - run:
+          name: Test packages
+          command: yarn test
 
-      - run: yarn build:all
+      - run:
+          name: Build react-tv
+          command: yarn build:all
 
-      - run: yarn build:stats
+      - run:
+          name: Build status react-tv
+          command: yarn build:stats
