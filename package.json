@@ -11,9 +11,9 @@
     "build:stats": "node scripts/rollup/stats.js",
     "prepublishOnly": "yarn test && yarn build:all",
     "prettier:stat": "node ./scripts/prettier/index",
-    "test": "yarn prettier:stat && yarn flow && yarn jest:ci",
-    "jest": "jest --testPathIgnorePatterns \"(__fixtures__|matcher.js)\"",
-    "jest:ci": "jest --testPathIgnorePatterns \"(__fixtures__|matcher.js)\" --ci --runInBand",
+    "test": "yarn prettier:stat && yarn flow && yarn jest:ci && yarn build:all",
+    "jest": "NODE_ENV=TEST jest --testPathIgnorePatterns \"(__fixtures__|matcher.js)\"",
+    "jest:ci": "NODE_ENV=TEST jest --no-cache --testPathIgnorePatterns \"(__fixtures__|matcher.js)\" --ci --runInBand",
     "flow": "flow",
     "prettier": "node ./scripts/prettier/index.js write-changed",
     "prettier:all": "node ./scripts/prettier/index.js write"
