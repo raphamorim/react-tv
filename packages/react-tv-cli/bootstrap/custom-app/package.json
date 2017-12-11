@@ -10,13 +10,15 @@
   },
   "scripts": {
     "build": "webpack",
-    "start": "NODE_ENV=production yarn build && react-tv run-webos",
+    "react-tv-cli": "react-tv-cli",
+    "start": "NODE_ENV=production yarn build && react-tv-cli run-webos",
     "start-dev": "webpack-dev-server --progress --colors"
   },
   "license": "MIT",
   "dependencies": {
     "react": "^16.0.0",
-    "react-tv": "0.3.0"
+    "react-tv": "0.3.0",
+    "react-tv-cli": "0.3.0"
   },
   "devDependencies": {
     "webpack": "^3.8.1",
