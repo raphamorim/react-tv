@@ -1,6 +1,6 @@
 # [React-TV](https://github.com/raphamorim/react-tv) · [![license](https://img.shields.io/npm/l/react-tv.svg)]() [![npm version](https://img.shields.io/npm/v/react-tv.svg?style=flat)](https://www.npmjs.com/package/react-tv) [![circleci status](https://circleci.com/gh/raphamorim/react-tv/tree/master.svg?style=shield)](https://circleci.com/gh/raphamorim/react-tv) [![Build status](https://ci.appveyor.com/api/projects/status/h851w6fprabjuifb/branch/master?svg=true)](https://ci.appveyor.com/project/raphamorim/react-tv/branch/master) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md#pull-requests)
 
-> <p>React Renderer for low memory applications.</p><p>React Packager for TVs (WebOS, Tizen, Orsay).</p><p>You can use it separately. Currently under development.</p>
+> <p>react-tv: React Renderer for low memory applications.</p><p>react-tv-cli: React Packager for TVs.</p><p>Currently under development.</p>
 
 ![React-TV Logo](resources/images/reactv-cover-dark.png)
 
@@ -33,19 +33,17 @@ ReactTV.render(<Clock/>, document.getElementById('root'))
 
 - [About React-TV](#about-react-tv)
   - [Understanding the Problem](#understanding-the-problem)
-  - [React-TV Renderer Characteristics](#react-tv-renderer-characteristics)
+  - [Articles](#articles)
+- [react-tv-cli](#react-tv-cli)
+  - [Developing for WebOS](#developing-for-webos)
+  - [Setup WebOS Environment](#setup-webos-environment)
+- [react-tv](#react-tv)
+  - [`Platform`](#platform)
+  - [`renderOnAppLoaded`](#renderonapploaded)
   - [Spatial Navigation](#spatial-navigation)
-- [Getting Started](#getting-started)
-  - [Installing](#installing)
-  - [Using CLI](#using-cli)
-    - [React-TV CLI for WebOS](#react-tv-cli-for-webos)
-      - [Setup WebOS Environment](#2-setup-webos-environment)
-  - [Using Module](#using-module)
 - [Examples](#examples)
-    - [Clock](#clock)
-    - [Youtube](#youtube)
-- [Supported Televisions](#supported-televisions)
-  - [LG WebOS](#lg-webos)
+    - [Clock App](#clock-app)
+    - [Youtube App](#youtube-app)
 - [References for Study](#references)
   - [WebOS](#webos)
   - [Videos](#videos)
@@ -70,13 +68,97 @@ Crafting a high-performance TV user interface using React is a real challenge, b
 - Single core CPUs
 - High Memory Usage for a common TV App
 
-These restrictions make super responsive 60fps experiences especially tricky. The strategy is **step in the renderer**: Applying reactive concepts to unblock the processing on the renderer layer, plug the TV's keyListener, avoid React.createElement (which cost a lot)[...]
+These restrictions make super responsive 60fps experiences especially tricky. The strategy is **step in the renderer**: Applying reactive concepts to unblock the processing on the renderer layer, plug the TV's keyListener, avoid React.createElement.
 
 In addition: Unify the build for multiple TV platforms.
 
-### React-TV Renderer Characteristics
+### Articles
 
-The React-TV renderer is **asynchronous by default**. Does not check for accessibility properties.
+Friendly list of tutorials and articles: 
+
+- https://medium.com/@raphamorim/developing-for-tvs-with-react-tv-b5b5204964ef
+
+## [react-tv-cli](https://www.npmjs.com/package/react-tv-cli)
+
+To install `react-tv-cli` (CLI Packager):
+
+```bash
+$ yarn global add react-tv-cli
+```
+
+### Developing for WebOS
+
+<p align="center"><img src="http://ksassets.timeincuk.net/wp/uploads/sites/54/2015/07/lg-webOS-2-0-2015-Main-1.jpg" /></p>
+
+**Short Description:** WebOS, also known as Open WebOS or LG WebOS, (previously known as HP WebOS and Palm WebOS, stylized as webOS) is a Linux kernel-based multitasking operating system for smart devices such as Smart TVs and it has been used as a mobile operating system.
+
+--------------------------------------------------------
+
+First of all, setup your WebOS Environment:
+
+#### [Setup WebOS Enviroment](docs/setup-webos-environment.md)
+
+Then, init your react-tv project.
+
+```bash
+$ react-tv init <my-app-name>
+```
+
+Add the files related to your app on the React-TV entry on `package.json`:
+
+```json
+{
+  "name": "my-app-name",
+  "react-tv": {
+    "files": [
+      "index.html",
+      "bundle.js",
+      "style.css"
+    ]
+  }
+}
+```
+
+Running it on specific device:
+
+```
+$ react-tv run-webos <device>
+```
+
+* When you not specify the device, it runs on VirtualBox WebOS Simulator
+
+## [react-tv](https://www.npmjs.com/package/react-tv)
+
+To install `react-tv` (React Renderer):
+
+```bash
+$ yarn add react-tv
+```
+
+### `Platform`
+
+When building a cross-platform TV app, you'll want to re-use as much code as possible. You'll probably have different scenarios where different code might be necessary.  
+For instance, you may want to implement separated visual components for `LG-WebOS` and `Samsung-Tizen`.
+
+React-TV provides the `Platform` module to easily organize your code and separate it by platform:
+
+```js
+import { Platform } from 'react-tv'
+
+console.log(Platform('webos')) // true
+console.log(Platform('tizen')) // false
+console.log(Platform('orsay')) // false
+```
+
+### `renderOnAppLoaded`
+
+Takes a component and returns a higher-order component version of that component, which renders only after application was launched, allows to not write diffent logics for many devices.
+
+```js
+import { renderOnAppLoaded } from 'react-tv'
+
+const App = renderOnAppLoaded(<MyComponent/>)
+```
 
 ### Spatial Navigation
 
@@ -105,112 +187,6 @@ Just add `focusable` for navigable elements and `focused` for an element which s
 
 See [examples/navigation](examples/navigation) for more details about usage.
 
-## Getting Started
-
-### Installing
-
-To install `react-tv` as a CLI Packager:
-
-```bash
-$ npm install -g react-tv
-# or
-$ yarn global add react-tv
-```
-
-To install `react-tv` as a React Renderer:
-
-```bash
-$ npm install react-tv --save
-# or
-$ yarn add react-tv
-```
-
-## Using CLI
-
-### React-TV CLI for WebOS
-
-#### 1: Install globally React-TV
-
-```bash
-$ yarn add --global react-tv
-```
-
-#### 2: Setup WebOS Environment
-
-[Setup WebOS Enviroment](docs/setup-webos-environment.md)
-
-#### 3: Setting Up
-
-3.1: If you doesn't have a project yet and you want to start from scratch, jump to topic 3 (Running It!).
-
-```bash
-$ react-tv init <my-app-name>
-```
-
-3.2: If you already have some source code. Just run `react-tv init` on the project root.  
-
-3.3: Add the files related to your app on the React-TV entry on `package.json`:
-
-```json
-{
-  "name": "my-app-name",
-  "react-tv": {
-    "files": [
-      "index.html",
-      "bundle.js",
-      "style.css"
-    ]
-  }
-}
-```
-
-#### 4: Running It!
-
-##### On TVs
-
-Run on device
-
-```
-$ react-tv run-webos <device>
-```
-
-##### On Emulator
-
-Run the emulator (should pack, build and run it on the emulator):
-
-When you not specify the device, it runs on VirtualBox WebOS Simulator.
-
-```
-$ react-tv run-webos
-```
-
-## Using as React Renderer
-
-### `Platform`
-
-When building a cross-platform TV app, you'll want to re-use as much code as possible. You'll probably have different scenarios where different code might be necessary.  
-For instance, you may want to implement separated visual components for `LG-WebOS` and `Samsung-Tizen`.
-
-React-TV provides the `Platform` module to easily organize your code and separate it by platform:
-
-```js
-import { Platform } from 'react-tv'
-
-console.log(Platform('webos')) // true
-console.log(Platform('tizen')) // false
-console.log(Platform('orsay')) // false
-```
-
-### `renderComponentOnAppLoaded`
-
-Takes a component and returns a higher-order component version of that component, which renders only after application was launched, allows to not write diffent logics for many devices.
-
-```js
-import { renderComponentOnAppLoaded } from 'react-tv'
-
-const App = renderComponentOnAppLoaded(<MyComponent/>)
-```
-
 ## Examples
 
 ### [Clock App](https://github.com/raphamorim/react-tv/tree/master/examples/clock-app-with-react-tv)
@@ -220,26 +196,6 @@ const App = renderComponentOnAppLoaded(<MyComponent/>)
 ### [Youtube App](https://github.com/dead/react-key-navigation/tree/master/examples/youtube-react-tv)
 
 ![Youtube App Example](https://raw.githubusercontent.com/dead/react-key-navigation/master/examples/youtube-react-tv/example.gif)
-
-## Supported Televisions
-
-### LG WebOS
-
-![WebOS 3.0](https://i.ytimg.com/vi/tsRrFehUPEA/maxresdefault.jpg)
-
-**Target Version: 3.0**
-
-For 2.0, 1.0 versions: [use polyfills](https://github.com/raphamorim/react-tv/issues/64).
-
-WebOS, also known as Open WebOS or LG WebOS, (previously known as HP WebOS and Palm WebOS, stylized as webOS) is a Linux kernel-based multitasking operating system for smart devices such as Smart TVs and it has been used as a mobile operating system.
-
-### Samsung Tizen
-
-[Work in Progress]
-
-### Samsung Orsay
-
-[Work in Progress]
 
 ## References:
 
