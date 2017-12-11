@@ -13,13 +13,14 @@
   },
   "scripts": {
     "build": "webpack",
-    "start": "NODE_ENV=production yarn build && react-tv run-webos",
+    "start": "NODE_ENV=production yarn build && react-tv-cli run-webos",
     "start-dev": "webpack-dev-server --progress --colors"
   },
   "dependencies": {
     "node-webos": "0.0.5",
     "react": "^16.2.0",
-    "react-tv": "0.3.0-beta.2"
+    "react-tv": "0.3.0",
+    "react-tv-cli": "0.3.0"
   },
   "devDependencies": {
     "babel-core": "^6.4.5",
