@@ -5,6 +5,12 @@
   "bin": {
     "react-tv": "index.js"
   },
+  "files": [
+    "bootstrap/",
+    "scripts/",
+    "shared/",
+    "index.js"
+  ],
   "preferGlobal": true,
   "dependencies": {
     "chalk": "^2.1.0",
