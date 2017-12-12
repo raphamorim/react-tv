@@ -18,7 +18,6 @@
     "start-dev": "webpack-dev-server --progress --colors"
   },
   "dependencies": {
-    "node-webos": "0.0.5",
     "react": "^16.2.0",
     "react-tv": "^0.3.0",
     "react-tv-cli": "^0.3.0"
