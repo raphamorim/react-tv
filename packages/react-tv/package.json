@@ -2,6 +2,7 @@
   "name": "react-tv",
   "version": "0.3.0",
   "description": "React renderer for low memory applications",
+  "main": "dist/react-tv.umd.js",
   "files": [
     "LICENSE",
     "README.md",
