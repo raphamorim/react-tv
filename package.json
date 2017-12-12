@@ -2,7 +2,8 @@
   "private": true,
   "version": "0.3.0",
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "examples/*"
   ],
   "scripts": {
     "build": "node scripts/rollup/build.js",

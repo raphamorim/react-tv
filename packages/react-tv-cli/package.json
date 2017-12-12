@@ -16,7 +16,7 @@
     "chalk": "^2.1.0",
     "fs-extra": "^4.0.3",
     "node-replace": "^0.3.1",
-    "node-webos": "0.0.5"
+    "node-webos": "0.0.6"
   },
   "repository": {
     "type": "git",
