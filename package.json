@@ -54,6 +54,7 @@
       "modules",
       "cli",
       "scripts",
+      "examples",
       "renderer",
       "docs",
       "test"
