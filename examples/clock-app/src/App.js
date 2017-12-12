@@ -1,5 +1,5 @@
 import React from 'react'
-import ReactTV, { Platform } from 'react-tv'
+import ReactTV, { Platform, renderOnAppLoaded } from 'react-tv'
 
 class Clock extends React.Component {
   constructor() {
@@ -26,4 +26,6 @@ class Clock extends React.Component {
   }
 }
 
-ReactTV.render(<Clock/>, document.getElementById('root'))
+const App = renderOnAppLoaded(Clock)
+
+ReactTV.render(<App/>, document.getElementById('root'))

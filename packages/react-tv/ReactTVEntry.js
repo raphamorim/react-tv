@@ -15,4 +15,5 @@ const ReactTV = {
 };
 
 export {default as Platform} from './modules/Platform';
+export {default as renderOnAppLoaded} from './modules/renderOnAppLoaded';
 export default ReactTV;
