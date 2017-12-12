@@ -76,7 +76,7 @@ In addition: Unify the build for multiple TV platforms.
 
 Friendly list of tutorials and articles: 
 
-- https://medium.com/@raphamorim/developing-for-tvs-with-react-tv-b5b5204964ef
+- [Developing for TVs with React-TV](https://medium.com/@raphamorim/developing-for-tvs-with-react-tv-b5b5204964ef)
 
 ## [react-tv-cli](https://www.npmjs.com/package/react-tv-cli)
 
