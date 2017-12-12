@@ -76,9 +76,15 @@ if (process.env['NODE_ENV'] === 'PROD') {
 } else {
   createBundle({
     entryPath: `${packagePath}/ReactTVEntry.js`,
-    bundleType: 'DEV',
-    destName: 'react-tv.js',
+    bundleType: 'PROD-UMD',
+    destName: 'react-tv.umd.js',
   });
+
+  // createBundle({
+  //   entryPath: `${packagePath}/ReactTVEntry.js`,
+  //   bundleType: 'DEV',
+  //   destName: 'react-tv.js',
+  // });
 }
 
 Promise.all(tasks).catch(error => {

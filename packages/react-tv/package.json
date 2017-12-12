@@ -23,12 +23,6 @@
     "samsung",
     "webos"
   ],
-  "devDependencies": {
-    "fbjs": "^0.8.4",
-    "react": "^16.2.0",
-    "react-fiber-types": "file:./renderer/types",
-    "react-reconciler": "^0.7.0"
-  },
   "author": "Raphael Amorim <rapha850@gmail.com>",
   "license": "MIT",
   "bugs": {
