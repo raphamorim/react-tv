@@ -6,17 +6,20 @@
     "examples/*"
   ],
   "scripts": {
+    "lerna": "lerna",
     "build": "node scripts/rollup/build.js",
-    "build:prod": "cross-env NODE_ENV=PROD && node scripts/rollup/build.js",
+    "build:prod": "cross-env NODE_ENV=PROD node scripts/rollup/build.js",
     "build:stats": "node scripts/rollup/stats.js",
     "prepublishOnly": "yarn test && yarn build:prod",
     "prettier:stat": "node ./scripts/prettier/index",
+    "clean-node-modules": "find ./ -name 'node_modules' -exec rm -rf '{}' +",
     "test": "yarn prettier:stat && yarn flow && yarn jest:ci",
     "jest": "cross-env NODE_ENV=TEST jest --testPathIgnorePatterns \"(__fixtures__|matcher.js)\"",
     "jest:ci": "cross-env NODE_ENV=TEST jest --no-cache --testPathIgnorePatterns \"(__fixtures__|matcher.js)\" --ci --runInBand",
     "flow": "flow",
     "prettier": "node ./scripts/prettier/index.js write-changed",
-    "prettier:all": "node ./scripts/prettier/index.js write"
+    "prettier:all": "node ./scripts/prettier/index.js write",
+    "publish": "lerna exec npm publish --scope '@(react-tv|react-tv-cli)'"
   },
   "devDependencies": {
     "babel-jest": "20.1.0-delta.1",
@@ -29,6 +32,7 @@
     "babelrc-rollup": "^3.0.0",
     "cli-table": "^0.3.1",
     "cross-env": "^5.1.1",
+    "lerna": "2.5.1",
     "flow-bin": "^0.57.3",
     "jest": "20.1.0-delta.1",
     "prettier": "^1.5.3",

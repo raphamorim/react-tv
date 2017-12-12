@@ -3,7 +3,7 @@
   "version": "0.3.0",
   "description": "Packager for TVs (WebOS, Tizen, Orsay)",
   "bin": {
-    "react-tv": "index.js"
+    "react-tv-cli": "index.js"
   },
   "files": [
     "bootstrap/",
