@@ -1,7 +1,7 @@
 import React from 'react'
-import ReactTV from 'react-tv'
+import ReactTV, { renderOnAppLoaded } from 'react-tv'
 
-class App extends React.Component {
+class Navigation extends React.Component {
   componentDidMount() {
     if (waterfall) {
       waterfall(document.querySelector('.waterfall'));
@@ -39,5 +39,7 @@ class App extends React.Component {
     )
   }
 }
+
+const App = renderOnAppLoaded(Navigation)
 
 ReactTV.render(<App/>, document.querySelector('#root'))
