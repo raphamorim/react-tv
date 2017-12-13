@@ -1,0 +1,34 @@
+{
+    "display" : ["name", "synopsis", "options", "description", "examples"],
+    "notab":["examples"],
+    "name" : "ares-pull - Pull file from a device to host machine",
+    "synopsis" : {
+        "default" : [
+            "ares-pull [OPTION...] <SOURCE(REMOTE)> <DESTINATION(LOCAL)>"
+        ]
+    },
+    "description" : [
+        "This command copies files from the DEVICE to the host.",
+        "",
+        "SOURCE is the path in the DEVICE, where files exist.",
+        "",
+        "DESTINATION is the path in the host machine, where multiple files can be copied."
+    ],
+    "examples" : [
+        "# Copy file or directory from the DEVICE to host machine",
+        "ares-pull /home/username/foo /home/username/foo -d DEVICE",
+        ""
+    ],
+    "options" : {
+        "cmdOpt":"option",
+        "default" : ["device", "device-list", "help", "version", "ignore", "verbose"],
+        "watch" : ["wait-for-device"],
+        "device" : "-d, --device <DEVICE> @TAB@ Specify DEVICE to use",
+        "device-list" : "-D, --device-list @TAB@ List the available DEVICEs",
+        "ignore" : "-i, --ignore @TAB@ Hide the detailed copy messages",
+        "wait-for-device" : "-w, --wait-for-device @TAB@ Wait for device to show up before running command",
+        "help" : "-h, --help @TAB@ Display this help",
+        "version" : "-V, --version @TAB@ Display version info",
+        "verbose" : "-v @TAB@ Display this verbose log"
+    }
+}

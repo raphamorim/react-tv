@@ -1,0 +1,1 @@
+var stream=require("stream"),util=require("util");(function(){function a(a){stream.Stream.call(this)}util.inherits(a,stream.Stream);a.prototype.pause=function(){};a.prototype.resume=function(){};a.prototype.destroy=function(){this.emit("end");this.emit("close")};"undefined"!==typeof module&&module.exports&&(module.exports=a)})();

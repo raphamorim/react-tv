@@ -1,0 +1,53 @@
+{
+    "display" : ["name", "synopsis", "options", "description", "examples"],
+    "notab":["examples"],
+    "name" : "ares-gdbserver - Run gdbserver on the device",
+    "synopsis" : {
+        "default" : [
+            "ares-gdbserver [OPTION...] [-a, --app] <APP_ID>",
+            "ares-gdbserver [OPTION...] -s, --service <SERVICE_ID>"
+        ]
+    },
+    "description" : [
+        "This commmand runs the gdbserver on the device.",
+        "",
+        "APP_ID is an app id described in appinfo.json.",
+        "SERVICE_ID is a service id described in services.json.",
+        "",
+        "This command displays the address which the gdb on the host machine can connect",
+        ">> gdb can connect to [target remote 192.168.123.123:9930]",
+        "",
+        "gdb can connect to the gdbserver remotely",
+        "> (gdb) file NATIVE_BIN",
+        "> (gdb) target remote 192.168.123.123:9930",
+        "> (gdb) c"
+    ],
+    "examples" : [
+        "",
+        "# Launch a native app with gdbserver (port: 9932) on the DEVICE",
+        "ares-gdbserver com.native.app -p 9932 -d DEVICE",
+        "",
+        "# Launch a native service with gdbserver (port: 9932) on the DEVICE",
+        "ares-gdbserver -s com.native.app.service -p 9932 -d DEVICE",
+        ""
+    ],
+    "options" : {
+        "cmdOpt":"option",
+        "default" : ["device", "device-list", "close", "port", "level", "help", "version", "verbose"],
+        "device" : [
+            "-d, --device <DEVICE> @TAB@ Specify DEVICE to use"
+        ],
+        "device-list" : [
+            "-D, --device-list @TAB@ List the available DEVICEs"
+        ],
+        "close" : [
+            "-c, --close @TAB@ Stop running gdbserver"
+        ],
+        "port" : [
+            "-p, --port @TAB@ Specify gdbserver port to use [default:9930]"
+        ],
+        "help" : "-h, --help @TAB@ Display this help",
+        "version" : "-V, --version @TAB@ Display version info",
+        "verbose" : "-v @TAB@ Display this verbose log"
+    }
+}

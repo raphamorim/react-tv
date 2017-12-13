@@ -1,0 +1,26 @@
+- help file type : JSON
+
+- description of property
+    - display [required] : String Array // display list of <help>
+    - title [optional] : String Array // display the <help> data with title (title is displayed as uppercase without tab)
+    - description [optional] : String Array // display the <help> data without tab.
+    - <help> [required] : String || String Array || Object // display the string with tab.
+        + String : display the strings in same line.
+            + @TAB@ : split the strings, @TAB@ means '\t%-32s'.
+        
+        + String Array : display the strings in different line.
+        
+        + Object (deafult type) : check the profile and platform. If Object has own property of profile or platform, the message should be changed as matched data.
+            + default [required] : String || String Array // default help message for profile
+            + defalut-platform [optional] : String || String Array // deafult help message for platform dependecy. 
+            + <profile> : String || String Array, currently 'tv', 'watch', 'signage' is possible. 
+            + <platform> : String || String Array, currently 'win32', 'linux', 'darwin' is possible.
+
+        + Object (option type) : check the <option> described in 'default' and '<profile>' propety. 
+            + type [required] : 'option',
+            + default [required] : String Array // <option> list for defalut profile.
+            + <profile> [optional] : String Array // <option> list for target profile.
+            + <option> [required] : String || String Array || Obeject // same as above. 
+
+            
+

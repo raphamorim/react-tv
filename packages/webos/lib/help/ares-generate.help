@@ -1,0 +1,96 @@
+{
+    "display" : ["name", "synopsis", "options", "extraoption", "description", "examples"],
+    "notitle": ["extraoption"],
+    "notab":["examples", "extraexamples"],
+    "name" : [
+        {
+            "tv" : "ares-generate - Generate files for a webOS app or service",
+            "watch" : "ares-generate - Generate files for a webOS app or service",
+            "signage" : "ares-generate - Generate files for a webOS app or service",
+            "ivi" : "ares-generate - Generate files for a ivi app"
+        }
+    ],
+    "synopsis" : { 
+        "default" : [
+            "ares-generate [OPTION...] <APP_DIR>"
+        ]
+    },
+    "description" : [
+        "This command generates files from the template.",
+        "",
+        "APP_DIR is the app directory. It will be created if it does not exist.",
+        "",
+        "PROPERTY defines properties to be used during generation",
+        "Properties can be specified as key-value pairs of the form \"key=value\"",
+        "or as JSON objects of the form \"{'key':'value', 'key2':'value2', ...}\".",
+        "Surrounding quotes are required in both cases."
+    ], 
+    "examples" : [
+        {
+            "tv" : [
+                "# Create an app in ~/projects/app and set the id, version, title",
+                "ares-generate -t bootplate-web -p \"{'id':'com.domain.app', 'version':'1.0.0', 'title':'First App'}\" ~/projects/app",
+                " Or",
+                "ares-generate -t bootplate-web -p \"id=com.domain.app\" -p \"version=1.0.0\" -p \"title=First App\" ~/projects/app",
+                "",
+                "# Create an webOS service named 'com.domain.app.service'",
+                "ares-generate -t webos-service -s \"com.domain.app.service\" ~/projects/service",
+                ""
+            ],
+            "watch" : [
+                "# Create an app in ~/project/app and set the id, version, title",
+                "ares-generate -t bootplate-web -p \"{'id':'com.domain.app', 'version':'1.0.0', 'title':'First App'}\" ~/projects/app",
+                " Or",
+                "ares-generate -t bootplate-web -p \"id=com.domain.app\" -p \"version=1.0.0\" -p \"title=First App\" ~/projects/app",
+                "",
+                "# Create an webOS service named 'com.domain.app.service'",
+                "ares-generate -t webos-service -s \"com.domain.app.service\" ~/projects/service",
+                ""
+            ],
+            "signage" : [
+                "# Create an app in ~/projects/app and set the id, version, title",
+                "ares-generate -t backlight-scheduling -p \"{'id':'com.lg.app.signage', 'version':'1.0.0', 'title':'First App'}\" ~/projects/app",
+                " Or",
+                "ares-generate -t backlight-scheduling -p \"id=com.lg.app.signage\" -p \"version=1.0.0\" -p \"title=First App\" ~/projects/app",
+                "",
+                "# Create an webOS service named 'com.domain.app.service'",
+                "ares-generate -t hello-service -s \"com.lg.app.signage.service\" ~/projects/service",
+                ""
+            ]
+        }
+    ],
+    "options" : {
+        "cmdOpt":"option",
+        "default" : ["template", "list", "property", "servicename", "overwrite", "level", "help", "version", "verbose"],
+        "tv" : [],
+        "watch" : [],
+        "template" : [
+            "-t, --template <TEMPLATE> @TAB@ Use the tepmlate named TEMPLATE"
+        ], 
+        "library-version" : [
+            "-lv, --library-version <VERSION> @TAB@ Set ENYO VERSION of the enyo template",
+            "@TAB@ VERSION can be listed via ares-generate --list, -l"
+        ],
+        "list" : [
+            "-l, --list @TAB@ List the available templates"
+        ],
+        "property" : [
+            "-p, --property <PROPERTY> @TAB@ Set the properties of appinfo.json"
+        ],
+        "servicename" : [
+            "-s, --servicename <SERVICE_NAME> @TAB@ Set the servicename for webOS service."
+        ],
+        "overwrite" : "-f, --overwrite @TAB@ Overwrite existing files",
+        "help" : "-h, --help @TAB@ Display this help",
+        "version" : "-V, --version @TAB@ Display version info",
+        "verbose" : "-v @TAB@ Display this verbose log"
+    },
+    "extraoption" : {
+        "cmdOpt":"hidden",
+        "default" : {
+            "cmdOpt":"option",
+            "default" : ["level"],
+            "level" : "--level <LEVEL> @TAB@ Set a log LEVEL of 'silly', 'verbose', 'info', 'http', 'warn', 'error'"
+        }
+    }
+}

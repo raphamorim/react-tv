@@ -1,0 +1,34 @@
+[
+    {
+        "order":"0",
+        "profile": "tv",
+        "name": "emulator",
+        "type": "starfish",
+        "description": "LG webOS TV Emulator",
+        "host": "127.0.0.1",
+        "port": 6622,
+        "username": "developer",
+        "privateKey": {
+            "openSsh": "webos_emul"
+        },
+        "files":"sftp",
+        "noPortForwarding":false,
+        "indelible": true
+    },
+    {
+        "order":"0",
+        "profile": "signage",
+        "name": "emulator",
+        "type": "starfish",
+        "description": "LG webOS TV Emulator",
+        "host": "127.0.0.1",
+        "port": 6622,
+        "username": "developer",
+        "privateKey": {
+            "openSsh": "webos_emul"
+        },
+        "files":"sftp",
+        "noPortForwarding":false,
+        "indelible": true
+    }
+]
