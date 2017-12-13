@@ -8,7 +8,9 @@ describe('[render] Integration between renderer and modules', () => {
     const root = document.createElement('div');
     function MyComponent() {
       let currentPlatform = 'LG WebOS';
-      if (!Platform('webos')) currentPlatform = 'Browser';
+      if (!Platform('webos')) {
+        currentPlatform = 'Browser';
+      }
 
       return (
         <div class="container">

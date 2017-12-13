@@ -8,14 +8,13 @@
  * @flow
  */
 
-import type {HostConfig, Reconciler} from 'react-fiber-types';
-import type {ReactNodeList} from 'react-fiber-types/ReactTypes';
+// import type {HostConfig, Reconciler} from 'react-fiber-types';
+// import type {ReactNodeList} from 'react-fiber-types/ReactTypes';
 import type {
   Props,
   Container,
   Instance,
   TextInstance,
-  OpaqueHandle,
   HostContext,
 } from './ReactTVFiberTypes';
 
@@ -26,8 +25,8 @@ import {getChildNamespace} from './shared/DOMNamespaces';
 import NavigationListerners from './events/NavigationListerners';
 
 import {
-  ELEMENT_NODE,
-  TEXT_NODE,
+  // ELEMENT_NODE,
+  // TEXT_NODE,
   DOCUMENT_NODE,
   DOCUMENT_FRAGMENT_NODE,
   COMMENT_NODE,

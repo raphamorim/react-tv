@@ -14,12 +14,12 @@ describe('[modules] Platform', () => {
   });
 
   it('[lg-webos] should return "lg-webos"', () => {
-    global.window['PalmSystem'] = {version: 1};
+    global.window.PalmSystem = {version: 1};
 
     expect(Platform('webos')).toEqual(true);
     expect(Platform('tizen')).toEqual(false);
     expect(Platform('orsay')).toEqual(false);
 
-    global.window['PalmSystem'] = null;
+    global.window.PalmSystem = null;
   });
 });

@@ -56,7 +56,7 @@ function isReactTVWebOSProject(root) {
 }
 
 function run(root, device) {
-  let webOS_TV_SDK_ENV = process.env['WEBOS_CLI_TV'] || false;
+  let webOS_TV_SDK_ENV = process.env.WEBOS_CLI_TV || false;
   let optDevice = '';
 
   if (!webOS_TV_SDK_ENV) {
@@ -67,7 +67,7 @@ function run(root, device) {
     optDevice = `--device ${device}`;
   }
 
-  process.env['PATH'] = `${webOS_TV_SDK_ENV}:${process.env['PATH']}`;
+  process.env.PATH = `${webOS_TV_SDK_ENV}:${process.env.PATH}`;
 
   if (!isReactTVWebOSProject(root)) {
     const msg = `This project isn\'t a React-TV WebOS Project:\n> Just run "react-tv init"`;
@@ -177,7 +177,7 @@ function run(root, device) {
     console.log(chalk.yellow(` launched`));
 
     console.log(chalk.dim('Inspecting...'));
-    const inspect = spawnSync(
+    spawnSync(
       `${webOS_TV_SDK_ENV}/ares-inspect`,
       [`-a ${config.id} ${optDevice}`],
       {

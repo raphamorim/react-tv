@@ -1,3 +1,5 @@
+/*eslint-disable*/
+
 /**
  * Copyright (c) 2017-present, Raphael Amorim.
  *
@@ -1155,3 +1157,5 @@ const Navigation = {
 };
 
 export default Navigation;
+
+/*eslint-enable*/

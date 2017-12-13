@@ -75,7 +75,7 @@ export function listenTo(registrationName, mountAt, handler) {
     } else if (registrationName === 'onPress') {
       trapCapturedEvent('onPress', 'keypress', mountAt, e => {
         // TODO: Separate this logic
-        if (e.keyCode == 13) {
+        if (e.keyCode === 13) {
           handler();
         }
       });

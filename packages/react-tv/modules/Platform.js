@@ -8,7 +8,7 @@
  */
 
 function isLGWebOS() {
-  return window && window.PalmSystem ? true : false;
+  return !!(window && window.PalmSystem);
 }
 
 function isSamsungTizen() {

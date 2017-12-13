@@ -14,20 +14,18 @@ import {listenTo} from './events/ReactTVEventEmitter';
 
 import {
   DOCUMENT_NODE,
-  DOCUMENT_FRAGMENT_NODE,
+  // DOCUMENT_FRAGMENT_NODE,
   TEXT_NODE,
 } from './shared/HTMLNodeType';
 
 import * as DOMPropertyOperations from './shared/DOMPropertyOperations';
 import * as CSSPropertyOperations from './shared/CSSPropertyOperations';
 import isCustomComponent from './shared/utils/isCustomComponent';
-import escapeTextContentForBrowser from './shared/utils/escapeTextContentForBrowser';
-
-import {trapBubbledEvent} from './events/ReactTVEventListener';
+// import escapeTextContentForBrowser from './shared/utils/escapeTextContentForBrowser';
 
 const CHILDREN = 'children';
 const STYLE = 'style';
-const HTML = '__html';
+// const HTML = '__html';
 const {html: HTML_NAMESPACE} = Namespaces;
 
 function setTextContent(node, text) {
@@ -117,12 +115,12 @@ function updateDOMProperties(
 }
 
 function ensureListeningTo(rootContainerElement, eventName, handler) {
-  var isDocumentOrFragment =
-    rootContainerElement.nodeType === DOCUMENT_NODE ||
-    rootContainerElement.nodeType === DOCUMENT_FRAGMENT_NODE;
-  var doc = isDocumentOrFragment
-    ? rootContainerElement
-    : rootContainerElement.ownerDocument;
+  // const isDocumentOrFragment =
+  //   rootContainerElement.nodeType === DOCUMENT_NODE ||
+  //   rootContainerElement.nodeType === DOCUMENT_FRAGMENT_NODE;
+  // const doc = isDocumentOrFragment
+  //   ? rootContainerElement
+  //   : rootContainerElement.ownerDocument;
   listenTo(eventName, rootContainerElement, handler);
 }
 
