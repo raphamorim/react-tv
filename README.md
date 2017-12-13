@@ -190,7 +190,7 @@ See [examples/navigation](examples/navigation) for more details about usage.
 
 ## Examples
 
-### [Clock App](https://github.com/raphamorim/react-tv/tree/master/examples/clock-app-with-react-tv)
+### [Clock App](https://github.com/raphamorim/react-tv/tree/master/examples/clock-app)
 
 ![Clock App Example](examples/clock-app/screenshot.png)
 
