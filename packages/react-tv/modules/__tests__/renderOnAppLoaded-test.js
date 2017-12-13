@@ -9,7 +9,7 @@ let mockIsWebOS = false;
 jest.mock('../Platform', () => jest.fn(() => mockIsWebOS));
 
 describe('[modules] renderOnAppLoaded', () => {
-  const Component = () => <div></div>;
+  const Component = () => <div />;
   const App = renderOnAppLoaded(Component);
 
   describe('on WebOS Platform', () => {
@@ -19,14 +19,14 @@ describe('[modules] renderOnAppLoaded', () => {
 
     it('starts not rendered', () => {
       const renderer = new ShallowRenderer();
-      renderer.render(<App/>);
+      renderer.render(<App />);
 
       const result = renderer.getRenderOutput();
       expect(result).toBeNull();
     });
 
     it('listen to "webOSLaunch" event', () => {
-      const testRenderer = TestRenderer.create(<App/>);
+      const testRenderer = TestRenderer.create(<App />);
 
       const event = document.createEvent('Event');
       event.initEvent('webOSLaunch', true, true);
@@ -42,7 +42,7 @@ describe('[modules] renderOnAppLoaded', () => {
     });
 
     it('renders Component', () => {
-      const testRenderer = TestRenderer.create(<App/>);
+      const testRenderer = TestRenderer.create(<App />);
       expect(testRenderer.toTree().rendered.type).toEqual(Component);
     });
   });

@@ -11,7 +11,7 @@ import React from 'react';
 
 import Plaform from './Platform';
 
-export default (Component) =>
+export default Component =>
   class extends React.Component {
     constructor() {
       super();
@@ -27,13 +27,22 @@ export default (Component) =>
     }
 
     bindWebOSLaunchEvent() {
-      document.addEventListener('webOSLaunch', () => {
-        this.setState({loaded: true});
-      }, true);
+      document.addEventListener(
+        'webOSLaunch',
+        () => {
+          this.setState({loaded: true});
+        },
+        true
+      );
     }
 
     render() {
-      if (!this.state.loaded) return null;
-      return <Component {...this.props} />;
+      const {loaded} = this.state;
+      let component = null;
+
+      if (loaded) {
+        component = <Component {...this.props} />;
+      }
+      return component;
     }
-  }
+  };
