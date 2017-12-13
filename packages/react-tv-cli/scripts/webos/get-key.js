@@ -16,13 +16,15 @@ function getKey(device) {
 
   process.env.PATH = `${webOS_TV_SDK_ENV}:${process.env.PATH}`;
 
-  spawnSync(`${webOS_TV_SDK_ENV}/ares-novacom`,
-  [`--device ${device} --getkey`],
-  {
-    stdio: 'inherit',
-    shell: true,
-    encoding: 'utf8',
-  })
+  spawnSync(
+    `${webOS_TV_SDK_ENV}/ares-novacom`,
+    [`--device ${device} --getkey`],
+    {
+      stdio: 'inherit',
+      shell: true,
+      encoding: 'utf8',
+    }
+  );
 }
 
 module.exports = getKey;

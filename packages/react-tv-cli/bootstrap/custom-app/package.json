@@ -27,6 +27,6 @@
     "react-tv": "^0.3.0",
     "react-tv-cli": "^0.3.0",
     "webpack": "^3.8.1",
-    "webpack-dev-server": "^2.9.4",
+    "webpack-dev-server": "^2.9.4"
   }
 }
