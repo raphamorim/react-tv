@@ -8,4 +8,4 @@ bootstrap/
 __fixtures__/
 
 # Ignore node-webos
-node-webos
+webos

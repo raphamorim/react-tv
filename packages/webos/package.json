@@ -47,10 +47,6 @@
     "linux",
     "win32"
   ],
-  "devDependencies": {
-    "mocha": "^1.8.2",
-    "should": "^1.2.2"
-  },
   "scripts": {
     "test": "node_modules/.bin/mocha test/*.spec.js"
   },
