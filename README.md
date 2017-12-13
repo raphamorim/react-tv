@@ -157,7 +157,8 @@ Takes a component and returns a higher-order component version of that component
 ```js
 import { renderOnAppLoaded } from 'react-tv'
 
-const App = renderOnAppLoaded(<MyComponent/>)
+const Component = () => (<div></div>)
+const App = renderOnAppLoaded(Component)
 ```
 
 ### Spatial Navigation
