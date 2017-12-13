@@ -1,0 +1,29 @@
+{
+    "display" : ["name", "synopsis", "options", "description", "examples"],
+    "notab":["examples"],
+    "name" : "ares-config - Configure webOS CLI",
+    "synopsis" : {
+        "default" : [
+            "ares-config [OPTION...]"
+        ]
+    },
+    "description" : [
+        "This command used for configuring the webOS devices profile setting to work with CLI"
+    ],
+    "examples" : [
+        "# Configure profile for platform (tv/watch/signage/...)",
+        "ares-config -p watch",
+        "",
+        "# Currently configured profile",
+        "ares-config -c",
+        ""
+    ],
+    "options" : {
+        "cmdOpt":"option",
+        "default" : ["profile", "profile-details", "help", "version" ],
+        "profile" : "-p, --profile <DEVICE> @TAB@ Specify a device profile (webOS device type) to configure for CLI",
+        "profile-details" : "-c, --profile-details @TAB@ Current configured profile",
+        "help" : "-h, --help @TAB@ Display this help",
+        "version" : "-V, --version @TAB@ Display version info"
+    }
+}

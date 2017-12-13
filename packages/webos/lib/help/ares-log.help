@@ -1,0 +1,71 @@
+{
+    "display" : ["name", "synopsis", "options", "description", "examples"],
+    "notab":["examples"],
+    "name" : "ares-log - Display application logs from a webOS device.",
+    "synopsis" : {
+        "default" : [
+            "ares-log [OPTION...]"
+        ],
+        "tv" : [
+            "ares-log [OPTION...] <FILTER>"
+        ]
+    },
+    "description" : {
+        "tv": [
+            "This command displays logs of native apps using NDL_Log().",
+            "",
+            "FILTER is a series of",
+            "@TAB@tag[:LEVEL], (e.g. UserTag1:E, *:I)",
+            "",
+            "LEVEL priority",
+            " D @TAB@Debug (lowest)",
+            " I @TAB@Info",
+            " W @TAB@Warning",
+            " E @TAB@Error",
+            " C @TAB@Critical",
+            " S @TAB@Silent (higest)",
+            " '*' mean all tags",
+            " If no <FILTER> Rule specified, filter defaults to '*:D'"
+        ],
+        "watch": [
+            "This command displays system logs of the device."
+        ],
+        "default" : [
+        ]
+    },
+    "examples" : {
+        "default":[
+            "",
+            "# Display logs the native apps wrote on the DEVICE",
+            "ares-log -d DEVICE",
+            "",
+            "# Follow logs the native apps wrote on the DEVICE",
+            "ares-log -d DEVICE -f",
+            "",
+            "# Display logs written from 1 day 3 hours 2 minutes 1 seconds ago to now",
+            "ares-log -d DEVICE -s 1d3h2m1s",
+            "",
+            "# Display logs written from now continuously",
+            "ares-log -d DEVICE -s 0s -f",
+            ""
+        ],
+        "tv": [
+            "# Display error and critical logs tagged with UserTag1 and hide others",
+            "ares-log -d DEVICE UserTag1:E, *:S",
+            ""
+        ]
+    },
+    "options" : {
+        "cmdOpt":"option",
+        "default" : ["device", "device-list", "follow", "output", "since", "help", "version"],
+        "tv" : ["id"],
+        "device" : "-d, --device <DEVICE> @TAB@ Specify DEVICE to use",
+        "device-list" : "-D, --device-list @TAB@ List the available DEVICEs",
+        "follow" : "-f, --follow @TAB@ Follow the log output (use Ctrl-C to terminate)",
+        "output" : "-o, --output <FORMAT> @TAB@ Display additional log data with default log, <FORMAT> : time, process",
+        "id" : "-i, --id <APP ID> or <Service ID> @TAB@ Specify ID to display",
+        "since" : "-s, --since @TAB@ Display the logs from the time that is specified",
+        "help" : "-h, --help @TAB@ Display this help",
+        "version" : "-V, --version @TAB@ Display version info"
+    }
+}

@@ -1,0 +1,34 @@
+{
+    "display" : ["name", "synopsis", "options", "description", "examples"],
+    "notab":["examples"],
+    "name" : "ares-shell - Open a device terminal or run a command",
+    "synopsis" : {
+        "default" : [
+            "ares-shell -d <DEVICE> -r <CMD>",
+            "ares-shell -d <DEVICE>"
+        ]
+    },
+    "description" : [
+        "This command opens a device terminal."
+    ],
+    "examples" : [
+        "# Open a device terminial",
+        "ares-shell -d DEVICE",
+        "",
+        "# Run a device command on the device",
+        "ares-shell -d DEVICE -r \"ls\"",
+        ""
+    ],
+    "options" : {
+        "cmdOpt":"option",
+        "default" : ["device", "run", "device-list", "level", "help", "version", "verbose"],
+        "watch" : ["wait-for-device"],
+        "device" : "-d, --device <DEVICE> @TAB@ Specify DEVICE to use",
+        "device-list" : "-D, --device-list @TAB@ List the available DEVICEs",
+        "run" : "-r, --run <CMD> @TAB@ Run CMD",
+        "wait-for-device" : "-w, --wait-for-device @TAB@ Blocks execution until the device is online",
+        "help" : "-h, --help @TAB@ Display this help",
+        "version" : "-V, --version @TAB@ Display version info",
+        "verbose" : "-v @TAB@ Display this verbose log"
+    }
+}

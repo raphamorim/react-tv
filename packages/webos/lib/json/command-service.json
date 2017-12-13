@@ -1,0 +1,154 @@
+{
+    "webos3":{
+        "lunaSend":"/usr/bin/luna-send",
+        "lunaAddr":{
+            "install" : {
+                "service" : "com.palm.appinstaller",
+                "method" : "installNoVerify",
+                "returnValue" : "return.status"
+            }, 
+            "remove" : {
+                "service" : "com.palm.appinstaller",
+                "method" : "remove",
+                "returnValue" : "return.status"
+            },
+            "list" : {
+                "service" : "com.palm.applicationManager",
+                "method" : "listPackages",
+                "returnValue" : "return.packages"
+            },
+            "launch" : {
+                "service" : "com.palm.applicationManager",
+                "method" : "launch",
+                "returnValue" : "return.processId"
+            }
+        }
+    },
+    "starfish":{
+        "lunaSend" : "/usr/bin/luna-send-pub",
+        "lunaAddr" : {
+            "install" : {
+                "service" : "com.webos.appInstallService",
+                "folder" : "dev",
+                "method" : "install",
+                "returnValue" : "return.details.state"
+            },
+            "remove" : {
+                "service" : "com.webos.appInstallService",
+                "folder" : "dev",
+                "method" : "remove",
+                "returnValue" : "return.details.state"
+            },
+            "list" : {
+                "service" : "com.webos.applicationManager",
+                "folder" : "dev",
+                "method" : "listApps",
+                "returnValue" : "return.apps"
+            },
+            "launch" : {
+                "service" : "com.webos.applicationManager",
+                "method" : "launch",
+                "returnValue" : "return.returnValue"
+            },
+            "terminate" : {
+                "service" : "com.webos.applicationManager",
+                "folder" : "dev",
+                "method" : "closeByAppId",
+                "returnValue" : "return.returnValue"
+            },
+            "running" : {
+                "service" : "com.webos.applicationManager",
+                "folder" : "dev",
+                "method" : "running",
+                "returnValue" : "return.running"
+            },
+            "getStorageList" : {
+                "service" : "com.webos.service.attachedstoragemanager",
+                "method" : "listDevices",
+                "returnValue" : "return"
+            }
+        }
+    },
+    "emulator" : {
+        "lunaSend" : "/usr/bin/luna-send-pub",
+        "lunaAddr" : {
+            "install" : {
+                "service" : "com.webos.appInstallService",
+                "folder" : "dev",
+                "method" : "install",
+                "returnValue" : "return.details.state"
+            },
+            "remove" : {
+                "service" : "com.webos.appInstallService",
+                "folder" : "dev",
+                "method" : "remove",
+                "returnValue" : "return.details.state"
+            },
+            "list" : {
+                "service" : "com.webos.applicationManager",
+                "folder" : "dev",
+                "method" : "listApps",
+                "returnValue" : "return.apps"
+            },
+            "launch" : {
+                "service" : "com.webos.applicationManager",
+                "method" : "launch",
+                "returnValue" : "return.returnValue"
+            },
+            "terminate" : {
+                "service" : "com.webos.applicationManager",
+                "folder" : "dev",
+                "method" : "closeByAppId",
+                "returnValue" : "return.returnValue"
+            },
+            "running" : {
+                "service" : "com.webos.applicationManager",
+                "folder" : "dev",
+                "method" : "running",
+                "returnValue" : "return.running"
+            }
+        }
+    },
+    "w2-linux" : {
+        "lunaSend" : "/usr/bin/luna-send-pub",
+        "lunaAddr" : {
+            "install" : {
+                "service" : "com.webos.appInstallService",
+                "folder" : "dev",
+                "method" : "install",
+                "returnValue" : "return.details.state"
+            },
+            "remove" : {
+                "service" : "com.webos.appInstallService",
+                "folder" : "dev",
+                "method" : "remove",
+                "returnValue" : "return.details.state"
+            },
+            "list" : {
+                "service" : "com.webos.applicationManager",
+                "folder" : "dev",
+                "method" : "listApps",
+                "returnValue" : "return.apps"
+            },
+            "launch" : {
+                "service" : "com.webos.applicationManager",
+                "method" : "launch",
+                "returnValue" : "return.returnValue"
+            },
+            "terminate" : {
+                "service" : "com.webos.applicationManager",
+                "folder" : "dev",
+                "method" : "closeByAppId",
+                "returnValue" : "return.returnValue"
+            },
+            "running" : {
+                "service" : "com.webos.applicationManager",
+                "folder" : "dev",
+                "method" : "running",
+                "returnValue" : "return.running"
+            }
+        }
+    }
+}    
+    
+                

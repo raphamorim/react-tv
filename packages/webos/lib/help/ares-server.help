@@ -1,0 +1,25 @@
+{
+    "display" : ["name", "synopsis", "options", "description", "examples"],
+    "name" : "ares-server - Run a local web server",
+    "synopsis" : {
+        "default" : [
+            "ares-server [OPTION...] <APP_DIR>"
+        ]
+    },
+    "options" : {
+        "cmdOpt":"option",
+        "default" : ["open","help", "version", "verbose"],
+        "open" : "-o, --open @TAB@ Open localhost url with a web browser",
+        "help" : "-h, --help @TAB@ Display this help",
+        "version" : "-V, --version @TAB@ Display version info",
+        "verbose" : "-v @TAB@ Display this verbose log"
+    },
+    "description" : [
+        "This command runs a local web server."
+    ],
+    "examples" : [
+        "# Run a local web server and set ~/project/foo as the home directory",
+        "ares-server ~/project/foo",
+        ""
+    ]
+}

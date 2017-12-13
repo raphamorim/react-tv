@@ -11,7 +11,7 @@ function version() {
   console.log('');
   console.log(
     'react-tv version:',
-    chalk.yellow(require(path.resolve(__dirname, '../../package.json')).version)
+    chalk.yellow(require(path.resolve(__dirname, '../package.json')).version)
   );
 }
 
