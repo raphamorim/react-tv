@@ -52,11 +52,23 @@ let _defaultSectionId = '';
 let _lastSectionId = '';
 let _duringFocusChange = false;
 
-const elementMatchesSelector = Element.prototype.matches;
+var elementMatchesSelector =
+  Element.prototype.matches ||
+  Element.prototype.matchesSelector ||
+  Element.prototype.mozMatchesSelector ||
+  Element.prototype.webkitMatchesSelector ||
+  Element.prototype.msMatchesSelector ||
+  Element.prototype.oMatchesSelector ||
+  function(selector) {
+    var matchedNodes = (this.parentNode || this.document).querySelectorAll(
+      selector
+    );
+    return [].slice.call(matchedNodes).indexOf(this) >= 0;
+  };
 
 function getRect(elem) {
-  const cr = elem.getBoundingClientRect();
-  const rect = {
+  var cr = elem.getBoundingClientRect();
+  var rect = {
     left: cr.left,
     top: cr.top,
     right: cr.right,
@@ -66,8 +78,8 @@ function getRect(elem) {
   };
   rect.element = elem;
   rect.center = {
-    x: Math.floor(rect.left + Math.floor(rect.width / 2)),
-    y: Math.floor(rect.top + Math.floor(rect.height / 2)),
+    x: rect.left + Math.floor(rect.width / 2),
+    y: rect.top + Math.floor(rect.height / 2),
   };
   rect.center.left = rect.center.right = rect.center.x;
   rect.center.top = rect.center.bottom = rect.center.y;
@@ -75,12 +87,12 @@ function getRect(elem) {
 }
 
 function partition(rects, targetRect, straightOverlapThreshold) {
-  const groups = [[], [], [], [], [], [], [], [], []];
+  var groups = [[], [], [], [], [], [], [], [], []];
 
-  for (let i = 0; i < rects.length; i++) {
-    const rect = rects[i];
-    const center = rect.center;
-    let x, y, groupId;
+  for (var i = 0; i < rects.length; i++) {
+    var rect = rects[i];
+    var center = rect.center;
+    var x, y, groupId;
 
     if (center.x < targetRect.left) {
       x = 0;
@@ -102,7 +114,7 @@ function partition(rects, targetRect, straightOverlapThreshold) {
     groups[groupId].push(rect);
 
     if ([0, 2, 6, 8].indexOf(groupId) !== -1) {
-      const threshold = straightOverlapThreshold;
+      var threshold = straightOverlapThreshold;
 
       if (rect.left <= targetRect.right - targetRect.width * threshold) {
         if (groupId === 2) {
@@ -144,7 +156,7 @@ function partition(rects, targetRect, straightOverlapThreshold) {
 function generateDistanceFunction(targetRect) {
   return {
     nearPlumbLineIsBetter: function(rect) {
-      let d;
+      var d;
       if (rect.center.x < targetRect.center.x) {
         d = targetRect.center.x - rect.right;
       } else {
@@ -153,7 +165,7 @@ function generateDistanceFunction(targetRect) {
       return d < 0 ? 0 : d;
     },
     nearHorizonIsBetter: function(rect) {
-      let d;
+      var d;
       if (rect.center.y < targetRect.center.y) {
         d = targetRect.center.y - rect.bottom;
       } else {
@@ -162,7 +174,7 @@ function generateDistanceFunction(targetRect) {
       return d < 0 ? 0 : d;
     },
     nearTargetLeftIsBetter: function(rect) {
-      let d;
+      var d;
       if (rect.center.x < targetRect.center.x) {
         d = targetRect.left - rect.right;
       } else {
@@ -171,7 +183,7 @@ function generateDistanceFunction(targetRect) {
       return d < 0 ? 0 : d;
     },
     nearTargetTopIsBetter: function(rect) {
-      let d;
+      var d;
       if (rect.center.y < targetRect.center.y) {
         d = targetRect.top - rect.bottom;
       } else {
@@ -195,8 +207,8 @@ function generateDistanceFunction(targetRect) {
 }
 
 function prioritize(priorities) {
-  let destPriority = null;
-  for (let i = 0; i < priorities.length; i++) {
+  var destPriority = null;
+  for (var i = 0; i < priorities.length; i++) {
     if (priorities[i].group.length) {
       destPriority = priorities[i];
       break;
@@ -207,12 +219,12 @@ function prioritize(priorities) {
     return null;
   }
 
-  const destDistance = destPriority.distance;
+  var destDistance = destPriority.distance;
 
   destPriority.group.sort(function(a, b) {
-    for (let i = 0; i < destDistance.length; i++) {
-      const distance = destDistance[i];
-      const delta = distance(a) - distance(b);
+    for (var i = 0; i < destDistance.length; i++) {
+      var distance = destDistance[i];
+      var delta = distance(a) - distance(b);
       if (delta) {
         return delta;
       }
@@ -228,9 +240,9 @@ function navigate(target, direction, candidates, config) {
     return null;
   }
 
-  const rects = [];
-  for (let i = 0; i < candidates.length; i++) {
-    const rect = getRect(candidates[i]);
+  var rects = [];
+  for (var i = 0; i < candidates.length; i++) {
+    var rect = getRect(candidates[i]);
     if (rect) {
       rects.push(rect);
     }
@@ -239,22 +251,22 @@ function navigate(target, direction, candidates, config) {
     return null;
   }
 
-  const targetRect = getRect(target);
+  var targetRect = getRect(target);
   if (!targetRect) {
     return null;
   }
 
-  const distanceFunction = generateDistanceFunction(targetRect);
+  var distanceFunction = generateDistanceFunction(targetRect);
 
-  const groups = partition(rects, targetRect, config.straightOverlapThreshold);
+  var groups = partition(rects, targetRect, config.straightOverlapThreshold);
 
-  const internalGroups = partition(
+  var internalGroups = partition(
     groups[4],
     targetRect.center,
     config.straightOverlapThreshold
   );
 
-  let priorities;
+  var priorities;
 
   switch (direction) {
     case 'left':
@@ -377,19 +389,19 @@ function navigate(target, direction, candidates, config) {
     priorities.pop();
   }
 
-  const destGroup = prioritize(priorities);
+  var destGroup = prioritize(priorities);
   if (!destGroup) {
     return null;
   }
 
-  let dest = null;
+  var dest = null;
   if (
     config.rememberSource &&
     config.previous &&
     config.previous.destination === target &&
     config.previous.reverse === direction
   ) {
-    for (let j = 0; j < destGroup.length; j++) {
+    for (var j = 0; j < destGroup.length; j++) {
       if (destGroup[j].element === config.previous.target) {
         dest = destGroup[j].element;
         break;
@@ -405,7 +417,7 @@ function navigate(target, direction, candidates, config) {
 }
 
 function generateId() {
-  let id;
+  var id;
   while (true) {
     id = ID_POOL_PREFIX + String(++_idPool);
     if (!_sections[id]) {
@@ -416,7 +428,7 @@ function generateId() {
 }
 
 function parseSelector(selector) {
-  let result;
+  var result;
   if (typeof selector === 'string') {
     result = [].slice.call(document.querySelectorAll(selector));
   } else if (typeof selector === 'object' && selector.length) {
@@ -441,7 +453,7 @@ function matchSelector(elem, selector) {
 }
 
 function getCurrentFocusedElement() {
-  const activeElement = document.activeElement;
+  var activeElement = document.activeElement;
   if (activeElement && activeElement !== document.body) {
     return activeElement;
   }
@@ -449,11 +461,11 @@ function getCurrentFocusedElement() {
 
 function extend(out) {
   out = out || {};
-  for (let i = 1; i < arguments.length; i++) {
+  for (var i = 1; i < arguments.length; i++) {
     if (!arguments[i]) {
       continue;
     }
-    for (const key in arguments[i]) {
+    for (var key in arguments[i]) {
       if (arguments[i].hasOwnProperty(key) && arguments[i][key] !== undefined) {
         out[key] = arguments[i][key];
       }
@@ -466,7 +478,7 @@ function exclude(elemList, excludedElem) {
   if (!Array.isArray(excludedElem)) {
     excludedElem = [excludedElem];
   }
-  for (let i = 0, index; i < excludedElem.length; i++) {
+  for (var i = 0, index; i < excludedElem.length; i++) {
     index = elemList.indexOf(excludedElem[i]);
     if (index >= 0) {
       elemList.splice(index, 1);
@@ -509,7 +521,7 @@ function isNavigable(elem, sectionId, verifySectionSelector) {
 }
 
 function getSectionId(elem) {
-  for (const id in _sections) {
+  for (var id in _sections) {
     if (
       !_sections[id].disabled &&
       matchSelector(elem, _sections[id].selector)
@@ -526,7 +538,7 @@ function getSectionNavigableElements(sectionId) {
 }
 
 function getSectionDefaultElement(sectionId) {
-  let defaultElement = _sections[sectionId].defaultElement;
+  var defaultElement = _sections[sectionId].defaultElement;
   if (!defaultElement) {
     return null;
   }
@@ -540,7 +552,7 @@ function getSectionDefaultElement(sectionId) {
 }
 
 function getSectionLastFocusedElement(sectionId) {
-  const lastFocusedElement = _sections[sectionId].lastFocusedElement;
+  var lastFocusedElement = _sections[sectionId].lastFocusedElement;
   if (!isNavigable(lastFocusedElement, sectionId, true)) {
     return null;
   }
@@ -551,7 +563,7 @@ function fireEvent(elem, type, details, cancelable) {
   if (arguments.length < 4) {
     cancelable = true;
   }
-  const evt = document.createEvent('CustomEvent');
+  var evt = document.createEvent('CustomEvent');
   evt.initCustomEvent(EVENT_PREFIX + type, true, cancelable, details);
   return elem.dispatchEvent(evt);
 }
@@ -561,9 +573,9 @@ function focusElement(elem, sectionId, direction) {
     return false;
   }
 
-  const currentFocusedElement = getCurrentFocusedElement();
+  var currentFocusedElement = getCurrentFocusedElement();
 
-  const silentFocus = function() {
+  var silentFocus = function() {
     if (currentFocusedElement) {
       currentFocusedElement.blur();
     }
@@ -585,7 +597,7 @@ function focusElement(elem, sectionId, direction) {
   }
 
   if (currentFocusedElement) {
-    const unfocusProperties = {
+    var unfocusProperties = {
       nextElement: elem,
       nextSectionId: sectionId,
       direction: direction,
@@ -599,7 +611,7 @@ function focusElement(elem, sectionId, direction) {
     fireEvent(currentFocusedElement, 'unfocused', unfocusProperties, false);
   }
 
-  const focusProperties = {
+  var focusProperties = {
     previousElement: currentFocusedElement,
     sectionId: sectionId,
     direction: direction,
@@ -633,13 +645,13 @@ function focusExtendedSelector(selector, direction) {
     if (selector.length == 1) {
       return focusSection();
     } else {
-      const sectionId = selector.substr(1);
+      var sectionId = selector.substr(1);
       return focusSection(sectionId);
     }
   } else {
-    const next = parseSelector(selector)[0];
+    var next = parseSelector(selector)[0];
     if (next) {
-      const nextSectionId = getSectionId(next);
+      var nextSectionId = getSectionId(next);
       if (isNavigable(next, nextSectionId)) {
         return focusElement(next, nextSectionId, direction);
       }
@@ -649,8 +661,8 @@ function focusExtendedSelector(selector, direction) {
 }
 
 function focusSection(sectionId) {
-  const range = [];
-  const addRange = function(id) {
+  var range = [];
+  var addRange = function(id) {
     if (
       id &&
       range.indexOf(id) < 0 &&
@@ -669,9 +681,9 @@ function focusSection(sectionId) {
     Object.keys(_sections).map(addRange);
   }
 
-  for (let i = 0; i < range.length; i++) {
-    const id = range[i];
-    let next;
+  for (var i = 0; i < range.length; i++) {
+    var id = range[i];
+    var next;
 
     if (_sections[id].enterTo == 'last-focused') {
       next =
@@ -709,7 +721,7 @@ function gotoLeaveFor(sectionId, direction) {
     _sections[sectionId].leaveFor &&
     _sections[sectionId].leaveFor[direction] !== undefined
   ) {
-    const next = _sections[sectionId].leaveFor[direction];
+    var next = _sections[sectionId].leaveFor[direction];
 
     if (typeof next === 'string') {
       if (next === '') {
@@ -718,7 +730,7 @@ function gotoLeaveFor(sectionId, direction) {
       return focusExtendedSelector(next, direction);
     }
 
-    const nextSectionId = getSectionId(next);
+    var nextSectionId = getSectionId(next);
     if (isNavigable(next, nextSectionId)) {
       return focusElement(next, nextSectionId, direction);
     }
@@ -727,9 +739,7 @@ function gotoLeaveFor(sectionId, direction) {
 }
 
 function focusNext(direction, currentFocusedElement, currentSectionId) {
-  const extSelector = currentFocusedElement.getAttribute(
-    'data-sn-' + direction
-  );
+  var extSelector = currentFocusedElement.getAttribute('data-sn-' + direction);
   if (typeof extSelector === 'string') {
     if (extSelector === '' || !focusExtendedSelector(extSelector, direction)) {
       fireNavigatefailed(currentFocusedElement, direction);
@@ -738,20 +748,20 @@ function focusNext(direction, currentFocusedElement, currentSectionId) {
     return true;
   }
 
-  const sectionNavigableElements = {};
-  let allNavigableElements = [];
-  for (const id in _sections) {
+  var sectionNavigableElements = {};
+  var allNavigableElements = [];
+  for (var id in _sections) {
     sectionNavigableElements[id] = getSectionNavigableElements(id);
     allNavigableElements = allNavigableElements.concat(
       sectionNavigableElements[id]
     );
   }
 
-  const config = extend({}, GlobalConfig, _sections[currentSectionId]);
-  let next;
+  var config = extend({}, GlobalConfig, _sections[currentSectionId]);
+  var next;
 
   if (config.restrict == 'self-only' || config.restrict == 'self-first') {
-    const currentSectionNavigableElements =
+    var currentSectionNavigableElements =
       sectionNavigableElements[currentSectionId];
 
     next = navigate(
@@ -785,10 +795,10 @@ function focusNext(direction, currentFocusedElement, currentSectionId) {
       reverse: REVERSE[direction],
     };
 
-    const nextSectionId = getSectionId(next);
+    var nextSectionId = getSectionId(next);
 
     if (currentSectionId != nextSectionId) {
-      const result = gotoLeaveFor(currentSectionId, direction);
+      var result = gotoLeaveFor(currentSectionId, direction);
       if (result) {
         return true;
       } else if (result === null) {
@@ -796,7 +806,7 @@ function focusNext(direction, currentFocusedElement, currentSectionId) {
         return false;
       }
 
-      let enterToElement;
+      var enterToElement;
       switch (_sections[nextSectionId].enterTo) {
         case 'last-focused':
           enterToElement =
@@ -1050,6 +1060,22 @@ const Navigation = {
     return false;
   },
 
+  disable: function(sectionId) {
+    if (_sections[sectionId]) {
+      _sections[sectionId].disabled = true;
+      return true;
+    }
+    return false;
+  },
+
+  enable: function(sectionId) {
+    if (_sections[sectionId]) {
+      _sections[sectionId].disabled = false;
+      return true;
+    }
+    return false;
+  },
+
   pause: function() {
     _pause = true;
   },
@@ -1152,6 +1178,16 @@ const Navigation = {
       for (let id in _sections) {
         makeFocusable(_sections[id]);
       }
+    }
+  },
+
+  setDefaultSection: function(sectionId) {
+    if (!sectionId) {
+      _defaultSectionId = '';
+    } else if (!_sections[sectionId]) {
+      throw new Error('Section "' + sectionId + '" doesn\'t exist!');
+    } else {
+      _defaultSectionId = sectionId;
     }
   },
 };
