@@ -30,4 +30,4 @@ function isReactTVWebOSProject(root) {
 module.exports = {
   getCLIEnv: getCLIEnv,
   isReactTVWebOSProject: isReactTVWebOSProject,
-}
+};
