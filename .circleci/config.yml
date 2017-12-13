@@ -32,7 +32,7 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
 
       - run:
-          name: Test packages
+          name: Lint and Test packages
           command: yarn test
 
       - run:

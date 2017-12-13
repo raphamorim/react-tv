@@ -33,6 +33,7 @@ function help() {
 
 function createReactTVApp(appName) {
   let appPath = process.cwd();
+
   const packageJson = path.resolve(appPath, 'package.json');
   const appTemplatePath = path.resolve(__dirname, '../bootstrap/react-tv');
   const customApp = path.resolve(__dirname, '../bootstrap/custom-app/');
@@ -58,7 +59,6 @@ function createReactTVApp(appName) {
   }
 
   if (fs.existsSync(packageJson)) {
-    existentProject = true;
     appName = require(packageJson).name;
   } else {
     debug('package.json not founded');
@@ -90,6 +90,6 @@ function createReactTVApp(appName) {
 
 module.exports = {
   createReactTVApp: createReactTVApp,
+  version: version,
   help: help,
-  debug: debug,
 };

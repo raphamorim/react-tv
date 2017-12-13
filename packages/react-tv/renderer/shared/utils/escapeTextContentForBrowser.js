@@ -41,7 +41,7 @@
  * @private
  */
 
-var matchHtmlRegExp = /["'&<>]/;
+const matchHtmlRegExp = /["'&<>]/;
 
 /**
  * Escape special characters in the given string of html.
@@ -52,17 +52,17 @@ var matchHtmlRegExp = /["'&<>]/;
  */
 
 function escapeHtml(string) {
-  var str = '' + string;
-  var match = matchHtmlRegExp.exec(str);
+  const str = '' + string;
+  const match = matchHtmlRegExp.exec(str);
 
   if (!match) {
     return str;
   }
 
-  var escape;
-  var html = '';
-  var index = 0;
-  var lastIndex = 0;
+  let escape;
+  let html = '';
+  let index = 0;
+  let lastIndex = 0;
 
   for (index = match.index; index < str.length; index++) {
     switch (str.charCodeAt(index)) {

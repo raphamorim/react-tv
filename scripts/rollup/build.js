@@ -61,7 +61,7 @@ function createBundle({entryPath, bundleType, destName}) {
   });
 }
 
-if (process.env['NODE_ENV'] === 'PROD') {
+if (process.env.NODE_ENV === 'PROD') {
   createBundle({
     entryPath: `${packagePath}/ReactTVEntry.js`,
     bundleType: 'PROD',

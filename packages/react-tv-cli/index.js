@@ -1,8 +1,7 @@
 #! /usr/bin/env node
 
 const argv = process.argv;
-const path = require('path');
-const {help, debug, createReactTVApp} = require('./shared');
+const {help, version, createReactTVApp} = require('./shared');
 const {WebOS} = require('./scripts');
 
 if (argv.length < 2) {
@@ -31,6 +30,10 @@ switch (command) {
 
   case 'setup-webos':
     WebOS.setupDevice();
+    break;
+
+  case '--version':
+    version();
     break;
 
   default:

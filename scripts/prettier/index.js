@@ -41,7 +41,7 @@ const config = {
 
 function exec(command, args) {
   console.log('> ' + [command].concat(args).join(' '));
-  var options = {
+  const options = {
     cwd: process.cwd(),
     env: process.env,
     stdio: 'pipe',
@@ -50,8 +50,8 @@ function exec(command, args) {
   return execFileSync(command, args, options);
 }
 
-var mergeBase = exec('git', ['merge-base', 'HEAD', 'master']).trim();
-var changedFiles = new Set(
+const mergeBase = exec('git', ['merge-base', 'HEAD', 'master']).trim();
+const changedFiles = new Set(
   exec('git', [
     'diff',
     '-z',

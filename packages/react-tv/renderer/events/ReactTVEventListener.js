@@ -6,7 +6,7 @@
  */
 
 import EventListener from 'fbjs/lib/EventListener';
-import getEventTarget from './getEventTarget';
+// import getEventTarget from './getEventTarget';
 
 /**
  * Traps top-level events by using event bubbling.
@@ -65,7 +65,7 @@ export function trapCapturedEvent(
 
 // TODO: Create a Dispacth Event System
 export function dispatchEvent(topLevelType, nativeEvent, handlerEvent) {
-  const nativeEventTarget = getEventTarget(nativeEvent);
+  // const nativeEventTarget = getEventTarget(nativeEvent);
 
   try {
     // Event queue being processed in the same cycle allows

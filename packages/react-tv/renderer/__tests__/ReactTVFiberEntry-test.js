@@ -32,7 +32,6 @@ describe('[render] Behavior tests', () => {
   });
 
   it('should render with the default toJSON behavior', () => {
-    const myIncremental = "it's base";
     const Base = () => <div id={'base'} />;
     const Page1 = () => <div class={'page-1'} />;
     const Page2 = () => <div class={'page-2'} />;

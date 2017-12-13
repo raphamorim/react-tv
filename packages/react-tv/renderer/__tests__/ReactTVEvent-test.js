@@ -60,24 +60,24 @@ describe('[render] Event tests', () => {
     spy.mockRestore();
   });
 
-  it.skip('should onPress propagate a event based keypress with <enter>', () => {
-    const spy = jest.spyOn(events, 'press');
-    const root = document.createElement('div');
-    const ReactElement = <div onPress={spy} />;
-    const rendered = render(ReactElement, root);
+  // it.skip('should onPress propagate a event based keypress with <enter>', () => {
+  //   const spy = jest.spyOn(events, 'press');
+  //   const root = document.createElement('div');
+  //   const ReactElement = <div onPress={spy} />;
+  //   const rendered = render(ReactElement, root);
 
-    // const InvalidEvent = new KeyboardEvent('keydown', {keyCode: 37});
-    // document.dispatchEvent(InvalidEvent);
+  //   // const InvalidEvent = new KeyboardEvent('keydown', {keyCode: 37});
+  //   // document.dispatchEvent(InvalidEvent);
 
-    // expect(spy).toHaveBeenCalledTimes(0);
+  //   // expect(spy).toHaveBeenCalledTimes(0);
 
-    // const ValidEvent = new KeyboardEvent('keydown', {keyCode: 13, bubbles : true,detail:0,eventPhase:0, isComposing:false, isTrusted:true});
-    // document.dispatchEvent(ValidEvent);
-    // expect(spy).toHaveBeenCalledTimes(1);
+  //   // const ValidEvent = new KeyboardEvent('keydown', {keyCode: 13}});
+  //   // document.dispatchEvent(ValidEvent);
+  //   // expect(spy).toHaveBeenCalledTimes(1);
 
-    spy.mockReset();
-    spy.mockRestore();
-  });
+  //   spy.mockReset();
+  //   spy.mockRestore();
+  // });
 
   it('should onblur not propagate a event when blurred', () => {
     const spy = jest.spyOn(events, 'blur');

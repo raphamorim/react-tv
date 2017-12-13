@@ -6,7 +6,6 @@
  */
 
 import dangerousStyleValue from './dangerousStyleValue';
-import hyphenateStyleName from 'fbjs/lib/hyphenateStyleName';
 
 /**
  * Operations for dealing with CSS properties.
