@@ -1,5 +1,3 @@
-'use strict';
-
 const path = require('path');
 const rollup = require('rollup').rollup;
 const babel = require('rollup-plugin-babel');
@@ -12,6 +10,7 @@ const optimizeJs = require('rollup-plugin-optimize-js');
 const chalk = require('chalk');
 
 const REACT_TV_VERSION = require('../../package.json').version;
+const packagePath = 'packages/react-tv';
 
 let tasks = [];
 
@@ -32,11 +31,8 @@ function createBundle({entryPath, bundleType, destName}) {
     flow(),
     replace(stripEnvVariables()),
     babel({
-      babelrc: false,
       exclude: 'node_modules/**',
-      externalHelpers: true,
-      presets: [['env', {modules: false}], 'react', 'stage-2'],
-      plugins: ['transform-flow-strip-types', 'external-helpers'],
+      externalHelpers: false,
     }),
     commonjs(),
     resolve({
@@ -59,30 +55,36 @@ function createBundle({entryPath, bundleType, destName}) {
       bundle.write({
         format: bundleType === 'PROD-UMD' ? 'umd' : 'iife',
         name: 'ReactTV',
-        file: `dist/${destName}`,
+        file: `${packagePath}/dist/${destName}`,
       })
     );
   });
 }
 
-createBundle({
-  entryPath: 'src/ReactTVEntry.js',
-  bundleType: 'DEV',
-  destName: 'react-tv.js',
-});
-
-if (process.env['NODE_ENV'] === 'PROD') {
+if (process.env.NODE_ENV === 'PROD') {
   createBundle({
-    entryPath: 'src/ReactTVEntry.js',
+    entryPath: `${packagePath}/ReactTVEntry.js`,
     bundleType: 'PROD',
     destName: 'react-tv.min.js',
   });
 
   createBundle({
-    entryPath: 'src/ReactTVEntry.js',
+    entryPath: `${packagePath}/ReactTVEntry.js`,
     bundleType: 'PROD-UMD',
     destName: 'react-tv.umd.js',
   });
+} else {
+  createBundle({
+    entryPath: `${packagePath}/ReactTVEntry.js`,
+    bundleType: 'PROD-UMD',
+    destName: 'react-tv.umd.js',
+  });
+
+  // createBundle({
+  //   entryPath: `${packagePath}/ReactTVEntry.js`,
+  //   bundleType: 'DEV',
+  //   destName: 'react-tv.js',
+  // });
 }
 
 Promise.all(tasks).catch(error => {

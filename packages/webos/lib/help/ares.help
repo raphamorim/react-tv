@@ -1,0 +1,35 @@
+{
+    "display" : ["name", "synopsis", "options", "description", "examples"],
+    "notab":["examples"],
+    "notitle" : ["extraoption"],
+    "name" : "ares - Display the help information for ares commands",
+    "synopsis" : {
+        "default" : [
+            "ares [OPTION...]"
+        ]
+    },
+    "description" : [
+        "This command lists all ares commands or provides help information of the given command."
+    ],
+    "examples" : [
+        "# List all the ares commands",
+        "ares -l",
+        "",
+        "# Display the help information for installation",
+        "ares --install",
+        ""
+    ],
+    "options" : {
+        "cmdOpt":"option",
+        "default" : ["list", "<COMMAND>", "level", "help", "version"],
+        "list" : [
+            "-l, --list @TAB@ List all the ares commands"
+        ],
+        "<COMMAND>" : [
+            "--<COMMAND> @TAB@ Display the help information of the COMMAND"
+        ],
+        "level" : "--level <LEVEL> @TAB@ Tracing LEVEL is one of 'silly', 'verbose', 'info', 'http', 'warn', 'error' [warn]",
+        "help" : "-h, --help @TAB@ Display this help",
+        "version" : "-V, --version @TAB@ Display version info"
+    }
+}

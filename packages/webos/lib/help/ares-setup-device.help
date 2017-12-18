@@ -1,0 +1,105 @@
+{
+    "display" : ["name", "synopsis", "options", "description", "examples"],
+    "notab":["examples"],
+    "name" : "ares-setup-device - Add or modify the informations of the devices to use",
+    "synopsis" : {
+        "default" : "ares-setup-device [OPTION...]",
+        "tv" : [
+          "ares-setup-device [OPTION...] -a, --add DEVICE_NAME -i, --info <DEVICE_INFO>",
+          "ares-setup-device [OPTION...] -m, --modify DEVICE_NAME -i, --info <DEVICE_INFO>",
+          "ares-setup-device [OPTION...] -r, --remove DEVICE_NAME"
+          ],
+        "signage" : [
+          "ares-setup-device [OPTION...] -a, --add DEVICE_NAME -i, --info <DEVICE_INFO>",
+          "ares-setup-device [OPTION...] -m, --modify DEVICE_NAME -i, --info <DEVICE_INFO>",
+          "ares-setup-device [OPTION...] -r, --remove DEVICE_NAME"
+          ]
+    },
+    "description" : [
+        {
+          "default": "This command manages the informations of the devices.",
+          "tv" : [
+              "",
+              "** Attributes of DEVICE_INFO",
+              "  description [string]   description of target device",
+              "  host [string]   ip address",
+              "  port [string]   port number",
+              "  username [string]   user name to connect ('developer' or 'prisoner')",
+              "  privatekey  [string]   ssh private key file name.",
+              "                         ssh private key should exist under $HOME/.ssh/",
+              "  passphrase  [string]   passphrase used for generating ssh keys",
+              "  password  [string]   password for ssh connection"
+            ],
+            "signage" : [
+              "",
+              "** Attributes of DEVICE_INFO",
+              "  description [string]   description of target device",
+              "  host [string]   ip address",
+              "  port [string]   port number",
+              "  username [string]   user name to connect ('developer' or 'prisoner')",
+              "  privatekey  [string]   ssh private key file name.",
+              "                         ssh private key should exist under $HOME/.ssh/",
+              "  passphrase  [string]   passphrase used for generating ssh keys",
+              "  password  [string]   password for ssh connection"
+              ]
+        }
+    ],
+    "examples" : [
+      {
+        "tv" : [
+            "",
+            "# Add a DEVICE and set the username, host, port",
+            "ares-setup-device -a DEVICE -i \"{'username':'root', 'host':'127.0.0.1','port':'22'}\"",
+            " Or",
+            "ares-setup-device -a DEVICE -i \"username=root\" -i \"host=127.0.0.1\" -i \"port=22\"",
+            "",
+            "# Modify the informations of the DEVICE",
+            "ares-setup-device -m DEVICE -i \"{'username':'developer','host':'192.168.0.123'}\"",
+            " Or",
+            "ares-setup-device -m DEVICE -i \"username=developer\" -i \"host=192.168.0.123\"",
+            "",
+            "# Remove the DEVICE",
+            "ares-setup-device -r DEVICE",
+            "",
+            "# Change the ssh password of the DEVICE as an empty value",
+            "ares-setup-device -m DEVICE -i \"password=\"",
+            ""
+          ],
+        "signage" : [
+            "",
+            "# Add a DEVICE and set the username, host, port",
+            "ares-setup-device -a DEVICE -i \"{'username':'root', 'host':'127.0.0.1','port':'22'}\"",
+            " Or",
+            "ares-setup-device -a DEVICE -i \"username=root\" -i \"host=127.0.0.1\" -i \"port=22\"",
+            "",
+            "# Modify the informations of the DEVICE",
+            "ares-setup-device -m DEVICE -i \"{'username':'developer','host':'192.168.0.123'}\"",
+            " Or",
+            "ares-setup-device -m DEVICE -i \"username=developer\" -i \"host=192.168.0.123\"",
+            "",
+            "# Remove the DEVICE",
+            "ares-setup-device -r DEVICE",
+            "",
+            "# Change the ssh password of the DEVICE as an empty value",
+            "ares-setup-device -m DEVICE -i \"password=\"",
+            ""
+          ],
+        "watch" : [
+              "",
+              "# Displays the avalable devices in detail",
+              "ares-setup-device --listfull",
+              ""
+          ]
+      }
+    ],
+    "options" : {
+        "cmdOpt":"option",
+        "default" : ["reset", "list", "listfull", "level", "help", "version", "verbose"],
+        "reset" : "-R, --reset @TAB@ initialize the DEVICE list",
+        "list" : "-l, --list @TAB@ List the available DEVICEs",
+        "listfull" : "-F, --listfull @TAB@ List the available DEVICEs in detail",
+        "help" : "-h, --help @TAB@ Display this help",
+        "version" : "-V, --version @TAB@ Display version info",
+        "verbose" : "-v @TAB@ Display this verbose log"
+    }
+}

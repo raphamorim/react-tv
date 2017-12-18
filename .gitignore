@@ -1,11 +1,11 @@
 .DS_Store
 *.log
+*.map
 
 node_modules
 package-lock.json
+packages/react-tv/dist
 
-dist/**
-docs/**
-
-cli/generators/app/yarn.lock
+yarn.lock
+packages/react-tv-cli/generators/app/yarn.lock
 examples/**/*/yarn.lock

@@ -27,8 +27,12 @@ const defaultOptions = {
 };
 const config = {
   default: {
-    patterns: ['src/**/*.js', 'cli/**/*.js'],
-    ignore: ['**/node_modules/**', 'cli/generators/**/*.js'],
+    patterns: ['packages/react-tv/**/*.js', 'packages/react-tv-cli/**/*.js'],
+    ignore: [
+      '**/node_modules/**',
+      'packages/react-tv-cli/bootstrap/**/*.js',
+      'packages/react-tv/dist/**/*.js',
+    ],
   },
   scripts: {
     patterns: ['scripts/**/*.js', 'fixtures/**/*.js'],
@@ -37,7 +41,7 @@ const config = {
 
 function exec(command, args) {
   console.log('> ' + [command].concat(args).join(' '));
-  var options = {
+  const options = {
     cwd: process.cwd(),
     env: process.env,
     stdio: 'pipe',
@@ -46,8 +50,8 @@ function exec(command, args) {
   return execFileSync(command, args, options);
 }
 
-var mergeBase = exec('git', ['merge-base', 'HEAD', 'master']).trim();
-var changedFiles = new Set(
+const mergeBase = exec('git', ['merge-base', 'HEAD', 'master']).trim();
+const changedFiles = new Set(
   exec('git', [
     'diff',
     '-z',
@@ -87,7 +91,7 @@ Object.keys(config).forEach(key => {
             `  This project uses prettier to format all JavaScript code.\n`
           ) +
           chalk.dim(`    Please run `) +
-          chalk.reset('yarn prettier-all') +
+          chalk.reset('yarn prettier:all') +
           chalk.dim(` and add changes to files listed below to your commit:`) +
           `\n\n` +
           e.stdout

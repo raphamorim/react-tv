@@ -1,0 +1,25 @@
+{
+    "id": "/NovacomUSBAuthSchema",
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": "string",
+            "description": "device ID"
+        },
+        "username": {
+            "type": "string",
+            "description": "User name to connect via SSH"
+        },
+        "password": {
+            "type": "string",
+            "description": "User password to connect via SSH"
+        },
+        "privateKey": {
+            "type": [
+                "object",
+                "string"
+            ],
+            "description": "SSH Private Key File Name located in the host pc"
+        }
+    }
+}

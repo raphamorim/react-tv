@@ -1,0 +1,20 @@
+{
+    "openLevel" : 0,
+    "profile" : "tv",
+    "defaultAppInfo": {
+        "id": "com.yourdomain.app",
+        "type": "web",
+        "title": "new app",
+        "version": "0.0.1",
+        "main" : {
+            "web" : "index.html",
+            "native": "executable"
+        }
+    },
+    "logFilePath" : "/media/developer/log/devlog", 
+    "install" : {
+        "tempDirForIpk" : "/media/developer/temp",
+        "changeTempDir" : true,
+        "removeIpkAfterInst" : true
+    }
+}

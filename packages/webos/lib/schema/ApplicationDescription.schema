@@ -1,0 +1,263 @@
+{
+    "id": "ApplicationDescription",
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": "string",
+            "description": "Application ID, e.g., \"com.newco.app.myApp\" . Every application has a unique ID, created from reverse DNS naming conventions. The launcher uses the ID to uniquely identify your application and displays it with the title above. The application ID is unique, set once, and cannot be changed after publishing the application."
+        },
+        "main": {
+            "type": "string",
+            "description": "The launch point for the app. This is a file path relative to the appinfo.json file and needs to point to an HTML file."
+        },
+        "title": {
+            "type": "string",
+            "description": "The title of the application as it shows in the Launcher and the app window. The application title is unique, set once."
+        },
+        "keywords": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "description": "Keyword meta-data. Just Type list apps that contain the user-entered text in their keywords values."
+        },
+        "mimeTypes": {
+            "id": "MimeTypes",
+            "type": [
+                "object",
+                "array"
+            ],
+            "items": {
+                "$ref": "MimeTypes"
+            },
+            "description": "Mime type refers to the Internet standard for defining the content type. This field is used mime system."
+        },
+        "icon": {
+            "type": "string",
+            "description": "Image displayed for your app. This is a file path relative to the appinfo.json file. The default is \"icon.png\"."
+        },
+        "largeIcon": {
+            "type": "string",
+            "description": "Large app icon,This is a file path relative to the appinfo.json file. e.g, largeIcon-130x130.png."
+        },
+        "mediumIcon": {
+            "type": "string",
+            "description": "Medium app icon,This is a file path relative to the appinfo.json file. e.g, mediumIcon-96x96.png."
+        },
+        "type": {
+            "type": "string",
+            "enum": [
+                "web",
+                "stub",
+                "native",
+                "native_builtin",
+                "native_game",
+                "game",
+                "pdk",
+                "qt",
+                "qml"
+            ],
+            "description": "Identifies the application type: \"web\" if an SDK-based or hybrid app, \"pdk\" if a PDK-based app."
+        },
+        "splashicon": {
+            "type": "string",
+            "description": "splashicon is shown in loading screen, e.g., icon-256x256.png"
+        },
+        "splashBackground": {
+            "type": "string",
+            "description": "splashBackground is shown in loading screen, e.g, splash-background.png"
+        },
+        "miniicon": {
+            "type": "string",
+            "default": "miniicon.png",
+            "description": "Used for notifications. This is a file path relative to the appinfo.json file."
+        },
+        "launchinnewgroup": {
+            "type": "boolean",
+            "default": false,
+            "description": "Used to prevent app from launching in current card stack."
+        },
+        "category": {
+            "type": "string",
+            "default": "",
+            "description": "category(game, buiseness, documentation, lifestyle..something like this) specifying."
+        },
+        "vendor": {
+            "type": "string",
+            "description": "App owner. This is used in the launcher and deviceinfo dialogs, e.g., LGE"
+        },
+        "vendorurl": {
+            "type": "string",
+            "description": "URL that turns the vendor portion in deviceinfo dialogs to hyperlinks."
+        },
+        "appsize": {
+            "type": "number",
+            "default": 0,
+            "description": "application size"
+        },
+        "noWindow": {
+            "type": "boolean",
+            "default": false,
+            "description": "whether app is headless or not."
+        },
+        "visible": {
+            "type": "boolean",
+            "default": true,
+            "description": "By default, the launch icons are visible...set to false in the json and they won't show in the launcher screen."
+        },
+        "transparent": {
+            "type": "boolean",
+            "default": false,
+            "description": "whether app is transparent or not."
+        },
+        "class": {
+            "type": "object",
+            "properties": {
+                "hidden": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "whether app is hidden in Recents or not"
+                }
+            },
+            "description": "indicates window behavior of app in the compositor"
+        },
+        "trustLevel": {
+            "type": "string",
+            "default": "default",
+            "description": "application trust level"
+        },
+        "version": {
+            "type": "string",
+            "default": "1.0",
+            "description": "The application version number, in the dot-notation format, e.g., 3.0.2500"
+        },
+        "removable": {
+            "type": "boolean",
+            "default": true,
+            "description": "whether app is removale or not"
+        },
+        "hardwareFeaturesNeeded": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "default" : 0,
+            "description": "indicates that app needs hardwwarefeatures, e,g., Wifi,Bluetooth"
+        },
+        "bootLaunchParams": {
+            "type": "object",
+            "description": "if specified, params is used on boot application-launching"
+        },
+        "handlesRelaunch": {
+            "type": "boolean",
+            "default": false,
+            "description": "For native app. If true, SAM relaunch app when user execute native app that already running, If false, just maximize existing window."
+        },
+        "requestedWindowOrientation": {
+            "type": "string",
+            "default":"",
+            "description": "support up, down, left, right, landscape, portrait window orientations. This field is for various devices except TV."
+        },
+        "entrypoint": {
+            "type": "string",
+            "description": "This field is required for sysmgrbuiltin app type."
+        },
+        "args": {
+            "type": "string",
+            "description": "This field is required for sysmgrbuiltin app type."
+        },
+        "uiRevision": {
+            "type": [
+                "string",
+                "number"
+            ],
+            "description": "If set to 2, apps can make full use of the full screen; otherwise, the app is given a 320x480 window in which to display."
+        },
+        "timestamp": {
+            "type": "string",
+            "description": "time stamp."
+        },
+        "debug": {
+            "type": "boolean",
+            "description": "debug or not."
+        },
+        "vendorExtension": {
+            "type": "object",
+            "description": "This field is specified for cross product support."
+        },
+        "inspectable" : {
+            "type": "boolean",
+            "default" : false,
+            "description": "This field is used to tell WAM if an application should be inspectable in DevMode, based on the app's install location (/media/developer) or the presence of an \"inspectable\" field (if true) in the app's appinfo.json file."
+        },
+        "bgImage": {
+            "type": "string",
+            "description": "This field is the location of a bitmap. The bitmap is displayed to the user when the user hovers over the launchpoint with the system pointer."
+        },
+        "bgColor": {
+            "type": "string",
+            "description": "This field is the color to be displayed to the user when the user hovers over the launchpoint with the system pointer. This is used in the absence of the backgroundImage."
+        },
+        "deeplinkingParams": {
+            "type": "string",
+            "default": "",
+            "description": "This field describes parameter pattern for deep linking. Pattern must have \"$CONTENTID\" keyword which will be replaced with real content ID given by cloud."
+        },
+        "defaultWindowType": {
+            "type": "string",
+            "default": "card",
+            "description": "Used by WebAppMgr to launch a window with a special window type setting."
+        },
+        "age": {
+            "type": "number",
+            "description": "the minimum age of the viewer for app."
+        },
+        "imageForRecents": {
+            "type": "string",
+            "description": "This field is the location of a bitmap. The bitmap is displayed in the recent apps list."
+        },
+        "requiredMemory": {
+            "type": "number",
+            "description": "Memory consumption is increasing quickly while launching. OOM can be occured before system(Memory Manager) try to acquire adequate memory for the application. requiredMemory is describe the maximum usage of memory while app is publishing. It is not about maximum usage of memory while app is running."
+        },
+        "iconColor": {
+            "type": "string",
+            "description": "indicates color of the icon of the launchpoint."
+        },
+        "appDescription": {
+            "type": "string",
+            "description": "A short tagline for the application"
+        },
+        "noDeprecatedStyles": {
+            "type": "boolean",
+            "description": "When set to true, suppresses loading of the global-deprecated.css style sheet, slightly improving the framework load time."
+        },
+        "inAppSetting":{
+            "type": "boolean",
+            "default": false,
+            "description": "This tells whether an applicaiton supports deeplinking for inAppSetting"
+        },
+        "disableBackHistoryAPI": {
+            "type": "boolean",
+            "default": false,
+            "description": "Disable WebAppMgr usage of the HTML5 History API with the Back keypress"
+        },
+        "privilegedJail": {
+            "type": "boolean",
+            "default": false,
+            "description": "When set to true, a native app can be launched with native_builtin jail configuration"
+        },
+        "lockable": {
+            "type": "boolean",
+            "default": true,
+            "description": "When set to true, the app can be locked"
+        }
+    },
+    "required": [
+        "id",
+        "main",
+        "icon",
+        "type",
+        "title"
+    ]
+}

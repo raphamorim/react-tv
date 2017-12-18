@@ -1,10 +1,8 @@
 [ignore]
-<PROJECT_ROOT>/src/.*
+<PROJECT_ROOT>/packages/.*
 
-<PROJECT_ROOT>/build/.*
-<PROJECT_ROOT>/cli/.*
 <PROJECT_ROOT>/scripts/.*
-<PROJECT_ROOT>/.*/__mocks__/.*
+<PROJECT_ROOT>/.*/__fixtures__/.*
 <PROJECT_ROOT>/.*/__tests__/.*
 
 [include]

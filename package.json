@@ -1,53 +1,55 @@
 {
-  "name": "react-tv",
-  "version": "0.3.0-alpha.2",
-  "description": "React renderer for low memory applications and Packager for TVs (WebOS, Tizen, Orsay)",
-  "main": "dist/react-tv.umd.js",
-  "bin": {
-    "react-tv": "cli/index.js"
-  },
-  "files": [
-    "LICENSE",
-    "README.md",
-    "cli/",
-    "dist/"
+  "private": true,
+  "version": "0.3.0",
+  "workspaces": [
+    "packages/*",
+    "examples/*"
   ],
   "scripts": {
+    "postinstall": "yarn build",
+    "lint": "node ./scripts/eslint/index.js",
+    "linc": "node ./scripts/eslint/only-changed.js",
     "build": "node scripts/rollup/build.js",
-    "build:all": "cross-env NODE_ENV=PROD node scripts/rollup/build.js",
-    "prepublishOnly": "yarn test && yarn build:all",
-    "prettier:stat": "node ./scripts/prettier/index",
-    "test": "yarn prettier:stat && yarn flow && yarn jest:ci",
-    "jest": "jest --testPathIgnorePatterns \"(__fixtures__|matcher.js)\"",
-    "jest:ci": "jest --testPathIgnorePatterns \"(__fixtures__|matcher.js)\" --ci --runInBand",
+    "build:prod": "cross-env NODE_ENV=PROD node scripts/rollup/build.js",
+    "build:stats": "node scripts/rollup/stats.js",
+    "prepublishOnly": "yarn test && yarn build:prod",
+    "prettier:stat": "node ./scripts/prettier/index.js",
+    "clean-node-modules": "find ./ -name 'node_modules' -exec rm -rf '{}' +",
+    "test": "yarn lint && yarn prettier:stat && yarn flow && yarn jest:ci",
+    "jest": "cross-env NODE_ENV=TEST jest --testPathIgnorePatterns \"(__fixtures__|matcher.js)\"",
+    "jest:ci": "cross-env NODE_ENV=TEST jest --no-cache --testPathIgnorePatterns \"(__fixtures__|matcher.js)\" --ci --runInBand",
     "flow": "flow",
     "prettier": "node ./scripts/prettier/index.js write-changed",
     "prettier:all": "node ./scripts/prettier/index.js write"
   },
-  "dependencies": {
-    "chalk": "^2.1.0",
-    "fbjs": "^0.8.4",
-    "fs-extra": "^4.0.1",
-    "node-replace": "^0.3.1",
-    "randomstring": "^1.1.5"
-  },
   "devDependencies": {
+    "babel-eslint": "^7.1.0",
     "babel-jest": "20.1.0-delta.1",
     "babel-plugin-external-helpers": "^6.22.0",
     "babel-plugin-transform-flow-strip-types": "^6.22.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
+    "babelrc-rollup": "^3.0.0",
+    "cli-table": "^0.3.1",
     "commitplease": "^3.1.0",
     "cross-env": "^5.1.1",
+    "eslint": "^3.10.2",
+    "eslint-config-fbjs": "^1.1.1",
+    "eslint-plugin-babel": "^3.3.0",
+    "eslint-plugin-flowtype": "^2.25.0",
+    "eslint-plugin-react": "^6.7.1",
+    "fbjs": "^0.8.4",
     "flow-bin": "^0.57.3",
     "jest": "20.1.0-delta.1",
     "prettier": "^1.5.3",
-    "react": "^16.0.0",
-    "react-fiber-types": "file:src/renderer/types",
-    "react-reconciler": "^0.6.0",
+    "react": "^16.2.0",
+    "react-fiber-types": "file:./packages/react-tv/renderer/types",
+    "react-reconciler": "^0.7.0",
+    "react-test-renderer": "^16.2.0",
     "rimraf": "^2.6.2",
-    "rollup": "^0.50.0",
+    "rollup": "^0.52.0",
     "rollup-plugin-babel": "^2.7.1",
     "rollup-plugin-commonjs": "^8.0.2",
     "rollup-plugin-flow": "^1.1.1",
@@ -56,53 +58,31 @@
     "rollup-plugin-replace": "^2.0.0",
     "rollup-plugin-uglify": "^2.0.1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/raphamorim/react-tv.git"
-  },
   "commitplease": {
     "style": "jquery",
     "component": true,
     "components": [
       "all",
       "modules",
+      "webos",
+      "renderer",
       "cli",
       "scripts",
-      "renderer",
+      "examples",
       "docs",
       "test"
     ]
   },
-  "keywords": [
-    "react",
-    "tv",
-    "renderer",
-    "smarttv",
-    "tizen",
-    "orsay",
-    "lg",
-    "samsung",
-    "webos"
-  ],
-  "engines": {
-    "node": ">=6",
-    "npm": ">=3",
-    "yarn": ">=0.22"
+  "devEngines": {
+    "node": "8.x"
   },
-  "author": "Raphael Amorim <rapha850@gmail.com>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/raphamorim/react-tv/issues"
-  },
-  "homepage": "https://github.com/raphamorim/react-tv#readme",
   "jest": {
     "roots": [
-      "<rootDir>/src",
-      "<rootDir>/cli"
+      "<rootDir>/packages/react-tv",
+      "<rootDir>/packages/react-tv-cli"
     ],
     "moduleDirectories": [
-      "node_modules",
-      "src"
+      "node_modules"
     ],
     "verbose": true,
     "resetModules": true

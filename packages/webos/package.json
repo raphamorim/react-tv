@@ -1,0 +1,54 @@
+{
+  "name": "node-webos",
+  "version": "0.3.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/raphamorim/react-tv"
+  },
+  "dependencies": {
+    "archiver": "~0.21.0",
+    "shelljs": ">=0.5.1",
+    "request": "2.12.x",
+    "async": "~0.2.9",
+    "mkdirp": "~0.3.5",
+    "temp": "~0.5.1",
+    "rimraf": "~2.1.2",
+    "rsync": "0.0.x",
+    "readline": "0.0.x",
+    "fstream": "0.1.x",
+    "tar": "2.0.0",
+    "graceful-fs": "1.2.x",
+    "combined-stream": "~0.0.4",
+    "ssh2": ">=0.4.8",
+    "npmlog": "~0.0.4",
+    "nopt": "~2.1.2",
+    "semver": "4.3.2",
+    "sprintf-js": "~0.0.7",
+    "stream-buffers": "0.2.x",
+    "express": "~3.3.4",
+    "base64-stream": "~0.1.2",
+    "busboy": "~0.0.5",
+    "inherits": "~1.x",
+    "jsonschema": "~0.4.x",
+    "body-parser": "1.4.x",
+    "easy-table": "~0.3.0",
+    "inquirer": "~0.8.0",
+    "colors": "~1.0.3",
+    "strip-bom": "^1.0.0",
+    "encoding": "^0.1.11",
+    "chardet": "0.0.8",
+    "extract-zip": "~1.0.3",
+    "shell-source": "~1.1.0",
+    "recursive-readdir": ">=1.2.1",
+    "elfy": ">=0.1.0"
+  },
+  "os": [
+    "darwin",
+    "linux",
+    "win32"
+  ],
+  "scripts": {
+    "test": "node_modules/.bin/mocha test/*.spec.js"
+  },
+  "readmeFilename": "README.md"
+}

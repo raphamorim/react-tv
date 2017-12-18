@@ -1,0 +1,36 @@
+body {
+  background: #262626;
+  color: #4AD0EC;
+  font-family: Helvetica;
+  letter-spacing: 0.15em;
+  width: 600px;
+  margin: 0 auto;
+}
+
+h1 {
+  font-weight: 300;
+  color: #FFF;
+  margin: 0;
+  margin-top: 35px;
+  padding: 0;
+}
+
+p {
+  font-size: 1.4em;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  width: 100%;
+  margin-top: 15%;
+}
+
+.container p, .container h1 {
+  width: 100%
+}

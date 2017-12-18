@@ -1,0 +1,32 @@
+{
+  "name": "react-tv",
+  "version": "0.3.0",
+  "description": "React renderer for low memory applications",
+  "main": "dist/react-tv.umd.js",
+  "files": [
+    "LICENSE",
+    "README.md",
+    "dist/"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raphamorim/react-tv.git"
+  },
+  "keywords": [
+    "react",
+    "tv",
+    "renderer",
+    "smarttv",
+    "tizen",
+    "orsay",
+    "lg",
+    "samsung",
+    "webos"
+  ],
+  "author": "Raphael Amorim <rapha850@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/raphamorim/react-tv/issues"
+  },
+  "homepage": "https://github.com/raphamorim/react-tv#readme"
+}

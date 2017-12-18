@@ -1,0 +1,97 @@
+{
+    "display" : ["name", "synopsis", "options", "extraoption", "description", "examples", "extraexample"],
+    "notab":["examples", "extraexample"],
+    "notitle" : ["extraoption", "extraexample"],
+    "name" : "ares-install - Install or Remove app from a device",
+    "synopsis" : {
+        "default" : [
+            "ares-install [OPTION...] <PACKAGE_FILE>",
+            "ares-install [OPTION...] -r, --remove <APP_ID>"
+        ]
+    },
+    "description" : [
+        "This command installs or removes packages on the DEVICE."
+    ],
+    "examples" : [
+        {
+            "default" : [
+                "",
+                "# Remove an app on the DEVICE",
+                "ares-install -r com.examples.app -d DEVICE",
+                "",
+                "# List the applications installed on the DEVICE",
+                "ares-install -l -d DEVICE",
+                ""
+            ],
+            "tv" : [
+                "# Install a package on the DEVICE",
+                "ares-install ~/projects/packages/com.examples.app_1.0_all.ipk -d DEVICE",
+                "",
+                "# List the storages on the DEVICE",
+                "ares-install -S -d DEVICE",
+                "",
+                "# Install a package on DEVICE in the attached USB storage",
+                "ares-install ~/projects/packages/com.examples.app_1.0_all.ipk -d DEVICE -s usb1"
+            ],
+            "watch" : [
+                "# Install a package on the DEVICE",
+                "ares-install ~/projects/packages/com.examples.app_1.0_all.ipk -d DEVICE"
+            ],
+            "signage" : [
+                "# Install a package on the DEVICE",
+                "ares-install ~/projects/packages/com.examples.app_1.0_all.ipk -d DEVICE"
+            ]
+        }
+    ],
+    "options" : {
+        "cmdOpt":"option",
+        "default" : ["device", "device-list", "list", "listfull", "type", "level", "help", "version", "verbose"],
+        "tv" : ["list-storage", "storage"],
+        "device" : "-d, --device <DEVICE> @TAB@ Specify DEVICE to use",
+        "device-list" : "-D, --device-list @TAB@ List the available DEVICEs",
+        "list" : "-l, --list @TAB@ List the installed apps",
+        "listfull" : "-F, --listfull @TAB@ List the detailed info of the installed apps",
+        "list-storage" : "-S, --list-storage @TAB@ List the storages of the DEVICE",
+        "storage" : "-s, --storage @TAB@ Specify STORAGE to install",
+        "help" : "-h, --help @TAB@ Display this help",
+        "version" : "-V, --version @TAB@ Display version info",
+        "verbose" : "-v @TAB@ Display this verbose log"
+    },
+    "extraoption" : {
+        "cmdOpt":"hidden",
+        "default" : {
+            "cmdOpt":"option",
+            "default" : ["type", "opkg", "opkg-param", "level"],
+            "type" : "-t, --type <TYPE> @TAB@ Specify TYPE as one of 'web', 'native' for the app list",
+            "opkg" : "-o, --opkg @TAB@ Use opkg tool for installing/removing an ipk package",
+            "opkg-param" : [
+                "-op, --opkg-param <PARAMS> @TAB@ parameters for opkg tool",
+                "@TAB@ this option is available only for the device allowing root-connection"
+            ],
+            "level" : "--level <LEVEL> @TAB@ Set a log LEVEL of 'silly', 'verbose', 'info', 'http', 'warn', 'error'"
+        }
+    },
+    "extraexample" : {
+        "cmdOpt" : "hidden",
+        "default" : [
+            "",
+            "# List the installed web apps on the DEVICE",
+            "ares-install <PACKAGE_FILE> -d DEVICE -l -t web",
+            "",
+            "# List the installed native apps on the DEVICE",
+            "ares-install <PACKAGE_FILE> -d DEVICE -l -t native",
+            "",
+            "# Install .ipk by 'opkg install' instead of the installd",
+            "ares-install <PACKAGE_FILE> -d DEVICE --opkg",
+            "",
+            "# Remove .ipk by 'opkg remove' instead of the installd",
+            "# (Note.) To remove a package by opkg command, <PACKAG_NAME> should be specified instead of <APP_ID>",
+            "# (Note.) Please refer to 'ares-package --hidden-help', it provides '--pkgname' option for making .ipk",
+            "ares-install -r <PACKAGE_NAME> -d DEVICE --opkg",
+            "",
+            "# Install .ipk by 'opkg install' with parameters",
+            "ares-install <PACKAGE_FILE> -d DEVICE --opkg --opkg-param \"-o /media/developer/apps\"",
+            ""
+        ]
+    }
+}

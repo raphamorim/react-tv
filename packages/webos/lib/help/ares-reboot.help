@@ -1,0 +1,34 @@
+{
+    "display" : ["name", "synopsis", "options", "description", "examples"],
+    "notab":["examples"],
+    "name" : "ares-reboot - Reboot the target device",
+    "synopsis" : {
+        "default" : [
+            "ares-reboot [OPTION...]"
+        ]
+    },
+    "description" : [
+        "This command reboots the DEVICE"
+    ],
+    "options" : {
+        "default": {
+            "cmdOpt":"option",
+            "default" : ["device", "device-list", "help", "version", "verbose"],
+            "watch" : ["wait-for-device"],
+            "device" : "-d, --device <DEVICE> @TAB@ Specify DEVICE to use",
+            "device-list" : "-D, --device-list @TAB@ List the available DEVICEs",
+            "wait-for-device" : "-w, --wait-for-device @TAB@ Block the execution until the device is online",
+            "help" : "-h, --help @TAB@ Display this help",
+            "version" : "-V, --version @TAB@ Display version info",
+            "verbose" : "-v @TAB@ Display this verbose log"
+        }
+    },
+    "examples" : {
+        "default": [
+            "",
+            "# Reboot the DEVICE",
+            "ares-reboot -d DEVICE",
+            ""
+        ]
+    }
+}

@@ -1,0 +1,34 @@
+<html>
+<head>
+<title>Forwarding Page</title>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+<script type="text/javascript">
+    function getUrlParameters() {
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '@@GET_URL@@', true);
+        xhr.onreadystatechange = function (aEvt) {
+            if (xhr.readyState == 4) {
+                if(xhr.status == 200) {
+                    console.log(xhr.responseText);
+                    window.document.getElementById("ref").src = xhr.responseText;
+                } else {
+                    console.log("Error loading page\n");
+                }
+          }
+        };
+        xhr.send(null);
+    } 
+    function __unload_page(){
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '@@ARES_CLOSE@@', false);
+        xhr.send(null);
+    }
+    window.onbeforeunload=__unload_page;
+</script>
+</head>
+<body style="margin: 0 auto;" onload="getUrlParameters();">
+    <div>
+        <iframe id="ref" src="" width="100%", height="100%" seamless='seamless' frameBorder='0'></iframe> 
+    </div>
+</body>
+</html>

@@ -1,0 +1,48 @@
+{
+  "name": "react-tv-cli",
+  "version": "0.3.0",
+  "description": "Packager for TVs (WebOS, Tizen, Orsay)",
+  "bin": {
+    "react-tv-cli": "index.js"
+  },
+  "files": [
+    "bootstrap/",
+    "scripts/",
+    "shared/",
+    "index.js"
+  ],
+  "preferGlobal": true,
+  "dependencies": {
+    "chalk": "^2.1.0",
+    "fs-extra": "^4.0.3",
+    "node-replace": "^0.3.1",
+    "node-webos": "^0.3.0",
+    "randomstring": "^1.1.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raphamorim/react-tv.git"
+  },
+  "keywords": [
+    "react",
+    "tv",
+    "renderer",
+    "smarttv",
+    "tizen",
+    "orsay",
+    "lg",
+    "samsung",
+    "webos"
+  ],
+  "engines": {
+    "node": ">=8",
+    "npm": ">=5",
+    "yarn": ">=1.3.2"
+  },
+  "author": "Raphael Amorim <rapha850@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/raphamorim/react-tv/issues"
+  },
+  "homepage": "https://github.com/raphamorim/react-tv#readme"
+}

@@ -1,0 +1,11 @@
+# Third party
+**/node_modules
+
+# Build products
+dist/
+examples/
+bootstrap/
+__fixtures__/
+
+# Ignore node-webos
+webos
