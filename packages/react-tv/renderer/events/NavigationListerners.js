@@ -5,19 +5,19 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import Navigation from './Navigation';
+// import Navigation from './Navigation';
 
-let initialized = null;
+// let initialized = null;
 
-export default function(focusedElement) {
-  if (initialized) {
-    return;
-  }
+// export default function(focusedElement) {
+//   if (initialized) {
+//     return;
+//   }
 
-  Navigation.init();
-  Navigation.config({selector: '[focusable="true"]'});
-  Navigation.focusableElements();
-  Navigation.focus(focusedElement);
+//   Navigation.init();
+//   Navigation.config({selector: '[focusable="true"]'});
+//   Navigation.focusableElements();
+//   Navigation.focus(focusedElement);
 
-  initialized = true;
-}
+//   initialized = true;
+// }
