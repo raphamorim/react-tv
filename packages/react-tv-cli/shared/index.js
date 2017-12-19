@@ -49,6 +49,7 @@ https://medium.com/@raphamorim/developing-for-tvs-with-react-tv-b5b5204964ef`)
 }
 
 function createReactTVApp(appName) {
+  console.log('tizen');
   let appPath = process.cwd();
 
   const packageJson = path.resolve(appPath, 'package.json');
@@ -63,6 +64,22 @@ function createReactTVApp(appName) {
       replace({
         regex: '{{REACTTVAPP}}',
         replacement: appName,
+        paths: [appName],
+        recursive: true,
+        silent: true,
+      });
+
+      replace({
+        regex: '{{TIZEN_PACKAGE}}',
+        replacement: randomstring.generate(10),
+        paths: [appName],
+        recursive: true,
+        silent: true,
+      });
+
+      replace({
+        regex: '{{TIZEN_REACTTVAPP}}',
+        replacement: appName.replace(/-/g, '').replace(/\./g, ''),
         paths: [appName],
         recursive: true,
         silent: true,

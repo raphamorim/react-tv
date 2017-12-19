@@ -13,7 +13,7 @@
   },
   "scripts": {
     "build": "webpack",
-    "build-prod": "NODE_ENV=production yarn build",
+    "build-prod": "cross-env NODE_ENV=production yarn build",
     "react-tv-cli": "react-tv-cli",
     "start": "yarn build-prod && react-tv-cli run-webos",
     "start-tizen": "yarn build && react-tv run-tizen",
@@ -30,6 +30,7 @@
     "babel-loader": "^6.2.1",
     "babel-polyfill": "^6.26.0",
     "babel-preset-react": "^6.3.13",
+    "cross-env": "^5.1.1",
     "webpack": "^1.12.12",
     "webpack-dev-server": "^1.12.1"
   }
