@@ -41,6 +41,14 @@ switch (command) {
     WebOS.getKey(device);
     break;
 
+    case 'run-tizen':
+      if (argv.length > 3) {
+        device = argv[3];
+      }
+
+      Tizen.run(process.cwd());
+      break;
+
   case '--version':
     version();
     break;

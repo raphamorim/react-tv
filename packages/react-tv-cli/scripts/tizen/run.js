@@ -1,11 +1,7 @@
 const path = require('path');
-const fs = require('fs');
+const fs = require('fs-extra');
 const chalk = require('chalk');
 const execSync = require('child_process').execSync;
-
-function copy(from, to) {
-  fs.writeFileSync(to, fs.readFileSync(from));
-}
 
 function defaultCLIEnv() {
   //return '/opt/tizen/tools/ide/bin';
@@ -34,7 +30,7 @@ function isReactTVTizenProject(root) {
   return false;
 }
 
-function runTizen(root) {
+function run(root) {
   let tizen_CLI_ENV = process.env['TIZEN_CLI'] || false;
   if (!tizen_CLI_ENV) {
     tizen_CLI_ENV = defaultCLIEnv();
@@ -81,12 +77,29 @@ function runTizen(root) {
     .trim();
 
   const tizenPath = path.resolve(root, 'react-tv/tizen');
+
+  process.on('exit', cleanup);
+  process.on('SIGINT', cleanup);
+  process.on('SIGUSR1', cleanup);
+  process.on('SIGUSR2', cleanup);
+  process.on('uncaughtException', cleanup);
+
+  function cleanup() {
+    fs.removeSync(`${tizenPath}/icon.png`);
+    ReactTVConfig.files.forEach(file => {
+      fs.removeSync(`${tizenPath}/${file}`);
+    });
+  }
+
   try {
-    copy(`${root}/react-tv/icon.png`, `${tizenPath}/icon.png`);
+    cleanup();
+    fs.copySync(`${root}/react-tv/icon-large.png`, `${tizenPath}/icon.png`);
 
     ReactTVConfig.files.forEach(file => {
       const filePath = path.resolve(root, file);
-      copy(`${filePath}`, `${tizenPath}/${file}`);
+      const toFile = path.resolve(tizenPath, file);
+      fs.ensureDirSync(path.dirname(toFile));
+      fs.copySync(`${filePath}`, `${toFile}`);
     });
   } catch (e) {
     return console.log('FAIL TO MOUNT', e.toString());
@@ -167,4 +180,4 @@ function runTizen(root) {
   }, 500);
 }
 
-module.exports = runTizen;
+module.exports = run;
