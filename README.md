@@ -74,7 +74,7 @@ In addition: Unify the build for multiple TV platforms.
 
 ### Articles
 
-Friendly list of tutorials and articles: 
+Friendly list of tutorials and articles:
 
 - [Developing for TVs with React-TV](https://medium.com/@raphamorim/developing-for-tvs-with-react-tv-b5b5204964ef)
 
@@ -163,9 +163,9 @@ const App = renderOnAppLoaded(Component)
 
 ### Spatial Navigation
 
-React-TV provides a spatial navigation system on render level. 
+React-TV provides a spatial navigation system on render level.
 
-Just add `focusable` for navigable elements and `focused` for an element which starts focused. 
+Just add `focusable` for navigable elements and `focused` for an element which starts focused.
 
 ```jsx
 <div>
@@ -211,6 +211,16 @@ See [examples/navigation](examples/navigation) for more details about usage.
 - http://webostv.developer.lge.com/develop/app-developer-guide/web-app-lifecycle/
 - http://webostv.developer.lge.com/develop/js-services/calling-js-service/
 
+### Tizen
+
+- http://developer.samsung.com/tv/develop/tools/tizen-studio
+- http://developer.samsung.com/tv/develop/getting-started/setting-up-sdk/installing-tv-sdk
+- http://developer.samsung.com/tv/develop/getting-started/setting-up-sdk/creating-certificates
+- http://developer.samsung.com/tv/develop/getting-started/creating-tv-applications
+- http://developer.samsung.com/tv/design/design-principles
+- http://developer.samsung.com/tv/develop/specifications/general-specifications
+- http://developer.samsung.com/tv/develop/specifications/web-engine-specifications
+
 #### Videos
 
 ##### Windows
@@ -223,7 +233,6 @@ See [examples/navigation](examples/navigation) for more details about usage.
 
 ### Essentials to beginner
 
-- http://developer.samsung.com/tv/develop/getting-started/setup-sdk/installing-tv-sdk/
 - http://developer.samsung.com/tv/develop/getting-started/using-sdk/tv-simulator
 - http://developer.samsung.com/tv/develop/getting-started/essentials-for-beginner
 
@@ -260,7 +269,7 @@ Implement essential functionality needed for daily use by early adopters.
 - [ ] Support render to Canvas instead DOM using `React.CanvasComponent`
 - [x] `run-webos` support TV device as param
 - [ ] Optmizate DOMRenderer for TV
-- [ ] Start CLI for Tizen
+- [x] Start CLI for Tizen
 - [x] Develop helpers for WebOS debbug (e.g: Log System).
 - [x] Support Cross Platform
   - [x] Check executable bin path for Windows, OSX and Linux
@@ -278,7 +287,7 @@ Add additional features users expect from a Renderer. Then fix bugs and stabiliz
 - [ ] Reactive Renderer
 - [ ] Testing and stability
 
----------------------------------------------------- 
+----------------------------------------------------
 
 See ReactTV's [Changelog](https://github.com/raphamorim/react-tv/blob/master/CHANGELOG.md).
 

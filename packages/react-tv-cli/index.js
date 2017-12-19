@@ -2,7 +2,7 @@
 
 const argv = process.argv;
 const {help, version, createReactTVApp} = require('./shared');
-const {WebOS} = require('./scripts');
+const {WebOS, Tizen} = require('./scripts');
 
 if (argv.length < 2) {
   return help();
@@ -40,6 +40,14 @@ switch (command) {
 
     WebOS.getKey(device);
     break;
+
+    case 'run-tizen':
+      if (argv.length > 3) {
+        device = argv[3];
+      }
+
+      Tizen.run(process.cwd());
+      break;
 
   case '--version':
     version();
