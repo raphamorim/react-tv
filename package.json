@@ -73,9 +73,6 @@
       "test"
     ]
   },
-  "devEngines": {
-    "node": "8.x"
-  },
   "jest": {
     "roots": [
       "<rootDir>/packages/react-tv",
