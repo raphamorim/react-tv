@@ -41,7 +41,10 @@ function help() {
     chalk.dim('Get the key file from the WebOS device')
   );
 
-  console.log(chalk.dim('\nFriendly Guide to React-TV for WebOS: https://medium.com/@raphamorim/developing-for-tvs-with-react-tv-b5b5204964ef'));
+  console.log(
+    chalk.dim(`\nFriendly Guide to React-TV for WebOS:
+https://medium.com/@raphamorim/developing-for-tvs-with-react-tv-b5b5204964ef`)
+  );
 }
 
 function createReactTVApp(appName) {
