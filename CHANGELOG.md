@@ -1,8 +1,18 @@
-# 0.3.0-beta.1
+# 0.3.1
 
-- breaks CLI
-- supports spatial navigation
-- supports events
+- remove engine specification
+- update help command with new webos commands
+
+# 0.3.0
+
+- support style prop
+- yarn workspaces (split into `react-tv-cli` and `react-tv`)
+- `react-tv-cli setup-webos` for setup WebOS devices
+- `react-tv-cli get-key-webos <device>` for get key file from device
+- react-reconciler 0.7.0
+- support className
+- support spatial navigation
+- support events
 - update to nodejs 8
 - update to yarn 1.3.2
 - update to npm 5
