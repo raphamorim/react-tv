@@ -17,18 +17,31 @@ function version() {
 
 function help() {
   console.log('');
+  console.log(chalk.yellow('Common Commands: \n'));
   console.log(
     chalk.bgYellow(' init '),
-    chalk.yellow('          init or sync react-tv project')
+    chalk.dim('Init or sync react-tv project')
   );
   console.log(
-    chalk.bgBlueBright(' run-webos '),
-    chalk.blueBright('     pack, build and runs webos simulator')
+    chalk.bgYellow(' help '),
+    chalk.dim('Output react-tv cli commands')
+  );
+
+  console.log(chalk.blueBright('\nWebOS Commands: \n'));
+  console.log(
+    chalk.bgBlueBright(' setup-webos '),
+    chalk.dim('Add, remove or edit WebOS devices')
   );
   console.log(
-    chalk.bgRed(' help '),
-    chalk.red('          output react-tv cli commands')
+    chalk.bgBlueBright(' run-webos <device> '),
+    chalk.dim('Build and runs webos on device (default device: simulator)')
   );
+  console.log(
+    chalk.bgBlueBright(' get-key-webos <device>'),
+    chalk.dim('Get the key file from the WebOS device')
+  );
+
+  console.log(chalk.dim('\nFriendly Guide to React-TV for WebOS: https://medium.com/@raphamorim/developing-for-tvs-with-react-tv-b5b5204964ef'));
 }
 
 function createReactTVApp(appName) {
