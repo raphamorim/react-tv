@@ -114,9 +114,7 @@ function run(root) {
 
   if (vms.indexOf('react-tv-tizen') < 0) {
     execSync(
-      `${
-        tizen_CLI_ENV
-      }/../../emulator/bin/em-cli create -n react-tv-tizen -p tv-samsung-3.0-x86`
+      `${tizen_CLI_ENV}/../../emulator/bin/em-cli create -n react-tv-tizen -p tv-samsung-3.0-x86`
     );
   }
 
@@ -134,9 +132,7 @@ function run(root) {
 
   console.log(chalk.dim('Packing...'));
   execSync(
-    `cd ${tizenPath} && ${tizen_CLI_ENV}/tizen package -t wgt -s ${
-      selectedProfile
-    }`
+    `cd ${tizenPath} && ${tizen_CLI_ENV}/tizen package -t wgt -s ${selectedProfile}`
   );
   console.log(chalk.yellow(` succefull pack from ${root}`));
 
@@ -173,9 +169,7 @@ function run(root) {
     }
 
     execSync(
-      `cd ${tizenPath} && ${tizen_CLI_ENV}/tizen run -p ${
-        packageId
-      } -t react-tv-tizen`
+      `cd ${tizenPath} && ${tizen_CLI_ENV}/tizen run -p ${packageId} -t react-tv-tizen`
     );
   }, 500);
 }
