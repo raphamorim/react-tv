@@ -31,12 +31,12 @@ function isReactTVTizenProject(root) {
 }
 
 function run(root) {
-  let tizen_CLI_ENV = process.env['TIZEN_CLI'] || false;
+  let tizen_CLI_ENV = process.env.TIZEN_CLI || false;
   if (!tizen_CLI_ENV) {
     tizen_CLI_ENV = defaultCLIEnv();
   }
 
-  process.env['PATH'] = `${tizen_CLI_ENV}:${process.env['PATH']}`;
+  process.env.PATH = `${tizen_CLI_ENV}:${process.env.PATH}`;
 
   if (!isReactTVTizenProject(root)) {
     const msg = `This project isn\'t a React-TV Tizen Project:
@@ -154,7 +154,7 @@ function run(root) {
 
       execSync(
         `cd ${tizenPath} && ${tizen_CLI_ENV}/tizen install -n ${
-          packageJson['name']
+          packageJson.name
         }.wgt -t react-tv-tizen`
       );
     } catch (error) {

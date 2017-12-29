@@ -2,7 +2,7 @@
 
 const argv = process.argv;
 const {help, version, createReactTVApp} = require('./shared');
-const {WebOS} = require('./scripts');
+const {WebOS, Tizen} = require('./scripts');
 
 if (argv.length < 2) {
   return help();
