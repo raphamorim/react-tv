@@ -1,5 +1,6 @@
 .DS_Store
 *.log
+*.ipk
 
 node_modules
 package-lock.json
