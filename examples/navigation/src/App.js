@@ -7,12 +7,9 @@ import getContext from 'recompose/getContext'
 import mapProps from 'recompose/mapProps'
 import withHandlers from 'recompose/withHandlers'
 import withReducer from 'recompose/withReducer'
+import withProps from 'recompose/withProps'
 import ReactTV, { renderOnAppLoaded } from 'react-tv'
 import PropTypes from 'prop-types'
-
-// TODO:
-// select focus only in one
-//
 
 let focusKeys = [];
 let focused = null;
@@ -25,28 +22,17 @@ const Navigation = {
   },
 }
 
-function isFocused(focusKey) {
-  focusKeys.push(focusKey)
-
-  if (focusKey === Navigation.getCurrentFocusKey()) {
-    setFocus(focusKey)
-    return true;
-  }
-
-  return false;
-}
-
 function withFocusable(Component, config) {
   const { focusKey } = config
   return compose(
     getContext({
-      setFocusKey: PropTypes.func,
+      setFocus: PropTypes.func,
       currentFocusKey: PropTypes.string,
     }),
-    mapProps(({ currentFocusKey, setFocusKey, ...props }) => {
+    mapProps(({ currentFocusKey, setFocus, ...props }) => {
       return {
         focused: currentFocusKey === config.focusKey,
-        setFocusKey: setFocusKey.bind(this, config.focusKey),
+        setFocus: setFocus.bind(this, config.focusKey),
         focusKey: config.focusKey,
         ...props
       }
@@ -61,7 +47,7 @@ function withNavigation(Component) {
         currentFocusKey: Navigation.getCurrentFocusKey()
       },
       {
-        setFocusKey: ({currentFocusKey}) => (focusKey) => {
+        setFocus: ({currentFocusKey}) => (focusKey) => {
           Navigation.setCurrentFocusKey(focusKey)
           return {
             currentFocusKey: focusKey
@@ -70,16 +56,16 @@ function withNavigation(Component) {
       }
     ),
     withContext(
-      { setFocusKey: PropTypes.func, currentFocusKey: PropTypes.string },
-      ({ setFocusKey, currentFocusKey }) => ({ setFocusKey, currentFocusKey }),
+      { setFocus: PropTypes.func, currentFocusKey: PropTypes.string },
+      ({ setFocus, currentFocusKey }) => ({ setFocus, currentFocusKey }),
     ),
   )(Component)
 }
 
-const Item = ({focused, setFocusKey, focusKey}) => {
+const Item = ({focused, setFocus, focusKey}) => {
   focused = (focused) ? 'focused' : 'unfocused'
   return (
-    <div className={focused} onClick={() => setFocusKey()}>
+    <div className={focused} onClick={() => setFocus()}>
       It's {focused} Item
     </div>
   )
