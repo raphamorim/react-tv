@@ -86,6 +86,16 @@ To install `react-tv-cli` (CLI Packager):
 $ yarn global add react-tv-cli
 ```
 
+##### Support for React-TV-CLI
+
+| Target Platform | Status | Available Version |
+| --- | --- | --- |
+| `LG WebOS` | stable | 0.3.1 |
+| `Samsung Tizen` | [ongoing](https://github.com/raphamorim/react-tv/pull/104) | x |
+| `Samsung Orsay` | not started yet | x |
+| `Sony PS4` | not started yet | x |
+| `Nintendo Switch` | not started yet | x |
+
 ### Developing for WebOS
 
 <p align="center"><img src="http://ksassets.timeincuk.net/wp/uploads/sites/54/2015/07/lg-webOS-2-0-2015-Main-1.jpg" /></p>
