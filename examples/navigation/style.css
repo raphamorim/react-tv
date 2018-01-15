@@ -31,3 +31,15 @@ h1 {
   background: orange;
   color: white;
 }
+
+.btn-unfocused, .btn-focused {
+  padding: 8px;
+  font-weight: bold;
+  color: white;
+  background: blue;
+}
+
+.btn-focused {
+  background: red;
+}
+

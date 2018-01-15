@@ -47,30 +47,30 @@ class Spatial {
       return undefined;
     }
 
+    const index = this.focusPaths.indexOf(this.focused)
+
     if (direction === 'right' || direction === 'down') {
       // should verify direction
-      const index = this.focusPaths.indexOf(this.focused)
-      console.log(index, this.focusPaths.length)
-
       if ((index + 1) >= this.focusPaths.length) {
         return undefined;
       }
 
       this.focused = this.focusPaths[index + 1]
       this.setState(this.focusPaths[index + 1])
-      document.querySelector(`#${this.focusPaths[index + 1]}`).focus()
+      const element = document.querySelector(`#${this.focusPaths[index + 1]}`)
+      console.log(element)
+      element.focus()
     } else if (direction === 'left' || direction === 'up') {
       // should verify direction
-      const index = this.focusPaths.indexOf(this.focused)
-      console.log(index, this.focusPaths.length)
-
       if (index === 0) {
         return undefined;
       }
 
       this.focused = this.focusPaths[index - 1]
       this.setState(this.focusPaths[index - 1])
-      document.querySelector(`#${this.focusPaths[index - 1]}`).focus()
+      const element = document.querySelector(`#${this.focusPaths[index - 1]}`)
+      console.log(element)
+      element.focus()
     }
   }
 

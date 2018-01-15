@@ -43,10 +43,10 @@ function withNavigation(Component) {
         currentFocusKey: SpatialNavigation.getCurrentFocusedPath(),
       },
       {
-        setFocus: ({currentFocusKey}) => (focusKey) => {
-          SpatialNavigation.setCurrentFocusedPath(focusKey)
+        setFocus: ({currentFocusKey}) => (focusKey, overwriteFocusKey) => {
+          SpatialNavigation.setCurrentFocusedPath(overwriteFocusKey || focusKey)
           return {
-            currentFocusKey: focusKey
+            currentFocusKey: overwriteFocusKey || focusKey
           }
         },
       }
@@ -61,16 +61,31 @@ function withNavigation(Component) {
 const Item = ({focused, setFocus, focusKey}) => {
   focused = (focused) ? 'focused' : 'unfocused'
   return (
-    <div id={focusKey} className={focused} onClick={() => setFocus()}>
+    <div tabindex="0" id={focusKey} className={focused} onClick={() => setFocus()}>
       It's {focused} Item
     </div>
   )
 }
 
 function ProgramList() {
+  const Button = ({focused, setFocus, focusKey}) => {
+    focused = (focused) ? 'btn-focused' : 'btn-unfocused'
+    return (
+      <div
+        tabindex="0"
+        id={focusKey}
+        className={focused}
+        onPress={() => { console.log(121); setFocus('focusKey-1')}}
+      >
+        To Top!
+      </div>
+    )
+  }
+
   const FocusableItem1 = withFocusable(Item, {focusKey: 'focusKey-1'})
   const FocusableItem2 = withFocusable(Item, {focusKey: 'focusKey-2'})
   const FocusableItem3 = withFocusable(Item, {focusKey: 'focusKey-3'})
+  const FocusableButton = withFocusable(Button, {focusKey: 'button'})
   const FocusableItem4 = withFocusable(Item, {focusKey: 'focusKey-4'})
   const FocusableItem5 = withFocusable(Item, {focusKey: 'focusKey-5'})
   const FocusableItem6 = withFocusable(Item, {focusKey: 'focusKey-6'})
@@ -80,6 +95,10 @@ function ProgramList() {
       <FocusableItem1/>
       <FocusableItem2/>
       <FocusableItem3/>
+      <div>
+        <p>(press enter on next for back to top)</p>
+        <FocusableButton/>
+      </div>
       <FocusableItem4/>
       <FocusableItem5/>
       <FocusableItem6/>

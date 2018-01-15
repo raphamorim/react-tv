@@ -21,7 +21,7 @@
   "dependencies": {
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
-    "react-tv": "^0.3.0",
+    "react-tv": "^0.3.1",
     "react-tv-cli": "^0.3.0",
     "recompose": "^0.26.0"
   },
