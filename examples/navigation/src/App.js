@@ -31,10 +31,10 @@ function withFocusable(Component, config) {
     })),
     lifecycle({
       componentDidMount() {
-        SpatialNavigation.addFocusable(this.props.focusPath)
+        SpatialNavigation.addFocusable(focusPath)
       },
       componentWillUnmount() {
-        SpatialNavigation.removeFocusable(this.props.focusPath)
+        SpatialNavigation.removeFocusable(focusPath)
       },
     }),
   )(Component)
@@ -85,7 +85,7 @@ function ProgramList() {
       <div
         id={focusPath}
         className={focused}
-        onPress={() => { console.log(121); setFocus('focusPath-1')}}
+        onClick={() => { setFocus('focusPath-1') }}
       >
         To Top!
       </div>
