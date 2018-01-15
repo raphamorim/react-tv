@@ -12,6 +12,8 @@ class Spatial {
     this.setState = null;
     this.initialized = false;
 
+    this.handleKeyDown = this.onKeyDown.bind(this)
+
     this.init()
   }
 
@@ -22,19 +24,19 @@ class Spatial {
   }
 
   init() {
-    document.body.addEventListener('keydown', this.onKeyDown.bind(this))
+    document.body.addEventListener('keydown', this.handleKeyDown)
   }
 
   remove() {
-    document.body.removeEventListener('keydown', this.onKeyDown.bind(this))
+    document.body.removeEventListener('keydown', this.handleKeyDown)
   }
 
   getCurrentFocusedPath() {
     return this.focused
   }
 
-  setCurrentFocusedPath(focusKey) {
-    this.focused = focusKey
+  setCurrentFocusedPath(focusPath) {
+    this.focused = focusPath
   }
 
   focusOnClosest(direction) {

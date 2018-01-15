@@ -16,20 +16,20 @@ import PropTypes from 'prop-types'
 const SpatialNavigation = new Spatial()
 
 function withFocusable(Component, config) {
-  const { focusKey } = config
-  SpatialNavigation.addFocusable(config.focusKey)
+  const { focusPath } = config
+  SpatialNavigation.addFocusable(focusPath)
 
   return compose(
     getContext({
       setFocus: PropTypes.func,
-      currentFocusKey: PropTypes.string,
+      currentFocusPath: PropTypes.string,
     }),
-    mapProps(({ currentFocusKey, setFocus, ...props }) => {
+    mapProps(({ currentFocusPath, setFocus, ...props }) => {
       SpatialNavigation.withSetState(setFocus)
       return {
-        focused: currentFocusKey === config.focusKey,
-        setFocus: setFocus.bind(this, config.focusKey),
-        focusKey: config.focusKey,
+        focused: currentFocusPath === focusPath,
+        setFocus: setFocus.bind(this, focusPath),
+        focusPath,
         ...props
       }
     }),
@@ -40,55 +40,55 @@ function withNavigation(Component) {
   return compose(
     withStateHandlers(
       {
-        currentFocusKey: SpatialNavigation.getCurrentFocusedPath(),
+        currentFocusPath: SpatialNavigation.getCurrentFocusedPath(),
       },
       {
-        setFocus: ({currentFocusKey}) => (focusKey, overwriteFocusKey) => {
-          SpatialNavigation.setCurrentFocusedPath(overwriteFocusKey || focusKey)
+        setFocus: ({currentFocusPath}) => (focusPath, overwriteFocusPath) => {
+          SpatialNavigation.setCurrentFocusedPath(overwriteFocusPath || focusPath)
           return {
-            currentFocusKey: overwriteFocusKey || focusKey
+            currentFocusPath: overwriteFocusPath || focusPath
           }
         },
       }
     ),
     withContext(
-      { setFocus: PropTypes.func, currentFocusKey: PropTypes.string },
-      ({ setFocus, currentFocusKey }) => ({ setFocus, currentFocusKey }),
+      { setFocus: PropTypes.func, currentFocusPath: PropTypes.string },
+      ({ setFocus, currentFocusPath }) => ({ setFocus, currentFocusPath }),
     ),
   )(Component)
 }
 
-const Item = ({focused, setFocus, focusKey}) => {
+const Item = ({focused, setFocus, focusPath}) => {
   focused = (focused) ? 'focused' : 'unfocused'
   return (
-    <div tabindex="0" id={focusKey} className={focused} onClick={() => setFocus()}>
+    <div tabindex="0" id={focusPath} className={focused} onClick={() => setFocus()}>
       It's {focused} Item
     </div>
   )
 }
 
 function ProgramList() {
-  const Button = ({focused, setFocus, focusKey}) => {
+  const Button = ({focused, setFocus, focusPath}) => {
     focused = (focused) ? 'btn-focused' : 'btn-unfocused'
     return (
       <div
         tabindex="0"
-        id={focusKey}
+        id={focusPath}
         className={focused}
-        onPress={() => { console.log(121); setFocus('focusKey-1')}}
+        onPress={() => { console.log(121); setFocus('focusPath-1')}}
       >
         To Top!
       </div>
     )
   }
 
-  const FocusableItem1 = withFocusable(Item, {focusKey: 'focusKey-1'})
-  const FocusableItem2 = withFocusable(Item, {focusKey: 'focusKey-2'})
-  const FocusableItem3 = withFocusable(Item, {focusKey: 'focusKey-3'})
-  const FocusableButton = withFocusable(Button, {focusKey: 'button'})
-  const FocusableItem4 = withFocusable(Item, {focusKey: 'focusKey-4'})
-  const FocusableItem5 = withFocusable(Item, {focusKey: 'focusKey-5'})
-  const FocusableItem6 = withFocusable(Item, {focusKey: 'focusKey-6'})
+  const FocusableItem1 = withFocusable(Item, {focusPath: 'focusPath-1'})
+  const FocusableItem2 = withFocusable(Item, {focusPath: 'focusPath-2'})
+  const FocusableItem3 = withFocusable(Item, {focusPath: 'focusPath-3'})
+  const FocusableButton = withFocusable(Button, {focusPath: 'button'})
+  const FocusableItem4 = withFocusable(Item, {focusPath: 'focusPath-4'})
+  const FocusableItem5 = withFocusable(Item, {focusPath: 'focusPath-5'})
+  const FocusableItem6 = withFocusable(Item, {focusPath: 'focusPath-6'})
 
   return (
     <div className='program-list'>
@@ -110,7 +110,7 @@ function App(props) {
   console.log('navigation', props)
   return (
     <div className='first-example'>
-      <h1>Current FocusKey: "{props.currentFocusKey}"</h1>
+      <h1>Current FocusPath: "{props.currentFocusPath}"</h1>
       <ProgramList/>
     </div>
   )
