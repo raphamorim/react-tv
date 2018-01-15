@@ -56,3 +56,6 @@ h1 {
   justify-content: space-evenly;
 }
 
+:focus {
+  outline: 2px solid red;
+}
