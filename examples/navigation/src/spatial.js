@@ -9,7 +9,16 @@ class Spatial {
 
     // this.handleKeyDown = this.onKeyDown.bind(this)
     // this.init()
+
     Navigation.init()
+    document.addEventListener('sn:focused', (ev) => {
+      this.setState(ev.detail.sectionId)
+    })
+
+    setTimeout(function() {
+      Navigation.makeFocusable()
+      Navigation.focus()
+    }, 1000);
   }
 
   withSetState(setFocus) {
@@ -91,7 +100,8 @@ class Spatial {
     // }
 
     // this.focusPaths.push(focusPath)
-    Navigation.add({selector: `#${focusPath}`})
+    Navigation.remove(focusPath);
+    Navigation.add(focusPath, {selector: `#${focusPath}`});
   }
 }
 
