@@ -61,7 +61,7 @@ function withNavigation(Component) {
 const Item = ({focused, setFocus, focusPath}) => {
   focused = (focused) ? 'focused' : 'unfocused'
   return (
-    <div tabindex="0" id={focusPath} className={focused} onClick={() => setFocus()}>
+    <div id={focusPath} className={focused} onClick={() => setFocus()}>
       It's {focused} Item
     </div>
   )
@@ -72,7 +72,6 @@ function ProgramList() {
     focused = (focused) ? 'btn-focused' : 'btn-unfocused'
     return (
       <div
-        tabindex="0"
         id={focusPath}
         className={focused}
         onPress={() => { console.log(121); setFocus('focusPath-1')}}
@@ -82,38 +81,46 @@ function ProgramList() {
     )
   }
 
+  const Image = ({focused, setFocus, focusPath}) => (
+    <img className={(focused) ? 'focused' : 'unfocused'} src="https://pbs.twimg.com/profile_images/922900899365732352/Ahcv30XE_400x400.jpg" />
+  )
+
   const FocusableItem1 = withFocusable(Item, {focusPath: 'focusPath-1'})
   const FocusableItem2 = withFocusable(Item, {focusPath: 'focusPath-2'})
   const FocusableItem3 = withFocusable(Item, {focusPath: 'focusPath-3'})
-  const FocusableButton = withFocusable(Button, {focusPath: 'button'})
   const FocusableItem4 = withFocusable(Item, {focusPath: 'focusPath-4'})
   const FocusableItem5 = withFocusable(Item, {focusPath: 'focusPath-5'})
   const FocusableItem6 = withFocusable(Item, {focusPath: 'focusPath-6'})
+  const FocusableButton = withFocusable(Button, {focusPath: 'button'})
+  // const FocusableImage = withFocusable(Image, {focusPath: 'image'})
 
-  return (
+  return [
     <div className='program-list'>
       <FocusableItem1/>
       <FocusableItem2/>
       <FocusableItem3/>
+      <FocusableItem4/>
+      <FocusableItem5/>
+      <FocusableItem6/>
       <div>
         <p>(press enter on next for back to top)</p>
         <FocusableButton/>
       </div>
-      <FocusableItem4/>
-      <FocusableItem5/>
-      <FocusableItem6/>
+    </div>,
+    <div className='video'>
+      <img src="https://pbs.twimg.com/profile_images/922900899365732352/Ahcv30XE_400x400.jpg" />
     </div>
-  )
+  ]
 }
 
 function App(props) {
   console.log('navigation', props)
-  return (
-    <div className='first-example'>
-      <h1>Current FocusPath: "{props.currentFocusPath}"</h1>
+  return [
+    <h1>Current FocusPath: "{props.currentFocusPath}"</h1>,
+    <div className='navigation'>
       <ProgramList/>
     </div>
-  )
+  ]
 }
 
 const AppWithNavigation = renderOnAppLoaded(withNavigation(App))

@@ -25,6 +25,8 @@ h1 {
 .focused, .unfocused {
   background: blue;
   padding: 8px;
+  width: 200px;
+  margin-top: 20px;
 }
 
 .focused {
@@ -41,5 +43,16 @@ h1 {
 
 .btn-focused {
   background: red;
+}
+
+.navigation {
+  display: flex;
+}
+
+.program-list {
+  display: flex;
+  width: 60%;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }
 
