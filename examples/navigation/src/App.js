@@ -17,21 +17,25 @@ const SpatialNavigation = new Spatial()
 
 function withFocusable(Component, config) {
   const { focusPath } = config
-  SpatialNavigation.addFocusable(focusPath)
 
   return compose(
     getContext({
       setFocus: PropTypes.func,
       currentFocusPath: PropTypes.string,
     }),
-    mapProps(({ currentFocusPath, setFocus, ...props }) => {
-      SpatialNavigation.withSetState(setFocus)
-      return {
-        focused: currentFocusPath === focusPath,
-        setFocus: setFocus.bind(this, focusPath),
-        focusPath,
-        ...props
-      }
+    mapProps(({ currentFocusPath, setFocus, ...props }) => ({
+      focused: currentFocusPath === focusPath,
+      setFocus: setFocus.bind(this, focusPath),
+      focusPath,
+      ...props
+    })),
+    lifecycle({
+      componentDidMount() {
+        SpatialNavigation.addFocusable(this.props.focusPath)
+      },
+      componentWillUnmount() {
+        SpatialNavigation.removeFocusable(this.props.focusPath)
+      },
     }),
   )(Component)
 }
@@ -44,10 +48,9 @@ function withNavigation(Component) {
       },
       {
         setFocus: ({currentFocusPath}) => (focusPath, overwriteFocusPath) => {
-          SpatialNavigation.setCurrentFocusedPath(overwriteFocusPath || focusPath)
-          return {
-            currentFocusPath: overwriteFocusPath || focusPath
-          }
+          const currentFocusPath = overwriteFocusPath || focusPath
+          SpatialNavigation.setCurrentFocusedPath(currentFocusPath)
+          return { currentFocusPath }
         },
       }
     ),
@@ -55,13 +58,21 @@ function withNavigation(Component) {
       { setFocus: PropTypes.func, currentFocusPath: PropTypes.string },
       ({ setFocus, currentFocusPath }) => ({ setFocus, currentFocusPath }),
     ),
+    lifecycle({
+      componentDidMount() {
+        SpatialNavigation.init(this.props.setFocus)
+      },
+      componentWillUnmount() {
+        SpatialNavigation.destroy()
+      }
+    }),
   )(Component)
 }
 
 const Item = ({focused, setFocus, focusPath}) => {
   focused = (focused) ? 'focused' : 'unfocused'
   return (
-    <div id={focusPath} className={focused} onClick={() => setFocus()}>
+    <div id={focusPath} className={focused} tabindex='-1' onClick={() => setFocus()}>
       It's {focused} Item
     </div>
   )
@@ -114,7 +125,7 @@ function ProgramList() {
 }
 
 function App(props) {
-  console.log('navigation', props)
+  // console.log('navigation', props)
   return [
     <h1>Current FocusPath: "{props.currentFocusPath}"</h1>,
     <div className='navigation'>
