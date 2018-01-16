@@ -2,10 +2,8 @@ import Navigation from './navigation'
 
 class Spatial {
   constructor() {
-    this.focusPaths = []
     this.focused = null
     this.setState = null
-    this.initialized = false
 
     this.handleFocused = this.handleFocused.bind(this)
     document.addEventListener('sn:focused', this.handleFocused)
@@ -47,14 +45,9 @@ class Spatial {
 
     Navigation.add(focusPath, { selector: `#${focusPath}` })
     Navigation.makeFocusable(focusPath)
-    this.focusPaths.push(focusPath)
   }
 
   removeFocusable(focusPath) {
-    const index = this.focusPaths.indexOf(focusPath)
-    if (index >= 0) {
-      this.focusPaths = this.focusPaths.splice(index, 1)
-    }
     Navigation.remove(focusPath)
   }
 }
