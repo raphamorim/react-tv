@@ -8,14 +8,15 @@ class Spatial {
     this.initialized = false
 
     this.handleFocused = this.handleFocused.bind(this)
+    document.addEventListener('sn:focused', this.handleFocused)
   }
 
   init(updateState) {
-    if (!this.setState) this.setState = updateState
+    if (!this.setState) {
+      this.setState = updateState
+    }
 
     Navigation.init()
-    document.addEventListener('sn:focused', this.handleFocused)
-
     Navigation.focus()
   }
 
@@ -43,6 +44,7 @@ class Spatial {
 
   addFocusable(focusPath) {
     this.removeFocusable(focusPath)
+
     Navigation.add(focusPath, { selector: `#${focusPath}` })
     Navigation.makeFocusable(focusPath)
     this.focusPaths.push(focusPath)
@@ -56,7 +58,5 @@ class Spatial {
     Navigation.remove(focusPath)
   }
 }
-
-window.Navigation = Navigation
 
 export default Spatial

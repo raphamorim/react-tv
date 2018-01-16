@@ -62,6 +62,9 @@ function withNavigation(Component) {
       componentDidMount() {
         SpatialNavigation.init(this.props.setFocus)
       },
+      componentDidUpdate() {
+        SpatialNavigation.init(this.props.setFocus)
+      },
       componentWillUnmount() {
         SpatialNavigation.destroy()
       }
@@ -72,7 +75,7 @@ function withNavigation(Component) {
 const Item = ({focused, setFocus, focusPath}) => {
   focused = (focused) ? 'focused' : 'unfocused'
   return (
-    <div id={focusPath} className={focused} tabindex='-1' onClick={() => setFocus()}>
+    <div id={focusPath} className={focused} onClick={() => setFocus()}>
       It's {focused} Item
     </div>
   )
