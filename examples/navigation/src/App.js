@@ -21,8 +21,6 @@ class Navigation extends React.Component {
           onBlur={(ev) => console.log('blur ' + i)}
           onPress={(ev) => console.log('press ' + i)}
           onClick={(i !== 2) ? clickHandler : null}
-          focusable={(i !== 2)}
-          focused={(i === 3)}
         >
           {(i !== 2) ? i : null}
         </div>
