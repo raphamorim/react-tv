@@ -101,7 +101,7 @@ const Button = ({focused, setFocus, focusPath}) => {
 }
 
 const Image = ({focused, setFocus, focusPath}) => {
-  focused = (focused) ? 'btn-focused' : 'btn-unfocused'
+  focused = (focused) ? 'focused' : 'unfocused'
   return (
     <img
       id={focusPath}
@@ -135,7 +135,7 @@ function ProgramList() {
         <FocusableButton/>
       </div>
     </div>,
-    <div className='video'>
+    <div className='image'>
       <FocusableImage/>
     </div>
   ]
