@@ -1,3 +1,8 @@
+# 0.3.2
+
+- add findDOMNode (#112)
+- remove navigation from Renderer (#108)
+
 # 0.3.1
 
 - remove engine specification
