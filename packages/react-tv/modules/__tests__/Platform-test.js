@@ -1,6 +1,6 @@
-import Platform from '../Platform.js';
+import {Platform} from '../../ReactTVEntry';
 
-describe('[modules] Platform', () => {
+describe('Platform', () => {
   it('compare with undefined/null/invalid string should return false', () => {
     expect(Platform()).toEqual(false);
     expect(Platform(null)).toEqual(false);

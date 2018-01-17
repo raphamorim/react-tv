@@ -1,7 +1,5 @@
 import React from 'react';
-import ReactTVRenderer from '../ReactTVFiberEntry';
-
-const render = ReactTVRenderer.render;
+import {render} from '../../ReactTVEntry';
 
 describe('[render] Behavior tests', () => {
   it('should transform props into attribute', () => {
