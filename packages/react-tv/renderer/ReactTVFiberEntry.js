@@ -21,9 +21,12 @@ import type {
 import ReactTVFiberComponent from './ReactTVFiberComponent';
 import ReactFiberReconciler from 'react-reconciler';
 import {getChildNamespace} from './shared/DOMNamespaces';
+import ReactInstanceMap from './shared/ReactInstanceMap';
+
+import * as ReactDOMComponentTree from './ReactTVComponentTree';
 
 import {
-  // ELEMENT_NODE,
+  ELEMENT_NODE,
   // TEXT_NODE,
   DOCUMENT_NODE,
   DOCUMENT_FRAGMENT_NODE,
@@ -37,6 +40,8 @@ const {
   diffProperties,
   updateProperties,
 } = ReactTVFiberComponent;
+
+const {precacheFiberNode, updateFiberProps} = ReactDOMComponentTree;
 
 const LOG_STEPS = false;
 const log = (a, b, c) => {
@@ -65,8 +70,8 @@ const ReactTVFiberRenderer = ReactFiberReconciler({
       parentNamespace
     );
 
-    // TODO: precacheFiberNode
-    // TODO: updateFiberProps
+    precacheFiberNode(internalInstanceHandle, domElement);
+    updateFiberProps(domElement, props);
     return domElement;
   },
 
@@ -229,7 +234,7 @@ const ReactTVFiberRenderer = ReactFiberReconciler({
       internalInstanceHandle: Object
     ): void {
       log('commitUpdate');
-      // TODO: updateFiberProps
+      updateFiberProps(domElement, newProps);
       updateProperties(domElement, updatePayload, type, oldProps, newProps);
     },
 
@@ -265,7 +270,7 @@ const ReactTVFiberRenderer = ReactFiberReconciler({
   ): TextInstance {
     log('createTextInstance');
     let textNode: TextInstance = createTextNode(text, rootContainerInstance);
-    // TODO: precacheFiberNode(internalInstanceHandle, textNode);
+    precacheFiberNode(internalInstanceHandle, textNode);
     return textNode;
   },
 
@@ -297,6 +302,19 @@ const ReactTVRenderer = {
 
     ReactTVFiberRenderer.updateContainer((element: any), root, null, callback);
     return ReactTVFiberRenderer.getPublicRootInstance(root);
+  },
+  findDOMNode(componentOrElement: React$Element<any>) {
+    if (componentOrElement == null) {
+      return null;
+    }
+    if ((componentOrElement: any).nodeType === ELEMENT_NODE) {
+      return (componentOrElement: any);
+    }
+
+    const inst = ReactInstanceMap.get(componentOrElement);
+    if (inst) {
+      return ReactTVFiberRenderer.findHostInstance(inst);
+    }
   },
   unmountComponentAtNode(container: any) {
     const containerKey =

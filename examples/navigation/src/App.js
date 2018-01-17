@@ -1,5 +1,5 @@
 import React from 'react'
-import ReactTV, { renderOnAppLoaded } from 'react-tv'
+import ReactTV, { renderOnAppLoaded } from '../../../packages/react-tv/renderer/ReactTVFiberEntry'
 
 class Navigation extends React.Component {
   componentDidMount() {
@@ -38,6 +38,8 @@ class Navigation extends React.Component {
   }
 }
 
-const App = renderOnAppLoaded(Navigation)
+const App = Navigation
 
 ReactTV.render(<App/>, document.querySelector('#root'))
+
+console.log(ReactTV.findDOMNode(App))

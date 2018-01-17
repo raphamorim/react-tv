@@ -1,7 +1,7 @@
 import React from 'react';
-import ReactTVRenderer from '../ReactTVFiberEntry';
+import {render} from '../../ReactTVEntry';
 
-const render = ReactTVRenderer.render;
+// TODO: move this to root, doesn't make sense include renderer here
 
 const events = {
   click() {

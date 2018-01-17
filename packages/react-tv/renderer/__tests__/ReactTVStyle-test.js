@@ -1,7 +1,5 @@
 import React from 'react';
-import ReactTVRenderer from '../ReactTVFiberEntry';
-
-const render = ReactTVRenderer.render;
+import {render} from '../../ReactTVEntry';
 
 describe('[render] Style Map tests', () => {
   it('should transform style object into inline style', () => {

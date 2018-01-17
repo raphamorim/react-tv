@@ -41,7 +41,7 @@
     "eslint-plugin-flowtype": "^2.25.0",
     "eslint-plugin-react": "^6.7.1",
     "fbjs": "^0.8.4",
-    "flow-bin": "^0.57.3",
+    "flow-bin": "^0.63.1",
     "jest": "20.1.0-delta.1",
     "prettier": "^1.5.3",
     "react": "^16.2.0",

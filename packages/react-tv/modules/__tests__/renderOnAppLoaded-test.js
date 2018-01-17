@@ -3,12 +3,12 @@ import React from 'react';
 import TestRenderer from 'react-test-renderer';
 import ShallowRenderer from 'react-test-renderer/shallow';
 
-import renderOnAppLoaded from '../renderOnAppLoaded';
+import {renderOnAppLoaded} from '../../ReactTVEntry';
 
 let mockIsWebOS = false;
 jest.mock('../Platform', () => jest.fn(() => mockIsWebOS));
 
-describe('[modules] renderOnAppLoaded', () => {
+describe('renderOnAppLoaded', () => {
   const Component = () => <div />;
   const App = renderOnAppLoaded(Component);
 

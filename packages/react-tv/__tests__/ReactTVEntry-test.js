@@ -1,14 +1,12 @@
 import React from 'react';
-import ReactTV, {Platform} from '../ReactTVEntry.js';
-
-const render = ReactTV.render;
+import ReactTV from '../ReactTVEntry.js';
 
 describe('[render] Integration between renderer and modules', () => {
   it('should renderer to expected Element', () => {
     const root = document.createElement('div');
     function MyComponent() {
       let currentPlatform = 'LG WebOS';
-      if (!Platform('webos')) {
+      if (!ReactTV.Platform('webos')) {
         currentPlatform = 'Browser';
       }
 
@@ -19,7 +17,7 @@ describe('[render] Integration between renderer and modules', () => {
       );
     }
 
-    const renderedElement = render(MyComponent(), root);
+    const renderedElement = ReactTV.render(MyComponent(), root);
 
     const expectedElement = document.createElement('div');
     expectedElement.setAttribute('class', 'container');
