@@ -41,14 +41,14 @@ const Image = ({focused, setFocus, focusPath}) => {
 }
 
 function ProgramList() {
-  const FocusableItem1 = withFocusable(Item, {focusPath: 'focusPath-1'})
-  const FocusableItem2 = withFocusable(Item, {focusPath: 'focusPath-2'})
-  const FocusableItem3 = withFocusable(Item, {focusPath: 'focusPath-3'})
-  const FocusableItem4 = withFocusable(Item, {focusPath: 'focusPath-4'})
-  const FocusableItem5 = withFocusable(Item, {focusPath: 'focusPath-5'})
-  const FocusableItem6 = withFocusable(Item, {focusPath: 'focusPath-6'})
-  const FocusableButton = withFocusable(Button, {focusPath: 'button'})
-  const FocusableImage = withFocusable(Image, {focusPath: 'image'})
+  const FocusableItem1 = withFocusable({focusPath: 'focusPath-1'})(Item)
+  const FocusableItem2 = withFocusable({focusPath: 'focusPath-2'})(Item)
+  const FocusableItem3 = withFocusable({focusPath: 'focusPath-3'})(Item)
+  const FocusableItem4 = withFocusable({focusPath: 'focusPath-4'})(Item)
+  const FocusableItem5 = withFocusable({focusPath: 'focusPath-5'})(Item)
+  const FocusableItem6 = withFocusable({focusPath: 'focusPath-6'})(Item)
+  const FocusableButton = withFocusable({focusPath: 'button'})(Button)
+  const FocusableImage = withFocusable({focusPath: 'image'})(Image)
 
   return [
     <div className='program-list'>
