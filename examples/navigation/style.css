@@ -22,59 +22,44 @@ h1 {
   text-align: center;
 }
 
-.waterfall {
-  padding: 0;
-  width: 110%;
-  height: auto;
-  margin: 0 auto;
-  visibility: visible;
+.focused, .unfocused {
+  background: blue;
+  padding: 8px;
+  width: 200px;
+  margin-top: 20px;
 }
 
-.waterfall .item {
-  background-color: orange;
-  text-align: center;
-  display: inline-block;
-  font-size: 40px;
-  color: #FFF;
-  height: 15%;
-  width: 20%;
-  margin: 1%;
-  padding: 10px;
+.focused {
+  background: orange;
+  color: white;
 }
 
-.waterfall .item:focus {
-  outline:none;
+.image img {
+  width: 100%;
 }
 
-.waterfall .item:nth-child(1n+1) {
-  background-color: #999;
-  background: url('images/scott-pilgrim.jpg') 20%;
-  background-size: cover;
-  height: 70vh;
+.btn-unfocused, .btn-focused {
+  padding: 8px;
+  font-weight: bold;
+  color: white;
+  background: blue;
 }
 
-.waterfall .item:nth-child(2) {
-  font-size: 27vw;
-  width: 22%;
+.btn-focused {
+  background: red;
 }
 
-.waterfall .item:nth-child(2n+4) {
-  background: #db0000;
-  border: 6px solid #db0000;
-  height: 15vh;
+.navigation {
+  display: flex;
 }
 
-.waterfall .item:nth-child(2n+4):focus {
-  border: 6px solid white;
+.program-list {
+  display: flex;
+  width: 60%;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }
 
-.waterfall .item:nth-child(2n+1) {
-  background: #FFF;
-  border: 6px solid #FFF;
-  color: #db0000;
-  height: 30vh;
-}
-
-.waterfall .item:nth-child(2n+1):focus {
-  border: 6px solid #db0000;
+:focus {
+  outline: 2px solid red;
 }
