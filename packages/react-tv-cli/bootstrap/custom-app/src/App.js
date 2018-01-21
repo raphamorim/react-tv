@@ -1,10 +1,36 @@
 import React from 'react';
 import ReactTV from 'react-tv';
+import { withNavigation, withFocusable } from 'react-tv-navigation';
 
-class ReactTVApp extends React.Component {
+const Poster = ({focused, setFocus, focusPath, src}) => {
+  focused = (focused) ? 'focused' : 'unfocused'
+  return (
+    <div className='poster' onClick={() => { setFocus() }} >
+      <img src={src}/>
+    </div>
+  )
+}
+
+const FocusablePoster1 = withFocusable({focusPath: 'poster-1'})(Poster)
+const FocusablePoster2 = withFocusable({focusPath: 'poster-2'})(Poster)
+const FocusablePoster3 = withFocusable({focusPath: 'poster-3'})(Poster)
+
+class App extends React.Component {
   render() {
-    return <div>{{REACTTVAPP}}</div>;
+    return (
+      <div>
+        <div className='title'>React-TV Template</div>
+        <div className='focus-info'>You're focused on: {this.props.currentFocusPath}</div>
+        <div className='posters'>
+          <FocusablePoster1 src={'//upload.wikimedia.org/wikipedia/en/1/15/Dunkirk_Film_poster.jpg'}/>
+          <FocusablePoster2 src={'//upload.wikimedia.org/wikipedia/en/8/8a/Dark_Knight.jpg'}/>
+          <FocusablePoster3 src={'//upload.wikimedia.org/wikipedia/en/b/bc/Interstellar_film_poster.jpg'}/>
+        </div>
+      </div>
+    );
   }
 }
 
-ReactTV.render(<ReactTVApp />, document.querySelector('#root'));
+const AppWithNavigation = withNavigation(App)
+
+ReactTV.render(<AppWithNavigation/>, document.querySelector('#root'));

@@ -24,7 +24,7 @@ p {
   justify-content: center;
   align-content: center;
   flex-wrap: wrap;
-  align-items: center;
+  align-posters: center;
   text-align: center;
   position: relative;
   width: 100%;
@@ -33,3 +33,28 @@ p {
 .container p, .container h1 {
   width: 100%
 }
+
+.title {
+  font-size: 60px;
+}
+
+.focus-info {
+  color: #FFF;
+}
+
+.posters {
+  margin-top: 60px;
+  display: flex;
+}
+
+.poster {
+  position: relative;
+  width: 100%;
+  margin-right: 14px;
+  box-sizing: content-box;
+}
+
+:focus {
+  outline: 2px solid #4AD0EC;
+}
+

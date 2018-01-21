@@ -12,8 +12,8 @@
     "build": "webpack",
     "build-prod": "cross-env NODE_ENV=production yarn build",
     "react-tv-cli": "react-tv-cli",
-    "start": "yarn build-prod && react-tv-cli run-webos",
-    "start-dev": "webpack-dev-server --progress --colors"
+    "run-webos": "yarn build-prod && react-tv-cli run-webos",
+    "start": "webpack-dev-server --progress --colors"
   },
   "license": "MIT",
   "devDependencies": {
@@ -24,8 +24,9 @@
     "babel-preset-react": "^6.24.1",
     "cross-env": "^5.1.1",
     "react": "^16.2.0",
-    "react-tv": "^0.3.1",
-    "react-tv-cli": "^0.3.1",
+    "react-tv": "^0.3.2",
+    "react-tv-cli": "^0.3.2",
+    "react-tv-navigation": "^0.2.0",
     "webpack": "^3.8.1",
     "webpack-dev-server": "^2.9.4"
   }

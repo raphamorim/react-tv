@@ -1,6 +1,6 @@
 {
   "name": "react-tv",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "React renderer for low memory applications",
   "main": "dist/react-tv.umd.js",
   "files": [
