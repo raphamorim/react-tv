@@ -1,1 +1,0 @@
-(function(){var a={};"undefined"!==typeof module&&module.exports&&(module.exports=a);a.end=function(b){var a=0,c=function(){a--||process.exit(b||0)};[process.stdout,process.stderr].forEach(function(b){a+=1;b.write("",c)});c()};if(process.stdin)process.stdin.on("data",function(b){"@ARES-CLOSE@"===(Buffer.isBuffer(b)?b.toString():b).trim()&&a.end(0)})})();
