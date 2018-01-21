@@ -64,7 +64,6 @@
     "components": [
       "all",
       "modules",
-      "webos",
       "renderer",
       "cli",
       "scripts",
