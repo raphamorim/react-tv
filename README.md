@@ -171,29 +171,48 @@ const Component = () => (<div></div>)
 const App = renderOnAppLoaded(Component)
 ```
 
-### Spatial Navigation
+### Navigation
 
-React-TV provides a spatial navigation system on render level. 
+If you want to start with Navigation for TVs. React-TV provides a package for spatial navigation with declarative support based on [Netflix navigation system](https://medium.com/netflix-techblog/pass-the-remote-user-input-on-tv-devices-923f6920c9a8). 
 
-Just add `focusable` for navigable elements and `focused` for an element which starts focused. 
+[React-TV Navigation](https://github.com/react-tv/react-tv-navigation) exports `withFocusable` and `withNavigation` which acting as helpers for Navigation.
 
 ```jsx
-<div>
-  <div focusable onBlur={() => console.log('blur') } >
-    Item with Blur Handler
-  </div>
-  <div className="my-horizontal-list">
-    <div className="item" focusable onPress={() => console.log('pressed') } >
-      Horizontal Item 1 with Press Handler
+import React from 'react'
+import ReactTV, { renderOnAppLoaded } from 'react-tv'
+import { withFocusable, withNavigation } from 'react-tv-navigation'
+
+const Item = ({focused, setFocus, focusPath}) => {
+  focused = (focused) ? 'focused' : 'unfocused'
+  return (
+    <div onClick={() => { setFocus() }} >
+      It's {focused} Item
     </div>
-    <div className="item" focusable focused>
-      Horizontal Item 2 which started focused
+  )
+}
+
+const Button = ({focused, setFocus, focusPath}) => {
+  return (
+    <div onClick={() => { setFocus('focusPath-1') }}>
+      Back To First Item!
     </div>
-  </div>
-  <div className="item" focusable onFocus={() => console.log('focused') } >
-    Item with Focus Handler
-  </div>
-</div>
+  )
+}
+
+const FocusableItem = withFocusable({focusPath: 'item-1'})(Item)
+const FocusableOtherItem = withFocusable({focusPath: 'item-2'})(Item)
+const FocusableButton = withFocusable({focusPath: 'button'})(Button)
+
+function App({currentFocusPath}) {
+  return (
+    <div>
+      <h1>Current FocusPath: '{currentFocusPath}'</h1>,
+      <FocusableItem/>
+      <FocusableOtherItem/>
+      <FocusableButton/>
+    </div>
+  )
+}
 ```
 
 See [examples/navigation](examples/navigation) for more details about usage.
