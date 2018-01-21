@@ -6,7 +6,6 @@ const Item = ({focused, setFocus, focusPath}) => {
   focused = (focused) ? 'focused' : 'unfocused'
   return (
     <div
-      id={focusPath}
       className={focused}
       onClick={() => { setFocus() }}
     >
@@ -19,7 +18,6 @@ const Button = ({focused, setFocus, focusPath}) => {
   focused = (focused) ? 'btn-focused' : 'btn-unfocused'
   return (
     <div
-      id={focusPath}
       className={focused}
       onClick={() => { setFocus('focusPath-1') }}
     >
@@ -32,7 +30,6 @@ const Image = ({focused, setFocus, focusPath}) => {
   focused = (focused) ? 'focused' : 'unfocused'
   return (
     <img
-      id={focusPath}
       className={focused}
       onClick={() => { setFocus() }}
       src='https://pbs.twimg.com/profile_images/922900899365732352/Ahcv30XE_400x400.jpg'
