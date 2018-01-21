@@ -1,3 +1,10 @@
+# 0.3.3
+
+- update docs using separated package for Navigation (#114)
+- change custom-app template to use new navigation system (0f58e09)
+- add `react-tv-navigation` package on dependecies of custom app (0f58e09)
+- migrate `node-webos` to react-tv/node-webos
+
 # 0.3.2
 
 - add findDOMNode (#112)
