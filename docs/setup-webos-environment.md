@@ -24,6 +24,12 @@ Execute your Installer (If you're in Linux or Mac the Installer will ask for be 
 
 ![Executing OSX Installer](resources/webos/1-executing-osx-installer.png)
 
+For OSX: Note if you doesn’t have `/opt` folder, you must to create manual.
+
+```bash
+sudo mkdir /opt
+```
+
 You pop the SDK Installer, select "Agree" about LG Agreement and choose the destination folder for this installation to continue.
 
 ![WebOS Introduction](resources/webos/2-webos-introduction.png)
@@ -39,3 +45,5 @@ You'll install all packages.
 After installation step, restart your machine.
 
 ![WebOS Complete](resources/webos/5-webos-complete.png)
+
+SDK Installed!

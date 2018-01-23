@@ -33,6 +33,7 @@ ReactTV.render(<Clock/>, document.getElementById('root'))
 
 - [About React-TV](#about-react-tv)
   - [Understanding the Problem](#understanding-the-problem)
+  - [Setup for TV SKDs](#setup-for-tv-sdks)
   - [Articles](#articles)
 - [react-tv-cli](#react-tv-cli)
   - [Developing for WebOS](#developing-for-webos)
@@ -71,6 +72,11 @@ Crafting a high-performance TV user interface using React is a real challenge, b
 These restrictions make super responsive 60fps experiences especially tricky. The strategy is **step in the renderer**: Applying reactive concepts to unblock the processing on the renderer layer, plug the TV's keyListener, avoid React.createElement.
 
 In addition: Unify the build for multiple TV platforms.
+
+### Setup for TV SKDs
+
+- [Setup LG WebOS SDK](docs/setup-webos-environment.md)
+- [Setup Samsung Tizen SDK](docs/setup-tizen-environment.md)
 
 ### Articles
 
