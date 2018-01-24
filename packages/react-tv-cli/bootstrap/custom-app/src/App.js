@@ -11,9 +11,7 @@ const Poster = ({focused, setFocus, focusPath, src}) => {
   )
 }
 
-const FocusablePoster1 = withFocusable({focusPath: 'poster-1'})(Poster)
-const FocusablePoster2 = withFocusable({focusPath: 'poster-2'})(Poster)
-const FocusablePoster3 = withFocusable({focusPath: 'poster-3'})(Poster)
+const FocusablePoster = withFocusable(Poster)
 
 class App extends React.Component {
   render() {
@@ -22,9 +20,9 @@ class App extends React.Component {
         <div className='title'>React-TV Template</div>
         <div className='focus-info'>You're focused on: {this.props.currentFocusPath}</div>
         <div className='posters'>
-          <FocusablePoster1 src={'//upload.wikimedia.org/wikipedia/en/1/15/Dunkirk_Film_poster.jpg'}/>
-          <FocusablePoster2 src={'//upload.wikimedia.org/wikipedia/en/8/8a/Dark_Knight.jpg'}/>
-          <FocusablePoster3 src={'//upload.wikimedia.org/wikipedia/en/b/bc/Interstellar_film_poster.jpg'}/>
+          <FocusablePoster focusPath='focusable-poster-1' src={'//upload.wikimedia.org/wikipedia/en/1/15/Dunkirk_Film_poster.jpg'}/>
+          <FocusablePoster focusPath='focusable-poster-2' src={'//upload.wikimedia.org/wikipedia/en/8/8a/Dark_Knight.jpg'}/>
+          <FocusablePoster focusPath='focusable-poster-3' src={'//upload.wikimedia.org/wikipedia/en/b/bc/Interstellar_film_poster.jpg'}/>
         </div>
       </div>
     );

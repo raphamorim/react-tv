@@ -19,9 +19,8 @@ const Button = ({focused, setFocus, focusPath}) => {
   return (
     <div
       className={focused}
-      onClick={() => { setFocus('focusPath-1') }}
     >
-      To Top!
+      Log on console
     </div>
   )
 }
@@ -37,42 +36,39 @@ const Image = ({focused, setFocus, focusPath}) => {
   )
 }
 
-function ProgramList() {
-  const FocusableItem1 = withFocusable({focusPath: 'focusPath-1'})(Item)
-  const FocusableItem2 = withFocusable({focusPath: 'focusPath-2'})(Item)
-  const FocusableItem3 = withFocusable({focusPath: 'focusPath-3'})(Item)
-  const FocusableItem4 = withFocusable({focusPath: 'focusPath-4'})(Item)
-  const FocusableItem5 = withFocusable({focusPath: 'focusPath-5'})(Item)
-  const FocusableItem6 = withFocusable({focusPath: 'focusPath-6'})(Item)
-  const FocusableButton = withFocusable({focusPath: 'button'})(Button)
-  const FocusableImage = withFocusable({focusPath: 'image'})(Image)
+const FocusableItem = withFocusable(Item)
+const FocusableButton = withFocusable(Button)
+const FocusableImage = withFocusable(Image)
 
-  return [
-    <div className='program-list'>
-      <FocusableItem1/>
-      <FocusableItem2/>
-      <FocusableItem3/>
-      <FocusableItem4/>
-      <FocusableItem5/>
-      <FocusableItem6/>
-      <div>
-        <p>(press enter on next for back to top)</p>
-        <FocusableButton/>
+function ProgramList() {
+  return (
+    <div className='navigation'>
+      <div className='program-list'>
+        <FocusableItem focusPath='focusable-item-1'/>
+        <FocusableItem focusPath='focusable-item-2'/>
+        <FocusableItem focusPath='focusable-item-3'/>
+        <FocusableItem focusPath='focusable-item-4'/>
+        <FocusableItem focusPath='focusable-item-5'/>
+        <FocusableItem focusPath='focusable-item-6'/>
+        <div>
+          <p>(press enter to log on console)</p>
+          <FocusableButton onEnterPress={() => console.log('enter key was pressed')} focusPath='focusable-button'/>
+        </div>
       </div>
-    </div>,
-    <div className='image'>
-      <FocusableImage/>
+      <div className='image'>
+        <FocusableImage focusPath='focusable-image'/>
+      </div>
     </div>
-  ]
+  )
 }
 
 function App({currentFocusPath}) {
-  return [
-    <h1>Current FocusPath: '{currentFocusPath}'</h1>,
-    <div className='navigation'>
+  return (
+    <div>
+      <h1>Current FocusPath: '{currentFocusPath}'</h1>
       <ProgramList/>
     </div>
-  ]
+  )
 }
 
 const AppWithNavigation = renderOnAppLoaded(withNavigation(App))

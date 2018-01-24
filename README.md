@@ -179,7 +179,7 @@ If you want to start with Navigation for TVs. React-TV provides a package for sp
 
 ```jsx
 import React from 'react'
-import ReactTV, { renderOnAppLoaded } from 'react-tv'
+import ReactTV from 'react-tv'
 import { withFocusable, withNavigation } from 'react-tv-navigation'
 
 const Item = ({focused, setFocus, focusPath}) => {
@@ -191,28 +191,33 @@ const Item = ({focused, setFocus, focusPath}) => {
   )
 }
 
-const Button = ({focused, setFocus, focusPath}) => {
+const Button = ({setFocus}) => {
   return (
-    <div onClick={() => { setFocus('focusPath-1') }}>
+    <div onClick={() => { setFocus('item-1') }}>
       Back To First Item!
     </div>
   )
 }
 
-const FocusableItem = withFocusable({focusPath: 'item-1'})(Item)
-const FocusableOtherItem = withFocusable({focusPath: 'item-2'})(Item)
-const FocusableButton = withFocusable({focusPath: 'button'})(Button)
+const FocusableItem = withFocusable(Item)
+const FocusableButton = withFocusable(Button)
 
 function App({currentFocusPath}) {
   return (
     <div>
       <h1>Current FocusPath: '{currentFocusPath}'</h1>,
-      <FocusableItem/>
-      <FocusableOtherItem/>
-      <FocusableButton/>
+      <FocusableItem focusPath='item-1'/>
+      <FocusableItem focusPath='item-2'/>
+      <FocusableButton
+        focusPath='button'
+        onEnterPress={() => console.log('Pressed enter on Button!')}/>
     </div>
   )
 }
+
+const NavigableApp = withNavigation(App)
+
+ReactTV.render(<NavigableApp/>, document.querySelector('#app'))
 ```
 
 See [examples/navigation](examples/navigation) for more details about usage.
