@@ -1,3 +1,7 @@
+# 0.3.4
+
+- update `react-tv-navigation` on react-tv-cli generator to 0.4.0
+
 # 0.3.3
 
 - update docs using separated package for Navigation (#114)
