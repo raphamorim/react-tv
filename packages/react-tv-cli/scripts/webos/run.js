@@ -74,7 +74,7 @@ function run(root, device) {
     fs.removeSync(`${webosPath}/icon.png`);
     fs.removeSync(`${webosPath}/icon-large.png`);
     ReactTVConfig.files.forEach(file => {
-      fs.removeSync(`${webosPath}/${file}`);
+      fs.removeSync(`${webosPath}/${path.basename(file)}`);
     });
   }
 
@@ -88,10 +88,11 @@ function run(root, device) {
 
     ReactTVConfig.files.forEach(file => {
       const filePath = path.resolve(root, file);
-      const toFile = path.resolve(webosPath, file);
+      const toFile = path.resolve(webosPath, path.basename(file) );
       fs.ensureDirSync(path.dirname(toFile));
       fs.copySync(`${filePath}`, `${toFile}`);
     });
+
   } catch (e) {
     return console.log('FAIL TO MOUNT', e.toString());
   }
