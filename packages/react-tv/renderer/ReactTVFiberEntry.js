@@ -43,13 +43,6 @@ const {
 
 const {precacheFiberNode, updateFiberProps} = ReactDOMComponentTree;
 
-const LOG_STEPS = false;
-const log = (a, b, c) => {
-  if (LOG_STEPS) {
-    console.log(a, b, c);
-  }
-};
-
 const ReactTVFiberRenderer = ReactFiberReconciler({
   createInstance(
     type: string,
@@ -58,8 +51,6 @@ const ReactTVFiberRenderer = ReactFiberReconciler({
     hostContext: HostContext,
     internalInstanceHandle: Object
   ): Object {
-    log('createInstance');
-
     let parentNamespace: string;
     parentNamespace = hostContext;
 
@@ -79,7 +70,6 @@ const ReactTVFiberRenderer = ReactFiberReconciler({
     parentInstance: Instance,
     child: Instance | TextInstance
   ): void {
-    log('appendInitialChild', parentInstance, child);
     parentInstance.appendChild(child);
   },
 
@@ -89,7 +79,6 @@ const ReactTVFiberRenderer = ReactFiberReconciler({
     props: Props,
     rootContainerInstance: Container
   ): boolean {
-    log('finalizeInitialChildren', domElement);
     setInitialProperties(domElement, type, props, rootContainerInstance);
   },
 
@@ -101,7 +90,6 @@ const ReactTVFiberRenderer = ReactFiberReconciler({
     rootContainerInstance: Container,
     hostContext: HostContext
   ): null | Array<mixed> {
-    log('prepareUpdate');
     return diffProperties(
       domElement,
       type,
@@ -112,7 +100,6 @@ const ReactTVFiberRenderer = ReactFiberReconciler({
   },
 
   getRootHostContext(rootContainerInstance: Container): HostContext {
-    log('getRootHostContext', rootContainerInstance);
     let type;
     let namespace;
     const nodeType = rootContainerInstance.nodeType;
@@ -142,7 +129,6 @@ const ReactTVFiberRenderer = ReactFiberReconciler({
     parentHostContext: HostContext,
     type: string
   ): HostContext {
-    log('getChildHostContext');
     return getChildNamespace(parentHostContext, type);
   },
 
@@ -150,9 +136,7 @@ const ReactTVFiberRenderer = ReactFiberReconciler({
     return instance;
   },
 
-  prepareForCommit(): void {
-    log('prepareForCommit');
-  },
+  // prepareForCommit(): void { },
 
   mutation: {
     insertBefore(
@@ -160,7 +144,6 @@ const ReactTVFiberRenderer = ReactFiberReconciler({
       child: Instance | TextInstance,
       beforeChild: Instance | TextInstance
     ): void {
-      log('insertBefore');
       parentInstance.insertBefore(child, beforeChild);
     },
 
@@ -169,7 +152,6 @@ const ReactTVFiberRenderer = ReactFiberReconciler({
       child: Instance | TextInstance,
       beforeChild: Instance | TextInstance
     ): void {
-      log('insertInContainerBefore');
       if (container.nodeType === COMMENT_NODE) {
         (container.parentNode: any).insertBefore(child, beforeChild);
       } else {
@@ -181,7 +163,6 @@ const ReactTVFiberRenderer = ReactFiberReconciler({
       parentInstance: Instance | Container,
       child: Instance | TextInstance
     ): void {
-      log('appendChild', parentInstance, child);
       parentInstance.appendChild(child);
     },
 
@@ -189,7 +170,6 @@ const ReactTVFiberRenderer = ReactFiberReconciler({
       container: Container,
       child: Instance | TextInstance
     ): void {
-      log('appendChildToContainer');
       if (container.nodeType === COMMENT_NODE) {
         (container.parentNode: any).insertBefore(child, container);
       } else {
@@ -201,7 +181,6 @@ const ReactTVFiberRenderer = ReactFiberReconciler({
       parentInstance: Instance | Container,
       child: Instance | TextInstance
     ): void {
-      log('removeChild', child);
       parentInstance.removeChild(child);
     },
 
@@ -221,7 +200,6 @@ const ReactTVFiberRenderer = ReactFiberReconciler({
       oldText: string,
       newText: string
     ): void {
-      log('commitTextUpdate');
       textInstance.nodeValue = newText;
     },
 
@@ -233,7 +211,6 @@ const ReactTVFiberRenderer = ReactFiberReconciler({
       newProps: Props,
       internalInstanceHandle: Object
     ): void {
-      log('commitUpdate');
       updateFiberProps(domElement, newProps);
       updateProperties(domElement, updatePayload, type, oldProps, newProps);
     },
@@ -244,7 +221,6 @@ const ReactTVFiberRenderer = ReactFiberReconciler({
       newProps: Props,
       internalInstanceHandle: Object
     ) {
-      log('commitMount');
     },
   },
 
@@ -258,9 +234,7 @@ const ReactTVFiberRenderer = ReactFiberReconciler({
     domElement.textContent = '';
   },
 
-  resetAfterCommit(): void {
-    log('resetAfterCommit');
-  },
+  // resetAfterCommit(): void {},
 
   createTextInstance(
     text: string,
@@ -268,19 +242,14 @@ const ReactTVFiberRenderer = ReactFiberReconciler({
     hostContext: HostContext,
     internalInstanceHandle: Object
   ): TextInstance {
-    log('createTextInstance');
     let textNode: TextInstance = createTextNode(text, rootContainerInstance);
     precacheFiberNode(internalInstanceHandle, textNode);
     return textNode;
   },
 
-  scheduleAnimationCallback() {
-    log('scheduleAnimationCallback');
-  },
+  // scheduleAnimationCallback() {},
 
-  scheduleDeferredCallback() {
-    log('scheduleDeferredCallback');
-  },
+  // scheduleDeferredCallback() {},
 
   useSyncScheduling: true,
 
