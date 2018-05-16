@@ -55,7 +55,7 @@ function createBundle({entryPath, bundleType, destName}) {
   }).then(bundle => {
     tasks.push(
       bundle.write({
-        format: bundleType === 'PROD-UMD' ? 'umd' : 'iife',
+        format: 'umd',
         name: 'ReactTV',
         file: `${packagePath}/dist/${destName}`,
       })
@@ -63,37 +63,17 @@ function createBundle({entryPath, bundleType, destName}) {
   });
 }
 
-if (process.env.NODE_ENV === 'PROD') {
-  createBundle({
-    entryPath: `${packagePath}/ReactTVEntry.js`,
-    bundleType: 'DEV',
-    destName: 'react-tv.development.js',
-  });
+createBundle({
+  entryPath: `${packagePath}/ReactTVEntry.js`,
+  bundleType: 'PROD',
+  destName: 'react-tv.production.js',
+});
 
-  createBundle({
-    entryPath: `${packagePath}/ReactTVEntry.js`,
-    bundleType: 'PROD',
-    destName: 'react-tv.min.js',
-  });
-
-  createBundle({
-    entryPath: `${packagePath}/ReactTVEntry.js`,
-    bundleType: 'PROD-UMD',
-    destName: 'react-tv.production.js',
-  });
-} else {
-  createBundle({
-    entryPath: `${packagePath}/ReactTVEntry.js`,
-    bundleType: 'PROD-UMD',
-    destName: 'react-tv.production.js',
-  });
-
-  createBundle({
-    entryPath: `${packagePath}/ReactTVEntry.js`,
-    bundleType: 'DEV',
-    destName: 'react-tv.development.js',
-  });
-}
+createBundle({
+  entryPath: `${packagePath}/ReactTVEntry.js`,
+  bundleType: 'DEV',
+  destName: 'react-tv.development.js',
+});
 
 Promise.all(tasks).catch(error => {
   Promise.reject(error);
