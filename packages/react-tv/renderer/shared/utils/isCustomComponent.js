@@ -31,4 +31,4 @@ function isCustomComponent(tagName: string, props: Object) {
   }
 }
 
-module.exports = isCustomComponent;
+export default isCustomComponent;
