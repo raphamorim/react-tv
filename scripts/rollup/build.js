@@ -35,7 +35,7 @@ function createBundle({entryPath, bundleType, destName}) {
       externalHelpers: false,
     }),
     commonjs({
-      include: 'node_modules/**'
+      include: 'node_modules/**',
     }),
     resolve({
       jsnext: true,
