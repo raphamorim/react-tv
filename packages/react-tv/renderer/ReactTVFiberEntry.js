@@ -136,8 +136,6 @@ const ReactTVFiberRenderer = ReactFiberReconciler({
     return instance;
   },
 
-  // prepareForCommit(): void { },
-
   mutation: {
     insertBefore(
       parentInstance: Instance,

@@ -19,4 +19,5 @@ const ReactTV = {
   Platform: Platform,
 };
 
-module.exports = ReactTV.default ? ReactTV.default : ReactTV;
+const Renderer = ReactTV.default ? ReactTV.default : ReactTV;
+export default Renderer;

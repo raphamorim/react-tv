@@ -34,7 +34,9 @@ function createBundle({entryPath, bundleType, destName}) {
       exclude: 'node_modules/**',
       externalHelpers: false,
     }),
-    commonjs(),
+    commonjs({
+      include: 'node_modules/**'
+    }),
     resolve({
       jsnext: true,
       main: true,
@@ -64,6 +66,12 @@ function createBundle({entryPath, bundleType, destName}) {
 if (process.env.NODE_ENV === 'PROD') {
   createBundle({
     entryPath: `${packagePath}/ReactTVEntry.js`,
+    bundleType: 'DEV',
+    destName: 'react-tv.development.js',
+  });
+
+  createBundle({
+    entryPath: `${packagePath}/ReactTVEntry.js`,
     bundleType: 'PROD',
     destName: 'react-tv.min.js',
   });
@@ -71,20 +79,20 @@ if (process.env.NODE_ENV === 'PROD') {
   createBundle({
     entryPath: `${packagePath}/ReactTVEntry.js`,
     bundleType: 'PROD-UMD',
-    destName: 'react-tv.umd.js',
+    destName: 'react-tv.production.js',
   });
 } else {
   createBundle({
     entryPath: `${packagePath}/ReactTVEntry.js`,
     bundleType: 'PROD-UMD',
-    destName: 'react-tv.umd.js',
+    destName: 'react-tv.production.js',
   });
 
-  // createBundle({
-  //   entryPath: `${packagePath}/ReactTVEntry.js`,
-  //   bundleType: 'DEV',
-  //   destName: 'react-tv.js',
-  // });
+  createBundle({
+    entryPath: `${packagePath}/ReactTVEntry.js`,
+    bundleType: 'DEV',
+    destName: 'react-tv.development.js',
+  });
 }
 
 Promise.all(tasks).catch(error => {
