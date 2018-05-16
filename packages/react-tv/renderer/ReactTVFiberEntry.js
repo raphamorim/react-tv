@@ -218,8 +218,7 @@ const ReactTVFiberRenderer = ReactFiberReconciler({
       type: string,
       newProps: Props,
       internalInstanceHandle: Object
-    ) {
-    },
+    ) {},
   },
 
   shouldSetTextContent(props: Props): boolean {
