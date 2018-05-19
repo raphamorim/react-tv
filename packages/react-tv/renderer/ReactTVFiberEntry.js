@@ -136,6 +136,10 @@ const ReactTVFiberRenderer = ReactFiberReconciler({
     return instance;
   },
 
+  prepareForCommit(): void {
+    // noop
+  },
+
   mutation: {
     insertBefore(
       parentInstance: Instance,
@@ -231,7 +235,7 @@ const ReactTVFiberRenderer = ReactFiberReconciler({
     domElement.textContent = '';
   },
 
-  // resetAfterCommit(): void {},
+  resetAfterCommit(): void {},
 
   createTextInstance(
     text: string,
@@ -244,9 +248,9 @@ const ReactTVFiberRenderer = ReactFiberReconciler({
     return textNode;
   },
 
-  // scheduleAnimationCallback() {},
+  scheduleAnimationCallback() {},
 
-  // scheduleDeferredCallback() {},
+  scheduleDeferredCallback() {},
 
   useSyncScheduling: true,
 
