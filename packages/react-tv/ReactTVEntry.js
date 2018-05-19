@@ -8,16 +8,13 @@
  */
 
 import ReactTVRenderer from './renderer/ReactTVFiberEntry';
-import Platform from './modules/Platform';
-import renderOnAppLoaded from './modules/renderOnAppLoaded';
+import PlatformModule from './modules/Platform';
+import renderOnAppLoadedModule from './modules/renderOnAppLoaded';
 
-const ReactTV = {
-  render: ReactTVRenderer.render,
-  findDOMNode: ReactTVRenderer.findDOMNode,
-  unmountComponentAtNode: ReactTVRenderer.unmountComponentAtNode,
-  renderOnAppLoaded: renderOnAppLoaded,
-  Platform: Platform,
-};
+export const render = ReactTVRenderer.render;
+export const findDOMNode = ReactTVRenderer.findDOMNode;
+export const unmountComponentAtNode = ReactTVRenderer.unmountComponentAtNode;
+export const renderOnAppLoaded = renderOnAppLoadedModule;
+export const Platform = PlatformModule;
 
-const Renderer = ReactTV.default ? ReactTV.default : ReactTV;
-export default Renderer;
+export default ReactTVRenderer;

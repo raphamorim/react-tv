@@ -1,13 +1,13 @@
-/*global React, ReactTV*/
+/*global React, ReactTV, ReactDOM*/
 
 const inspect = require('./../../../memory-inspector');
-const ReactTVRender = require('../../packages/react-tv/dist/react-tv.umd.js')
-  .render;
 
 const ReactPath =
   '/Users/hamorim/Documents/life/react-tv/node_modules/react/umd/react.production.min.js';
 const ReactTVPath =
-  '/Users/hamorim/Documents/life/react-tv/packages/react-tv/dist/react-tv.development.js';
+  '/Users/hamorim/Documents/life/react-tv/packages/react-tv/dist/react-tv.production.js';
+const ReactDOMPath =
+  '/Users/hamorim/Documents/life/react-tv/node_modules/react-dom/umd/react-dom.production.min.js';
 
 const renderApp = renderMethod => () => {
   class Clock extends React.Component {
@@ -36,19 +36,35 @@ const renderApp = renderMethod => () => {
     }
   }
 
-  return ReactTV.render(
-    React.createElement(Clock, null),
-    document.getElementById('root')
-  );
+  let render;
+  if (window && window.ReactTV) {
+    render = ReactTV.render;
+    console.log('using react-tv');
+  } else {
+    render = ReactDOM.render;
+    console.log('using react-dom');
+  }
+
+  render(React.createElement(Clock, null), document.getElementById('root'));
 };
 
 // Should not pass 5MB
 inspect({
-  evaluate: renderApp.bind(ReactTVRender),
+  evaluate: renderApp,
   scripts: [ReactPath, ReactTVPath],
-  delay: 100,
+  delay: 1000,
   maxMemoryLimit: 5 * 1048576,
   maxMemoryPercentThreshold: 90,
-}).then(memoryReport => {
-  console.log(memoryReport);
+}).then(memoryReportTV => {
+  console.log(memoryReportTV);
+
+  inspect({
+    evaluate: renderApp,
+    scripts: [ReactPath, ReactDOMPath],
+    delay: 3000,
+    maxMemoryLimit: 5 * 1048576,
+    maxMemoryPercentThreshold: 90,
+  }).then(memoryReportDOM => {
+    console.log(memoryReportDOM);
+  });
 });
