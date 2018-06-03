@@ -9,11 +9,11 @@ describe('findDOMNode', () => {
 
     class Sure extends React.Component {
       componentDidMount() {
-        expect(findDOMNode(this)).toEqual(expectedNode);
+        expect(findDOMNode(this.input)).toEqual(expectedNode);
       }
 
       render() {
-        return <p>Sure!</p>;
+        return <p ref={node => (this.input = node)}>Sure!</p>;
       }
     }
 

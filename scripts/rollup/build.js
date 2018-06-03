@@ -14,10 +14,10 @@ const packagePath = 'packages/react-tv';
 
 let tasks = [];
 
-function stripEnvVariables(production) {
+function stripEnvVariables(env) {
   return {
-    __DEV__: production ? 'false' : 'true',
-    'process.env.NODE_ENV': production ? "'production'" : "'development'",
+    __DEV__: env === 'production' ? 'false' : 'true',
+    'process.env.NODE_ENV': "'" + env + "'",
   };
 }
 
@@ -29,7 +29,7 @@ function createBundle({entryPath, bundleType, destName}) {
 
   let plugins = [
     flow(),
-    replace(stripEnvVariables()),
+    replace(stripEnvVariables(bundleType)),
     babel({
       exclude: 'node_modules/**',
       externalHelpers: false,
@@ -44,7 +44,7 @@ function createBundle({entryPath, bundleType, destName}) {
     }),
   ];
 
-  if (bundleType.indexOf('PROD') >= 0) {
+  if (bundleType.indexOf('production') >= 0) {
     plugins = plugins.concat([optimizeJs(), uglify()]);
   }
 
@@ -65,13 +65,13 @@ function createBundle({entryPath, bundleType, destName}) {
 
 createBundle({
   entryPath: `${packagePath}/ReactTVEntry.js`,
-  bundleType: 'PROD',
+  bundleType: 'production',
   destName: 'react-tv.production.js',
 });
 
 createBundle({
   entryPath: `${packagePath}/ReactTVEntry.js`,
-  bundleType: 'DEV',
+  bundleType: 'development',
   destName: 'react-tv.development.js',
 });
 

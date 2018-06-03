@@ -2,9 +2,10 @@
   "name": "react-tv",
   "version": "0.3.4",
   "description": "React renderer for low memory applications",
-  "main": "dist/react-tv.production.js",
+  "main": "index.js",
   "files": [
-    "dist/"
+    "dist/",
+    "index.js"
   ],
   "repository": {
     "type": "git",
