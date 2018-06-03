@@ -1,6 +1,6 @@
 {
   "name": "react-tv",
-  "version": "0.3.4",
+  "version": "0.4.0",
   "description": "React renderer for low memory applications",
   "main": "index.js",
   "files": [
