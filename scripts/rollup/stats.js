@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const Table = require('cli-table');
 
-const files = ['react-tv.umd.js', 'react-tv.min.js'];
+const files = ['react-tv.development.js', 'react-tv.production.js'];
 
 const sizeInfo = ['size'];
 const table = new Table({
