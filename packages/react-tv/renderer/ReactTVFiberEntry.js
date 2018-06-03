@@ -271,6 +271,13 @@ const ReactTVRenderer = {
     }
 
     ReactTVFiberRenderer.updateContainer((element: any), root, null, callback);
+
+    ReactTVFiberRenderer.injectIntoDevTools({
+      bundleType: process.env.NODE_ENV === 'production' ? 0 : 1,
+      rendererPackageName: 'ReactTV',
+      findHostInstanceByFiber: ReactTVFiberRenderer.findHostInstance,
+    });
+
     return ReactTVFiberRenderer.getPublicRootInstance(root);
   },
   findDOMNode(componentOrElement: React$Element<any>) {
