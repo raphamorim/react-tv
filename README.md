@@ -171,6 +171,10 @@ const Component = () => (<div></div>)
 const App = renderOnAppLoaded(Component)
 ```
 
+### `findDOMNode`
+
+Similar to [react-dom findDOMNode](https://reactjs.org/docs/react-dom.html#finddomnode)
+
 ### Navigation
 
 If you want to start with Navigation for TVs. React-TV provides a package for spatial navigation with declarative support based on [Netflix navigation system](https://medium.com/netflix-techblog/pass-the-remote-user-input-on-tv-devices-923f6920c9a8). 
