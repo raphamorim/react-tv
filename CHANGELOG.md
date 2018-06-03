@@ -1,3 +1,11 @@
+# 0.4.0
+
+- react `^16.3.2`
+- react-reconciler `0.10.0`
+- support to React DevTools
+- fixes on development bundle
+- `development` and `production` bundles based on `process.node.env`
+
 # 0.3.4
 
 - update `react-tv-navigation` on react-tv-cli generator to 0.4.0
