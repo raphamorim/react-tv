@@ -37,7 +37,7 @@ jobs:
 
       - run:
           name: Build react-tv
-          command: yarn build:prod
+          command: yarn build
 
       - run:
           name: Build status react-tv
