@@ -19,9 +19,9 @@ const EventConstants = {
   onUnload: 'unload',
   onPress: 'keypress',
   onScroll: 'scroll',
-  onKeypress: 'keypress',
-  onKeydown: 'keydown',
-  onKeyup: 'keyup',
+  onKeyPress: 'keypress',
+  onKeyDown: 'keydown',
+  onKeyUp: 'keyup',
 };
 
 export default EventConstants;
