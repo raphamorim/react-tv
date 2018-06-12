@@ -5,27 +5,29 @@ const {exec, execSync, spawnSync} = require('child_process');
 const {getCLIEnv, isReactTVWebOSProject} = require('./shared');
 
 function runEmulator(ENV) {
+  const webOSTVVersion = process.env.WEBOS_CLI_TV_VERSION || false;
+  const version = (webOSTVVersion) ? `v${webOSTVVersion}` : 'v3.0.0';
   switch (process.platform) {
     case 'darwin':
       execSync(
-        `open ${ENV}/../../Emulator/v3.0.0/LG_webOS_TV_Emulator_RCU.app`
+        `open ${ENV}/../../Emulator/${version}/LG_webOS_TV_Emulator_RCU.app`
       );
       break;
     case 'linux':
       exec(`
-        sh ${ENV}/../../Emulator/v3.0.0/LG_webOS_TV_Emulator.sh
+        sh ${ENV}/../../Emulator/${version}/LG_webOS_TV_Emulator.sh
         &&
-        java -jar ${ENV}/../../Emulator/v3.0.0/LG_webOS_TV_Emulator_linux_x64.jar -remocon`);
+        java -jar ${ENV}/../../Emulator/${version}/LG_webOS_TV_Emulator_linux_x64.jar -remocon`);
       break;
     case 'win32':
       exec(`LG_webOS_TV_Emulator.bat`, {
-        cwd: `${ENV}/../Emulator/v3.0.0/`,
+        cwd: `${ENV}/../Emulator/${version}/`,
         windowsHide: true,
       });
       break;
     default:
       execSync(
-        `open ${ENV}/../../Emulator/v3.0.0/LG_webOS_TV_Emulator_RCU.app`
+        `open ${ENV}/../../Emulator/${version}/LG_webOS_TV_Emulator_RCU.app`
       );
   }
 }
