@@ -22,7 +22,7 @@ class Clock extends React.Component {
       )
     }
 
-    return <h2>This App is available only at LG WebOS</h2>
+    return <h2>This App is available only at LG webOS</h2>
   }
 }
 
@@ -35,8 +35,8 @@ ReactTV.render(<Clock/>, document.getElementById('root'))
   - [Understanding the Problem](#understanding-the-problem)
   - [Articles](#articles)
 - [react-tv-cli](#react-tv-cli)
-  - [Developing for WebOS](#developing-for-webos)
-  - [Setup WebOS Environment](#setup-webos-environment)
+  - [Developing for webOS](#developing-for-webos)
+  - [Setup webOS Environment](#setup-webos-environment)
 - [react-tv](#react-tv)
   - [`Platform`](#platform)
   - [`renderOnAppLoaded`](#renderonapploaded)
@@ -45,7 +45,7 @@ ReactTV.render(<Clock/>, document.getElementById('root'))
     - [Clock App](#clock-app)
     - [Youtube App](#youtube-app)
 - [References for Study](#references)
-  - [WebOS](#webos)
+  - [webOS](#webos)
   - [Videos](#videos)
   - [Essentials to beginner](#essentials-to-beginner)
   - [React Basics and Renderer Architecture](#react-basics-and-renderer-architecture)
@@ -55,7 +55,7 @@ ReactTV.render(<Clock/>, document.getElementById('root'))
 ## About React-TV
 
 React-TV is an ecosystem for TV based React applications (from the renderer to CLI for pack/build applications).  
-At the moment we're focusing on WebOS and SmartTV.  
+At the moment we're focusing on webOS and SmartTV.  
 React-TV's aims to be a better tool for building and developing fast for TVs.
 
 ### Understanding the Problem
@@ -90,23 +90,23 @@ $ yarn global add react-tv-cli
 
 | Target Platform | Status | Available Version |
 | --- | --- | --- |
-| `LG WebOS` | stable | 0.3.1 |
+| `LG webOS` | stable | 0.3.1 |
 | `Samsung Tizen` | [ongoing](https://github.com/raphamorim/react-tv/pull/104) | x |
 | `Samsung Orsay` | not started yet | x |
 | `Sony PS4` | not started yet | x |
 | `Nintendo Switch` | not started yet | x |
 
-### Developing for WebOS
+### Developing for webOS
 
 <p align="center"><img src="http://ksassets.timeincuk.net/wp/uploads/sites/54/2015/07/lg-webOS-2-0-2015-Main-1.jpg" /></p>
 
-**Short Description:** WebOS, also known as Open WebOS or LG WebOS, (previously known as HP WebOS and Palm WebOS, stylized as webOS) is a Linux kernel-based multitasking operating system for smart devices such as Smart TVs and it has been used as a mobile operating system.
+**Short Description:** webOS, also known as Open webOS or LG webOS, (previously known as HP webOS and Palm webOS, stylized as webOS) is a Linux kernel-based multitasking operating system for smart devices such as Smart TVs and it has been used as a mobile operating system.
 
 --------------------------------------------------------
 
-First of all, setup your WebOS Environment:
+First of all, setup your webOS Environment:
 
-#### [Setup WebOS Enviroment](docs/setup-webos-environment.md)
+#### [Setup webOS Enviroment](docs/setup-webos-environment.md)
 
 Then, init your react-tv project.
 
@@ -135,7 +135,7 @@ Running it on specific device:
 $ react-tv run-webos <device>
 ```
 
-* When you not specify the device, it runs on VirtualBox WebOS Simulator
+* When you not specify the device, it runs on VirtualBox webOS Simulator
 
 ## [react-tv](https://www.npmjs.com/package/react-tv)
 
@@ -148,7 +148,7 @@ $ yarn add react-tv
 ### `Platform`
 
 When building a cross-platform TV app, you'll want to re-use as much code as possible. You'll probably have different scenarios where different code might be necessary.  
-For instance, you may want to implement separated visual components for `LG-WebOS` and `Samsung-Tizen`.
+For instance, you may want to implement separated visual components for `LG-webOS` and `Samsung-Tizen`.
 
 React-TV provides the `Platform` module to easily organize your code and separate it by platform:
 
@@ -238,7 +238,7 @@ See [examples/navigation](examples/navigation) for more details about usage.
 
 ## References:
 
-### WebOS
+### webOS
 
 - http://webostv.developer.lge.com/sdk/download/download-sdk/
 - http://webostv.developer.lge.com/sdk/install-instructions/installing-sdk/
@@ -253,7 +253,7 @@ See [examples/navigation](examples/navigation) for more details about usage.
 
 ##### Windows
 
-- [LG WebOS SDK Installing (Setup Webos IDE)](https://www.youtube.com/watch?v=4l-3ZdRkRgc)
+- [LG webOS SDK Installing (Setup webOS IDE)](https://www.youtube.com/watch?v=4l-3ZdRkRgc)
 
 ##### OSX
 
@@ -282,8 +282,8 @@ See [examples/navigation](examples/navigation) for more details about usage.
 
 Initial proof-of-concept. [DONE]
 
-- [x] CLI Build Abstraction of LG Webos (`run-webos`, `run-webos-dev`)
-- [x] Create a guide or script to Install all LG WebOS environment
+- [x] CLI Build Abstraction of LG webOS (`run-webos`, `run-webos-dev`)
+- [x] Create a guide or script to Install all LG webOS environment
 - [x] Renderer ReactElements to simple DOM
   - [x] Support HOF and HOC
   - [x] Support State and Lifecycle
@@ -299,7 +299,7 @@ Implement essential functionality needed for daily use by early adopters.
 - [x] `run-webos` support TV device as param
 - [ ] Optmizate DOMRenderer for TV
 - [ ] Start CLI for Tizen
-- [x] Develop helpers for WebOS debbug (e.g: Log System).
+- [x] Develop helpers for webOS debbug (e.g: Log System).
 - [x] Support Cross Platform
   - [x] Check executable bin path for Windows, OSX and Linux
 - [ ] Bind all TV key listeners on `React.Element`
