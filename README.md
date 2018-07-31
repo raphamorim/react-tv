@@ -97,7 +97,7 @@ $ yarn global add react-tv-cli
 | `Nintendo Switch` | not started yet | x |
 
 ##### TVs testeds, not official support
-
+| Target Platform | Status |
 | `Philips TVs since 2018.2 models` | app running | 
 | `AOC TVs since 2018 models` | app running |
 
