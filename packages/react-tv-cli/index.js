@@ -30,7 +30,7 @@ switch (command) {
     break;
 
   case 'setup-webos':
-    WebOS.setupDevice('-l');
+    WebOS.setupDevice();
     break;
 
   case 'get-key-webos':
