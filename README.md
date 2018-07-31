@@ -91,6 +91,8 @@ $ yarn global add react-tv-cli
 | Target Platform | Status | Available Version |
 | --- | --- | --- |
 | `LG WebOS` | stable | 0.3.1 |
+| `Philips TVs since 2018.2 models` | stable | 0.3.1 |
+| `AOC TVs since 2018 models` | stable | 0.3.1 |
 | `Samsung Tizen` | [ongoing](https://github.com/raphamorim/react-tv/pull/104) | x |
 | `Samsung Orsay` | not started yet | x |
 | `Sony PS4` | not started yet | x |
