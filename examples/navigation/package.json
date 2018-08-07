@@ -20,9 +20,9 @@
   },
   "dependencies": {
     "react": "^16.2.0",
-    "react-tv": "^0.3.2",
-    "react-tv-cli": "^0.3.2",
-    "react-tv-navigation": "^0.4.0"
+    "react-tv": "^0.4.1",
+    "react-tv-cli": "^0.4.1",
+    "react-tv-navigation": "^0.4.2"
   },
   "devDependencies": {
     "babel-core": "^6.4.5",

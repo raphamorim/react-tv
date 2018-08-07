@@ -24,9 +24,9 @@
     "babel-preset-react": "^6.24.1",
     "cross-env": "^5.1.1",
     "react": "^16.2.0",
-    "react-tv": "^0.4.0",
-    "react-tv-cli": "^0.4.0",
-    "react-tv-navigation": "^0.4.0",
+    "react-tv": "^0.4.2",
+    "react-tv-cli": "^0.4.2",
+    "react-tv-navigation": "^0.4.2",
     "webpack": "^3.8.1",
     "webpack-dev-server": "^2.9.4"
   }
