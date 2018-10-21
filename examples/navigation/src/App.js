@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactTV, { renderOnAppLoaded } from 'react-tv'
-import { withFocusable, withNavigation } from 'react-tv-navigation'
+import { withFocusable, withNavigation } from '../../../packages/react-tv-navigation/src'
 
 const Item = ({focused, setFocus, focusPath}) => {
   focused = (focused) ? 'focused' : 'unfocused'

@@ -48,8 +48,8 @@
     "memory-inspector": "^0.0.4",
     "minimatch": "^3.0.4",
     "prettier": "^1.5.3",
-    "react": "^16.4.2",
-    "react-dom": "^16.4.2",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
     "react-fiber-types": "file:./packages/react-tv/renderer/types",
     "react-reconciler": "^0.10.0",
     "react-test-renderer": "^16.2.0",
@@ -71,6 +71,7 @@
       "modules",
       "renderer",
       "cli",
+      "navigation",
       "scripts",
       "examples",
       "docs",
@@ -80,7 +81,8 @@
   "jest": {
     "roots": [
       "<rootDir>/packages/react-tv",
-      "<rootDir>/packages/react-tv-cli"
+      "<rootDir>/packages/react-tv-cli",
+      "<rootDir>/packages/react-tv-navigation"
     ],
     "moduleDirectories": [
       "node_modules"
