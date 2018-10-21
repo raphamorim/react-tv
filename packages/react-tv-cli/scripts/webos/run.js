@@ -6,7 +6,7 @@ const {getCLIEnv, isReactTVWebOSProject} = require('./shared');
 
 function runEmulator(ENV) {
   const webOSTVVersion = process.env.WEBOS_CLI_TV_VERSION || false;
-  const version = (webOSTVVersion) ? `v${webOSTVVersion}` : 'v3.0.0';
+  const version = webOSTVVersion ? `v${webOSTVVersion}` : 'v3.0.0';
   switch (process.platform) {
     case 'darwin':
       execSync(
