@@ -11,7 +11,7 @@ const chalk = require('chalk');
 
 const REACT_TV_VERSION = require('../../lerna.json').version;
 const packagePath = 'packages/react-tv';
-const navigationPackagePath = 'packages/react-tv-navigation';
+// const navigationPackagePath = 'packages/react-tv-navigation';
 
 let tasks = [];
 
@@ -22,13 +22,13 @@ function stripEnvVariables(env) {
   };
 }
 
-function createBundle({
-  entryPath, bundleType, destName, dirPath, external
-}) {
+function createBundle({entryPath, bundleType, destName, dirPath, external}) {
   entryPath = path.resolve(dirPath, entryPath);
   const logKey =
     chalk.white.bold(entryPath) + chalk.dim(` (${REACT_TV_VERSION})`);
-  console.log(`${chalk.blue(bundleType)} ${logKey} -> ${dirPath}/dist/${destName}`);
+  console.log(
+    `${chalk.blue(bundleType)} ${logKey} -> ${dirPath}/dist/${destName}`
+  );
 
   let plugins = [
     flow(),
@@ -55,7 +55,7 @@ function createBundle({
     input: entryPath,
     plugins: plugins,
     sourcemap: false,
-    external: external
+    external: external,
   }).then(bundle => {
     tasks.push(
       bundle.write({
