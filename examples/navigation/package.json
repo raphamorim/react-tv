@@ -22,7 +22,7 @@
     "react": "^16.2.0",
     "react-tv": "^0.4.3",
     "react-tv-cli": "^0.4.2",
-    "react-tv-navigation": "^0.4.3"
+    "react-tv-navigation": "^0.4.2"
   },
   "devDependencies": {
     "babel-core": "^6.4.5",
