@@ -45,7 +45,7 @@
     "enzyme-adapter-react-16": "^1.1.1",
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
-    "react-tv": "^0.4.2",
+    "react-tv": "^0.4.3",
     "recompose": "^0.26.0"
   }
 }
