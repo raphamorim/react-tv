@@ -273,6 +273,7 @@ const ReactTVRenderer = {
 
     ReactTVFiberRenderer.injectIntoDevTools({
       bundleType: process.env.NODE_ENV === 'production' ? 0 : 1,
+      version: '0.4.4',
       rendererPackageName: 'ReactTV',
       findHostInstanceByFiber: ReactTVFiberRenderer.findHostInstance,
     });
