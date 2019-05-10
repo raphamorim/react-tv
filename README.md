@@ -111,7 +111,7 @@ First of all, setup your WebOS Environment:
 Then, init your react-tv project.
 
 ```bash
-$ react-tv init <my-app-name>
+$ react-tv-cli init <my-app-name>
 ```
 
 Add the files related to your app on the React-TV entry on `package.json`:
@@ -132,7 +132,7 @@ Add the files related to your app on the React-TV entry on `package.json`:
 Running it on specific device:
 
 ```
-$ react-tv run-webos <device>
+$ react-tv-cli run-webos <device>
 ```
 
 * When you not specify the device, it runs on VirtualBox WebOS Simulator
