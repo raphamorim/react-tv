@@ -36,7 +36,6 @@ ReactTV.render(<Clock/>, document.getElementById('root'))
   - [Articles](#articles)
 - [react-tv-cli](#react-tv-cli)
   - [Developing for WebOS](#developing-for-webos)
-  - [Setup WebOS Environment](#setup-webos-environment)
 - [react-tv](#react-tv)
   - [`Platform`](#platform)
   - [`renderOnAppLoaded`](#renderonapploaded)
@@ -104,17 +103,21 @@ $ yarn global add react-tv-cli
 
 --------------------------------------------------------
 
-First of all, setup your WebOS Environment:
+First of all, follow the instructions to install the SDK and [Setup your WebOS Environment](docs/setup-webos-environment.md).
 
-#### [Setup WebOS Enviroment](docs/setup-webos-environment.md)
-
-Then, init your react-tv project.
+Then, init your react-tv project:
 
 ```bash
 $ react-tv-cli init <my-app-name>
 ```
 
-Add the files related to your app on the React-TV entry on `package.json`:
+From the project directory, install the dependencies to enable building:
+
+```bash
+$ yarn install
+```
+
+You will need to keep the list of files related to your app on the React-TV entry up to date in `package.json`. The init command will already add `index.html`, `bundle.js` and `style.css` to the package.
 
 ```json
 {
@@ -129,13 +132,19 @@ Add the files related to your app on the React-TV entry on `package.json`:
 }
 ```
 
-Running it on specific device:
+To build your project:
+
+```bash
+$ yarn build
+```
+
+Once the project is built, you can run it on a specific device or emulator:
 
 ```
 $ react-tv-cli run-webos <device>
 ```
 
-* When you not specify the device, it runs on VirtualBox WebOS Simulator
+* If you do not specify a device, it runs on VirtualBox WebOS Simulator.
 
 ## [react-tv](https://www.npmjs.com/package/react-tv)
 
