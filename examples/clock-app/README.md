@@ -20,8 +20,15 @@ yarn
 
 To run it:
 
+WebOS:
 ```shell
 yarn start
 ```
+
+Tizen:
+```shell
+yarn start-tizen
+```
+
 
 ![Screenshot](screenshot.png)

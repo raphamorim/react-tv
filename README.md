@@ -33,6 +33,7 @@ ReactTV.render(<Clock/>, document.getElementById('root'))
 
 - [About React-TV](#about-react-tv)
   - [Understanding the Problem](#understanding-the-problem)
+  - [Setup for TV SKDs](#setup-for-tv-sdks)
   - [Articles](#articles)
 - [react-tv-cli](#react-tv-cli)
   - [Developing for WebOS](#developing-for-webos)
@@ -70,6 +71,11 @@ Crafting a high-performance TV user interface using React is a real challenge, b
 These restrictions make super responsive 60fps experiences especially tricky. The strategy is **step in the renderer**: Applying reactive concepts to unblock the processing on the renderer layer, plug the TV's keyListener, avoid React.createElement.
 
 In addition: Unify the build for multiple TV platforms.
+
+### Setup for TV SKDs
+
+- [Setup LG WebOS SDK](docs/setup-webos-environment.md)
+- [Setup Samsung Tizen SDK](docs/setup-tizen-environment.md)
 
 ### Articles
 
@@ -258,6 +264,16 @@ See [examples/navigation](examples/navigation) for more details about usage.
 - http://webostv.developer.lge.com/develop/app-developer-guide/web-app-lifecycle/
 - http://webostv.developer.lge.com/develop/js-services/calling-js-service/
 
+### Tizen
+
+- http://developer.samsung.com/tv/develop/tools/tizen-studio
+- http://developer.samsung.com/tv/develop/getting-started/setting-up-sdk/installing-tv-sdk
+- http://developer.samsung.com/tv/develop/getting-started/setting-up-sdk/creating-certificates
+- http://developer.samsung.com/tv/develop/getting-started/creating-tv-applications
+- http://developer.samsung.com/tv/design/design-principles
+- http://developer.samsung.com/tv/develop/specifications/general-specifications
+- http://developer.samsung.com/tv/develop/specifications/web-engine-specifications
+
 #### Videos
 
 ##### Windows
@@ -270,7 +286,6 @@ See [examples/navigation](examples/navigation) for more details about usage.
 
 ### Essentials to beginner
 
-- http://developer.samsung.com/tv/develop/getting-started/setup-sdk/installing-tv-sdk/
 - http://developer.samsung.com/tv/develop/getting-started/using-sdk/tv-simulator
 - http://developer.samsung.com/tv/develop/getting-started/essentials-for-beginner
 
@@ -307,7 +322,7 @@ Implement essential functionality needed for daily use by early adopters.
 - [ ] Support render to Canvas instead DOM using `React.CanvasComponent`
 - [x] `run-webos` support TV device as param
 - [ ] Optmizate DOMRenderer for TV
-- [ ] Start CLI for Tizen
+- [x] Start CLI for Tizen
 - [x] Develop helpers for WebOS debbug (e.g: Log System).
 - [x] Support Cross Platform
   - [x] Check executable bin path for Windows, OSX and Linux
@@ -325,7 +340,7 @@ Add additional features users expect from a Renderer. Then fix bugs and stabiliz
 - [ ] Reactive Renderer
 - [ ] Testing and stability
 
----------------------------------------------------- 
+----------------------------------------------------
 
 See ReactTV's [Changelog](https://github.com/raphamorim/react-tv/blob/master/CHANGELOG.md).
 
