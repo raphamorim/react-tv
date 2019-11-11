@@ -30,6 +30,6 @@
     "babel-polyfill": "^6.26.0",
     "babel-preset-react": "^6.3.13",
     "webpack": "^1.12.12",
-    "webpack-dev-server": "^1.12.1"
+    "webpack-dev-server": "^3.9.0"
   }
 }
