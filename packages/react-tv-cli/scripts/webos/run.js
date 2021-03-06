@@ -6,7 +6,7 @@ const {getCLIEnv, isReactTVWebOSProject} = require('./shared');
 
 function runEmulator(ENV) {
   const webOSTVVersion = process.env.WEBOS_CLI_TV_VERSION || false;
-  const version = webOSTVVersion ? `v${webOSTVVersion}` : 'v3.0.0';
+  const version = webOSTVVersion ? `v${webOSTVVersion}` : 'v5.0.0';
   switch (process.platform) {
     case 'darwin':
       execSync(
@@ -15,9 +15,9 @@ function runEmulator(ENV) {
       break;
     case 'linux':
       exec(`
-        sh ${ENV}/../../Emulator/${version}/LG_webOS_TV_Emulator.sh
+        sh "${ENV}/../../Emulator/${version}/LG_webOS_TV_Emulator.sh"
         &&
-        java -jar ${ENV}/../../Emulator/${version}/LG_webOS_TV_Emulator_linux_x64.jar -remocon`);
+        java -jar "${ENV}/../../Emulator/${version}/LG_webOS_TV_Emulator_linux_x64.jar" -remocon`);
       break;
     case 'win32':
       exec(`LG_webOS_TV_Emulator.bat`, {
@@ -104,7 +104,7 @@ function run(root, device) {
 
     runEmulator(webOS_TV_SDK_ENV);
 
-    console.log(chalk.yellow(' LG WebOS Emulator 3.0.0 succefull running'));
+    console.log(chalk.yellow(' LG WebOS Emulator 5.0.0 succesfull running'));
   }
 
   let attemps = 0;
@@ -130,7 +130,7 @@ function run(root, device) {
 
     console.log(chalk.dim('Packing...'));
 
-    execSync(`${webOS_TV_SDK_ENV}/ares-package .`, {cwd: webosPath});
+    execSync(`"${webOS_TV_SDK_ENV}/ares-package" .`, {cwd: webosPath});
     console.log(chalk.yellow(` succefull pack from ${root}`));
 
     cleanup();
@@ -142,20 +142,21 @@ function run(root, device) {
 
     const latestIPK = config.id + '_' + config.version + '_all.ipk';
     console.log(chalk.blue(` installing ${latestIPK} as IPK`));
-    execSync(`${webOS_TV_SDK_ENV}/ares-install ${optDevice} ${latestIPK}`, {
+    console.log(`"${webOS_TV_SDK_ENV}/ares-install" ${optDevice} ${latestIPK}`)
+    execSync(`"${webOS_TV_SDK_ENV}/ares-install" ${optDevice} ${latestIPK}`, {
       cwd: webosPath,
     });
     console.log(chalk.yellow(` succefull install ${config.title}`));
 
     console.log(chalk.dim('Launching...'));
-    execSync(`${webOS_TV_SDK_ENV}/ares-launch ${optDevice} ${config.id}`, {
+    execSync(`"${webOS_TV_SDK_ENV}/ares-launch" ${optDevice} ${config.id}`, {
       cwd: webosPath,
     });
     console.log(chalk.yellow(` launched`));
 
     console.log(chalk.dim('Inspecting...'));
     spawnSync(
-      `${webOS_TV_SDK_ENV}/ares-inspect`,
+      `"${webOS_TV_SDK_ENV}/ares-inspect"`,
       [`-a ${config.id} ${optDevice}`],
       {
         stdio: 'inherit',
