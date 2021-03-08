@@ -33,7 +33,7 @@ function runEmulator(ENV) {
 }
 
 function run(root, device) {
-  let webOS_TV_SDK_ENV = process.env.WEBOS_CLI_TV || false;
+  let webOS_TV_SDK_ENV = fs.readdir(process.env.WEBOS_CLI_TV) || false;
   let optDevice = '';
 
   if (!webOS_TV_SDK_ENV) {
