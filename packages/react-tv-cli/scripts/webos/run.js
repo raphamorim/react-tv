@@ -142,7 +142,6 @@ function run(root, device) {
 
     const latestIPK = config.id + '_' + config.version + '_all.ipk';
     console.log(chalk.blue(` installing ${latestIPK} as IPK`));
-    console.log(`"${webOS_TV_SDK_ENV}/ares-install" ${optDevice} ${latestIPK}`)
     execSync(`"${webOS_TV_SDK_ENV}/ares-install" ${optDevice} ${latestIPK}`, {
       cwd: webosPath,
     });
