@@ -5,7 +5,11 @@ module.exports = {
   entry: ['babel-polyfill', './src/App.js'],
   output: { path: __dirname, filename: 'bundle.js' },
   resolveLoader: {
-    root: path.join(__dirname, 'node_modules'),
+    root: [
+      path.resolve(__dirname, 'node_modules'),
+      // yarn-workspaces
+      path.resolve(__dirname, '../../node_modules')
+    ]
   },
   module: {
     loaders: [
@@ -22,7 +26,7 @@ module.exports = {
   plugins: [
     new webpack.DefinePlugin({
       'process.env': {
-        'NODE_ENV': JSON.stringify('production')
+        'NODE_ENV': JSON.stringify(process.env.NODE_ENV)
       }
     })
   ],

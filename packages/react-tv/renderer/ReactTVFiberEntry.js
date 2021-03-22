@@ -21,7 +21,6 @@ import type {
 import ReactTVFiberComponent from './ReactTVFiberComponent';
 import ReactFiberReconciler from 'react-reconciler';
 import {getChildNamespace} from './shared/DOMNamespaces';
-import ReactInstanceMap from './shared/ReactInstanceMap';
 
 import * as ReactDOMComponentTree from './ReactTVComponentTree';
 
@@ -274,6 +273,7 @@ const ReactTVRenderer = {
 
     ReactTVFiberRenderer.injectIntoDevTools({
       bundleType: process.env.NODE_ENV === 'production' ? 0 : 1,
+      version: '0.4.4',
       rendererPackageName: 'ReactTV',
       findHostInstanceByFiber: ReactTVFiberRenderer.findHostInstance,
     });
@@ -288,10 +288,7 @@ const ReactTVRenderer = {
       return (componentOrElement: any);
     }
 
-    const inst = ReactInstanceMap.get(componentOrElement);
-    if (inst) {
-      return ReactTVFiberRenderer.findHostInstance(inst);
-    }
+    return ReactTVFiberRenderer.findHostInstance(componentOrElement);
   },
   unmountComponentAtNode(container: any) {
     const containerKey =

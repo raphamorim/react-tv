@@ -1,0 +1,51 @@
+{
+  "name": "react-tv-navigation",
+  "version": "0.4.4",
+  "description": "A react-tv-based implementation of Spatial Navigation by Luke Chang",
+  "main": "dist/bundle.umd.js",
+  "files": [
+    "dist/",
+    "README.md"
+  ],
+  "scripts": {
+    "prepublishOnly": "yarn build",
+    "build": "rollup -c",
+    "lint": "eslint ./",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/react-tv/react-tv-navigation.git"
+  },
+  "keywords": [
+    "react",
+    "tv",
+    "react-tv",
+    "spatial",
+    "navigation"
+  ],
+  "author": "Raphael Amorim <rapha850@gmail.com>",
+  "contributors": [
+    "Celio Latorraca <celio.la@gmail.com>",
+    "Raphael Amorim <rapha850@gmail.com>"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/react-tv/react-tv-navigation/issues"
+  },
+  "homepage": "https://github.com/react-tv/react-tv-navigation#readme",
+  "peerDependencies": {
+    "react-tv": "^0.4.4"
+  },
+  "devDependencies": {
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "prop-types": "^15.6.0",
+    "react": "^16.2.0",
+    "react-tv": "^0.4.4",
+    "recompose": "^0.26.0"
+  }
+}
